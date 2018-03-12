@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gz.medicine.gzyun.health.mapper.HealthPushMessageMapper">
+  
+  <resultMap id="BaseResultMap" type="com.gz.medicine.gzyun.health.bean.HealthPushMessage">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="USERID" jdbcType="VARCHAR" property="userid" />
+    <result column="ORDERID" jdbcType="VARCHAR" property="orderid" />
+    <result column="MESSAGETYPE" jdbcType="VARCHAR" property="messagetype" />
+    <result column="MESSAGENAME" jdbcType="VARCHAR" property="messagename" />
+    <result column="PUSHTIME" jdbcType="TIMESTAMP" property="pushtime" />
+    <result column="PUSHMESSAGE" jdbcType="VARCHAR" property="pushmessage" />
+    <result column="REMARKS" jdbcType="VARCHAR" property="remarks" />
+    <result column="STATE" jdbcType="VARCHAR" property="state" />
+    <result column="ISREAD" jdbcType="VARCHAR" property="isread" />
+    <result column="CREATEDATE" jdbcType="TIMESTAMP" property="createdate" />
+    <result column="CREATENAME" jdbcType="VARCHAR" property="createname" />
+    <result column="UPDATEDATE" jdbcType="TIMESTAMP" property="updatedate" />
+    <result column="UPDATENAME" jdbcType="VARCHAR" property="updatename" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    ID, USERID, ORDERID, MESSAGETYPE, MESSAGENAME, PUSHTIME, PUSHMESSAGE, REMARKS, STATE, 
+    ISREAD, CREATEDATE, CREATENAME, UPDATEDATE, UPDATENAME
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from PUSHMESSAGE
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <select id="countById" parameterType="com.gz.medicine.gzyun.health.bean.HealthPushMessage" resultType="java.lang.Integer">
+    SELECT count(*) FROM PUSHMESSAGE
+    <where>
+      <if test="userid != null and userid!=''">
+        userid = #{userid,jdbcType=VARCHAR}
+      </if>
+      <if test="messagetype != null and messagetype!=''">
+        AND messagetype = #{messagetype,jdbcType=VARCHAR}
+      </if>
+      AND ISREAD = '0' AND STATE = '1'
+    </where>
+
+
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from PUSHMESSAGE
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.gz.medicine.gzyun.health.bean.HealthPushMessage">
+    insert into PUSHMESSAGE (ID, USERID, ORDERID, 
+      MESSAGETYPE, MESSAGENAME, PUSHTIME, 
+      PUSHMESSAGE, REMARKS, STATE, 
+      ISREAD, CREATEDATE, CREATENAME, 
+      UPDATEDATE, UPDATENAME)
+    values (#{id,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, #{orderid,jdbcType=VARCHAR}, 
+      #{messagetype,jdbcType=VARCHAR}, #{messagename,jdbcType=VARCHAR}, #{pushtime,jdbcType=TIMESTAMP}, 
+      #{pushmessage,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, 
+      #{isread,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}, #{createname,jdbcType=VARCHAR}, 
+      #{updatedate,jdbcType=TIMESTAMP}, #{updatename,jdbcType=VARCHAR})
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.gz.medicine.gzyun.health.bean.HealthPushMessage">
+    insert into PUSHMESSAGE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="userid != null">
+        USERID,
+      </if>
+      <if test="orderid != null">
+        ORDERID,
+      </if>
+      <if test="messagetype != null">
+        MESSAGETYPE,
+      </if>
+      <if test="messagename != null">
+        MESSAGENAME,
+      </if>
+      <if test="pushtime != null">
+        PUSHTIME,
+      </if>
+      <if test="pushmessage != null">
+        PUSHMESSAGE,
+      </if>
+      <if test="remarks != null">
+        REMARKS,
+      </if>
+      <if test="state != null">
+        STATE,
+      </if>
+      <if test="isread != null">
+        ISREAD,
+      </if>
+      <if test="createdate != null">
+        CREATEDATE,
+      </if>
+      <if test="createname != null">
+        CREATENAME,
+      </if>
+      <if test="updatedate != null">
+        UPDATEDATE,
+      </if>
+      <if test="updatename != null">
+        UPDATENAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="orderid != null">
+        #{orderid,jdbcType=VARCHAR},
+      </if>
+      <if test="messagetype != null">
+        #{messagetype,jdbcType=VARCHAR},
+      </if>
+      <if test="messagename != null">
+        #{messagename,jdbcType=VARCHAR},
+      </if>
+      <if test="pushtime != null">
+        #{pushtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pushmessage != null">
+        #{pushmessage,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="isread != null">
+        #{isread,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null">
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createname != null">
+        #{createname,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedate != null">
+        #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatename != null">
+        #{updatename,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.gz.medicine.gzyun.health.bean.HealthPushMessage">
+    update PUSHMESSAGE
+    <set>
+      <if test="userid != null">
+        USERID = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="orderid != null">
+        ORDERID = #{orderid,jdbcType=VARCHAR},
+      </if>
+      <if test="messagetype != null">
+        MESSAGETYPE = #{messagetype,jdbcType=VARCHAR},
+      </if>
+      <if test="messagename != null">
+        MESSAGENAME = #{messagename,jdbcType=VARCHAR},
+      </if>
+      <if test="pushtime != null">
+        PUSHTIME = #{pushtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pushmessage != null">
+        PUSHMESSAGE = #{pushmessage,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        REMARKS = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="isread != null">
+        ISREAD = #{isread,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null">
+        CREATEDATE = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createname != null">
+        CREATENAME = #{createname,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedate != null">
+        UPDATEDATE = #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatename != null">
+        UPDATENAME = #{updatename,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.gz.medicine.gzyun.health.bean.HealthPushMessage">
+    update PUSHMESSAGE
+    set USERID = #{userid,jdbcType=VARCHAR},
+      ORDERID = #{orderid,jdbcType=VARCHAR},
+      MESSAGETYPE = #{messagetype,jdbcType=VARCHAR},
+      MESSAGENAME = #{messagename,jdbcType=VARCHAR},
+      PUSHTIME = #{pushtime,jdbcType=TIMESTAMP},
+      PUSHMESSAGE = #{pushmessage,jdbcType=VARCHAR},
+      REMARKS = #{remarks,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=VARCHAR},
+      ISREAD = #{isread,jdbcType=VARCHAR},
+      CREATEDATE = #{createdate,jdbcType=TIMESTAMP},
+      CREATENAME = #{createname,jdbcType=VARCHAR},
+      UPDATEDATE = #{updatedate,jdbcType=TIMESTAMP},
+      UPDATENAME = #{updatename,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+
+  <resultMap id="BaseResultMap1" type="com.gz.medicine.gzyun.health.reponse.HealthPushMessageReponse">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="USERID" jdbcType="VARCHAR" property="userid" />
+    <result column="ORDERID" jdbcType="VARCHAR" property="orderid" />
+    <result column="MESSAGETYPE" jdbcType="VARCHAR" property="messagetype" />
+    <result column="MESSAGENAME" jdbcType="VARCHAR" property="messagename" />
+    <result column="PUSHTIME" jdbcType="VARCHAR" property="pushtime" />
+    <result column="PUSHMESSAGE" jdbcType="VARCHAR" property="pushmessage" />
+    <result column="REMARKS" jdbcType="VARCHAR" property="remarks" />
+    <result column="STATE" jdbcType="VARCHAR" property="state" />
+    <result column="ISREAD" jdbcType="VARCHAR" property="isread" />
+    <result column="CREATEDATE" jdbcType="VARCHAR" property="createdate" />
+    <result column="CREATENAME" jdbcType="VARCHAR" property="createname" />
+    <result column="UPDATEDATE" jdbcType="VARCHAR" property="updatedate" />
+    <result column="UPDATENAME" jdbcType="VARCHAR" property="updatename" />
+    <result column="CONSULTATIONMETHODNAME" jdbcType="VARCHAR" property="consultationmethodname" />
+    <result column="CONSULTATIONMETHOD" jdbcType="VARCHAR" property="consultationmethod" />
+  </resultMap>
+
+  <!--我的消息 www-->
+  <select id="queryPagePushMessage" resultMap="BaseResultMap1" parameterType="com.gz.medicine.common.mybatisPageVo.Page">
+    select a.Id,
+    a.userId,
+    a.orderId,
+    a.messageType,
+    a.messageName,
+    to_char(a.CREATEDATE, 'yyyy-MM-dd hh24:mi:ss') pushTime,
+    a.pushMessage,
+    a.remarks,
+    a.isRead,
+    b.CONSULTATIONMETHOD,
+    case
+    when b.consultationmethod = '2' then
+    '图文咨询'
+    when b.consultationmethod = '3' then
+    '语音咨询'
+    when b.consultationmethod = '4' then
+    '视频咨询'
+    end as consultationmethodname
+    from PUSHMESSAGE a,(select * from  HealthyOrder where state='1')  b
+    where <if test = "messagetype != null and messagetype != ''">
+    a.MESSAGETYPE = #{messagetype,jdbcType = VARCHAR} and </if>
+    a.USERID = #{userid, jdbcType = VARCHAR}
+    and a.ORDERID = b.ORDERCODE(+)
+    order by pushTime desc, a.isread asc
+
+  </select>
+
+  <!--我的消息详情 www-->
+  <update id="updateByPushMessage" parameterType="com.gz.medicine.gzyun.health.bean.HealthPushMessage">
+    update PUSHMESSAGE
+    set
+    <if test="isread != null and isread != ''">
+    ISREAD = #{isread,jdbcType=VARCHAR}
+    </if>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <!--删除消息-->
+  <update id="updateByMessageState" parameterType="com.gz.medicine.gzyun.health.bean.HealthPushMessage">
+    update PUSHMESSAGE
+    set
+    <if test="state != null and state != ''">
+      state = #{state,jdbcType=VARCHAR}
+    </if>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <resultMap id="BaseResultMap4" type="com.gz.medicine.gzyun.health.reponse.HealthPushMessageCentre">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="USRID" jdbcType="VARCHAR" property="usrid" />
+    <result column="USERID" jdbcType="VARCHAR" property="userid" />
+    <result column="ORDERID" jdbcType="VARCHAR" property="orderid" />
+    <result column="MESSAGETYPE" jdbcType="VARCHAR" property="messagetype" />
+    <result column="MESSAGENAME" jdbcType="VARCHAR" property="messagename" />
+    <result column="PUSHTIME" jdbcType="VARCHAR" property="pushtime" />
+    <result column="REMARKS" jdbcType="VARCHAR" property="remarks" />
+    <result column="NOTREADNUM" jdbcType="VARCHAR" property="notreadnum" />
+    <result column="CREATEDATE" jdbcType="VARCHAR" property="createdate" />
+    <result column="PUSHMESSAGE" jdbcType="VARCHAR" property="pushmessage" />
+    <result column="CONSULTATIONMETHOD" jdbcType="VARCHAR" property="consultationmethod" />
+    <result column="VALUATENUM" jdbcType="VARCHAR" property="valuatenum" />
+  </resultMap>
+
+  <!--医生首页消息中心-->
+  <select id="selectPushMessage" parameterType="java.lang.String" resultMap="BaseResultMap4">
+    select
+    temp.id,
+    temp.messagename,
+    temp.messagetype,
+    temp.pushtime,
+    temp.usrid,
+    temp.consultationmethod,
+    temp.orderid,
+    temp.createdate,
+    temp.pushmessage,
+    temp.userid,
+    temp.notreadNum
+    from (
+    select
+    a.userid,a.id,a.messagename,a.messagetype,to_char(a.pushtime,'yyyy-MM-dd hh24:mi') pushtime,a.pushmessage,b.usrid,b.consultationmethod,us.name as usrname,to_char(a.createdate,'yyyy-MM-dd hh24:mi') as createdate,
+    a.orderid as orderid,t.notreadNum,
+    row_number() OVER(PARTITION BY a.messagetype ORDER BY a.createdate desc) as row_flg
+    from PUSHMESSAGE a,HealthyOrder b,usr us,
+    (select p.messagetype,count(*) as notreadNum from PUSHMESSAGE p where
+    p.STATE='1' and  p.isread = '0'
+    and p.userid= #{userid,jdbcType=VARCHAR}
+    group by p.messagetype) t where
+    a.messagetype = t.messagetype and
+    us.guid = b.usrid AND
+    a.state='1'
+    and a.userid= #{userid,jdbcType=VARCHAR}) temp
+    where temp.row_flg  = '1'
+  </select>
+
+  <!--我的评价-->
+  <select id="selectHealtheValuate" parameterType="java.lang.String" resultMap="BaseResultMap4">
+    select h.docid userid,count(*) as valuatenum from healthevaluate h where
+              h.STATE='1' and  h.isread = '0'
+       and h.docid=#{userid,jdbcType=VARCHAR}
+        group by h.docid
+  </select>
+  <!--停诊插入数据库系统消息-->
+    <insert id="insertsysmes" parameterType="com.gz.medicine.gzyun.health.bean.HealthPushMessage">
+    insert into PUSHMESSAGE (USERID,
+      MESSAGETYPE, MESSAGENAME, PUSHTIME, 
+      PUSHMESSAGE, STATE, 
+      ISREAD)
+    values (#{userid,jdbcType=VARCHAR},
+     '1','系统消息',sysdate, 
+      #{pushmessage,jdbcType=VARCHAR},'1', 
+      '0')
+  </insert>
+
+  <update id="updateAll" parameterType="java.lang.String">
+     UPDATE  PUSHMESSAGE SET ISREAD='1' where userid=#{userid,jdbcType=VARCHAR}
+  </update>
+
+</mapper>

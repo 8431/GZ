@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gz.medicine.yun.doctor.mapper.DTBaseDao">
+
+    <insert id="insert" parameterType="java.util.Map">
+        insert into ${tableName}(
+        <foreach collection="cloumn" item="valMap" index="valKey" separator=",">
+            ${valMap}
+        </foreach>
+        )
+        <foreach collection="val" item="valMap"  separator=" union all ">
+            (
+            select
+            <foreach collection="valMap" item="valMapKey" separator=",">
+                '${valMapKey}'
+            </foreach>
+            from dual)
+        </foreach>
+    </insert>
+    <!--<update id="mybatisUpdate" parameterType="java.util.Map">-->
+        <!--<foreach collection="whereMap" item="itemWhereMap" index="keyWhereMap" close=";end;" open="begin" separator=";">-->
+            <!--update ${tablename} set-->
+            <!--<foreach collection="setMap" item="itemSetMap" index="keySetMap">-->
+                <!--<foreach collection="itemSetMap" item="sp" index="spk" separator=",">-->
+                    <!--<choose>-->
+                        <!--<when test="keySetMap==keyWhereMap">-->
+                            <!--${spk}#{sp}-->
+                        <!--</when>-->
+                    <!--</choose>-->
+
+                <!--</foreach>-->
+            <!--</foreach>-->
+            <!--where 1=1 and-->
+            <!--<foreach collection="itemWhereMap" item="wp" index="wpk"-->
+                     <!--separator=" and">-->
+                <!--${wpk}#{wp}-->
+            <!--</foreach>-->
+        <!--</foreach>-->
+
+    <!--</update>-->
+
+</mapper>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gz.medicine.gzyun.heaman.mapper.HmGzjkReportMapper" >
+  <resultMap id="BaseResultMap" type="com.gz.medicine.gzyun.heaman.bean.HmGzjkReport" >
+    <result column="GUID" property="guid" jdbcType="CHAR" />
+    <result column="USRGUID" property="usrguid" jdbcType="CHAR" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+    <result column="TITLE" property="title" jdbcType="VARCHAR" />
+    <result column="TIME" property="time" jdbcType="DATE" />
+    <result column="ASSESS" property="assess" jdbcType="VARCHAR" />
+    <result column="SCHEME" property="scheme" jdbcType="VARCHAR" />
+    <result column="SUMMARIZE" property="summarize" jdbcType="VARCHAR" />
+    <result column="JDUSR" property="jdusr" jdbcType="VARCHAR" />
+    <result column="JDDATE" property="jddate" jdbcType="VARCHAR" />
+    <result column="CRTDAT" property="crtdat" jdbcType="DATE" />
+  </resultMap>
+  <insert id="insert" parameterType="com.gz.medicine.gzyun.heaman.bean.HmGzjkReport" >
+    insert into GZJK_REPORT (GUID, USRGUID, STATE, 
+      TITLE, TIME, ASSESS, SCHEME, 
+      SUMMARIZE, JDUSR, JDDATE, 
+      CRTDAT)
+    values (#{guid,jdbcType=CHAR}, #{usrguid,jdbcType=CHAR}, #{state,jdbcType=VARCHAR}, 
+      #{title,jdbcType=VARCHAR}, #{time,jdbcType=DATE}, #{assess,jdbcType=VARCHAR}, #{scheme,jdbcType=VARCHAR}, 
+      #{summarize,jdbcType=VARCHAR}, #{jdusr,jdbcType=VARCHAR}, #{jddate,jdbcType=VARCHAR}, 
+      #{crtdat,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gz.medicine.gzyun.heaman.bean.HmGzjkReport" >
+    insert into GZJK_REPORT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        GUID,
+      </if>
+      <if test="usrguid != null" >
+        USRGUID,
+      </if>
+      <if test="state != null" >
+        STATE,
+      </if>
+      <if test="title != null" >
+        TITLE,
+      </if>
+      <if test="time != null" >
+        TIME,
+      </if>
+      <if test="assess != null" >
+        ASSESS,
+      </if>
+      <if test="scheme != null" >
+        SCHEME,
+      </if>
+      <if test="summarize != null" >
+        SUMMARIZE,
+      </if>
+      <if test="jdusr != null" >
+        JDUSR,
+      </if>
+      <if test="jddate != null" >
+        JDDATE,
+      </if>
+      <if test="crtdat != null" >
+        CRTDAT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        #{guid,jdbcType=CHAR},
+      </if>
+      <if test="usrguid != null" >
+        #{usrguid,jdbcType=CHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=DATE},
+      </if>
+      <if test="assess != null" >
+        #{assess,jdbcType=VARCHAR},
+      </if>
+      <if test="scheme != null" >
+        #{scheme,jdbcType=VARCHAR},
+      </if>
+      <if test="summarize != null" >
+        #{summarize,jdbcType=VARCHAR},
+      </if>
+      <if test="jdusr != null" >
+        #{jdusr,jdbcType=VARCHAR},
+      </if>
+      <if test="jddate != null" >
+        #{jddate,jdbcType=VARCHAR},
+      </if>
+      <if test="crtdat != null" >
+        #{crtdat,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="selectGzjkReportMsg" resultType="com.gz.medicine.gzyun.heaman.bean.HmGzjkReport" parameterType="java.lang.String" >
+    select GUID,to_char(TIME,'yyyy-mm-dd hh24:mi:ss') jddate FROM
+    GZJK_report where usrguid=#{0,jdbcType=CHAR}  order by TIME desc
+  </select>
+  <select id="getHealthyDetail" resultType="com.gz.medicine.gzyun.heaman.bean.HmReportVo" parameterType="java.lang.String" >
+select a.SCHEME,
+       a.ASSESS,
+       a.JDUSR,
+       to_char(TIME, 'yyyy-mm-dd') jddate ,
+       u.name,
+       decode(mod(to_number(substr(u.idcard, 17, 1)), 2), 0, '女', '男') as sex,
+       u.age
+  from GZJK_report a, GZJK_permsgRecord u
+ where a.usrguid = u.usrguid
+   and a.guid =#{0,jdbcType=VARCHAR}
+  </select>
+  <select id="getHeaPlanList" resultType="com.gz.medicine.gzyun.heaman.bean.HmReportVo" parameterType="java.lang.String" >
+    select GUID,
+    to_char(to_date(substr(JDDATE, 0, 19), 'yyyy-mm-dd hh24:mi:ss'),
+            'yyyy-mm-dd hh24:mi:ss') jddate
+    from GZJK_report
+    where usrguid = #{0,jdbcType=VARCHAR}
+    order by TIME desc
+  </select>
+  <select id="getHeaPlanDetails" resultType="com.gz.medicine.gzyun.heaman.bean.HmReportVo" parameterType="java.lang.String" >
+   select a.SCHEME,
+  a.SUMMARIZE,
+  to_char(to_date(substr(a.JDDATE, 0, 10), 'yyyy-mm-dd'), 'yyyy-mm-dd') JDDATE,
+  a.JDUSR,
+  u.name,
+  decode(mod(to_number(substr(u.idcard, 17, 1)), 2), 0, '女', '男') as sex,
+  u.age
+  from GZJK_report a, GZJK_permsgRecord u
+  where a.usrguid = u.usrguid
+  and a.guid = #{0,jdbcType=VARCHAR}
+  </select>
+
+</mapper>

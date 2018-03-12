@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gz.medicine.gzyun.heaman.mapper.HmTxpRecordMapper">
+  <resultMap id="BaseResultMap" type="com.gz.medicine.gzyun.heaman.bean.HmTxpRecord">
+    <id column="GUID" jdbcType="CHAR" property="guid" />
+    <result column="USRGUID" jdbcType="CHAR" property="usrguid" />
+    <result column="MEATIME" jdbcType="VARCHAR" property="meatime" />
+    <result column="TOTURIAC" jdbcType="VARCHAR" property="toturiac" />
+    <result column="CRTDAT" jdbcType="TIMESTAMP" property="crtdat" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    GUID, USRGUID, MEATIME, TOTURIAC, CRTDAT
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from GZJK_TXPRECORD
+    where GUID = #{guid,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from GZJK_TXPRECORD
+    where GUID = #{guid,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gz.medicine.gzyun.heaman.bean.HmTxpRecord">
+    insert into GZJK_TXPRECORD (GUID, USRGUID, MEATIME, 
+      TOTURIAC, CRTDAT)
+    values (#{guid,jdbcType=CHAR}, #{usrguid,jdbcType=CHAR}, #{meatime,jdbcType=VARCHAR}, 
+      #{toturiac,jdbcType=VARCHAR}, #{crtdat,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gz.medicine.gzyun.heaman.bean.HmTxpRecord">
+    insert into GZJK_TXPRECORD
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        GUID,
+      </if>
+      <if test="usrguid != null">
+        USRGUID,
+      </if>
+      <if test="meatime != null">
+        MEATIME,
+      </if>
+      <if test="toturiac != null">
+        TOTURIAC,
+      </if>
+      <if test="crtdat != null">
+        CRTDAT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        #{guid,jdbcType=CHAR},
+      </if>
+      <if test="usrguid != null">
+        #{usrguid,jdbcType=CHAR},
+      </if>
+      <if test="meatime != null">
+        #{meatime,jdbcType=VARCHAR},
+      </if>
+      <if test="toturiac != null">
+        #{toturiac,jdbcType=VARCHAR},
+      </if>
+      <if test="crtdat != null">
+        #{crtdat,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gz.medicine.gzyun.heaman.bean.HmTxpRecord">
+    update GZJK_TXPRECORD
+    <set>
+      <if test="usrguid != null">
+        USRGUID = #{usrguid,jdbcType=CHAR},
+      </if>
+      <if test="meatime != null">
+        MEATIME = #{meatime,jdbcType=VARCHAR},
+      </if>
+      <if test="toturiac != null">
+        TOTURIAC = #{toturiac,jdbcType=VARCHAR},
+      </if>
+      <if test="crtdat != null">
+        CRTDAT = #{crtdat,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where GUID = #{guid,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gz.medicine.gzyun.heaman.bean.HmTxpRecord">
+    update GZJK_TXPRECORD
+    set USRGUID = #{usrguid,jdbcType=CHAR},
+      MEATIME = #{meatime,jdbcType=VARCHAR},
+      TOTURIAC = #{toturiac,jdbcType=VARCHAR},
+      CRTDAT = #{crtdat,jdbcType=TIMESTAMP}
+    where GUID = #{guid,jdbcType=CHAR}
+  </update>
+  
+    <select id="selectByPrimaryKeyAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from GZJK_TXPRECORD
+    where USRGUID = #{usrguid,jdbcType=CHAR}
+  </select>
+</mapper>

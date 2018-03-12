@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gz.medicine.gzyun.health.mapper.HealthActionRecordMapper">
+  <resultMap id="BaseResultMap" type="com.gz.medicine.gzyun.health.bean.HealthActionRecord">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="USRID" jdbcType="VARCHAR" property="usrid" />
+    <result column="MODULCODE" jdbcType="VARCHAR" property="modulcode" />
+    <result column="DOCID" jdbcType="VARCHAR" property="docid" />
+    <result column="CREATEDATE" jdbcType="TIMESTAMP" property="createdate" />
+    <result column="CREATENAME" jdbcType="VARCHAR" property="createname" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    ID, USRID, MODULCODE, DOCID, CREATEDATE, CREATENAME
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HEALTHACTIONRECORD
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HEALTHACTIONRECORD
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.gz.medicine.gzyun.health.bean.HealthActionRecord">
+    insert into HEALTHACTIONRECORD (ID, USRID, MODULCODE, 
+      DOCID, CREATEDATE, CREATENAME
+      )
+    values (#{id,jdbcType=VARCHAR}, #{usrid,jdbcType=VARCHAR}, #{modulcode,jdbcType=VARCHAR}, 
+      #{docid,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}, #{createname,jdbcType=VARCHAR}
+      )
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.gz.medicine.gzyun.health.bean.HealthActionRecord">
+    insert into HEALTHACTIONRECORD
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="usrid != null">
+        USRID,
+      </if>
+      <if test="modulcode != null">
+        MODULCODE,
+      </if>
+      <if test="docid != null">
+        DOCID,
+      </if>
+      <if test="createdate != null">
+        CREATEDATE,
+      </if>
+      <if test="createname != null">
+        CREATENAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="usrid != null">
+        #{usrid,jdbcType=VARCHAR},
+      </if>
+      <if test="modulcode != null">
+        #{modulcode,jdbcType=VARCHAR},
+      </if>
+      <if test="docid != null">
+        #{docid,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null">
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createname != null">
+        #{createname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.gz.medicine.gzyun.health.bean.HealthActionRecord">
+    update HEALTHACTIONRECORD
+    <set>
+      <if test="usrid != null">
+        USRID = #{usrid,jdbcType=VARCHAR},
+      </if>
+      <if test="modulcode != null">
+        MODULCODE = #{modulcode,jdbcType=VARCHAR},
+      </if>
+      <if test="docid != null">
+        DOCID = #{docid,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null">
+        CREATEDATE = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createname != null">
+        CREATENAME = #{createname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.gz.medicine.gzyun.health.bean.HealthActionRecord">
+    update HEALTHACTIONRECORD
+    set USRID = #{usrid,jdbcType=VARCHAR},
+      MODULCODE = #{modulcode,jdbcType=VARCHAR},
+      DOCID = #{docid,jdbcType=VARCHAR},
+      CREATEDATE = #{createdate,jdbcType=TIMESTAMP},
+      CREATENAME = #{createname,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+</mapper>

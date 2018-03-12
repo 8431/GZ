@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gz.medicine.gzyun.heaman.mapper.HmChoRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.gz.medicine.gzyun.heaman.bean.HmChoRecord" >
+    <result column="GUID" property="guid" jdbcType="CHAR" />
+    <result column="USRGUID" property="usrguid" jdbcType="CHAR" />
+    <result column="MEATIME" property="meatime" jdbcType="VARCHAR" />
+    <result column="TOTCHOLE" property="totchole" jdbcType="VARCHAR" />
+    <result column="CRTDAT" property="crtdat" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <insert id="insert" parameterType="com.gz.medicine.gzyun.heaman.bean.HmChoRecord" >
+    insert into GZJK_CHORECORD (GUID, USRGUID, MEATIME, 
+      TOTCHOLE, CRTDAT)
+    values (#{guid,jdbcType=CHAR}, #{usrguid,jdbcType=CHAR}, #{meatime,jdbcType=VARCHAR}, 
+      #{totchole,jdbcType=VARCHAR}, #{crtdat,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gz.medicine.gzyun.heaman.bean.HmChoRecord" >
+    insert into GZJK_CHORECORD
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        GUID,
+      </if>
+      <if test="usrguid != null" >
+        USRGUID,
+      </if>
+      <if test="meatime != null" >
+        MEATIME,
+      </if>
+      <if test="totchole != null" >
+        TOTCHOLE,
+      </if>
+      <if test="crtdat != null" >
+        CRTDAT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        #{guid,jdbcType=CHAR},
+      </if>
+      <if test="usrguid != null" >
+        #{usrguid,jdbcType=CHAR},
+      </if>
+      <if test="meatime != null" >
+        #{meatime,jdbcType=VARCHAR},
+      </if>
+      <if test="totchole != null" >
+        #{totchole,jdbcType=VARCHAR},
+      </if>
+      <if test="crtdat != null" >
+        #{crtdat,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="queryCho" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select GUID,USRGUID,MEATIME,TOTCHOLE 
+    from GZJK_choRecord 
+     where USRGUID = #{usrguid,jdbcType=CHAR} order by  MEATIME desc
+  </select>
+</mapper>

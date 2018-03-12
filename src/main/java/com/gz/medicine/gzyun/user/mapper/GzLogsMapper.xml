@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gz.medicine.gzyun.user.mapper.GzLogsMapper" >
+
+	<insert id="insertGzLogs" parameterType="java.util.HashMap" >
+	    insert into GZ_LOG(GUID,PHONE)
+	    values (#{guid,jdbcType=CHAR},#{phone,jdbcType=VARCHAR})
+	</insert>
+</mapper>

@@ -1,0 +1,1274 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gz.medicine.yun.bloodpressure.mapper.BloodPressureMapper" >
+  <resultMap id="BaseResultMap" type="com.gz.medicine.yun.bloodpressure.bean.BloodPressure" >
+    <id column="GUID" property="guid" jdbcType="CHAR" />
+    <result column="DOCTORID" property="doctorid" jdbcType="CHAR" />
+    <result column="DOCTORNAME" property="doctorname" jdbcType="VARCHAR" />
+    <result column="MACHINEID" property="machineid" jdbcType="VARCHAR" />
+    <result column="UNITNO" property="unitno" jdbcType="VARCHAR" />
+    <result column="UNITNAME" property="unitname" jdbcType="VARCHAR" />
+    <result column="MACADDR" property="macaddr" jdbcType="VARCHAR" />
+    <result column="RECORDNO" property="recordno" jdbcType="VARCHAR" />
+    <result column="MEASURETIME" property="measuretime" jdbcType="VARCHAR" />
+    <result column="DEVICETYPE" property="devicetype" jdbcType="VARCHAR" />
+    <result column="LOGINTYPE" property="logintype" jdbcType="VARCHAR" />
+    <result column="HR" property="hr" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="MOBILE" property="mobile" jdbcType="VARCHAR" />
+    <result column="IDCODE" property="idcode" jdbcType="VARCHAR" />
+    <result column="AGE" property="age" jdbcType="VARCHAR" />
+    <result column="SEX" property="sex" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="BIRTHDAY" property="birthday" jdbcType="VARCHAR" />
+    <result column="USERICON" property="usericon" jdbcType="VARCHAR" />
+    <result column="NATION" property="nation" jdbcType="VARCHAR" />
+    <result column="STARTDATE" property="startdate" jdbcType="VARCHAR" />
+    <result column="ENDDATE" property="enddate" jdbcType="VARCHAR" />
+    <result column="DEPARTMENT" property="department" jdbcType="VARCHAR" />
+    <result column="BARCODE" property="barcode" jdbcType="VARCHAR" />
+    <result column="ICCODE" property="iccode" jdbcType="VARCHAR" />
+    <result column="SOCIALCODE" property="socialcode" jdbcType="VARCHAR" />
+    <result column="USERID" property="userid" jdbcType="VARCHAR" />
+    <result column="HEIGHT" property="height" jdbcType="VARCHAR" />
+    <result column="WEIGHT" property="weight" jdbcType="VARCHAR" />
+    <result column="BMI" property="bmi" jdbcType="VARCHAR" />
+    <result column="IDEALWEIGHT" property="idealweight" jdbcType="VARCHAR" />
+    <result column="FATRATE" property="fatrate" jdbcType="VARCHAR" />
+    <result column="FAT" property="fat" jdbcType="VARCHAR" />
+    <result column="EXCEPTFAT" property="exceptfat" jdbcType="VARCHAR" />
+    <result column="WATERRATE" property="waterrate" jdbcType="VARCHAR" />
+    <result column="WATER" property="water" jdbcType="VARCHAR" />
+    <result column="MINERALS" property="minerals" jdbcType="VARCHAR" />
+    <result column="PROTEIN" property="protein" jdbcType="VARCHAR" />
+    <result column="FIC" property="fic" jdbcType="VARCHAR" />
+    <result column="FOC" property="foc" jdbcType="VARCHAR" />
+    <result column="MUSCLE" property="muscle" jdbcType="VARCHAR" />
+    <result column="FATADJUST" property="fatadjust" jdbcType="VARCHAR" />
+    <result column="WEIGHTADJUST" property="weightadjust" jdbcType="VARCHAR" />
+    <result column="MUSCLEADJUST" property="muscleadjust" jdbcType="VARCHAR" />
+    <result column="BASICMETABOLISM" property="basicmetabolism" jdbcType="VARCHAR" />
+    <result column="VISCERA" property="viscera" jdbcType="VARCHAR" />
+    <result column="BMC" property="bmc" jdbcType="VARCHAR" />
+    <result column="MUSCLERATE" property="musclerate" jdbcType="VARCHAR" />
+    <result column="QUGANMUSCLE" property="quganmuscle" jdbcType="VARCHAR" />
+    <result column="QUGANFAT" property="quganfat" jdbcType="VARCHAR" />
+    <result column="ZUOTUIMUSCLE" property="zuotuimuscle" jdbcType="VARCHAR" />
+    <result column="ZUOBIMUSCLE" property="zuobimuscle" jdbcType="VARCHAR" />
+    <result column="YOUBIMUSCLE" property="youbimuscle" jdbcType="VARCHAR" />
+    <result column="YOUTUIMUSCLE" property="youtuimuscle" jdbcType="VARCHAR" />
+    <result column="ZUOBIFAT" property="zuobifat" jdbcType="VARCHAR" />
+    <result column="ZUOTUIFAT" property="zuotuifat" jdbcType="VARCHAR" />
+    <result column="YOUBIFAT" property="youbifat" jdbcType="VARCHAR" />
+    <result column="YOUTUIFAT" property="youtuifat" jdbcType="VARCHAR" />
+    <result column="HIGHPRESSURE" property="highpressure" jdbcType="VARCHAR" />
+    <result column="LOWPRESSURE" property="lowpressure" jdbcType="VARCHAR" />
+    <result column="PULSE" property="pulse" jdbcType="VARCHAR" />
+    <result column="OXYGEN" property="oxygen" jdbcType="VARCHAR" />
+    <result column="BPM" property="bpm" jdbcType="VARCHAR" />
+    <result column="OXYGENLIST" property="oxygenlist" jdbcType="VARCHAR" />
+    <result column="BPMLIST" property="bpmlist" jdbcType="VARCHAR" />
+    <result column="STARTTIME" property="starttime" jdbcType="VARCHAR" />
+    <result column="ENDTIME" property="endtime" jdbcType="VARCHAR" />
+    <result column="SECONDCOUNT" property="secondcount" jdbcType="VARCHAR" />
+    <result column="BLOODSUGARTYPE" property="bloodsugartype" jdbcType="VARCHAR" />
+    <result column="SCHOOLNAME" property="schoolname" jdbcType="VARCHAR" />
+    <result column="CLASSNAME" property="classname" jdbcType="VARCHAR" />
+    <result column="CLASSNO" property="classno" jdbcType="VARCHAR" />
+    <result column="MINFAT" property="minfat" jdbcType="VARCHAR" />
+    <result column="BLOODPRESSURE" property="bloodpressure" jdbcType="VARCHAR" />
+    <result column="BO" property="bo" jdbcType="VARCHAR" />
+    <result column="ECG" property="ecg" jdbcType="VARCHAR" />
+    <result column="PEECG" property="peecg" jdbcType="VARCHAR" />
+    <result column="TEMPERATURE" property="temperature" jdbcType="VARCHAR" />
+    <result column="WAISTLINE" property="waistline" jdbcType="VARCHAR" />
+    <result column="HIPLINE" property="hipline" jdbcType="VARCHAR" />
+    <result column="WHR" property="whr" jdbcType="VARCHAR" />
+    <result column="RESULT" property="result" jdbcType="VARCHAR" />
+    <result column="BLOODSUGAR" property="bloodsugar" jdbcType="VARCHAR" />
+    <result column="UA" property="ua" jdbcType="VARCHAR" />
+    <result column="CHOL" property="chol" jdbcType="VARCHAR" />
+    <result column="BLOODFAT" property="bloodfat" jdbcType="VARCHAR" />
+    <result column="CARDIOVASCULAR" property="cardiovascular" jdbcType="VARCHAR" />
+    <result column="BMD" property="bmd" jdbcType="VARCHAR" />
+    <result column="ALCOHOL" property="alcohol" jdbcType="VARCHAR" />
+    <result column="HB" property="hb" jdbcType="VARCHAR" />
+    <result column="LUNG" property="lung" jdbcType="VARCHAR" />
+    <result column="MICAETERY" property="micaetery" jdbcType="VARCHAR" />
+    <result column="CREATEDATE" property="createdate" jdbcType="OTHER" />
+
+    <result column="heartbeat" property="HEARTBEAT" jdbcType="VARCHAR" />
+    <result column="uro" property="URO" jdbcType="VARCHAR" />
+    <result column="bld" property="BLD" jdbcType="VARCHAR" />
+    <result column="bil" property="BIL" jdbcType="VARCHAR" />
+    <result column="ket" property="KET" jdbcType="VARCHAR" />
+    <result column="glu" property="GLU" jdbcType="VARCHAR" />
+    <result column="pro" property="PRO" jdbcType="VARCHAR" />
+    <result column="ph" property="PH" jdbcType="VARCHAR" />
+    <result column="nit" property="NIT" jdbcType="VARCHAR" />
+    <result column="leu" property="LEU" jdbcType="VARCHAR" />
+    <result column="sg" property="SG" jdbcType="VARCHAR" />
+    <result column="vc" property="VC" jdbcType="VARCHAR" />
+
+    <result column="bodyImpedance" property="BODYIMPEDANCE" jdbcType="VARCHAR" />
+    <result column="testTime" property="TESTTIME" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    GUID, DOCTORID, DOCTORNAME, MACHINEID, UNITNO, UNITNAME, MACADDR, RECORDNO, MEASURETIME, 
+    DEVICETYPE, LOGINTYPE, HR, NAME, MOBILE, IDCODE, AGE, SEX, ADDRESS, BIRTHDAY, USERICON, 
+    NATION, STARTDATE, ENDDATE, DEPARTMENT, BARCODE, ICCODE, SOCIALCODE, USERID, HEIGHT, 
+    WEIGHT, BMI, IDEALWEIGHT, FATRATE, FAT, EXCEPTFAT, WATERRATE, WATER, MINERALS, PROTEIN, 
+    FIC, FOC, MUSCLE, FATADJUST, WEIGHTADJUST, MUSCLEADJUST, BASICMETABOLISM, VISCERA, 
+    BMC, MUSCLERATE, QUGANMUSCLE, QUGANFAT, ZUOTUIMUSCLE, ZUOBIMUSCLE, YOUBIMUSCLE, YOUTUIMUSCLE, 
+    ZUOBIFAT, ZUOTUIFAT, YOUBIFAT, YOUTUIFAT, HIGHPRESSURE, LOWPRESSURE, PULSE, OXYGEN, 
+    BPM, OXYGENLIST, BPMLIST, STARTTIME, ENDTIME, SECONDCOUNT, BLOODSUGARTYPE, SCHOOLNAME, 
+    CLASSNAME, CLASSNO, MINFAT, BLOODPRESSURE, BO, ECG, PEECG, TEMPERATURE, WAISTLINE, 
+    HIPLINE, WHR, RESULT, BLOODSUGAR, UA, CHOL, BLOODFAT, CARDIOVASCULAR, BMD, ALCOHOL, 
+    HB, LUNG, MICAETERY, CREATEDATE,HEARTBEAT,URO,BLD,BIL,KET,GLU,PRO,PH,NIT,LEU,SG,VC,BODYIMPEDANCE,TESTTIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from CHIS_BLOODPRESSURE
+    where GUID = #{guid,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from CHIS_BLOODPRESSURE
+    where GUID = #{guid,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gz.medicine.yun.bloodpressure.bean.BloodPressure" >
+    insert into CHIS_BLOODPRESSURE (GUID, DOCTORID, DOCTORNAME, 
+      MACHINEID, UNITNO, UNITNAME, 
+      MACADDR, RECORDNO, MEASURETIME, 
+      DEVICETYPE, LOGINTYPE, HR, 
+      NAME, MOBILE, IDCODE, 
+      AGE, SEX, ADDRESS, 
+      BIRTHDAY, USERICON, NATION, 
+      STARTDATE, ENDDATE, DEPARTMENT, 
+      BARCODE, ICCODE, SOCIALCODE, 
+      USERID, HEIGHT, WEIGHT, 
+      BMI, IDEALWEIGHT, FATRATE, 
+      FAT, EXCEPTFAT, WATERRATE, 
+      WATER, MINERALS, PROTEIN, 
+      FIC, FOC, MUSCLE, FATADJUST, 
+      WEIGHTADJUST, MUSCLEADJUST, BASICMETABOLISM, 
+      VISCERA, BMC, MUSCLERATE, 
+      QUGANMUSCLE, QUGANFAT, ZUOTUIMUSCLE, 
+      ZUOBIMUSCLE, YOUBIMUSCLE, YOUTUIMUSCLE, 
+      ZUOBIFAT, ZUOTUIFAT, YOUBIFAT, 
+      YOUTUIFAT, HIGHPRESSURE, LOWPRESSURE, 
+      PULSE, OXYGEN, BPM, 
+      OXYGENLIST, BPMLIST, STARTTIME, 
+      ENDTIME, SECONDCOUNT, BLOODSUGARTYPE, 
+      SCHOOLNAME, CLASSNAME, CLASSNO, 
+      MINFAT, BLOODPRESSURE, BO, 
+      ECG, PEECG, TEMPERATURE, 
+      WAISTLINE, HIPLINE, WHR, 
+      RESULT, BLOODSUGAR, UA, 
+      CHOL, BLOODFAT, CARDIOVASCULAR, 
+      BMD, ALCOHOL, HB, LUNG, 
+      MICAETERY, CREATEDATE,HEARTBEAT,URO,BLD,BIL,KET,GLU,PRO,PH,NIT,LEU,SG,VC,BODYIMPEDANCE,TESTTIME)
+    values (#{guid,jdbcType=CHAR}, #{doctorid,jdbcType=CHAR}, #{doctorname,jdbcType=VARCHAR}, 
+      #{machineid,jdbcType=VARCHAR}, #{unitno,jdbcType=VARCHAR}, #{unitname,jdbcType=VARCHAR}, 
+      #{macaddr,jdbcType=VARCHAR}, #{recordno,jdbcType=VARCHAR}, #{measuretime,jdbcType=VARCHAR}, 
+      #{devicetype,jdbcType=VARCHAR}, #{logintype,jdbcType=VARCHAR}, #{hr,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{idcode,jdbcType=VARCHAR}, 
+      #{age,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{birthday,jdbcType=VARCHAR}, #{usericon,jdbcType=VARCHAR}, #{nation,jdbcType=VARCHAR}, 
+      #{startdate,jdbcType=VARCHAR}, #{enddate,jdbcType=VARCHAR}, #{department,jdbcType=VARCHAR}, 
+      #{barcode,jdbcType=VARCHAR}, #{iccode,jdbcType=VARCHAR}, #{socialcode,jdbcType=VARCHAR}, 
+      #{userid,jdbcType=VARCHAR}, #{height,jdbcType=VARCHAR}, #{weight,jdbcType=VARCHAR}, 
+      #{bmi,jdbcType=VARCHAR}, #{idealweight,jdbcType=VARCHAR}, #{fatrate,jdbcType=VARCHAR}, 
+      #{fat,jdbcType=VARCHAR}, #{exceptfat,jdbcType=VARCHAR}, #{waterrate,jdbcType=VARCHAR}, 
+      #{water,jdbcType=VARCHAR}, #{minerals,jdbcType=VARCHAR}, #{protein,jdbcType=VARCHAR}, 
+      #{fic,jdbcType=VARCHAR}, #{foc,jdbcType=VARCHAR}, #{muscle,jdbcType=VARCHAR}, #{fatadjust,jdbcType=VARCHAR}, 
+      #{weightadjust,jdbcType=VARCHAR}, #{muscleadjust,jdbcType=VARCHAR}, #{basicmetabolism,jdbcType=VARCHAR}, 
+      #{viscera,jdbcType=VARCHAR}, #{bmc,jdbcType=VARCHAR}, #{musclerate,jdbcType=VARCHAR}, 
+      #{quganmuscle,jdbcType=VARCHAR}, #{quganfat,jdbcType=VARCHAR}, #{zuotuimuscle,jdbcType=VARCHAR}, 
+      #{zuobimuscle,jdbcType=VARCHAR}, #{youbimuscle,jdbcType=VARCHAR}, #{youtuimuscle,jdbcType=VARCHAR}, 
+      #{zuobifat,jdbcType=VARCHAR}, #{zuotuifat,jdbcType=VARCHAR}, #{youbifat,jdbcType=VARCHAR}, 
+      #{youtuifat,jdbcType=VARCHAR}, #{highpressure,jdbcType=VARCHAR}, #{lowpressure,jdbcType=VARCHAR}, 
+      #{pulse,jdbcType=VARCHAR}, #{oxygen,jdbcType=VARCHAR}, #{bpm,jdbcType=VARCHAR}, 
+      #{oxygenlist,jdbcType=VARCHAR}, #{bpmlist,jdbcType=VARCHAR}, #{starttime,jdbcType=VARCHAR}, 
+      #{endtime,jdbcType=VARCHAR}, #{secondcount,jdbcType=VARCHAR}, #{bloodsugartype,jdbcType=VARCHAR}, 
+      #{schoolname,jdbcType=VARCHAR}, #{classname,jdbcType=VARCHAR}, #{classno,jdbcType=VARCHAR}, 
+      #{minfat,jdbcType=VARCHAR}, #{bloodpressure,jdbcType=VARCHAR}, #{bo,jdbcType=VARCHAR}, 
+      #{ecg,jdbcType=VARCHAR}, #{peecg,jdbcType=VARCHAR}, #{temperature,jdbcType=VARCHAR}, 
+      #{waistline,jdbcType=VARCHAR}, #{hipline,jdbcType=VARCHAR}, #{whr,jdbcType=VARCHAR}, 
+      #{result,jdbcType=VARCHAR}, #{bloodsugar,jdbcType=VARCHAR}, #{ua,jdbcType=VARCHAR}, 
+      #{chol,jdbcType=VARCHAR}, #{bloodfat,jdbcType=VARCHAR}, #{cardiovascular,jdbcType=VARCHAR}, 
+      #{bmd,jdbcType=VARCHAR}, #{alcohol,jdbcType=VARCHAR}, #{hb,jdbcType=VARCHAR}, #{lung,jdbcType=VARCHAR}, 
+      #{micaetery,jdbcType=VARCHAR}, #{createdate,jdbcType=OTHER},#{heartbeat,jdbcType=VARCHAR},
+      #{uro,jdbcType=VARCHAR},#{bld,jdbcType=VARCHAR},#{bil,jdbcType=VARCHAR},#{ket,jdbcType=VARCHAR},#{glu,jdbcType=VARCHAR},#{pro,jdbcType=VARCHAR},
+      #{ph,jdbcType=VARCHAR}, #{nit,jdbcType=VARCHAR},#{leu,jdbcType=VARCHAR},#{sg,jdbcType=VARCHAR},
+      #{vc,jdbcType=VARCHAR},#{bodyImpedance,jdbcType=VARCHAR},#{testTime,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gz.medicine.yun.bloodpressure.bean.BloodPressure" >
+    insert into CHIS_BLOODPRESSURE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        GUID,
+      </if>
+      <if test="doctorid != null" >
+        DOCTORID,
+      </if>
+      <if test="doctorname != null" >
+        DOCTORNAME,
+      </if>
+      <if test="machineid != null" >
+        MACHINEID,
+      </if>
+      <if test="unitno != null" >
+        UNITNO,
+      </if>
+      <if test="unitname != null" >
+        UNITNAME,
+      </if>
+      <if test="macaddr != null" >
+        MACADDR,
+      </if>
+      <if test="recordno != null" >
+        RECORDNO,
+      </if>
+      <if test="measuretime != null" >
+        MEASURETIME,
+      </if>
+      <if test="devicetype != null" >
+        DEVICETYPE,
+      </if>
+      <if test="logintype != null" >
+        LOGINTYPE,
+      </if>
+      <if test="hr != null" >
+        HR,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="mobile != null" >
+        MOBILE,
+      </if>
+      <if test="idcode != null" >
+        IDCODE,
+      </if>
+      <if test="age != null" >
+        AGE,
+      </if>
+      <if test="sex != null" >
+        SEX,
+      </if>
+      <if test="address != null" >
+        ADDRESS,
+      </if>
+      <if test="birthday != null" >
+        BIRTHDAY,
+      </if>
+      <if test="usericon != null" >
+        USERICON,
+      </if>
+      <if test="nation != null" >
+        NATION,
+      </if>
+      <if test="startdate != null" >
+        STARTDATE,
+      </if>
+      <if test="enddate != null" >
+        ENDDATE,
+      </if>
+      <if test="department != null" >
+        DEPARTMENT,
+      </if>
+      <if test="barcode != null" >
+        BARCODE,
+      </if>
+      <if test="iccode != null" >
+        ICCODE,
+      </if>
+      <if test="socialcode != null" >
+        SOCIALCODE,
+      </if>
+      <if test="userid != null" >
+        USERID,
+      </if>
+      <if test="height != null" >
+        HEIGHT,
+      </if>
+      <if test="weight != null" >
+        WEIGHT,
+      </if>
+      <if test="bmi != null" >
+        BMI,
+      </if>
+      <if test="idealweight != null" >
+        IDEALWEIGHT,
+      </if>
+      <if test="fatrate != null" >
+        FATRATE,
+      </if>
+      <if test="fat != null" >
+        FAT,
+      </if>
+      <if test="exceptfat != null" >
+        EXCEPTFAT,
+      </if>
+      <if test="waterrate != null" >
+        WATERRATE,
+      </if>
+      <if test="water != null" >
+        WATER,
+      </if>
+      <if test="minerals != null" >
+        MINERALS,
+      </if>
+      <if test="protein != null" >
+        PROTEIN,
+      </if>
+      <if test="fic != null" >
+        FIC,
+      </if>
+      <if test="foc != null" >
+        FOC,
+      </if>
+      <if test="muscle != null" >
+        MUSCLE,
+      </if>
+      <if test="fatadjust != null" >
+        FATADJUST,
+      </if>
+      <if test="weightadjust != null" >
+        WEIGHTADJUST,
+      </if>
+      <if test="muscleadjust != null" >
+        MUSCLEADJUST,
+      </if>
+      <if test="basicmetabolism != null" >
+        BASICMETABOLISM,
+      </if>
+      <if test="viscera != null" >
+        VISCERA,
+      </if>
+      <if test="bmc != null" >
+        BMC,
+      </if>
+      <if test="musclerate != null" >
+        MUSCLERATE,
+      </if>
+      <if test="quganmuscle != null" >
+        QUGANMUSCLE,
+      </if>
+      <if test="quganfat != null" >
+        QUGANFAT,
+      </if>
+      <if test="zuotuimuscle != null" >
+        ZUOTUIMUSCLE,
+      </if>
+      <if test="zuobimuscle != null" >
+        ZUOBIMUSCLE,
+      </if>
+      <if test="youbimuscle != null" >
+        YOUBIMUSCLE,
+      </if>
+      <if test="youtuimuscle != null" >
+        YOUTUIMUSCLE,
+      </if>
+      <if test="zuobifat != null" >
+        ZUOBIFAT,
+      </if>
+      <if test="zuotuifat != null" >
+        ZUOTUIFAT,
+      </if>
+      <if test="youbifat != null" >
+        YOUBIFAT,
+      </if>
+      <if test="youtuifat != null" >
+        YOUTUIFAT,
+      </if>
+      <if test="highpressure != null" >
+        HIGHPRESSURE,
+      </if>
+      <if test="lowpressure != null" >
+        LOWPRESSURE,
+      </if>
+      <if test="pulse != null" >
+        PULSE,
+      </if>
+      <if test="oxygen != null" >
+        OXYGEN,
+      </if>
+      <if test="bpm != null" >
+        BPM,
+      </if>
+      <if test="oxygenlist != null" >
+        OXYGENLIST,
+      </if>
+      <if test="bpmlist != null" >
+        BPMLIST,
+      </if>
+      <if test="starttime != null" >
+        STARTTIME,
+      </if>
+      <if test="endtime != null" >
+        ENDTIME,
+      </if>
+      <if test="secondcount != null" >
+        SECONDCOUNT,
+      </if>
+      <if test="bloodsugartype != null" >
+        BLOODSUGARTYPE,
+      </if>
+      <if test="schoolname != null" >
+        SCHOOLNAME,
+      </if>
+      <if test="classname != null" >
+        CLASSNAME,
+      </if>
+      <if test="classno != null" >
+        CLASSNO,
+      </if>
+      <if test="minfat != null" >
+        MINFAT,
+      </if>
+      <if test="bloodpressure != null" >
+        BLOODPRESSURE,
+      </if>
+      <if test="bo != null" >
+        BO,
+      </if>
+      <if test="ecg != null" >
+        ECG,
+      </if>
+      <if test="peecg != null" >
+        PEECG,
+      </if>
+      <if test="temperature != null" >
+        TEMPERATURE,
+      </if>
+      <if test="waistline != null" >
+        WAISTLINE,
+      </if>
+      <if test="hipline != null" >
+        HIPLINE,
+      </if>
+      <if test="whr != null" >
+        WHR,
+      </if>
+      <if test="result != null" >
+        RESULT,
+      </if>
+      <if test="bloodsugar != null" >
+        BLOODSUGAR,
+      </if>
+      <if test="ua != null" >
+        UA,
+      </if>
+      <if test="chol != null" >
+        CHOL,
+      </if>
+      <if test="bloodfat != null" >
+        BLOODFAT,
+      </if>
+      <if test="cardiovascular != null" >
+        CARDIOVASCULAR,
+      </if>
+      <if test="bmd != null" >
+        BMD,
+      </if>
+      <if test="alcohol != null" >
+        ALCOHOL,
+      </if>
+      <if test="hb != null" >
+        HB,
+      </if>
+      <if test="lung != null" >
+        LUNG,
+      </if>
+      <if test="micaetery != null" >
+        MICAETERY,
+      </if>
+      <if test="createdate != null" >
+        CREATEDATE,
+      </if>
+
+      <if test="heartbeat != null" >
+        HEARTBEAT,
+      </if>
+
+      <if test="uro != null" >
+        URO,
+      </if>
+
+      <if test="bld != null" >
+        BLD,
+      </if>
+
+      <if test="bil != null" >
+        BIL,
+      </if>
+
+      <if test="ket != null" >
+        KET,
+      </if>
+
+      <if test="glu != null" >
+        GLU,
+      </if>
+
+      <if test="pro != null" >
+        PRO,
+      </if>
+
+      <if test="ph != null" >
+        PH,
+      </if>
+
+      <if test="nit != null" >
+        NIT,
+      </if>
+
+      <if test="leu != null" >
+        LEU,
+      </if>
+
+      <if test="sg != null" >
+        SG,
+      </if>
+
+      <if test="vc != null" >
+        VC,
+      </if>
+
+      <if test="bodyImpedance != null" >
+        BODYIMPEDANCE,
+      </if>
+
+      <if test="testTime != null" >
+        TESTTIME
+      </if>
+
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        #{guid,jdbcType=CHAR},
+      </if>
+      <if test="doctorid != null" >
+        #{doctorid,jdbcType=CHAR},
+      </if>
+      <if test="doctorname != null" >
+        #{doctorname,jdbcType=VARCHAR},
+      </if>
+      <if test="machineid != null" >
+        #{machineid,jdbcType=VARCHAR},
+      </if>
+      <if test="unitno != null" >
+        #{unitno,jdbcType=VARCHAR},
+      </if>
+      <if test="unitname != null" >
+        #{unitname,jdbcType=VARCHAR},
+      </if>
+      <if test="macaddr != null" >
+        #{macaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="recordno != null" >
+        #{recordno,jdbcType=VARCHAR},
+      </if>
+      <if test="measuretime != null" >
+        #{measuretime,jdbcType=VARCHAR},
+      </if>
+      <if test="devicetype != null" >
+        #{devicetype,jdbcType=VARCHAR},
+      </if>
+      <if test="logintype != null" >
+        #{logintype,jdbcType=VARCHAR},
+      </if>
+      <if test="hr != null" >
+        #{hr,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="idcode != null" >
+        #{idcode,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="usericon != null" >
+        #{usericon,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null" >
+        #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="startdate != null" >
+        #{startdate,jdbcType=VARCHAR},
+      </if>
+      <if test="enddate != null" >
+        #{enddate,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="barcode != null" >
+        #{barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="iccode != null" >
+        #{iccode,jdbcType=VARCHAR},
+      </if>
+      <if test="socialcode != null" >
+        #{socialcode,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="height != null" >
+        #{height,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        #{weight,jdbcType=VARCHAR},
+      </if>
+      <if test="bmi != null" >
+        #{bmi,jdbcType=VARCHAR},
+      </if>
+      <if test="idealweight != null" >
+        #{idealweight,jdbcType=VARCHAR},
+      </if>
+      <if test="fatrate != null" >
+        #{fatrate,jdbcType=VARCHAR},
+      </if>
+      <if test="fat != null" >
+        #{fat,jdbcType=VARCHAR},
+      </if>
+      <if test="exceptfat != null" >
+        #{exceptfat,jdbcType=VARCHAR},
+      </if>
+      <if test="waterrate != null" >
+        #{waterrate,jdbcType=VARCHAR},
+      </if>
+      <if test="water != null" >
+        #{water,jdbcType=VARCHAR},
+      </if>
+      <if test="minerals != null" >
+        #{minerals,jdbcType=VARCHAR},
+      </if>
+      <if test="protein != null" >
+        #{protein,jdbcType=VARCHAR},
+      </if>
+      <if test="fic != null" >
+        #{fic,jdbcType=VARCHAR},
+      </if>
+      <if test="foc != null" >
+        #{foc,jdbcType=VARCHAR},
+      </if>
+      <if test="muscle != null" >
+        #{muscle,jdbcType=VARCHAR},
+      </if>
+      <if test="fatadjust != null" >
+        #{fatadjust,jdbcType=VARCHAR},
+      </if>
+      <if test="weightadjust != null" >
+        #{weightadjust,jdbcType=VARCHAR},
+      </if>
+      <if test="muscleadjust != null" >
+        #{muscleadjust,jdbcType=VARCHAR},
+      </if>
+      <if test="basicmetabolism != null" >
+        #{basicmetabolism,jdbcType=VARCHAR},
+      </if>
+      <if test="viscera != null" >
+        #{viscera,jdbcType=VARCHAR},
+      </if>
+      <if test="bmc != null" >
+        #{bmc,jdbcType=VARCHAR},
+      </if>
+      <if test="musclerate != null" >
+        #{musclerate,jdbcType=VARCHAR},
+      </if>
+      <if test="quganmuscle != null" >
+        #{quganmuscle,jdbcType=VARCHAR},
+      </if>
+      <if test="quganfat != null" >
+        #{quganfat,jdbcType=VARCHAR},
+      </if>
+      <if test="zuotuimuscle != null" >
+        #{zuotuimuscle,jdbcType=VARCHAR},
+      </if>
+      <if test="zuobimuscle != null" >
+        #{zuobimuscle,jdbcType=VARCHAR},
+      </if>
+      <if test="youbimuscle != null" >
+        #{youbimuscle,jdbcType=VARCHAR},
+      </if>
+      <if test="youtuimuscle != null" >
+        #{youtuimuscle,jdbcType=VARCHAR},
+      </if>
+      <if test="zuobifat != null" >
+        #{zuobifat,jdbcType=VARCHAR},
+      </if>
+      <if test="zuotuifat != null" >
+        #{zuotuifat,jdbcType=VARCHAR},
+      </if>
+      <if test="youbifat != null" >
+        #{youbifat,jdbcType=VARCHAR},
+      </if>
+      <if test="youtuifat != null" >
+        #{youtuifat,jdbcType=VARCHAR},
+      </if>
+      <if test="highpressure != null" >
+        #{highpressure,jdbcType=VARCHAR},
+      </if>
+      <if test="lowpressure != null" >
+        #{lowpressure,jdbcType=VARCHAR},
+      </if>
+      <if test="pulse != null" >
+        #{pulse,jdbcType=VARCHAR},
+      </if>
+      <if test="oxygen != null" >
+        #{oxygen,jdbcType=VARCHAR},
+      </if>
+      <if test="bpm != null" >
+        #{bpm,jdbcType=VARCHAR},
+      </if>
+      <if test="oxygenlist != null" >
+        #{oxygenlist,jdbcType=VARCHAR},
+      </if>
+      <if test="bpmlist != null" >
+        #{bpmlist,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null" >
+        #{starttime,jdbcType=VARCHAR},
+      </if>
+      <if test="endtime != null" >
+        #{endtime,jdbcType=VARCHAR},
+      </if>
+      <if test="secondcount != null" >
+        #{secondcount,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodsugartype != null" >
+        #{bloodsugartype,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolname != null" >
+        #{schoolname,jdbcType=VARCHAR},
+      </if>
+      <if test="classname != null" >
+        #{classname,jdbcType=VARCHAR},
+      </if>
+      <if test="classno != null" >
+        #{classno,jdbcType=VARCHAR},
+      </if>
+      <if test="minfat != null" >
+        #{minfat,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodpressure != null" >
+        #{bloodpressure,jdbcType=VARCHAR},
+      </if>
+      <if test="bo != null" >
+        #{bo,jdbcType=VARCHAR},
+      </if>
+      <if test="ecg != null" >
+        #{ecg,jdbcType=VARCHAR},
+      </if>
+      <if test="peecg != null" >
+        #{peecg,jdbcType=VARCHAR},
+      </if>
+      <if test="temperature != null" >
+        #{temperature,jdbcType=VARCHAR},
+      </if>
+      <if test="waistline != null" >
+        #{waistline,jdbcType=VARCHAR},
+      </if>
+      <if test="hipline != null" >
+        #{hipline,jdbcType=VARCHAR},
+      </if>
+      <if test="whr != null" >
+        #{whr,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null" >
+        #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodsugar != null" >
+        #{bloodsugar,jdbcType=VARCHAR},
+      </if>
+      <if test="ua != null" >
+        #{ua,jdbcType=VARCHAR},
+      </if>
+      <if test="chol != null" >
+        #{chol,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodfat != null" >
+        #{bloodfat,jdbcType=VARCHAR},
+      </if>
+      <if test="cardiovascular != null" >
+        #{cardiovascular,jdbcType=VARCHAR},
+      </if>
+      <if test="bmd != null" >
+        #{bmd,jdbcType=VARCHAR},
+      </if>
+      <if test="alcohol != null" >
+        #{alcohol,jdbcType=VARCHAR},
+      </if>
+      <if test="hb != null" >
+        #{hb,jdbcType=VARCHAR},
+      </if>
+      <if test="lung != null" >
+        #{lung,jdbcType=VARCHAR},
+      </if>
+      <if test="micaetery != null" >
+        #{micaetery,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=OTHER},
+      </if>
+
+      <if test="heartbeat != null" >
+        #{heartbeat,jdbcType=VARCHAR},
+      </if>
+
+      <if test="uro != null" >
+        #{uro,jdbcType=VARCHAR},
+      </if>
+
+      <if test="bld != null" >
+        #{bld,jdbcType=VARCHAR},
+      </if>
+
+      <if test="bil != null" >
+        #{bil,jdbcType=VARCHAR},
+      </if>
+
+      <if test="ket != null" >
+        #{ket,jdbcType=VARCHAR},
+      </if>
+
+      <if test="glu != null" >
+        #{glu,jdbcType=VARCHAR},
+      </if>
+
+      <if test="pro != null" >
+        #{pro,jdbcType=VARCHAR},
+      </if>
+
+      <if test="ph != null" >
+        #{ph,jdbcType=VARCHAR},
+      </if>
+
+      <if test="nit != null" >
+        #{nit,jdbcType=VARCHAR},
+      </if>
+
+      <if test="leu != null" >
+        #{leu,jdbcType=VARCHAR},
+      </if>
+
+      <if test="sg != null" >
+        #{sg,jdbcType=VARCHAR},
+      </if>
+
+      <if test="vc != null" >
+        #{vc,jdbcType=VARCHAR},
+      </if>
+
+      <if test="bodyImpedance != null" >
+        #{bodyImpedance,jdbcType=VARCHAR},
+      </if>
+
+      <if test="testTime != null" >
+        #{testTime,jdbcType=VARCHAR}
+      </if>
+
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gz.medicine.yun.bloodpressure.bean.BloodPressure" >
+    update CHIS_BLOODPRESSURE
+    <set >
+      <if test="doctorid != null" >
+        DOCTORID = #{doctorid,jdbcType=CHAR},
+      </if>
+      <if test="doctorname != null" >
+        DOCTORNAME = #{doctorname,jdbcType=VARCHAR},
+      </if>
+      <if test="machineid != null" >
+        MACHINEID = #{machineid,jdbcType=VARCHAR},
+      </if>
+      <if test="unitno != null" >
+        UNITNO = #{unitno,jdbcType=VARCHAR},
+      </if>
+      <if test="unitname != null" >
+        UNITNAME = #{unitname,jdbcType=VARCHAR},
+      </if>
+      <if test="macaddr != null" >
+        MACADDR = #{macaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="recordno != null" >
+        RECORDNO = #{recordno,jdbcType=VARCHAR},
+      </if>
+      <if test="measuretime != null" >
+        MEASURETIME = #{measuretime,jdbcType=VARCHAR},
+      </if>
+      <if test="devicetype != null" >
+        DEVICETYPE = #{devicetype,jdbcType=VARCHAR},
+      </if>
+      <if test="logintype != null" >
+        LOGINTYPE = #{logintype,jdbcType=VARCHAR},
+      </if>
+      <if test="hr != null" >
+        HR = #{hr,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        MOBILE = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="idcode != null" >
+        IDCODE = #{idcode,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        AGE = #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        SEX = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        BIRTHDAY = #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="usericon != null" >
+        USERICON = #{usericon,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null" >
+        NATION = #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="startdate != null" >
+        STARTDATE = #{startdate,jdbcType=VARCHAR},
+      </if>
+      <if test="enddate != null" >
+        ENDDATE = #{enddate,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+        DEPARTMENT = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="barcode != null" >
+        BARCODE = #{barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="iccode != null" >
+        ICCODE = #{iccode,jdbcType=VARCHAR},
+      </if>
+      <if test="socialcode != null" >
+        SOCIALCODE = #{socialcode,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        USERID = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="height != null" >
+        HEIGHT = #{height,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        WEIGHT = #{weight,jdbcType=VARCHAR},
+      </if>
+      <if test="bmi != null" >
+        BMI = #{bmi,jdbcType=VARCHAR},
+      </if>
+      <if test="idealweight != null" >
+        IDEALWEIGHT = #{idealweight,jdbcType=VARCHAR},
+      </if>
+      <if test="fatrate != null" >
+        FATRATE = #{fatrate,jdbcType=VARCHAR},
+      </if>
+      <if test="fat != null" >
+        FAT = #{fat,jdbcType=VARCHAR},
+      </if>
+      <if test="exceptfat != null" >
+        EXCEPTFAT = #{exceptfat,jdbcType=VARCHAR},
+      </if>
+      <if test="waterrate != null" >
+        WATERRATE = #{waterrate,jdbcType=VARCHAR},
+      </if>
+      <if test="water != null" >
+        WATER = #{water,jdbcType=VARCHAR},
+      </if>
+      <if test="minerals != null" >
+        MINERALS = #{minerals,jdbcType=VARCHAR},
+      </if>
+      <if test="protein != null" >
+        PROTEIN = #{protein,jdbcType=VARCHAR},
+      </if>
+      <if test="fic != null" >
+        FIC = #{fic,jdbcType=VARCHAR},
+      </if>
+      <if test="foc != null" >
+        FOC = #{foc,jdbcType=VARCHAR},
+      </if>
+      <if test="muscle != null" >
+        MUSCLE = #{muscle,jdbcType=VARCHAR},
+      </if>
+      <if test="fatadjust != null" >
+        FATADJUST = #{fatadjust,jdbcType=VARCHAR},
+      </if>
+      <if test="weightadjust != null" >
+        WEIGHTADJUST = #{weightadjust,jdbcType=VARCHAR},
+      </if>
+      <if test="muscleadjust != null" >
+        MUSCLEADJUST = #{muscleadjust,jdbcType=VARCHAR},
+      </if>
+      <if test="basicmetabolism != null" >
+        BASICMETABOLISM = #{basicmetabolism,jdbcType=VARCHAR},
+      </if>
+      <if test="viscera != null" >
+        VISCERA = #{viscera,jdbcType=VARCHAR},
+      </if>
+      <if test="bmc != null" >
+        BMC = #{bmc,jdbcType=VARCHAR},
+      </if>
+      <if test="musclerate != null" >
+        MUSCLERATE = #{musclerate,jdbcType=VARCHAR},
+      </if>
+      <if test="quganmuscle != null" >
+        QUGANMUSCLE = #{quganmuscle,jdbcType=VARCHAR},
+      </if>
+      <if test="quganfat != null" >
+        QUGANFAT = #{quganfat,jdbcType=VARCHAR},
+      </if>
+      <if test="zuotuimuscle != null" >
+        ZUOTUIMUSCLE = #{zuotuimuscle,jdbcType=VARCHAR},
+      </if>
+      <if test="zuobimuscle != null" >
+        ZUOBIMUSCLE = #{zuobimuscle,jdbcType=VARCHAR},
+      </if>
+      <if test="youbimuscle != null" >
+        YOUBIMUSCLE = #{youbimuscle,jdbcType=VARCHAR},
+      </if>
+      <if test="youtuimuscle != null" >
+        YOUTUIMUSCLE = #{youtuimuscle,jdbcType=VARCHAR},
+      </if>
+      <if test="zuobifat != null" >
+        ZUOBIFAT = #{zuobifat,jdbcType=VARCHAR},
+      </if>
+      <if test="zuotuifat != null" >
+        ZUOTUIFAT = #{zuotuifat,jdbcType=VARCHAR},
+      </if>
+      <if test="youbifat != null" >
+        YOUBIFAT = #{youbifat,jdbcType=VARCHAR},
+      </if>
+      <if test="youtuifat != null" >
+        YOUTUIFAT = #{youtuifat,jdbcType=VARCHAR},
+      </if>
+      <if test="highpressure != null" >
+        HIGHPRESSURE = #{highpressure,jdbcType=VARCHAR},
+      </if>
+      <if test="lowpressure != null" >
+        LOWPRESSURE = #{lowpressure,jdbcType=VARCHAR},
+      </if>
+      <if test="pulse != null" >
+        PULSE = #{pulse,jdbcType=VARCHAR},
+      </if>
+      <if test="oxygen != null" >
+        OXYGEN = #{oxygen,jdbcType=VARCHAR},
+      </if>
+      <if test="bpm != null" >
+        BPM = #{bpm,jdbcType=VARCHAR},
+      </if>
+      <if test="oxygenlist != null" >
+        OXYGENLIST = #{oxygenlist,jdbcType=VARCHAR},
+      </if>
+      <if test="bpmlist != null" >
+        BPMLIST = #{bpmlist,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null" >
+        STARTTIME = #{starttime,jdbcType=VARCHAR},
+      </if>
+      <if test="endtime != null" >
+        ENDTIME = #{endtime,jdbcType=VARCHAR},
+      </if>
+      <if test="secondcount != null" >
+        SECONDCOUNT = #{secondcount,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodsugartype != null" >
+        BLOODSUGARTYPE = #{bloodsugartype,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolname != null" >
+        SCHOOLNAME = #{schoolname,jdbcType=VARCHAR},
+      </if>
+      <if test="classname != null" >
+        CLASSNAME = #{classname,jdbcType=VARCHAR},
+      </if>
+      <if test="classno != null" >
+        CLASSNO = #{classno,jdbcType=VARCHAR},
+      </if>
+      <if test="minfat != null" >
+        MINFAT = #{minfat,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodpressure != null" >
+        BLOODPRESSURE = #{bloodpressure,jdbcType=VARCHAR},
+      </if>
+      <if test="bo != null" >
+        BO = #{bo,jdbcType=VARCHAR},
+      </if>
+      <if test="ecg != null" >
+        ECG = #{ecg,jdbcType=VARCHAR},
+      </if>
+      <if test="peecg != null" >
+        PEECG = #{peecg,jdbcType=VARCHAR},
+      </if>
+      <if test="temperature != null" >
+        TEMPERATURE = #{temperature,jdbcType=VARCHAR},
+      </if>
+      <if test="waistline != null" >
+        WAISTLINE = #{waistline,jdbcType=VARCHAR},
+      </if>
+      <if test="hipline != null" >
+        HIPLINE = #{hipline,jdbcType=VARCHAR},
+      </if>
+      <if test="whr != null" >
+        WHR = #{whr,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null" >
+        RESULT = #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodsugar != null" >
+        BLOODSUGAR = #{bloodsugar,jdbcType=VARCHAR},
+      </if>
+      <if test="ua != null" >
+        UA = #{ua,jdbcType=VARCHAR},
+      </if>
+      <if test="chol != null" >
+        CHOL = #{chol,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodfat != null" >
+        BLOODFAT = #{bloodfat,jdbcType=VARCHAR},
+      </if>
+      <if test="cardiovascular != null" >
+        CARDIOVASCULAR = #{cardiovascular,jdbcType=VARCHAR},
+      </if>
+      <if test="bmd != null" >
+        BMD = #{bmd,jdbcType=VARCHAR},
+      </if>
+      <if test="alcohol != null" >
+        ALCOHOL = #{alcohol,jdbcType=VARCHAR},
+      </if>
+      <if test="hb != null" >
+        HB = #{hb,jdbcType=VARCHAR},
+      </if>
+      <if test="lung != null" >
+        LUNG = #{lung,jdbcType=VARCHAR},
+      </if>
+      <if test="micaetery != null" >
+        MICAETERY = #{micaetery,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        CREATEDATE = #{createdate,jdbcType=OTHER}
+      </if>
+    </set>
+    where GUID = #{guid,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gz.medicine.yun.bloodpressure.bean.BloodPressure" >
+    update CHIS_BLOODPRESSURE
+    set DOCTORID = #{doctorid,jdbcType=CHAR},
+      DOCTORNAME = #{doctorname,jdbcType=VARCHAR},
+      MACHINEID = #{machineid,jdbcType=VARCHAR},
+      UNITNO = #{unitno,jdbcType=VARCHAR},
+      UNITNAME = #{unitname,jdbcType=VARCHAR},
+      MACADDR = #{macaddr,jdbcType=VARCHAR},
+      RECORDNO = #{recordno,jdbcType=VARCHAR},
+      MEASURETIME = #{measuretime,jdbcType=VARCHAR},
+      DEVICETYPE = #{devicetype,jdbcType=VARCHAR},
+      LOGINTYPE = #{logintype,jdbcType=VARCHAR},
+      HR = #{hr,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      MOBILE = #{mobile,jdbcType=VARCHAR},
+      IDCODE = #{idcode,jdbcType=VARCHAR},
+      AGE = #{age,jdbcType=VARCHAR},
+      SEX = #{sex,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      BIRTHDAY = #{birthday,jdbcType=VARCHAR},
+      USERICON = #{usericon,jdbcType=VARCHAR},
+      NATION = #{nation,jdbcType=VARCHAR},
+      STARTDATE = #{startdate,jdbcType=VARCHAR},
+      ENDDATE = #{enddate,jdbcType=VARCHAR},
+      DEPARTMENT = #{department,jdbcType=VARCHAR},
+      BARCODE = #{barcode,jdbcType=VARCHAR},
+      ICCODE = #{iccode,jdbcType=VARCHAR},
+      SOCIALCODE = #{socialcode,jdbcType=VARCHAR},
+      USERID = #{userid,jdbcType=VARCHAR},
+      HEIGHT = #{height,jdbcType=VARCHAR},
+      WEIGHT = #{weight,jdbcType=VARCHAR},
+      BMI = #{bmi,jdbcType=VARCHAR},
+      IDEALWEIGHT = #{idealweight,jdbcType=VARCHAR},
+      FATRATE = #{fatrate,jdbcType=VARCHAR},
+      FAT = #{fat,jdbcType=VARCHAR},
+      EXCEPTFAT = #{exceptfat,jdbcType=VARCHAR},
+      WATERRATE = #{waterrate,jdbcType=VARCHAR},
+      WATER = #{water,jdbcType=VARCHAR},
+      MINERALS = #{minerals,jdbcType=VARCHAR},
+      PROTEIN = #{protein,jdbcType=VARCHAR},
+      FIC = #{fic,jdbcType=VARCHAR},
+      FOC = #{foc,jdbcType=VARCHAR},
+      MUSCLE = #{muscle,jdbcType=VARCHAR},
+      FATADJUST = #{fatadjust,jdbcType=VARCHAR},
+      WEIGHTADJUST = #{weightadjust,jdbcType=VARCHAR},
+      MUSCLEADJUST = #{muscleadjust,jdbcType=VARCHAR},
+      BASICMETABOLISM = #{basicmetabolism,jdbcType=VARCHAR},
+      VISCERA = #{viscera,jdbcType=VARCHAR},
+      BMC = #{bmc,jdbcType=VARCHAR},
+      MUSCLERATE = #{musclerate,jdbcType=VARCHAR},
+      QUGANMUSCLE = #{quganmuscle,jdbcType=VARCHAR},
+      QUGANFAT = #{quganfat,jdbcType=VARCHAR},
+      ZUOTUIMUSCLE = #{zuotuimuscle,jdbcType=VARCHAR},
+      ZUOBIMUSCLE = #{zuobimuscle,jdbcType=VARCHAR},
+      YOUBIMUSCLE = #{youbimuscle,jdbcType=VARCHAR},
+      YOUTUIMUSCLE = #{youtuimuscle,jdbcType=VARCHAR},
+      ZUOBIFAT = #{zuobifat,jdbcType=VARCHAR},
+      ZUOTUIFAT = #{zuotuifat,jdbcType=VARCHAR},
+      YOUBIFAT = #{youbifat,jdbcType=VARCHAR},
+      YOUTUIFAT = #{youtuifat,jdbcType=VARCHAR},
+      HIGHPRESSURE = #{highpressure,jdbcType=VARCHAR},
+      LOWPRESSURE = #{lowpressure,jdbcType=VARCHAR},
+      PULSE = #{pulse,jdbcType=VARCHAR},
+      OXYGEN = #{oxygen,jdbcType=VARCHAR},
+      BPM = #{bpm,jdbcType=VARCHAR},
+      OXYGENLIST = #{oxygenlist,jdbcType=VARCHAR},
+      BPMLIST = #{bpmlist,jdbcType=VARCHAR},
+      STARTTIME = #{starttime,jdbcType=VARCHAR},
+      ENDTIME = #{endtime,jdbcType=VARCHAR},
+      SECONDCOUNT = #{secondcount,jdbcType=VARCHAR},
+      BLOODSUGARTYPE = #{bloodsugartype,jdbcType=VARCHAR},
+      SCHOOLNAME = #{schoolname,jdbcType=VARCHAR},
+      CLASSNAME = #{classname,jdbcType=VARCHAR},
+      CLASSNO = #{classno,jdbcType=VARCHAR},
+      MINFAT = #{minfat,jdbcType=VARCHAR},
+      BLOODPRESSURE = #{bloodpressure,jdbcType=VARCHAR},
+      BO = #{bo,jdbcType=VARCHAR},
+      ECG = #{ecg,jdbcType=VARCHAR},
+      PEECG = #{peecg,jdbcType=VARCHAR},
+      TEMPERATURE = #{temperature,jdbcType=VARCHAR},
+      WAISTLINE = #{waistline,jdbcType=VARCHAR},
+      HIPLINE = #{hipline,jdbcType=VARCHAR},
+      WHR = #{whr,jdbcType=VARCHAR},
+      RESULT = #{result,jdbcType=VARCHAR},
+      BLOODSUGAR = #{bloodsugar,jdbcType=VARCHAR},
+      UA = #{ua,jdbcType=VARCHAR},
+      CHOL = #{chol,jdbcType=VARCHAR},
+      BLOODFAT = #{bloodfat,jdbcType=VARCHAR},
+      CARDIOVASCULAR = #{cardiovascular,jdbcType=VARCHAR},
+      BMD = #{bmd,jdbcType=VARCHAR},
+      ALCOHOL = #{alcohol,jdbcType=VARCHAR},
+      HB = #{hb,jdbcType=VARCHAR},
+      LUNG = #{lung,jdbcType=VARCHAR},
+      MICAETERY = #{micaetery,jdbcType=VARCHAR},
+      CREATEDATE = #{createdate,jdbcType=OTHER}
+    where GUID = #{guid,jdbcType=CHAR}
+  </update>
+</mapper>

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gz.medicine.yun.common.mapper.FromBlobMapper" >
+  <resultMap id="BaseResultMap" type="com.gz.medicine.yun.common.bean.FromBlob" >
+    <id column="GUID" property="guid" jdbcType="CHAR" />
+    <result column="GRDID" property="grdid" jdbcType="VARCHAR" />
+    <result column="SYTID" property="sytid" jdbcType="VARCHAR" />
+    <result column="CRTDAT" property="crtdat" jdbcType="TIMESTAMP" />
+    <result column="FILEURL" property="fileurl" jdbcType="VARCHAR" />
+    <result column="FILENAME" property="filename" jdbcType="VARCHAR" />
+    <result column="FORMGUID" property="formguid" jdbcType="CHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.gz.medicine.yun.common.bean.FromBlob" extends="BaseResultMap" >
+    <result column="BDATA" property="bdata" jdbcType="BLOB" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    GUID, GRDID, SYTID, CRTDAT, FILEURL, FILENAME, FORMGUID
+  </sql>
+  <sql id="Blob_Column_List" >
+    BDATA
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from FORMBLOB
+    where GUID = #{guid,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from FORMBLOB
+    where GUID = #{guid,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gz.medicine.yun.common.bean.FromBlob" >
+    insert into FORMBLOB (GUID, GRDID, SYTID, 
+      CRTDAT, FILEURL, FILENAME, 
+      FORMGUID, BDATA)
+    values (#{guid,jdbcType=CHAR}, #{grdid,jdbcType=VARCHAR}, #{sytid,jdbcType=VARCHAR}, 
+      #{crtdat,jdbcType=TIMESTAMP}, #{fileurl,jdbcType=VARCHAR}, #{filename,jdbcType=VARCHAR}, 
+      #{formguid,jdbcType=CHAR}, #{bdata,jdbcType=BLOB})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gz.medicine.yun.common.bean.FromBlob" >
+    insert into FORMBLOB
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        GUID,
+      </if>
+      <if test="grdid != null" >
+        GRDID,
+      </if>
+      <if test="sytid != null" >
+        SYTID,
+      </if>
+      <if test="crtdat != null" >
+        CRTDAT,
+      </if>
+      <if test="fileurl != null" >
+        FILEURL,
+      </if>
+      <if test="filename != null" >
+        FILENAME,
+      </if>
+      <if test="formguid != null" >
+        FORMGUID,
+      </if>
+      <if test="bdata != null" >
+        BDATA,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        #{guid,jdbcType=CHAR},
+      </if>
+      <if test="grdid != null" >
+        #{grdid,jdbcType=VARCHAR},
+      </if>
+      <if test="sytid != null" >
+        #{sytid,jdbcType=VARCHAR},
+      </if>
+      <if test="crtdat != null" >
+        #{crtdat,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fileurl != null" >
+        #{fileurl,jdbcType=VARCHAR},
+      </if>
+      <if test="filename != null" >
+        #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="formguid != null" >
+        #{formguid,jdbcType=CHAR},
+      </if>
+      <if test="bdata != null" >
+        #{bdata,jdbcType=BLOB},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gz.medicine.yun.common.bean.FromBlob" >
+    update FORMBLOB
+    <set >
+      <if test="grdid != null" >
+        GRDID = #{grdid,jdbcType=VARCHAR},
+      </if>
+      <if test="sytid != null" >
+        SYTID = #{sytid,jdbcType=VARCHAR},
+      </if>
+      <if test="crtdat != null" >
+        CRTDAT = #{crtdat,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fileurl != null" >
+        FILEURL = #{fileurl,jdbcType=VARCHAR},
+      </if>
+      <if test="filename != null" >
+        FILENAME = #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="formguid != null" >
+        FORMGUID = #{formguid,jdbcType=CHAR},
+      </if>
+      <if test="bdata != null" >
+        BDATA = #{bdata,jdbcType=BLOB},
+      </if>
+    </set>
+    where GUID = #{guid,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.gz.medicine.yun.common.bean.FromBlob" >
+    update FORMBLOB
+    set GRDID = #{grdid,jdbcType=VARCHAR},
+      SYTID = #{sytid,jdbcType=VARCHAR},
+      CRTDAT = #{crtdat,jdbcType=TIMESTAMP},
+      FILEURL = #{fileurl,jdbcType=VARCHAR},
+      FILENAME = #{filename,jdbcType=VARCHAR},
+      FORMGUID = #{formguid,jdbcType=CHAR},
+      BDATA = #{bdata,jdbcType=BLOB}
+    where GUID = #{guid,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gz.medicine.yun.common.bean.FromBlob" >
+    update FORMBLOB
+    set GRDID = #{grdid,jdbcType=VARCHAR},
+      SYTID = #{sytid,jdbcType=VARCHAR},
+      CRTDAT = #{crtdat,jdbcType=TIMESTAMP},
+      FILEURL = #{fileurl,jdbcType=VARCHAR},
+      FILENAME = #{filename,jdbcType=VARCHAR},
+      FORMGUID = #{formguid,jdbcType=CHAR}
+    where GUID = #{guid,jdbcType=CHAR}
+  </update>
+</mapper>

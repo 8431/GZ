@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gz.medicine.yun.doctor.mapper.DTfollowupOptionMapper">
+    <resultMap id="BaseResultMap" type="com.gz.medicine.yun.doctor.bean.DTfollowupOption">
+        <id column="GUID" property="guid" jdbcType="VARCHAR"/>
+        <result column="ORG" property="org" jdbcType="VARCHAR"/>
+        <result column="FOLLOWOPTIONID" property="followoptionid" jdbcType="VARCHAR"/>
+        <result column="FOLLOWOPTION" property="followoption" jdbcType="VARCHAR"/>
+        <result column="FOLLOWOPTIONDESC" property="followoptiondesc" jdbcType="VARCHAR"/>
+        <result column="CRTUSR" property="crtusr" jdbcType="VARCHAR"/>
+        <result column="CRTDAT" property="crtdat" jdbcType="TIMESTAMP"/>
+        <result column="UPDATEUSR" property="updateusr" jdbcType="VARCHAR"/>
+        <result column="UPDATEDATE" property="updatedate" jdbcType="TIMESTAMP"/>
+        <result column="STATUS" property="status" jdbcType="VARCHAR"></result>
+    </resultMap>
+    <sql id="Base_Column_List">
+    GUID, ORG, FOLLOWOPTIONID, FOLLOWOPTION, FOLLOWOPTIONDESC, CRTUSR, CRTDAT, UPDATEUSR, 
+    UPDATEDATE
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from CHIS_FOLLOWUP_OPTION
+        where GUID = #{guid,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CHIS_FOLLOWUP_OPTION
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.gz.medicine.yun.doctor.bean.DTfollowupOption">
+    insert into CHIS_FOLLOWUP_OPTION (GUID, ORG, FOLLOWOPTIONID, 
+      FOLLOWOPTION, FOLLOWOPTIONDESC, CRTUSR, 
+      CRTDAT, UPDATEUSR, UPDATEDATE
+      )
+    values (#{guid,jdbcType=VARCHAR}, #{org,jdbcType=VARCHAR}, #{followoptionid,jdbcType=VARCHAR}, 
+      #{followoption,jdbcType=VARCHAR}, #{followoptiondesc,jdbcType=VARCHAR}, #{crtusr,jdbcType=VARCHAR}, 
+      #{crtdat,jdbcType=TIMESTAMP}, #{updateusr,jdbcType=VARCHAR}, #{updatedate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.gz.medicine.yun.doctor.bean.DTfollowupOption">
+        insert into CHIS_FOLLOWUP_OPTION
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="guid != null">
+                GUID,
+            </if>
+            <if test="org != null">
+                ORG,
+            </if>
+            <if test="followoptionid != null">
+                FOLLOWOPTIONID,
+            </if>
+            <if test="followoption != null">
+                FOLLOWOPTION,
+            </if>
+            <if test="followoptiondesc != null">
+                FOLLOWOPTIONDESC,
+            </if>
+            <if test="crtusr != null">
+                CRTUSR,
+            </if>
+            <if test="crtdat != null">
+                CRTDAT,
+            </if>
+            <if test="updateusr != null">
+                UPDATEUSR,
+            </if>
+            <if test="updatedate != null">
+                UPDATEDATE,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="guid != null">
+                #{guid,jdbcType=VARCHAR},
+            </if>
+            <if test="org != null">
+                #{org,jdbcType=VARCHAR},
+            </if>
+            <if test="followoptionid != null">
+                #{followoptionid,jdbcType=VARCHAR},
+            </if>
+            <if test="followoption != null">
+                #{followoption,jdbcType=VARCHAR},
+            </if>
+            <if test="followoptiondesc != null">
+                #{followoptiondesc,jdbcType=VARCHAR},
+            </if>
+            <if test="crtusr != null">
+                #{crtusr,jdbcType=VARCHAR},
+            </if>
+            <if test="crtdat != null">
+                #{crtdat,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateusr != null">
+                #{updateusr,jdbcType=VARCHAR},
+            </if>
+            <if test="updatedate != null">
+                #{updatedate,jdbcType=TIMESTAMP},
+            </if>
+
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.gz.medicine.yun.doctor.bean.DTfollowupOption">
+        update CHIS_FOLLOWUP_OPTION
+        <set>
+            <if test="org != null">
+                ORG = #{org,jdbcType=VARCHAR},
+            </if>
+            <if test="followoptionid != null">
+                FOLLOWOPTIONID = #{followoptionid,jdbcType=VARCHAR},
+            </if>
+            <if test="followoption != null">
+                FOLLOWOPTION = #{followoption,jdbcType=VARCHAR},
+            </if>
+            <if test="followoptiondesc != null">
+                FOLLOWOPTIONDESC = #{followoptiondesc,jdbcType=VARCHAR},
+            </if>
+            <if test="crtusr != null">
+                CRTUSR = #{crtusr,jdbcType=VARCHAR},
+            </if>
+            <if test="crtdat != null">
+                CRTDAT = #{crtdat,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateusr != null">
+                UPDATEUSR = #{updateusr,jdbcType=VARCHAR},
+            </if>
+            <if test="updatedate != null">
+                UPDATEDATE = #{updatedate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where GUID = #{guid,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.gz.medicine.yun.doctor.bean.DTfollowupOption">
+    update CHIS_FOLLOWUP_OPTION
+    set ORG = #{org,jdbcType=VARCHAR},
+      FOLLOWOPTIONID = #{followoptionid,jdbcType=VARCHAR},
+      FOLLOWOPTION = #{followoption,jdbcType=VARCHAR},
+      FOLLOWOPTIONDESC = #{followoptiondesc,jdbcType=VARCHAR},
+      CRTUSR = #{crtusr,jdbcType=VARCHAR},
+      CRTDAT = #{crtdat,jdbcType=TIMESTAMP},
+      UPDATEUSR = #{updateusr,jdbcType=VARCHAR},
+      UPDATEDATE = #{updatedate,jdbcType=TIMESTAMP}
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </update>
+
+
+    <!--随访患者管理-->
+    <select id="queryPageSfhzgl" parameterType="com.gz.medicine.common.mybatisPageVo.Page" resultMap="ResultMap">
+
+        select SICKGUID, crtdat, FOLLOWDATETIME
+        from (select SICKGUID,
+        max(crtdat) as crtdat,
+        max(FOLLOWDATETIME) as FOLLOWDATETIME
+        from ( select * from (select m.*,m.SICKGUID as USRGUID, c.FOLLOWDATETIME
+        from (select s.SICKGUID, s.crtdat,u.name,s.docguid
+        from SICKBLHDR s, usr u
+        where s.SICKGUID = u.guid
+        and DOCGUID =#{docguid,jdbcType=VARCHAR}) m
+        left join (select *
+        from CHIS_followup_Plan
+        where status = '1'
+        and CRTDAT  &gt;=
+        to_date(to_char(sysdate,
+        'yyyy-MM-dd'),
+        'yyyy-MM-dd')) c
+        on m.SICKGUID = c.USRGUID
+
+        ) x
+        where 1=1
+        <if test="name != null">
+            and x.name like '${'%' + name + '%'}'
+        </if>
+
+        <if test="statu == 1">
+            and x.USRGUID is not null
+        </if>
+        <if test="statu == 2">
+            and x.USRGUID is null
+        </if>
+        )
+        group by SICKGUID)
+        order by FOLLOWDATETIME desc, crtdat desc
+
+    </select>
+
+    <select id="querySfjlList" parameterType="java.util.Map" resultMap="ResultMap">
+        <![CDATA[
+
+
+select *
+  from (select si.ZDNAM,
+               to_char(si.CRTDAT,'yyyy-MM-dd HH24:mi')as CRTDAT,
+               si.guid as SICGUID,
+               si.SICKGUID,
+               u.name,
+
+        case when  length(idcard)=18 then decode(mod (to_number( substr(idcard ,17, 1)),2 ),0, '2','1' )
+       when  length(idcard)=15  then decode(mod(to_number(idcard),2),0,'2','1')
+        end as sex,
+        case when length(idcard)=18 then    ceil((to_char(sysdate,'yyyyMMdd')-to_char(to_date(substr(idcard,7,8),'yyyy-MM-dd'),'yyyyMMdd'))/10000)
+                           when length(idcard)=15 then  ceil((to_char(sysdate,'yyyyMMdd')-to_char(to_date('19'||substr(idcard,7,6),'yyyy-MM-dd'),'yyyyMMdd'))/10000)
+                           end as age,
+               u.ID as telPhone
+          from (select *
+                  from (select *
+                          from SICKBLHDR
+                         where docguid =  #{docguid}
+                           and SICKGUID = #{usrguid}
+                         order by CRTDAT desc)
+
+                  where
+                    rownum <= 1) si,
+               usr u
+         where si.SICKGUID = u.guid and u.ORG='CHIS') s1
+  left join (select *
+               from (select FOLLOWOPTION,
+                            to_char(followdatetime, 'yyyy-MM-dd HH24:mi') as followdatetime,
+                            sicguid,
+                            guid as RECORDID,
+                            USRGUID,
+                            FOLLOWSTATE
+                       from CHIS_followup_Plan
+                      where status = 1
+                        and USRGUID =#{usrguid}
+                        and docguid = #{docguid}
+                        and followdatetime>=to_date(to_char(sysdate,'yyyy-MM-dd'),'yyyy-MM-dd')
+                     )
+              where rownum < 2) c
+    on s1.SICKGUID = c.USRGUID
+
+
+        ]]>
+    </select>
+
+
+    <select id="querySfjhList" resultMap="ResultMap">
+    select * from CHIS_FOLLOWUP_OPTION
+  </select>
+
+    <insert id="mybatisInsert" parameterType="java.util.Map">
+        insert into ${tableName}(
+        <foreach collection="cloumn" item="valMap" index="valKey" separator=",">
+            ${valMap}
+        </foreach>
+        )
+        <foreach collection="val" item="valMap" separator=" union all ">
+            (
+            select
+            <foreach collection="valMap" item="valMapKey" separator=",">
+                '${valMapKey}'
+            </foreach>
+            from dual)
+        </foreach>
+    </insert>
+
+    <resultMap id="ResultMap" type="java.util.HashMap">
+        <id column="GUID" property="guid" jdbcType="VARCHAR"/>
+        <result column="ORG" property="org" jdbcType="VARCHAR"/>
+        <result column="FOLLOWOPTIONID" property="followoptionid" jdbcType="VARCHAR"/>
+        <result column="FOLLOWOPTION" property="followoption" jdbcType="VARCHAR"/>
+        <result column="FOLLOWOPTIONDESC" property="followoptiondesc" jdbcType="VARCHAR"/>
+        <result column="CRTUSR" property="crtusr" jdbcType="VARCHAR"/>
+        <result column="CRTDAT" property="crtdat" jdbcType="TIMESTAMP"/>
+        <result column="UPDATEUSR" property="updateusr" jdbcType="VARCHAR"/>
+        <result column="UPDATEDATE" property="updatedate" jdbcType="TIMESTAMP"/>
+        <result column="STATUS" property="status" jdbcType="VARCHAR"/>
+        <result column="NAME" property="name" jdbcType="VARCHAR"/>
+        <result column="SEX" property="sex" jdbcType="VARCHAR"/>
+        <result column="AGE" property="age" jdbcType="VARCHAR"/>
+        <result column="ZDNAM" property="zdnam" jdbcType="VARCHAR"/>
+        <result column="BLDAT" property="bldat" jdbcType="VARCHAR"/>
+        <result column="FOLLOWOPTION" property="followoption" jdbcType="VARCHAR"/>
+        <result column="FOLLOWDATETIME" property="followdatetime" jdbcType="VARCHAR"/>
+        <result column="TELEPHONE" property="telephone" jdbcType="VARCHAR"/>
+        <result column="SICGUID" property="sicguid" jdbcType="VARCHAR"/>
+        <result column="RECORDID" property="recordid" jdbcType="VARCHAR"/>
+        <result column="STATUS" property="status" jdbcType="VARCHAR"/>
+        <result column="SFJLGUID" property="sfjlguid" jdbcType="VARCHAR"/>
+        <result column="USRGUID" property="usrguid" jdbcType="VARCHAR"/>
+        <result column="FOLLOWSTATE" property="followstate" jdbcType="VARCHAR"/>
+        <result column="SICKGUID" property="sickguid" jdbcType="VARCHAR"/>
+        <result column="BLGUID" property="blguid" jdbcType="VARCHAR"/>
+    </resultMap>
+</mapper>

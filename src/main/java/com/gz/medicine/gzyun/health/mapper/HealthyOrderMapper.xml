@@ -1,0 +1,1120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.gz.medicine.gzyun.health.mapper.HealthyOrderMapper">
+
+    <resultMap id="BaseResultMap" type="com.gz.medicine.gzyun.health.bean.HealthyOrder">
+        <result column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="USRID" property="usrid" jdbcType="CHAR"/>
+        <result column="DOCID" property="docid" jdbcType="CHAR"/>
+        <result column="ORDERCODE" property="ordercode" jdbcType="VARCHAR"/>
+        <result column="THIRDORDERCODE" property="thirdordercode" jdbcType="VARCHAR"/>
+        <result column="PAYMENTMETHOD" property="paymentmethod" jdbcType="VARCHAR"/>
+        <result column="CONSULTATIONMETHOD" property="consultationmethod" jdbcType="VARCHAR"/>
+        <result column="ORDERAMOUNT" property="orderamount" jdbcType="VARCHAR"/>
+        <result column="ORDERSTATE" property="orderstate" jdbcType="VARCHAR"/>
+        <result column="CONSULTINGDESCRIPTION" property="consultingdescription" jdbcType="VARCHAR"/>
+        <result column="CREATEDATE" property="createdate" jdbcType="TIMESTAMP"/>
+        <result column="CREATENAME" property="createname" jdbcType="VARCHAR"/>
+        <result column="UPDATENAME" property="updatename" jdbcType="VARCHAR"/>
+        <result column="UPDATEDATE" property="updatedate" jdbcType="TIMESTAMP"/>
+        <result column="STATE" property="state" jdbcType="VARCHAR"/>
+        <result column="RESERVATIONPHOTOID" property="reservationphotoid" jdbcType="VARCHAR"/>
+        <result column="RESERVATIONPERIOD" property="reservationperiod" jdbcType="VARCHAR"/>
+        <result column="RESERVATIONTIME" property="reservationtime" jdbcType="VARCHAR"/>
+        <result column="USRPHONE" property="usrphone" jdbcType="VARCHAR"/>
+
+        <result column="USERNAME" property="username" jdbcType="VARCHAR"/>
+        <result column="USERSEX" property="usersex" jdbcType="VARCHAR"/>
+        <result column="USRBIRTH" property="usrbirth" jdbcType="VARCHAR"/>
+        <result column="RESERSTARTTIME" property="reserstarttime" jdbcType="VARCHAR"/>
+        <result column="RESERENDTIME" property="reserendtime" jdbcType="VARCHAR"/>
+        <result column="SENDFLAG" property="sendflag" jdbcType="VARCHAR"/>
+        <result column="SENDOK" property="sendok" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.gz.medicine.gzyun.health.bean.HealthyOrder">
+
+    insert into HEALTHYORDER (ID, USRID, DOCID, ORDERCODE,
+    THIRDORDERCODE, PAYMENTMETHOD, CONSULTATIONMETHOD,
+    ORDERAMOUNT, ORDERSTATE, CONSULTINGDESCRIPTION,
+    CREATEDATE, CREATENAME,
+    UPDATENAME, UPDATEDATE, STATE,
+    RESERVATIONPHOTOID, RESERVATIONDATE, RESERVATIONPERIOD,
+    RESERVATIONTIME,USRPHONE,USRNAME,USRSEX,USRBIRTH,RESERSTARTTIME,RESERENDTIME,PATHCODE)
+    values (#{id,jdbcType=VARCHAR}, #{usrid,jdbcType=CHAR}, #{docid,jdbcType=CHAR}, #{ordercode,jdbcType=VARCHAR},
+    #{thirdordercode,jdbcType=VARCHAR}, #{paymentmethod,jdbcType=VARCHAR}, #{consultationmethod,jdbcType=VARCHAR},
+    #{orderamount,jdbcType=VARCHAR}, #{orderstate,jdbcType=VARCHAR}, #{consultingdescription,jdbcType=VARCHAR},
+    #{createdate,jdbcType=TIMESTAMP}, #{createname,jdbcType=VARCHAR},
+    #{updatename,jdbcType=VARCHAR}, #{updatedate,jdbcType=TIMESTAMP}, #{state,jdbcType=VARCHAR},
+    #{reservationphotoid,jdbcType=VARCHAR}, #{reservationdate,jdbcType=VARCHAR}, #{reservationperiod,jdbcType=VARCHAR},
+    #{reservationtime,jdbcType=VARCHAR},#{usrphone,jdbcType=VARCHAR},#{usrname,jdbcType=VARCHAR},#{usrsex,jdbcType=VARCHAR},#{usrbirth,jdbcType=VARCHAR},#{reserstarttime,jdbcType=VARCHAR},#{reserendtime,jdbcType=VARCHAR},#{pathcode,jdbcType=VARCHAR})
+</insert>
+    <insert id="insertSelective" parameterType="com.gz.medicine.gzyun.health.bean.HealthyOrder">
+        insert into HEALTHYORDER
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="usrid != null">
+                USRID,
+            </if>
+            <if test="docid != null">
+                DOCID,
+            </if>
+            <if test="ordercode != null">
+                ORDERCODE,
+            </if>
+            <if test="thirdordercode != null">
+                THIRDORDERCODE,
+            </if>
+            <if test="paymentmethod != null">
+                PAYMENTMETHOD,
+            </if>
+            <if test="consultationmethod != null">
+                CONSULTATIONMETHOD,
+            </if>
+            <if test="orderamount != null">
+                ORDERAMOUNT,
+            </if>
+            <if test="orderstate != null">
+                ORDERSTATE,
+            </if>
+            <if test="consultingdescription != null">
+                CONSULTINGDESCRIPTION,
+            </if>
+            <if test="createdate != null">
+                CREATEDATE,
+            </if>
+            <if test="createname != null">
+                CREATENAME,
+            </if>
+            <if test="updatename != null">
+                UPDATENAME,
+            </if>
+            <if test="updatedate != null">
+                UPDATEDATE,
+            </if>
+            <if test="state != null">
+                STATE,
+            </if>
+            <if test="reservationphotoid != null">
+                RESERVATIONPHOTOID,
+            </if>
+            <if test="reservationdate != null">
+                RESERVATIONDATE,
+            </if>
+            <if test="reservationperiod != null">
+                RESERVATIONPERIOD,
+            </if>
+            <if test="reservationtime != null">
+                RESERVATIONTIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="usrid != null">
+                #{usrid,jdbcType=CHAR},
+            </if>
+            <if test="docid != null">
+                #{docid,jdbcType=CHAR},
+            </if>
+            <if test="ordercode != null">
+                #{ordercode,jdbcType=VARCHAR},
+            </if>
+            <if test="thirdordercode != null">
+                #{thirdordercode,jdbcType=VARCHAR},
+            </if>
+            <if test="paymentmethod != null">
+                #{paymentmethod,jdbcType=VARCHAR},
+            </if>
+            <if test="consultationmethod != null">
+                #{consultationmethod,jdbcType=VARCHAR},
+            </if>
+            <if test="orderamount != null">
+                #{orderamount,jdbcType=VARCHAR},
+            </if>
+            <if test="orderstate != null">
+                #{orderstate,jdbcType=VARCHAR},
+            </if>
+            <if test="consultingdescription != null">
+                #{consultingdescription,jdbcType=VARCHAR},
+            </if>
+            <if test="createdate != null">
+                #{createdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createname != null">
+                #{createname,jdbcType=VARCHAR},
+            </if>
+            <if test="updatename != null">
+                #{updatename,jdbcType=VARCHAR},
+            </if>
+            <if test="updatedate != null">
+                #{updatedate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="state != null">
+                #{state,jdbcType=VARCHAR},
+            </if>
+            <if test="reservationphotoid != null">
+                #{reservationphotoid,jdbcType=VARCHAR},
+            </if>
+            <if test="reservationdate != null">
+                #{reservationdate,jdbcType=VARCHAR},
+            </if>
+            <if test="reservationperiod != null">
+                #{reservationperiod,jdbcType=VARCHAR},
+            </if>
+            <if test="reservationtime != null">
+                #{reservationtime,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.gz.medicine.gzyun.health.bean.HealthyOrder">
+        update HEALTHYORDER
+        <set>
+            <if test="usrid != null">
+                USRID = #{usrid,jdbcType=CHAR},
+            </if>
+            <if test="docid != null">
+                DOCID = #{docid,jdbcType=CHAR},
+            </if>
+            <if test="ordercode != null">
+                ORDERCODE = #{ordercode,jdbcType=VARCHAR},
+            </if>
+            <if test="thirdordercode != null">
+                THIRDORDERCODE = #{thirdordercode,jdbcType=VARCHAR},
+            </if>
+            <if test="paymentmethod != null">
+                PAYMENTMETHOD = #{paymentmethod,jdbcType=VARCHAR},
+            </if>
+            <if test="consultationmethod != null">
+                CONSULTATIONMETHOD = #{consultationmethod,jdbcType=VARCHAR},
+            </if>
+            <if test="orderamount != null">
+                ORDERAMOUNT = #{orderamount,jdbcType=VARCHAR},
+            </if>
+            <if test="orderstate != null">
+                ORDERSTATE = #{orderstate,jdbcType=VARCHAR},
+            </if>
+            <if test="consultingdescription != null">
+                CONSULTINGDESCRIPTION = #{consultingdescription,jdbcType=VARCHAR},
+            </if>
+            <if test="createdate != null">
+                CREATEDATE = #{createdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createname != null">
+                CREATENAME = #{createname,jdbcType=VARCHAR},
+            </if>
+            <if test="updatename != null">
+                UPDATENAME = #{updatename,jdbcType=VARCHAR},
+            </if>
+            <if test="updatedate != null">
+                UPDATEDATE = #{updatedate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="state != null">
+                STATE = #{state,jdbcType=VARCHAR},
+            </if>
+            <if test="reservationphotoid != null">
+                RESERVATIONPHOTOID = #{reservationphotoid,jdbcType=VARCHAR},
+            </if>
+            <if test="reservationdate != null">
+                RESERVATIONDATE = #{reservationdate,jdbcType=VARCHAR},
+            </if>
+            <if test="reservationperiod != null">
+                RESERVATIONPERIOD = #{reservationperiod,jdbcType=VARCHAR},
+            </if>
+            <if test="reservationtime != null">
+                RESERVATIONTIME = #{reservationtime,jdbcType=VARCHAR},
+            </if>
+            <if test="usrphone != null">
+                USRPHONE = #{usrphone,jdbcType=VARCHAR},
+            </if>
+            <if test="pathcode != null">
+                PATHCODE = #{pathcode,jdbcType=VARCHAR},
+            </if>
+            <if test="invoicestate != null">
+                INVOICESTATE = #{invoicestate,jdbcType=VARCHAR},
+            </if>
+            <if test="usrname != null">
+                USRNAME = #{usrname,jdbcType=VARCHAR},
+            </if>
+            <if test="usrsex != null">
+                USRSEX = #{usrsex,jdbcType=VARCHAR},
+            </if>
+            <if test="usrbirth != null">
+                USRBIRTH = #{usrbirth,jdbcType=VARCHAR},
+            </if>
+            <if test="reserstarttime != null">
+                RESERSTARTTIME = #{reserstarttime,jdbcType=VARCHAR},
+            </if>
+            <if test="reserendtime != null">
+                RESERENDTIME = #{reserendtime,jdbcType=VARCHAR},
+            </if>
+            <if test="sendflag != null">
+                SENDFLAG = #{sendflag,jdbcType=VARCHAR},
+            </if>
+            <if test="sendok != null">
+                SENDOK = #{sendok,jdbcType=VARCHAR}
+            </if>
+        </set>
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+
+    <update id="updateOrderStateByOrderId" parameterType="java.util.HashMap">
+        update HealthyOrder
+        <if test="orderstate != null and orderstate!=''">
+            SET orderState =
+            #{orderstate,jdbcType=VARCHAR}
+        </if>
+
+        <if test="orderid != null and orderid!=''">
+            WHERE id = #{orderid,jdbcType=VARCHAR}
+        </if>
+
+    </update>
+
+    <update id="updatePaymentMethodByOrderId" parameterType="java.util.HashMap">
+        update HealthyOrder
+        <if test="paymentmethod != null and paymentmethod!=''">
+            SET PaymentMethod =
+            #{paymentmethod,jdbcType=VARCHAR},
+        </if>
+
+        <if test="orderid != null and orderid!=''">
+            WHERE id = #{orderid,jdbcType=VARCHAR}
+        </if>
+
+    </update>
+
+
+    <update id="updateThirdOrderCodeByOrderId" parameterType="java.util.HashMap">
+        update HealthyOrder
+        <if test="thirdordercode != null and thirdordercode!=''">
+            SET ThirdOrderCode =
+            #{thirdordercode,jdbcType=VARCHAR},
+        </if>
+
+        <if test="orderid != null and orderid!=''">
+            WHERE id = #{orderid,jdbcType=VARCHAR}
+        </if>
+
+    </update>
+
+    <update id="updateOrderByOrderId" parameterType="java.util.HashMap">
+        update HealthyOrder
+        <set>
+            <if test="orderstate != null and orderstate!=''">
+                orderState =#{orderstate,jdbcType=VARCHAR},
+            </if>
+            <if test="paymentmethod != null and paymentmethod!=''">
+                PaymentMethod =#{paymentmethod,jdbcType=VARCHAR},
+            </if>
+            <if test="thirdordercode != null and thirdordercode!=''">
+                ThirdOrderCode =#{thirdordercode,jdbcType=VARCHAR}
+            </if>
+            <if test="invoicestate != null and invoicestate!=''">
+                invoicestate =#{invoicestate,jdbcType=VARCHAR}
+            </if>
+        </set>
+        where ID = #{orderid,jdbcType=CHAR}
+    </update>
+
+
+    <resultMap id="ResultMaplog" type="java.util.Map">
+        <result column="ORDERSTATE" property="orderstate" jdbcType="VARCHAR"/>
+        <result column="CREATEDATE" property="createdate" jdbcType="VARCHAR"/>
+        <result column="ORDERAMOUNT" property="orderamount" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="selectByOrderLogId" parameterType="java.lang.String" resultMap="ResultMaplog">
+        select logs.orderstate,to_char(logs.createdate,'yyyy-MM-dd hh24:mi:ss') as createdate,orders.orderamount as orderamount from HealthyOrder orders
+        LEFT JOIN ORDERLOG logs on orders.id = logs.orderid where orders.id=#{orderid}
+    </select>
+
+
+    <!--根据用户ID获取最近的一条订单信息-->
+    <select id="selectTopByUserId" resultMap="BaseResultMap" parameterType="java.lang.String">
+
+        select * from ( select * from HEALTHYORDER where usrid=#{userid,jdbcType=VARCHAR} order by CREATEDATE desc)c where rownum=1
+
+    </select>
+
+    <!--超时没支付(30分钟未支付)-->
+    <select id="TimeoutOrderList" resultMap="BaseResultMap">
+      select * from HealthyOrder a where a.orderstate in (1) and   to_char(a.createdate,'yyyy-mm-dd HH24:MI') = to_char(to_date(#{currentTime,jdbcType=VARCHAR},'yyyy-mm-dd HH24:MI'),'yyyy-mm-dd HH24:MI')
+   </select>
+
+
+    <!--订单已过期(1小时)-->
+    <select id="OutDateOrderList" resultMap="BaseResultMap">
+        select a.* from HealthyOrder a
+        left join HealthConsultation cons on a.id = cons.orderid
+        WHERE a.orderstate IN (2) AND cons.ConsultationStartTime is not null AND to_char(to_date(a.reservationdate || ' ' || a.reserendtime, 'yyyy-mm-dd HH24:MI'), 'yyyy-mm-dd HH24:MI') <![CDATA[ <= ]]> to_char(to_date(#{currentTime,jdbcType=VARCHAR}, 'yyyy-mm-dd HH24:MI'), 'yyyy-mm-dd HH24:MI')
+    </select>
+
+    <!--医生24小时未回复-->
+    <select id="OutDateOrderRefundList" resultMap="BaseResultMap">
+        select a.* from HealthyOrder a
+        left join HealthConsultation cons on a.CONSULTINGDESCRIPTION = cons.orderid
+        WHERE a.orderstate IN (2) AND cons.ConsultationStartTime is null  AND to_char(to_date(a.reservationdate || ' ' || a.reserendtime, 'yyyy-mm-dd HH24:MI'), 'yyyy-mm-dd HH24:MI') <![CDATA[ = ]]> to_char(to_date(#{currentTime,jdbcType=VARCHAR}, 'yyyy-mm-dd HH24:MI'), 'yyyy-mm-dd HH24:MI')
+
+    </select>
+
+
+    <!--前5分钟-->
+    <select id="MinutesOrderList" resultMap="BaseResultMap">
+
+      select * from HealthyOrder a where a.orderstate in (2) and   to_char(to_date(a.reservationdate||' '||a.reserstarttime,'yyyy-mm-dd HH24:MI'),'yyyy-mm-dd HH24:MI') = to_char(to_date(#{currentTime,jdbcType=VARCHAR},'yyyy-mm-dd HH24:MI'),'yyyy-mm-dd HH24:MI')
+
+    </select>
+
+
+    <select id="selectByOrderList" resultMap="BaseResultMap">
+      select * from HealthyOrder where to_char(sysdate,'YYYY-MM-DD') = RESERVATIONDATE and orderstate='2' and state='1'
+    </select>
+
+    <!--我的订单分页信息  by  dlf -->
+    <select id="queryPageMyOrder" parameterType="com.gz.medicine.common.mybatisPageVo.Page" resultMap="ResultMap">
+    select * from (select m.*,n.FTPURL||m.PHOTOID as FTPURL  from (select h.docid,
+    d.name        as docname,
+    d.PHOTOID,
+    d.pathcode,
+    h.id          as orderid,
+    h.ordercode,
+    h.consultationmethod,
+    to_char(h.CREATEDATE,'yyyy-MM-DD HH24:mi') as createdate,
+    case when h.consultationmethod='2' then '图文咨询'
+    when h.consultationmethod='3' then '语音咨询'
+    when h.consultationmethod='4' then '视频咨询'
+    end as consultationmethodname ,
+    case when  h.orderstate='1' then '待支付费用'
+    when  h.orderstate='2' then '付款成功'
+    when  h.orderstate='3' then '订单取消'
+    when  h.orderstate='4' then '删除订单'
+    when  h.orderstate='5' then '订单关闭'
+    end as orderstatename,
+    h.orderstate,
+    h.invoicestate,
+    h.orderamount
+    from HealthyOrder h, healthDoctor d
+    where h.docid = d.id and h.state='1' and d.state='1' and h.usrid =#{usrid,jdbcType=VARCHAR})m
+    left join HEALTHFTPPATH n on m.pathcode=n.pathcode)
+    order by createdate desc
+
+</select>
+
+    <select id="selectOrderById" parameterType="java.lang.String" resultMap="BaseResultMap">
+
+    select * from HealthyOrder where id=#{orderid,jdbcType=VARCHAR} and STATE='1'
+
+    </select>
+
+    <!--我的订单详情  by  dlf -->
+    <select id="queryMyOrderDetail" parameterType="java.lang.String" resultMap="ResultMap">
+    select u.name as usrname,
+    case
+    when length(u.idcard) = 18 then
+    decode(mod(to_number(substr(u.idcard, 17, 1)), 2), 0, '2', '1')
+    when length(u.idcard) = 15 then
+    decode(mod(to_number(u.idcard), 2), 0, '2', '1')
+    end as sex,
+    case
+    when length(idcard) = 18 then
+    substr(idcard, 7, 4) || '-' || substr(idcard, 11, 2) || '-' ||
+    substr(idcard, 13, 2)
+    when length(idcard) = 15 then
+    '19' || substr(idcard, 7, 2) || '-' || substr(idcard, 9, 2) || '-' ||
+    substr(idcard, 11, 2)
+    end as usrbirthday,
+    u.id as usrphone,
+    h.RESERVATIONDATE||'  '||h.RESERVATIONPERIOD as ReservationTime,
+    h.CONSULTINGDESCRIPTION,
+    h.ordercode,
+    h.consultationmethod,
+    case
+    when h.consultationmethod = '2' then
+    '图文咨询'
+    when h.consultationmethod = '3' then
+    '语音咨询'
+    when h.consultationmethod = '4' then
+    '视频咨询'
+    end as consultationmethodname,
+
+    h.orderstate,
+
+    to_char(h.createdate, 'yyyy-MM-DD HH24:mi') as createdate,
+    h.orderamount
+    from HealthyOrder h, usr u
+    where h.usrid = u.guid and h.state='1'
+    and h.id = #{0,jdbcType=VARCHAR}
+</select>
+
+
+    <select id="queryPageMyConsultation" parameterType="com.gz.medicine.common.mybatisPageVo.Page"
+            resultMap="ResultMap">
+        select * from ( select m.*,n.FTPURL||m.PHOTOID as FTPURL from (select d.id as docid,
+        d.name as docname,
+        d.PHOTOID,
+        d.pathcode,
+        case
+        when e.consultationmethod = '2' then
+        '图文咨询'
+        when e.consultationmethod = '3' then
+        '语音咨询'
+        when e.consultationmethod = '4' then
+        '视频咨询'
+        end as consultationmethodname,
+
+        case when e.RESERVATIONDATE is not null and e.RESERVATIONTIME is not null then
+        to_date(e.RESERVATIONDATE||' '||substr(e.RESERVATIONTIME,0,5),'yyyy-MM-dd HH24:MI') end as reservationtime,
+        case when consultationstarttime is not null then
+        to_char( h.consultationstarttime, 'yyyy-MM-DD') end as consultationstarttime,
+        h.id as consultationid,
+        e.RESERVATIONDATE,
+        e.id as orderid
+        from HealthConsultation h, healthDoctor d, HealthyOrder e
+        where h.docid = d.id
+        and e.id = h.orderid
+        and h.state='1'
+        and e.state='1'
+        and d.state='1'
+        and h.usrid = #{usrid}
+        <if test="consultingstate==1">
+            and e.RESERVATIONDATE>=to_char(sysdate,'yyyy-MM-dd')
+            and h.CONSULTINGSTATE =#{consultingstate}
+            and e.orderstate='2'
+        </if>
+        <if test="consultingstate==2">
+            and e.RESERVATIONDATE>=to_char(sysdate,'yyyy-MM-dd')
+            and h.CONSULTINGSTATE =#{consultingstate}
+            and e.orderstate in('5','8')
+        </if>
+        )m left join
+        HEALTHFTPPATH n on m.pathcode=n.pathcode)
+        <if test="consultingstate==1">
+            order by RESERVATIONDATE
+        </if>
+        <if test="consultingstate==2">
+            order by consultationstarttime desc
+        </if>
+
+    </select>
+
+    <select id="queryConsultationScore" parameterType="java.lang.String" resultMap="ResultMap">
+    select
+    case when h.ConsultationStartTime is not null
+    then to_char(h.ConsultationStartTime,'yyyy-MM-DD HH24:mi') end  as ConsultationStartTime,
+    h.consultinghours,
+    v.score,
+    v.evaluationdescription
+    from HealthConsultation h, healthevaluate v
+    where h.id = v.consultationid and h.state='1' and v.state='1'
+    and h.id = #{0}
+</select>
+    <select id="queryDocScore" parameterType="java.lang.String" resultMap="ResultMap">
+    select x.*,y.FTPURL||x.PHOTOID as FTPURL from (select *
+    from (select d.name as docname,d.id, d.id as docid, t.titlename,d.PHOTOID,d.pathcode
+    from healthDoctor d, healthTitleChart t
+    where d.titlecode = t.titlecode and d.state='1'
+    and d.id = #{0}) m
+    left join (select docid as docid2,  round(avg(score),1) as rate from healthevaluate h  where h.state='1' group by docid) n
+    on m.id = n.docid2)x  left join HEALTHFTPPATH y on x.pathcode=y.pathcode
+
+</select>
+
+
+    <resultMap id="ResultMap" type="java.util.Map">
+        <result column="DOCID" property="docid" jdbcType="VARCHAR"/>
+        <result column="DOCNAME" property="docname" jdbcType="VARCHAR"/>
+        <result column="ORDERID" property="orderid" jdbcType="VARCHAR"/>
+        <result column="ORDERCODE" property="ordercode" jdbcType="VARCHAR"/>
+        <result column="CONSULTATIONMETHOD" property="consultationmethod" jdbcType="VARCHAR"/>
+        <result column="CONSULTATIONMETHODNAME" property="consultationmethodname" jdbcType="VARCHAR"/>
+        <result column="ORDERAMOUNT" property="orderamount" jdbcType="VARCHAR"/>
+        <result column="ORDERSTATE" property="orderstate" jdbcType="VARCHAR"/>
+        <result column="ORDERSTATENAME" property="orderstatename" jdbcType="VARCHAR"/>
+        <result column="RESERVATIONTIME" property="reservationtime" jdbcType="VARCHAR"/>
+        <result column="USRPHONE" property="usrphone" jdbcType="VARCHAR"/>
+        <result column="CREATEDATE" property="createdate" jdbcType="VARCHAR"/>
+        <result column="USRBIRTHDAY" property="usrbirthday" jdbcType="VARCHAR"/>
+        <result column="CONSULTINGDESCRIPTION" property="consultingdescription" jdbcType="VARCHAR"/>
+        <result column="SEX" property="sex" jdbcType="VARCHAR"/>
+        <result column="USRNAME" property="usrname" jdbcType="VARCHAR"/>
+        <result column="CONSULTATIONSTARTTIME" property="consultationstarttime" jdbcType="VARCHAR"/>
+        <result column="CONSULTATIONID" property="consultationid" jdbcType="VARCHAR"/>
+        <result column="CONSULTATIONID" property="consultinghours" jdbcType="VARCHAR"/>
+        <result column="SCORE" property="score" jdbcType="VARCHAR"/>
+        <result column="EVALUATIONDESCRIPTION" property="evaluationdescription" jdbcType="VARCHAR"/>
+        <result column="RATE" property="rate" jdbcType="VARCHAR"/>
+        <result column="CONSULTINGHOURS" property="consultinghours" jdbcType="VARCHAR"/>
+        <result column="TITLENAME" property="titlename" jdbcType="VARCHAR"/>
+        <result column="FTPURL" property="ftpurl" jdbcType="VARCHAR"/>
+        <result column="TEXT" property="text" jdbcType="VARCHAR"/>
+        <result column="VALUE" property="value" jdbcType="VARCHAR"/>
+        <result column="INVOICESTATE" property="invoicestate" jdbcType="VARCHAR"/>
+        <result column="RESERVATIONPERIOD" property="reservationperiod" jdbcType="VARCHAR"/>
+        <result column="AGE" property="age" jdbcType="VARCHAR"/>
+        <result column="INVOICESTATE" property="invoicestate" jdbcType="VARCHAR"/>
+        <result column="INVOICESTATE2" property="invoicestate2" jdbcType="VARCHAR"/>
+        <result column="ORDERSTATE2" property="orderstate2" jdbcType="VARCHAR"/>
+        <result column="RESERVATIONDATE" property="reservationdate" jdbcType="VARCHAR"/>
+        <result column="USRBIRTH" property="usrbirth" jdbcType="VARCHAR"/>
+        <result column="USRSEX" property="usrsex" jdbcType="VARCHAR"/>
+        <result column="RESERSTARTTIME" property="reserstarttime" jdbcType="VARCHAR"/>
+        <result column="CONSULTATIONSUMMARY" property="consultationsummary" jdbcType="VARCHAR"/>
+        <result column="OPERATIONCONTENT" property="operationcontent" jdbcType="VARCHAR"/>
+        <!--chis_chatmsg-->
+        <result column="GUID" property="guid" jdbcType="VARCHAR"/>
+        <result column="ORG" property="org" jdbcType="VARCHAR"/>
+        <result column="USRID" property="usrid" jdbcType="VARCHAR"/>
+        <result column="USRNAM" property="usrnam" jdbcType="VARCHAR"/>
+        <result column="CRTDAT" property="crtdat" jdbcType="VARCHAR"/>
+        <result column="TOUSR" property="tousr" jdbcType="VARCHAR"/>
+        <result column="TONAME" property="toname" jdbcType="VARCHAR"/>
+        <result column="TYPE" property="type" jdbcType="VARCHAR"/>
+        <result column="FLG" property="flg" jdbcType="VARCHAR"/>
+        <result column="MSG" property="msg" jdbcType="VARCHAR"/>
+        <result column="USRIMG" property="usrimg" jdbcType="VARCHAR"/>
+        <result column="IMGFILE" property="imgfile" jdbcType="VARCHAR"/>
+        <result column="AUDIOFILE" property="audiofile" jdbcType="VARCHAR"/>
+        <result column="RESERVATIONTIME" property="reservationtime" jdbcType="VARCHAR"/>
+        <result column="RESERSTARTTIME" property="reserstarttime" jdbcType="VARCHAR"/>
+        <result column="CREATETIME" property="createtime" jdbcType="VARCHAR"/>
+        <result column="FORMDATE" property="formdate" jdbcType="VARCHAR"/>
+        <!--chis_chatmsg-->
+    </resultMap>
+
+    <resultMap id="BaseResultMap2" type="com.gz.medicine.gzyun.health.reponse.HealthyOrderReponse">
+        <result column="DOCID" property="docid" jdbcType="VARCHAR"/>
+        <result column="USRID" property="usrid" jdbcType="VARCHAR"/>
+        <result column="USRNAME" property="usrname" jdbcType="VARCHAR"/>
+        <result column="RESERVATIONTIME" property="reservationtime" jdbcType="VARCHAR"/>
+        <result column="CONSULTATIONMETHOD" property="consultationmethod" jdbcType="VARCHAR"/>
+        <result column="IMGGUID" property="imgguid" jdbcType="VARCHAR"/>
+        <result column="RESERVATIONPHOTOID" property="reservationphotoid" jdbcType="VARCHAR"/>
+        <result column="CONSULTINGDESCRIPTION" property="consultingdescription" jdbcType="VARCHAR"/>
+        <result column="FTPURL" property="ftpurl" jdbcType="VARCHAR"/>
+        <result column="UPDATEDATE" property="updatedate" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!-- 订单消息接口 www -->
+    <select id="queryPageHealthyOrder" resultMap="BaseResultMap2"
+            parameterType="com.gz.medicine.common.mybatisPageVo.Page">
+    select hc.IMGGUID,hd.id,hd.docid,hd.usrid,hc.name as usrname,hd.reservationtime,hd.consultationmethod,hd.ftpurl,hd.RESERVATIONPHOTOID,hd.CONSULTINGDESCRIPTION, hd.updatedate from
+    ( select h.id,h.docid,h.usrid,h.RESERVATIONDATE||' '||h.ReserStartTime||'-'||h.ReserEndTime as reservationtime,h.consultationmethod,h.createdate,h.state,hp.FTPURL as ftpurl,h.RESERVATIONPHOTOID,h.CONSULTINGDESCRIPTION,h.updatedate from HealthyOrder h
+    left join HEALTHFTPPATH hp on h.PATHCODE = hp.PATHCODE ) hd
+    left join usr hc on hd.usrid=hc.guid
+    left join healthDoctor he on he.id=hd.docid
+    where hd.DOCID = #{docid,jdbcType=CHAR} and hd.state=1 order by hd.createdate DESC
+</select>
+
+
+    <resultMap id="BaseResultMapS" type="java.util.Map">
+        <result column="RESERVATIONDATE" property="reservationdate" jdbcType="VARCHAR"/>
+        <result column="RESERVATIONNUM" property="reservationnum" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!-- 预约统计接口  舵主 -->
+    <select id="queryListByOrderNum" resultMap="BaseResultMapS"
+            parameterType="com.gz.medicine.gzyun.health.request.HealthOrderStatisRequest">
+    select ReservationDate reservationdate  ,  count(1)  reservationnum from  HealthyOrder where ReservationDate between   #{strdate,jdbcType=VARCHAR}   and      #{enddate,jdbcType=VARCHAR}  group by ReservationDate order by  ReservationDate asc
+</select>
+
+
+    <!-- 预约修改接口  舵主 -->
+    <update id="updateIdMake" parameterType="com.gz.medicine.gzyun.health.request.HealthOrderMakeUpdateRequest">
+    update HealthyOrder
+    set RESERVATIONDATE = #{datea,jdbcType=VARCHAR},
+    RESERVATIONTIME = #{timea,jdbcType=VARCHAR},
+    UPDATENAME      = '管理员',
+    UPDATEDATE      = sysdate
+    where id = #{orderid,jdbcType=VARCHAR}
+</update>
+
+
+    <!--医生排版时间  -->
+    <select id="queryDocTime" resultMap="ResultMap" parameterType="java.lang.String">
+    select FORMDATE as text , rownum as value
+    from (select *
+    from (select substr(FORMDATE, 0, 7) as FORMDATE
+    from HealthDoctorform h
+    where h.state = '1'
+    and docid = #{0}
+    group by substr(FORMDATE, 0, 7))
+    order by FORMDATE) m
+</select>
+    <!--批量新增-->
+    <insert id="insertForBatch" parameterType="java.util.Map">
+        insert into ${tableName}(
+        <foreach collection="cloumn" item="cloumnMap" index="valKey" separator=",">
+            ${cloumnMap}
+        </foreach>
+        )
+        <foreach collection="val" item="valMap" separator=" union all ">
+            (
+            select
+            <foreach collection="valMap" item="valMapKey" separator=",">
+                '${valMapKey}'
+            </foreach>
+            from dual)
+        </foreach>
+    </insert>
+
+    <!-- 查询24小时内医生未回复的图文咨询订单 -->
+    <select id="queryExpireOrder"
+            resultType="com.gz.medicine.gzyun.health.reponse.ExpireOrderReponse">
+    <![CDATA[
+
+
+
+
+
+
+
+
+
+
+
+
+	select a.id as orderid,b.id as ConsultationId
+	,a.createdate,b.ConsultationStartTime,a.PaymentMethod
+	,a.usrid,a.docid,a.ThirdOrderCode from HealthyOrder a,
+	HealthConsultation b where
+	a.id=b.orderid
+	and (a.createdate+1 <=sysdate and b.ConsultationStartTime is null and
+	a.orderState='2'and a.PaymentMethod='2')
+	or (a.createdate+1 <=b.ConsultationStartTime and a.orderState='2'and
+	a.PaymentMethod='2')
+
+
+
+
+
+
+
+
+
+
+
+
+        ]]>
+</select>
+
+    <!-- 查看预约信息   舵主 -->
+    <select id="queryItemByIdSel" parameterType="com.gz.medicine.gzyun.health.request.HealthOrderMakeUpdateRequest"
+            resultMap="BaseResultMapAs">
+    select b.name usrname,
+    decode(mod(to_number(substr(b.idcard, 17, 1)), 2), 0, '2', '1') as sex,
+    trunc(to_char(sysdate, 'yyyy') -
+    to_char(TO_DATE(SUBSTR(b.idcard, 7, 4), 'YYYY'), 'yyyy')) / 1 age,
+    to_char(to_date(substr(b.idcard, 7, 8), 'YYYYMMDD'),'YYYY-MM-DD') as birthday,
+    b.id usrphone,
+    a.reservationdate,
+    a.reservationperiod,
+    a.CONSULTINGDESCRIPTION reservationdescription,
+    a.CONSULTATIONMETHOD,
+    a.reservationdate orderdate,
+    a.RESERVATIONTIME healthytypesettingtime , a.id orderid , a.ORDERAMOUNT ,a.orderstate , c.SENDSTATUS
+    from HealthyOrder a, usr b , HealthConsultation c
+    where a.usrid=b.guid  and a.id=c.orderid   and a.id= #{orderid,jdbcType=VARCHAR}
+</select>
+
+
+    <resultMap id="BaseResultMapAs" type="com.gz.medicine.gzyun.health.reponse.HealthItemByIdSelReponse">
+        <result column="SENDSTATUS" property="sendstatus" jdbcType="VARCHAR"/>
+        <result column="CONSULTATIONMETHOD" property="consultationmethod" jdbcType="VARCHAR"/>
+        <result column="ORDERDATE" property="orderdate" jdbcType="VARCHAR"/>
+        <result column="HEALTHYTYPESETTINGTIME" property="healthytypesettingtime" jdbcType="VARCHAR"/>
+
+        <result column="ORDERID" property="orderid" jdbcType="VARCHAR"/>
+        <result column="ORDERAMOUNT" property="orderamount" jdbcType="VARCHAR"/>
+        <result column="USRNAME" property="usrname" jdbcType="VARCHAR"/>
+        <result column="SEX" property="sex" jdbcType="VARCHAR"/>
+
+        <result column="BIRTHDAY" property="birthday" jdbcType="VARCHAR"/>
+        <result column="USRPHONE" property="usrphone" jdbcType="VARCHAR"/>
+        <result column="RESERVATIONDATE" property="reservationdate" jdbcType="VARCHAR"/>
+        <result column="RESERVATIONPERIOD" property="reservationperiod" jdbcType="VARCHAR"/>
+        <result column="CONSULTINGDESCRIPTION" property="consultingdescription" jdbcType="VARCHAR"/>
+        <result column="RESERVATIONDESCRIPTION" property="reservationdescription" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!-- 短信发送接口校验 -->
+    <select id="queryIdByOrder" parameterType="java.lang.String" resultMap="BaseResultMapAsss">
+    select  a.reservationdate   ,  a.reservationperiod  ,  a.reservationtime ,
+    a.consultationmethod  ,a.orderamount ,  a.usrphone , c.name  , b.sendstatus
+    from HealthyOrder a  ,  HealthConsultation b, healthDoctor c
+    where a.id = b.orderid
+    and a.docid = c.id
+    and  a.id=#{orderid,jdbcType=VARCHAR}
+</select>
+
+    <select id="queryPageOrderForMoHo" parameterType="com.gz.medicine.common.mybatisPageVo.Page" resultMap="ResultMap">
+        select * from (select to_char(h.createdate, 'yyyy-mm-dd HH24:MI') createdate,
+        h.createdate as createdate2,
+        h.reservationperiod,
+        h.id orderid,
+        u.name as usrname,
+        case
+        when length(u.idcard) = 18 then
+        decode(mod(to_number(substr(u.idcard, 17, 1)), 2), 0, '2', '1')
+        when length(u.idcard) = 15 then
+        decode(mod(to_number(u.idcard), 2), 0, '2', '1')
+        end as sex,
+        case
+        when length(idcard) = 18 then
+        ceil((to_char(sysdate, 'yyyyMMdd') -
+        to_char(to_date(substr(idcard, 7, 8), 'yyyy-MM-dd'),
+        'yyyyMMdd')) / 10000)
+        when length(idcard) = 15 then
+        ceil((to_char(sysdate, 'yyyyMMdd') -
+        to_char(to_date('19' || substr(idcard, 7, 6), 'yyyy-MM-dd'),
+        'yyyyMMdd')) / 10000)
+        end as age,
+        case
+        when h.consultationmethod = '2' then
+        '图文咨询'
+        when h.consultationmethod = '3' then
+        '语音咨询'
+        when h.consultationmethod = '4' then
+        '视频咨询'
+        end as consultationmethodname,
+        d.name as docname,
+        h.USRPHONE,
+        case
+        when h.orderstate = '7' then
+        '已完成'
+        else
+        '未完成'
+        end as orderstate,
+        h.orderstate as orderstate2,
+        case
+        when h.invoicestate = '0' then
+        '未申请'
+        when h.invoicestate = '1' then
+        '已申请'
+        end as invoiceState,
+        h.invoicestate as invoicestate2
+        from Healthyorder h, usr u, HEALTHDOCTOR d
+        where h.usrid = u.guid
+        and d.id = h.docid
+        <if test="createdate!=null and createdate!=''">
+            and to_char( h.createdate,'yyyy-mm-dd')=#{createdate}
+        </if>
+        <if test="invoicestate!=null and invoicestate!=''">
+            and h.invoicestate=#{invoicestate}
+        </if>
+        <if test="orderstate==8">
+            and h.orderstate!='7'
+        </if>
+        <if test="orderstate==7">
+            and h.orderstate='7'
+        </if>
+        ) order by createdate2 desc
+    </select>
+
+
+    <select id="queryPageOrderForMoHoForV2" parameterType="com.gz.medicine.common.mybatisPageVo.Page"
+            resultMap="ResultMap">
+        select *
+        from (select to_char(h.createdate, 'yyyy-mm-dd HH24:MI') createdate,
+        h.createdate as createdate2,
+        h.reservationperiod,
+        h.id orderid,
+
+        h.usrsex as sex,
+
+        h.usrname,
+
+        ceil((to_char(sysdate, 'yyyyMMdd') -
+        to_char(to_date(h.USRBIRTH, 'yyyy-MM-dd'), 'yyyyMMdd')) /
+        10000) as age,
+
+        case
+        when h.consultationmethod = '2' then
+        '图文咨询'
+        when h.consultationmethod = '3' then
+        '语音咨询'
+        when h.consultationmethod = '4' then
+        '视频咨询'
+        end as consultationmethodname,
+        d.name as docname,
+        h.USRPHONE,
+        case
+
+        when h.orderstate = '2' then
+        '待咨询'
+        when h.orderstate = '3' then
+        '已取消'
+        when h.orderstate = '4' then
+        '已关闭'
+        when h.orderstate = '5' then
+        '已完成'
+        when h.orderstate = '6' then
+        '退款中'
+        when h.orderstate = '7' then
+        '已退款'
+        when h.orderstate = '8' then
+        '已过期'
+        end as orderstate,
+        h.orderstate as orderstate2,
+        case
+        when h.invoicestate = '0' then
+        '未申请'
+        when h.invoicestate = '1' then
+        '已申请'
+        end as invoiceState,
+        h.invoicestate as invoicestate2,
+        h.reservationdate,
+        h.RESERSTARTTIME||'-'||h.RESERENDTIME as reservationtime
+        from Healthyorder h, HEALTHDOCTOR d
+        where d.id = h.docid
+        <if  test="createdate!=null and createdate!=''">
+            and to_char( h.createdate,'yyyy-mm-dd')=#{createdate}
+        </if>
+        <if test="invoicestate!=null and invoicestate!=''">
+            and h.invoicestate=#{invoicestate}
+        </if>
+        <if test="orderstate!=null and orderstate!=''">
+            and h.orderstate=#{orderstate}
+        </if>
+        <if test="usrphone!=null and usrphone!=''">
+            and h.usrphone like  '%'||#{usrphone}||'%'
+        </if>
+
+        <if test="docname!=null and docname!=''">
+            and d.name like '%'||#{docname}||'%'
+        </if>
+        <if test="orderid!=null and orderid!=''">
+            and h.id like '%'||#{orderid}||'%'
+        </if>
+        <if test="reservationdate!=null and reservationdate!=''">
+            and h.reservationdate =#{reservationdate}
+        </if>
+          and  h.orderstate not in ('1')
+        )
+        order by createdate2 desc
+
+    </select>
+    <select id="queryOrderById" parameterType="java.lang.String" resultMap="ResultMap">
+               select m.*,   c.id as consultationid from ( select
+                    case when h.consultationmethod = '2' then
+                    '图文咨询'
+                    when h.consultationmethod = '3' then
+                    '语音咨询'
+                    when h.consultationmethod = '4' then
+                    '视频咨询'
+                    end as consultationmethodname,
+                    to_char(h.createdate, 'yyyy-mm-dd HH24:MI') createdate,
+                    h.createdate as createtime,
+                    to_date(h.RESERVATIONDATE||' '||h.RESERSTARTTIME,'yyyy-mm-dd HH24:MI') reserstarttime,
+                    h.ORDERCODE,
+                    h.ORDERAMOUNT,
+                    h.USRNAME,
+                    h.USRSEX,
+                    h.USRBIRTH,
+                    h.USRPHONE,
+                    h.RESERVATIONDATE,
+                    h.RESERSTARTTIME||'-'||h.RESERENDTIME as RESERVATIONTIME,
+                    d.name as docname,
+                    h.id as orderid,
+                    h.docid,
+                    h.invoicestate,
+
+                    h.orderstate
+                              from Healthyorder h, HEALTHDOCTOR d
+                             where h.docid = d.id
+
+                               and d.state = '1'
+                               and h.state = '1'
+                               and h.id =#{0}) m left join healthconsultation c on   c.orderid=m.orderid
+    </select>
+
+    <resultMap id="BaseResultMapAsss" type="com.gz.medicine.gzyun.health.reponse.HealthQueryIdByOrder">
+        <result column="SENDSTATUS" property="sendstatus" jdbcType="VARCHAR"/>
+        <result column="NAME" property="name" jdbcType="VARCHAR"/>
+        <result column="USRPHONE" property="usrphone" jdbcType="VARCHAR"/>
+        <result column="RESERVATIONTIME" property="reservationtime" jdbcType="VARCHAR"/>
+        <result column="ORDERAMOUNT" property="orderamount" jdbcType="VARCHAR"/>
+        <result column="CONSULTATIONMETHOD" property="consultationmethod" jdbcType="VARCHAR"/>
+        <result column="RESERVATIONDATE" property="reservationdate" jdbcType="VARCHAR"/>
+        <result column="RESERVATIONPERIOD" property="reservationperiod" jdbcType="VARCHAR"/>
+    </resultMap>
+    <!--通用sql by  dlf-->
+    <select id="exuSql" parameterType="java.util.Map" resultMap="BaseResultMap">
+    ${sql}
+</select>
+    <select id="queryPageChatMsg" parameterType="com.gz.medicine.common.mybatisPageVo.Page" resultMap="ResultMap">
+    select * from (select * from chis_chartmsg where usrid=#{usrid} and tousr=#{tousr} and type='speak'
+    union all
+    select * from chis_chartmsg where usrid=#{tousr} and tousr=#{usrid} and type='speak'
+    ) order by CRTDAT desc
+</select>
+
+    <!--2017-10-30我的咨询服务 by dlf-->
+    <select id="queryPageMyOrderForV2" parameterType="com.gz.medicine.common.mybatisPageVo.Page" resultMap="ResultMap">
+
+     select * from (select x.*,n.FTPURL||x.PHOTOID as FTPURL  from
+        (select m.*,c.id as consultationid from (select h.docid,
+    d.name        as docname,
+    d.PHOTOID,
+    d.pathcode,
+    h.id          as orderid,
+    h.ordercode,
+    h.consultationmethod,
+    to_char(h.CREATEDATE,'yyyy-MM-DD HH24:mi') as createdate,
+    case when h.consultationmethod='2' then '图文咨询'
+    when h.consultationmethod='3' then '语音咨询'
+    when h.consultationmethod='4' then '视频咨询'
+    end as consultationmethodname ,
+    case when  h.orderstate='1' then '待支付费用'
+    when  h.orderstate='2' then '付款成功'
+    when  h.orderstate='3' then '订单取消'
+    when  h.orderstate='4' then '订单关闭'
+    when  h.orderstate='5' then '订单完成'
+        when  h.orderstate='6' then '退款审核中'
+        when  h.orderstate='7' then '退款成功'
+        when  h.orderstate='8' then '订单已过期'
+
+    end as orderstatename,
+    h.orderstate,
+    h.invoicestate,
+    h.orderamount,
+
+    h.RESERVATIONDATE||' '||h.RESERSTARTTIME||'-'||h.RESERENDTIME as reserstarttime
+    from HealthyOrder h, healthDoctor d
+
+    where h.docid = d.id and h.state='1' and d.state='1'   and h.usrid =#{usrid,jdbcType=VARCHAR}
+
+
+        <if test="orderstate==1">
+            and orderstate='1'
+        </if>
+        <if test="orderstate==2">
+            and orderstate='2'
+            and to_date(RESERVATIONDATE||RESERENDTIME,'yyyy-MM-DD HH24:MI')>=sysdate
+        </if>
+        <if test="orderstate==5">
+           and orderstate in('4','5','7','8')
+        </if>
+
+    )m left join healthconsultation c on  c.ORDERID=m.orderid ) x
+
+    left join HEALTHFTPPATH n on x.pathcode=n.pathcode)
+    order by createdate desc
+
+    </select>
+    <select id="queryConsultationScoreForV2" parameterType="java.lang.String" resultMap="ResultMap">
+       select case
+           when h.ConsultationStartTime is not null then
+            to_char(h.ConsultationStartTime, 'yyyy-MM-DD HH24:mi')
+         end as ConsultationStartTime,
+         h.consultinghours,
+         h.docid,
+         h.CONSULTATIONSUMMARY,
+         h.id as consultationid,
+         v.score,
+         v.evaluationdescription
+    from HealthConsultation h left join healthevaluate v
+   on h.id = v.consultationid
+   where
+      h.state = '1'
+     and h.orderid =#{0}
+    </select>
+
+
+    <select id="queryPageOrderBystate" parameterType="com.gz.medicine.common.mybatisPageVo.Page" resultMap="ResultMap">
+        SELECT  * FROM HEALTHYORDER where USRID=#{usrid,jdbcType=VARCHAR}
+        <if test="orderstate!=null and orderstate!=''">
+            AND ORDERSTATE=#{orderstate,jdbcType=VARCHAR}
+        </if>
+    </select>
+
+    <select id="countByOrderState" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT  count(*) FROM HEALTHYORDER orde
+        left join HealthConsultation cons on orde.id=cons.orderid
+        where orde.USRID=#{usrid,jdbcType=VARCHAR}
+        <if test="orderstate!=null and orderstate!=''">
+            AND orde.ORDERSTATE=#{orderstate,jdbcType=VARCHAR} AND cons.consultationStartTime is null
+        </if>
+    </select>
+
+    <resultMap id="ResultMapfendo" type="java.util.Map">
+        <result column="DOCID" property="docid" jdbcType="VARCHAR"/>
+        <result column="DOCNAME" property="docname" jdbcType="VARCHAR"/>
+        <result column="ORDERID" property="orderid" jdbcType="VARCHAR"/>
+        <result column="ORDERCODE" property="ordercode" jdbcType="VARCHAR"/>
+        <result column="CONSULTATIONMETHOD" property="consultationmethod" jdbcType="VARCHAR"/>
+        <result column="CONSULTATIONMETHODNAME" property="consultationmethodname" jdbcType="VARCHAR"/>
+        <result column="ORDERAMOUNT" property="orderamount" jdbcType="VARCHAR"/>
+        <result column="ORDERSTATE" property="orderstate" jdbcType="VARCHAR"/>
+        <result column="ORDERSTATENAME" property="orderstatename" jdbcType="VARCHAR"/>
+        <result column="RESERVATIONTIME" property="reservationtime" jdbcType="VARCHAR"/>
+        <result column="USRPHONE" property="usrphone" jdbcType="VARCHAR"/>
+        <result column="CREATEDATE" property="createdate" jdbcType="VARCHAR"/>
+        <result column="USRBIRTHDAY" property="usrbirthday" jdbcType="VARCHAR"/>
+        <result column="CONSULTINGDESCRIPTION" property="consultingdescription" jdbcType="VARCHAR"/>
+        <result column="SEX" property="sex" jdbcType="VARCHAR"/>
+        <result column="USRNAME" property="usrname" jdbcType="VARCHAR"/>
+        <result column="CONSULTATIONSTARTTIME" property="consultationstarttime" jdbcType="VARCHAR"/>
+        <result column="CONSULTATIONID" property="consultationid" jdbcType="VARCHAR"/>
+        <result column="CONSULTATIONID" property="consultinghours" jdbcType="VARCHAR"/>
+        <result column="SCORE" property="score" jdbcType="VARCHAR"/>
+        <result column="EVALUATIONDESCRIPTION" property="evaluationdescription" jdbcType="VARCHAR"/>
+        <result column="RATE" property="rate" jdbcType="VARCHAR"/>
+        <result column="CONSULTINGHOURS" property="consultinghours" jdbcType="VARCHAR"/>
+        <result column="TITLENAME" property="titlename" jdbcType="VARCHAR"/>
+        <result column="FTPURL" property="ftpurl" jdbcType="VARCHAR"/>
+        <result column="TEXT" property="text" jdbcType="VARCHAR"/>
+        <result column="VALUE" property="value" jdbcType="VARCHAR"/>
+        <result column="INVOICESTATE" property="invoicestate" jdbcType="VARCHAR"/>
+        <result column="RESERVATIONPERIOD" property="reservationperiod" jdbcType="VARCHAR"/>
+        <result column="AGE" property="age" jdbcType="VARCHAR"/>
+        <result column="INVOICESTATE" property="invoicestate" jdbcType="VARCHAR"/>
+        <result column="INVOICESTATE2" property="invoicestate2" jdbcType="VARCHAR"/>
+        <result column="ORDERSTATE2" property="orderstate2" jdbcType="VARCHAR"/>
+        <result column="RESERVATIONDATE" property="reservationdate" jdbcType="VARCHAR"/>
+        <result column="USRBIRTH" property="usrbirth" jdbcType="VARCHAR"/>
+        <result column="USRSEX" property="usrsex" jdbcType="VARCHAR"/>
+        <result column="RESERSTARTTIME" property="reserstarttime" jdbcType="VARCHAR"/>
+        <result column="CONSULTATIONSUMMARY" property="consultationsummary" jdbcType="VARCHAR"/>
+        <result column="OPERATIONCONTENT" property="operationcontent" jdbcType="VARCHAR"/>
+        <!--chis_chatmsg-->
+        <result column="GUID" property="guid" jdbcType="VARCHAR"/>
+        <result column="ORG" property="org" jdbcType="VARCHAR"/>
+        <result column="USRID" property="usrid" jdbcType="VARCHAR"/>
+        <result column="USRNAM" property="usrnam" jdbcType="VARCHAR"/>
+        <result column="CRTDAT" property="crtdat" jdbcType="VARCHAR"/>
+        <result column="TOUSR" property="tousr" jdbcType="VARCHAR"/>
+        <result column="TONAME" property="toname" jdbcType="VARCHAR"/>
+        <result column="TYPE" property="type" jdbcType="VARCHAR"/>
+        <result column="FLG" property="flg" jdbcType="VARCHAR"/>
+        <result column="MSG" property="msg" jdbcType="VARCHAR"/>
+        <result column="USRIMG" property="usrimg" jdbcType="VARCHAR"/>
+        <result column="IMGFILE" property="imgfile" jdbcType="VARCHAR"/>
+        <result column="AUDIOFILE" property="audiofile" jdbcType="VARCHAR"/>
+        <result column="RESERVATIONTIME" property="reservationtime" jdbcType="VARCHAR"/>
+        <result column="RESERSTARTTIME" property="reserstarttime" jdbcType="VARCHAR"/>
+        <result column="CREATETIME" property="createtime" jdbcType="VARCHAR"/>
+        <result column="FORMDATE" property="formdate" jdbcType="VARCHAR"/>
+        <!--chis_chatmsg-->
+        <result column="FTPURL" property="ftpurl" jdbcType="VARCHAR"/>
+        <result column="CONID" property="conid" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="queryPageConsultaion" parameterType="com.gz.medicine.common.mybatisPageVo.Page" resultMap="ResultMapfendo">
+        select he.*,dc.name as docname,dc.ftpurl from (
+        select orders.*,cons.id as conid from HEALTHYORDER orders,(select * from HealthConsultation where CONSULTATIONSUMMARY is not null)cons where cons.orderid=orders.id and orders.usrid=#{usrid,jdbcType=VARCHAR}
+        ) he left join (select doc.id as docids,doc.name,ph.ftpurl||doc.PHOTOID as FTPURL from HEALTHDOCTOR doc
+        left join HEALTHFTPPATH ph on doc.PATHCODE = ph.PATHCODE) dc
+        on he.docid=dc.docids
+  </select>
+
+    <select id="selectByStateList" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select * from HealthyOrder where to_char(sysdate,'YYYY-MM-DD') = RESERVATIONDATE and ORDERSTATE=#{orderstate,jdbcType=VARCHAR} and state='1' and sendok='0'
+    </select>
+
+</mapper>

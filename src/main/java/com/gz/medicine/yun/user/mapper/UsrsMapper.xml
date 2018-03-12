@@ -1,0 +1,613 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gz.medicine.yun.user.mapper.UsrsMapper" >
+  <resultMap id="BaseResultMap" type="com.gz.medicine.yun.user.bean.Usr" >
+    <id column="GUID" property="guid" jdbcType="CHAR" />
+    <result column="ORG" property="org" jdbcType="VARCHAR" />
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="LOC" property="loc" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="PASSWD" property="passwd" jdbcType="VARCHAR" />
+    <result column="STRDAT" property="strdat" jdbcType="TIMESTAMP" />
+    <result column="MAINURL" property="mainurl" jdbcType="VARCHAR" />
+    <result column="POST" property="post" jdbcType="VARCHAR" />
+    <result column="CRTUSR" property="crtusr" jdbcType="VARCHAR" />
+    <result column="CRTDAT" property="crtdat" jdbcType="TIMESTAMP" />
+    <result column="USEFLG" property="useflg" jdbcType="CHAR" />
+    <result column="DEFLOC" property="defloc" jdbcType="VARCHAR" />
+    <result column="MOBILE" property="mobile" jdbcType="VARCHAR" />
+    <result column="OWNLOC" property="ownloc" jdbcType="VARCHAR" />
+    <result column="DEPTID" property="deptid" jdbcType="VARCHAR" />
+    <result column="POSTNOTE" property="postnote" jdbcType="VARCHAR" />
+    <result column="CENTREID" property="centreid" jdbcType="VARCHAR" />
+    <result column="TEAMID" property="teamid" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="DAT1" property="dat1" jdbcType="TIMESTAMP" />
+    <result column="DAT2" property="dat2" jdbcType="TIMESTAMP" />
+    <result column="DESCRIBE" property="describe" jdbcType="VARCHAR" />
+    <result column="DEFORG" property="deforg" jdbcType="VARCHAR" />
+    <result column="UPDFLG" property="updflg" jdbcType="CHAR" />
+    <result column="IMGGUID" property="imgguid" jdbcType="CHAR" />
+    <result column="SEQ" property="seq" jdbcType="DECIMAL" />
+    <result column="KH" property="kh" jdbcType="CHAR" />
+    <result column="UPDDAT" property="upddat" jdbcType="TIMESTAMP" />
+    <result column="IFMOREN" property="ifmoren" jdbcType="CHAR" />
+    <result column="REFID" property="refid" jdbcType="VARCHAR" />
+    <result column="IDCARD" property="idcard" jdbcType="VARCHAR" />
+    <result column="SEX" property="sex" jdbcType="VARCHAR" />
+    <result column="BIRTHDAY" property="birthday" jdbcType="VARCHAR" />
+    <result column="MZ" property="mz" jdbcType="VARCHAR" />
+    <result column="BARCOD" property="barcod" jdbcType="VARCHAR" />
+    <result column="ISOL" property="isol" jdbcType="VARCHAR" />
+    <result column="OPENROOM" property="openroom" jdbcType="VARCHAR" />
+    <result column="CURRENTTIME" property="currenttime" jdbcType="TIMESTAMP" />
+    <result column="VOICE" property="voice" jdbcType="VARCHAR" />
+    <result column="ISDOC" property="isdoc" jdbcType="CHAR" />
+    <result column="REGTYPE" property="regtype" jdbcType="VARCHAR" />
+    <result column="MEDICARECARD" property="medicarecard" jdbcType="VARCHAR" />
+    <result column="CARDNO" property="cardno" jdbcType="VARCHAR" />
+    <result column="SONNO" property="sonno" jdbcType="VARCHAR" />
+    <result column="INTERGRAL" property="intergral" jdbcType="DECIMAL" />
+    <result column="COUNTRYTYP" property="countrytyp" jdbcType="VARCHAR" />
+    <result column="GROUPX" property="groupx" jdbcType="VARCHAR" />
+    <result column="HOMEID" property="homeid" jdbcType="VARCHAR" />
+    <result column="SYTEXT" property="sytext" jdbcType="VARCHAR" />
+    <result column="VIPFLG" property="vipflg" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="AGE" property="age" jdbcType="VARCHAR" />
+    <result column="THIRDPARTYID" property="thirdpartyid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    GUID, ORG, ID, LOC, NAME, PASSWD, STRDAT, MAINURL, POST, CRTUSR, CRTDAT, USEFLG, 
+    DEFLOC, MOBILE, OWNLOC, DEPTID, POSTNOTE, CENTREID, TEAMID, EMAIL, DAT1, DAT2, DESCRIBE, 
+    DEFORG, UPDFLG, IMGGUID, SEQ, KH, UPDDAT, IFMOREN, REFID, IDCARD, SEX, BIRTHDAY, 
+    MZ, BARCOD, ISOL, OPENROOM, CURRENTTIME, VOICE, ISDOC, REGTYPE, MEDICARECARD, CARDNO, 
+    SONNO, INTERGRAL, COUNTRYTYP, GROUPX, HOMEID, SYTEXT, VIPFLG, ADDRESS, THIRDPARTYID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from USR
+    where ID = #{id,jdbcType=CHAR} and ORG = 'CHIS'
+  </select>
+
+
+  <resultMap id="ResultMap" type="com.gz.medicine.yun.user.bean.Usr" >
+    <id column="GUID" property="guid" jdbcType="CHAR" />
+    <result column="ORG" property="org" jdbcType="VARCHAR" />
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="LOC" property="loc" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="STRDAT" property="strdat" jdbcType="TIMESTAMP" />
+    <result column="MAINURL" property="mainurl" jdbcType="VARCHAR" />
+    <result column="POST" property="post" jdbcType="VARCHAR" />
+    <result column="CRTUSR" property="crtusr" jdbcType="VARCHAR" />
+    <result column="CRTDAT" property="crtdat" jdbcType="TIMESTAMP" />
+    <result column="USEFLG" property="useflg" jdbcType="CHAR" />
+    <result column="DEFLOC" property="defloc" jdbcType="VARCHAR" />
+    <result column="MOBILE" property="mobile" jdbcType="VARCHAR" />
+    <result column="OWNLOC" property="ownloc" jdbcType="VARCHAR" />
+    <result column="DEPTID" property="deptid" jdbcType="VARCHAR" />
+    <result column="POSTNOTE" property="postnote" jdbcType="VARCHAR" />
+    <result column="CENTREID" property="centreid" jdbcType="VARCHAR" />
+    <result column="TEAMID" property="teamid" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="DAT1" property="dat1" jdbcType="TIMESTAMP" />
+    <result column="DAT2" property="dat2" jdbcType="TIMESTAMP" />
+    <result column="DESCRIBE" property="describe" jdbcType="VARCHAR" />
+    <result column="DEFORG" property="deforg" jdbcType="VARCHAR" />
+    <result column="UPDFLG" property="updflg" jdbcType="CHAR" />
+    <result column="IMGGUID" property="imgguid" jdbcType="CHAR" />
+    <result column="SEQ" property="seq" jdbcType="DECIMAL" />
+    <result column="KH" property="kh" jdbcType="CHAR" />
+    <result column="UPDDAT" property="upddat" jdbcType="TIMESTAMP" />
+    <result column="IFMOREN" property="ifmoren" jdbcType="CHAR" />
+    <result column="REFID" property="refid" jdbcType="VARCHAR" />
+    <result column="IDCARD" property="idcard" jdbcType="VARCHAR" />
+    <result column="SEX" property="sex" jdbcType="VARCHAR" />
+    <result column="BIRTHDAY" property="birthday" jdbcType="VARCHAR" />
+    <result column="MZ" property="mz" jdbcType="VARCHAR" />
+    <result column="BARCOD" property="barcod" jdbcType="VARCHAR" />
+    <result column="ISOL" property="isol" jdbcType="VARCHAR" />
+    <result column="OPENROOM" property="openroom" jdbcType="VARCHAR" />
+    <result column="CURRENTTIME" property="currenttime" jdbcType="TIMESTAMP" />
+    <result column="VOICE" property="voice" jdbcType="VARCHAR" />
+    <result column="ISDOC" property="isdoc" jdbcType="CHAR" />
+    <result column="REGTYPE" property="regtype" jdbcType="VARCHAR" />
+    <result column="MEDICARECARD" property="medicarecard" jdbcType="VARCHAR" />
+    <result column="CARDNO" property="cardno" jdbcType="VARCHAR" />
+    <result column="SONNO" property="sonno" jdbcType="VARCHAR" />
+    <result column="INTERGRAL" property="intergral" jdbcType="DECIMAL" />
+    <result column="COUNTRYTYP" property="countrytyp" jdbcType="VARCHAR" />
+    <result column="GROUPX" property="groupx" jdbcType="VARCHAR" />
+    <result column="HOMEID" property="homeid" jdbcType="VARCHAR" />
+    <result column="SYTEXT" property="sytext" jdbcType="VARCHAR" />
+    <result column="VIPFLG" property="vipflg" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="AGE" property="age" jdbcType="VARCHAR" />
+    <result column="THIRDPARTYID" property="thirdpartyid" jdbcType="VARCHAR" />
+    <result column="CARDID" property="cardid" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <sql id="Base_Column_List_1" >
+    GUID, ORG, ID, LOC, NAME, STRDAT, MAINURL, POST, CRTUSR, CRTDAT, USEFLG,
+    DEFLOC, MOBILE, OWNLOC, DEPTID, POSTNOTE, CENTREID, TEAMID, EMAIL, DAT1, DAT2, DESCRIBE,
+    DEFORG, UPDFLG, IMGGUID, SEQ, KH, UPDDAT, IFMOREN, REFID, IDCARD, SEX, BIRTHDAY,
+    MZ, BARCOD, ISOL, OPENROOM, CURRENTTIME, VOICE, ISDOC, REGTYPE, MEDICARECARD, CARDNO,
+    SONNO, INTERGRAL, COUNTRYTYP, GROUPX, HOMEID, SYTEXT, VIPFLG, ADDRESS, THIRDPARTYID,CARDID
+  </sql>
+
+  <select id="selectByUsr" resultMap="ResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List_1" />
+    from USR
+    where GUID = #{id,jdbcType=CHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from USR
+    where GUID = #{guid,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gz.medicine.yun.user.bean.Usr" >
+    insert into USR (GUID, ORG, ID, LOC, 
+      NAME, PASSWD, STRDAT, 
+      MAINURL, POST, CRTUSR, 
+      CRTDAT, USEFLG, DEFLOC, 
+      MOBILE, OWNLOC, DEPTID, 
+      POSTNOTE, CENTREID, TEAMID, 
+      EMAIL, DAT1, DAT2, 
+      DESCRIBE, DEFORG, UPDFLG, 
+      IMGGUID, SEQ, KH, UPDDAT, 
+      IFMOREN, REFID, IDCARD, 
+      SEX, BIRTHDAY, MZ, 
+      BARCOD, ISOL, OPENROOM, 
+      CURRENTTIME, VOICE, ISDOC, 
+      REGTYPE, MEDICARECARD, CARDNO, 
+      SONNO, INTERGRAL, COUNTRYTYP, 
+      GROUPX, HOMEID, SYTEXT, 
+      VIPFLG, ADDRESS, THIRDPARTYID
+      )
+    values (#{guid,jdbcType=CHAR}, #{org,jdbcType=VARCHAR}, #{id,jdbcType=VARCHAR}, #{loc,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{passwd,jdbcType=VARCHAR}, #{strdat,jdbcType=TIMESTAMP}, 
+      #{mainurl,jdbcType=VARCHAR}, #{post,jdbcType=VARCHAR}, #{crtusr,jdbcType=VARCHAR}, 
+      #{crtdat,jdbcType=TIMESTAMP}, #{useflg,jdbcType=CHAR}, #{defloc,jdbcType=VARCHAR}, 
+      #{mobile,jdbcType=VARCHAR}, #{ownloc,jdbcType=VARCHAR}, #{deptid,jdbcType=VARCHAR}, 
+      #{postnote,jdbcType=VARCHAR}, #{centreid,jdbcType=VARCHAR}, #{teamid,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{dat1,jdbcType=TIMESTAMP}, #{dat2,jdbcType=TIMESTAMP}, 
+      #{describe,jdbcType=VARCHAR}, #{deforg,jdbcType=VARCHAR}, #{updflg,jdbcType=CHAR}, 
+      #{imgguid,jdbcType=CHAR}, #{seq,jdbcType=DECIMAL}, #{kh,jdbcType=CHAR}, #{upddat,jdbcType=TIMESTAMP}, 
+      #{ifmoren,jdbcType=CHAR}, #{refid,jdbcType=VARCHAR}, #{idcard,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{birthday,jdbcType=VARCHAR}, #{mz,jdbcType=VARCHAR}, 
+      #{barcod,jdbcType=VARCHAR}, #{isol,jdbcType=VARCHAR}, #{openroom,jdbcType=VARCHAR}, 
+      #{currenttime,jdbcType=TIMESTAMP}, #{voice,jdbcType=VARCHAR}, #{isdoc,jdbcType=CHAR}, 
+      #{regtype,jdbcType=VARCHAR}, #{medicarecard,jdbcType=VARCHAR}, #{cardno,jdbcType=VARCHAR}, 
+      #{sonno,jdbcType=VARCHAR}, #{intergral,jdbcType=DECIMAL}, #{countrytyp,jdbcType=VARCHAR}, 
+      #{groupx,jdbcType=VARCHAR}, #{homeid,jdbcType=VARCHAR}, #{sytext,jdbcType=VARCHAR}, 
+      #{vipflg,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{thirdpartyid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gz.medicine.yun.user.bean.Usr" >
+    insert into USR
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        GUID,
+      </if>
+      <if test="org != null" >
+        ORG,
+      </if>
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="loc != null" >
+        LOC,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="passwd != null" >
+        PASSWD,
+      </if>
+      <if test="strdat != null" >
+        STRDAT,
+      </if>
+      <if test="mainurl != null" >
+        MAINURL,
+      </if>
+      <if test="post != null" >
+        POST,
+      </if>
+      <if test="crtusr != null" >
+        CRTUSR,
+      </if>
+      <if test="crtdat != null" >
+        CRTDAT,
+      </if>
+      <if test="useflg != null" >
+        USEFLG,
+      </if>
+      <if test="defloc != null" >
+        DEFLOC,
+      </if>
+      <if test="mobile != null" >
+        MOBILE,
+      </if>
+      <if test="ownloc != null" >
+        OWNLOC,
+      </if>
+      <if test="deptid != null" >
+        DEPTID,
+      </if>
+      <if test="postnote != null" >
+        POSTNOTE,
+      </if>
+      <if test="centreid != null" >
+        CENTREID,
+      </if>
+      <if test="teamid != null" >
+        TEAMID,
+      </if>
+      <if test="email != null" >
+        EMAIL,
+      </if>
+      <if test="dat1 != null" >
+        DAT1,
+      </if>
+      <if test="dat2 != null" >
+        DAT2,
+      </if>
+      <if test="describe != null" >
+        DESCRIBE,
+      </if>
+      <if test="deforg != null" >
+        DEFORG,
+      </if>
+      <if test="updflg != null" >
+        UPDFLG,
+      </if>
+      <if test="imgguid != null" >
+        IMGGUID,
+      </if>
+      <if test="seq != null" >
+        SEQ,
+      </if>
+      <if test="kh != null" >
+        KH,
+      </if>
+      <if test="upddat != null" >
+        UPDDAT,
+      </if>
+      <if test="ifmoren != null" >
+        IFMOREN,
+      </if>
+      <if test="refid != null" >
+        REFID,
+      </if>
+      <if test="idcard != null" >
+        IDCARD,
+      </if>
+      <if test="sex != null" >
+        SEX,
+      </if>
+      <if test="birthday != null" >
+        BIRTHDAY,
+      </if>
+      <if test="mz != null" >
+        MZ,
+      </if>
+      <if test="barcod != null" >
+        BARCOD,
+      </if>
+      <if test="isol != null" >
+        ISOL,
+      </if>
+      <if test="openroom != null" >
+        OPENROOM,
+      </if>
+      <if test="currenttime != null" >
+        CURRENTTIME,
+      </if>
+      <if test="voice != null" >
+        VOICE,
+      </if>
+      <if test="isdoc != null" >
+        ISDOC,
+      </if>
+      <if test="regtype != null" >
+        REGTYPE,
+      </if>
+      <if test="medicarecard != null" >
+        MEDICARECARD,
+      </if>
+      <if test="cardno != null" >
+        CARDNO,
+      </if>
+      <if test="sonno != null" >
+        SONNO,
+      </if>
+      <if test="intergral != null" >
+        INTERGRAL,
+      </if>
+      <if test="countrytyp != null" >
+        COUNTRYTYP,
+      </if>
+      <if test="groupx != null" >
+        GROUPX,
+      </if>
+      <if test="homeid != null" >
+        HOMEID,
+      </if>
+      <if test="sytext != null" >
+        SYTEXT,
+      </if>
+      <if test="vipflg != null" >
+        VIPFLG,
+      </if>
+      <if test="address != null" >
+        ADDRESS,
+      </if>
+      <if test="thirdpartyid != null" >
+        THIRDPARTYID,
+      </if>
+      <if test="gzguid != null">
+        GZGUID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        #{guid,jdbcType=CHAR},
+      </if>
+      <if test="org != null" >
+        #{org,jdbcType=VARCHAR},
+      </if>
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="loc != null" >
+        #{loc,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="passwd != null" >
+        #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="strdat != null" >
+        #{strdat,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mainurl != null" >
+        #{mainurl,jdbcType=VARCHAR},
+      </if>
+      <if test="post != null" >
+        #{post,jdbcType=VARCHAR},
+      </if>
+      <if test="crtusr != null" >
+        #{crtusr,jdbcType=VARCHAR},
+      </if>
+      <if test="crtdat != null" >
+        #{crtdat,jdbcType=TIMESTAMP},
+      </if>
+      <if test="useflg != null" >
+        #{useflg,jdbcType=CHAR},
+      </if>
+      <if test="defloc != null" >
+        #{defloc,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="ownloc != null" >
+        #{ownloc,jdbcType=VARCHAR},
+      </if>
+      <if test="deptid != null" >
+        #{deptid,jdbcType=VARCHAR},
+      </if>
+      <if test="postnote != null" >
+        #{postnote,jdbcType=VARCHAR},
+      </if>
+      <if test="centreid != null" >
+        #{centreid,jdbcType=VARCHAR},
+      </if>
+      <if test="teamid != null" >
+        #{teamid,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="dat1 != null" >
+        #{dat1,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dat2 != null" >
+        #{dat2,jdbcType=TIMESTAMP},
+      </if>
+      <if test="describe != null" >
+        #{describe,jdbcType=VARCHAR},
+      </if>
+      <if test="deforg != null" >
+        #{deforg,jdbcType=VARCHAR},
+      </if>
+      <if test="updflg != null" >
+        #{updflg,jdbcType=CHAR},
+      </if>
+      <if test="imgguid != null" >
+        #{imgguid,jdbcType=CHAR},
+      </if>
+      <if test="seq != null" >
+        #{seq,jdbcType=DECIMAL},
+      </if>
+      <if test="kh != null" >
+        #{kh,jdbcType=CHAR},
+      </if>
+      <if test="upddat != null" >
+        #{upddat,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ifmoren != null" >
+        #{ifmoren,jdbcType=CHAR},
+      </if>
+      <if test="refid != null" >
+        #{refid,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null" >
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="mz != null" >
+        #{mz,jdbcType=VARCHAR},
+      </if>
+      <if test="barcod != null" >
+        #{barcod,jdbcType=VARCHAR},
+      </if>
+      <if test="isol != null" >
+        #{isol,jdbcType=VARCHAR},
+      </if>
+      <if test="openroom != null" >
+        #{openroom,jdbcType=VARCHAR},
+      </if>
+      <if test="currenttime != null" >
+        #{currenttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="voice != null" >
+        #{voice,jdbcType=VARCHAR},
+      </if>
+      <if test="isdoc != null" >
+        #{isdoc,jdbcType=CHAR},
+      </if>
+      <if test="regtype != null" >
+        #{regtype,jdbcType=VARCHAR},
+      </if>
+      <if test="medicarecard != null" >
+        #{medicarecard,jdbcType=VARCHAR},
+      </if>
+      <if test="cardno != null" >
+        #{cardno,jdbcType=VARCHAR},
+      </if>
+      <if test="sonno != null" >
+        #{sonno,jdbcType=VARCHAR},
+      </if>
+      <if test="intergral != null" >
+        #{intergral,jdbcType=DECIMAL},
+      </if>
+      <if test="countrytyp != null" >
+        #{countrytyp,jdbcType=VARCHAR},
+      </if>
+      <if test="groupx != null" >
+        #{groupx,jdbcType=VARCHAR},
+      </if>
+      <if test="homeid != null" >
+        #{homeid,jdbcType=VARCHAR},
+      </if>
+      <if test="sytext != null" >
+        #{sytext,jdbcType=VARCHAR},
+      </if>
+      <if test="vipflg != null" >
+        #{vipflg,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdpartyid != null" >
+        #{thirdpartyid,jdbcType=VARCHAR},
+      </if>
+      <if test="gzguid != null">
+        #{gzguid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gz.medicine.yun.user.bean.Usr" >
+    update USR
+    set
+        GZGUID = #{gzguid,jdbcType=VARCHAR}
+    where GUID = #{guid,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gz.medicine.yun.user.bean.Usr" >
+    update USR
+    set ORG = #{org,jdbcType=VARCHAR},
+      ID = #{id,jdbcType=VARCHAR},
+      LOC = #{loc,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      PASSWD = #{passwd,jdbcType=VARCHAR},
+      STRDAT = #{strdat,jdbcType=TIMESTAMP},
+      MAINURL = #{mainurl,jdbcType=VARCHAR},
+      POST = #{post,jdbcType=VARCHAR},
+      CRTUSR = #{crtusr,jdbcType=VARCHAR},
+      CRTDAT = #{crtdat,jdbcType=TIMESTAMP},
+      USEFLG = #{useflg,jdbcType=CHAR},
+      DEFLOC = #{defloc,jdbcType=VARCHAR},
+      MOBILE = #{mobile,jdbcType=VARCHAR},
+      OWNLOC = #{ownloc,jdbcType=VARCHAR},
+      DEPTID = #{deptid,jdbcType=VARCHAR},
+      POSTNOTE = #{postnote,jdbcType=VARCHAR},
+      CENTREID = #{centreid,jdbcType=VARCHAR},
+      TEAMID = #{teamid,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      DAT1 = #{dat1,jdbcType=TIMESTAMP},
+      DAT2 = #{dat2,jdbcType=TIMESTAMP},
+      DESCRIBE = #{describe,jdbcType=VARCHAR},
+      DEFORG = #{deforg,jdbcType=VARCHAR},
+      UPDFLG = #{updflg,jdbcType=CHAR},
+      IMGGUID = #{imgguid,jdbcType=CHAR},
+      SEQ = #{seq,jdbcType=DECIMAL},
+      KH = #{kh,jdbcType=CHAR},
+      UPDDAT = #{upddat,jdbcType=TIMESTAMP},
+      IFMOREN = #{ifmoren,jdbcType=CHAR},
+      REFID = #{refid,jdbcType=VARCHAR},
+      IDCARD = #{idcard,jdbcType=VARCHAR},
+      SEX = #{sex,jdbcType=VARCHAR},
+      BIRTHDAY = #{birthday,jdbcType=VARCHAR},
+      MZ = #{mz,jdbcType=VARCHAR},
+      BARCOD = #{barcod,jdbcType=VARCHAR},
+      ISOL = #{isol,jdbcType=VARCHAR},
+      OPENROOM = #{openroom,jdbcType=VARCHAR},
+      CURRENTTIME = #{currenttime,jdbcType=TIMESTAMP},
+      VOICE = #{voice,jdbcType=VARCHAR},
+      ISDOC = #{isdoc,jdbcType=CHAR},
+      REGTYPE = #{regtype,jdbcType=VARCHAR},
+      MEDICARECARD = #{medicarecard,jdbcType=VARCHAR},
+      CARDNO = #{cardno,jdbcType=VARCHAR},
+      SONNO = #{sonno,jdbcType=VARCHAR},
+      INTERGRAL = #{intergral,jdbcType=DECIMAL},
+      COUNTRYTYP = #{countrytyp,jdbcType=VARCHAR},
+      GROUPX = #{groupx,jdbcType=VARCHAR},
+      HOMEID = #{homeid,jdbcType=VARCHAR},
+      SYTEXT = #{sytext,jdbcType=VARCHAR},
+      VIPFLG = #{vipflg,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      THIRDPARTYID = #{thirdpartyid,jdbcType=VARCHAR}
+    where GUID = #{guid,jdbcType=CHAR}
+  </update>
+  <!--20170915 WWW start -->
+   <select id="selectByRecordMessage" resultMap="BaseResultMap" parameterType="java.lang.String" >
+   select mobile,NAME,case
+                when length(idcard) = 18 then
+                 ceil((to_char(sysdate, 'yyyyMMdd') -
+                      to_char(to_date(substr(idcard, 7, 8), 'yyyy-MM-dd'),
+                               'yyyyMMdd')) / 10000)
+                when length(idcard) = 15 then
+                 ceil((to_char(sysdate, 'yyyyMMdd') -
+                      to_char(to_date('19' || substr(idcard, 7, 6),
+                                       'yyyy-MM-dd'),
+                               'yyyyMMdd')) / 10000)
+              end as age,
+              case
+                when length(idcard) = 18 then
+                 decode(mod(to_number(substr(idcard, 17, 1)), 2),
+                        0,
+                        '2',
+                        '1')
+                when length(idcard) = 15 then
+                 decode(mod(to_number(idcard), 2), 0, '2', '1')
+              end as sex from usr where GUID=#{guid,jdbcType=CHAR}
+   </select>
+   <!-- WWW end -->
+
+
+  <select id="login" parameterType="com.gz.medicine.yun.user.bean.Usr" resultMap="BaseResultMap">
+
+     select * from usr where name=#{id} and passwd=#{passwd}
+
+  </select>
+</mapper>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gz.medicine.yun.doctor.mapper.DTdocplMapper" >
+  <resultMap id="BaseResultMap" type="com.gz.medicine.yun.doctor.bean.DTdocpl" >
+    <result column="GUID" property="guid" jdbcType="CHAR" />
+    <result column="CRTUSR" property="crtusr" jdbcType="VARCHAR" />
+    <result column="CRTUSR" property="crtusr" jdbcType="VARCHAR" />
+    <result column="STAR" property="star" jdbcType="VARCHAR" />
+    <result column="CONTENT" property="content" jdbcType="VARCHAR" />
+    <result column="DAT" property="dat" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <insert id="insert" parameterType="com.gz.medicine.yun.doctor.bean.DTdocpl" >
+    insert into CHIS_DOCPL (GUID, MYID, CRTUSR, 
+      STAR, CONTENT, DAT
+      )
+    values (#{guid,jdbcType=CHAR}, #{myid,jdbcType=VARCHAR}, #{crtusr,jdbcType=VARCHAR}, 
+      #{star,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{dat,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gz.medicine.yun.doctor.bean.DTdocpl" >
+    insert into CHIS_DOCPL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        GUID,
+      </if>
+      <if test="myid != null" >
+        MYID,
+      </if>
+      <if test="crtusr != null" >
+        CRTUSR,
+      </if>
+      <if test="star != null" >
+        STAR,
+      </if>
+      <if test="content != null" >
+        CONTENT,
+      </if>
+      <if test="dat != null" >
+        DAT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        #{guid,jdbcType=CHAR},
+      </if>
+      <if test="myid != null" >
+        #{myid,jdbcType=VARCHAR},
+      </if>
+      <if test="crtusr != null" >
+        #{crtusr,jdbcType=VARCHAR},
+      </if>
+      <if test="star != null" >
+        #{star,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="dat != null" >
+        #{dat,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <!--分页查询业绩-->
+  <select id="queryPageMyid" parameterType="com.gz.medicine.common.mybatisPageVo.Page" resultMap="ResultMap">
+	SELECT m.*, u.name,u.imgguid FROM (SELECT guid,myid,star,content,to_char(DAT,'yyyy-MM-dd HH24:mi') as DAT FROM CHIS_DOCPL
+ WHERE crtusr = #{crtusr,jdbcType=VARCHAR} order by dat desc) m LEFT JOIN usr u ON m.myid = u.guid
+  </select>
+  <resultMap id="ResultMap" type="java.util.HashMap" >
+    <result column="STAR" property="star" jdbcType="VARCHAR" />
+    <result column="CONTENT" property="content" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="DAT" property="dat" jdbcType="VARCHAR" />
+    <result column="IMGGUID" property="imgguid" jdbcType="VARCHAR" />
+	<result column="GUID" property="guid" jdbcType="VARCHAR" />
+       
+  </resultMap>
+  
+</mapper>

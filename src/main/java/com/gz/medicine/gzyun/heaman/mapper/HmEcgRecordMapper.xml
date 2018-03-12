@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gz.medicine.gzyun.heaman.mapper.HmEcgRecordMapper">
+  <resultMap id="BaseResultMap" type="com.gz.medicine.gzyun.heaman.bean.HmEcgRecord">
+    <id column="GUID" jdbcType="CHAR" property="guid" />
+    <result column="USRGUID" jdbcType="CHAR" property="usrguid" />
+    <result column="MEATIME" jdbcType="VARCHAR" property="meatime" />
+    <result column="HEARATE" jdbcType="VARCHAR" property="hearate" />
+    <result column="BRERATE" jdbcType="VARCHAR" property="brerate" />
+    <result column="MEADUROF" jdbcType="VARCHAR" property="meadurof" />
+    <result column="HEABEAT" jdbcType="VARCHAR" property="heabeat" />
+    <result column="ROOMEARLY" jdbcType="VARCHAR" property="roomearly" />
+    <result column="PREEARLY" jdbcType="VARCHAR" property="preearly" />
+    <result column="MAXHEARATE" jdbcType="VARCHAR" property="maxhearate" />
+    <result column="MINHEARATE" jdbcType="VARCHAR" property="minhearate" />
+    <result column="REFID" jdbcType="VARCHAR" property="refid" />
+    <result column="CRTDAT" jdbcType="TIMESTAMP" property="crtdat" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    GUID, USRGUID, MEATIME, HEARATE, BRERATE, MEADUROF, HEABEAT, ROOMEARLY, PREEARLY, 
+    MAXHEARATE, MINHEARATE, REFID, CRTDAT
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from GZJK_ECGRECORD
+    where GUID = #{guid,jdbcType=CHAR}
+  </select>
+  
+  <!-- 根据usrguid查询数据 -->
+    <select id="selectByPrimaryUsrKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from GZJK_ECGRECORD
+    where USRGUID = #{usrguid,jdbcType=CHAR}
+  </select>
+  
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from GZJK_ECGRECORD
+    where GUID = #{guid,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gz.medicine.gzyun.heaman.bean.HmEcgRecord">
+    insert into GZJK_ECGRECORD (GUID, USRGUID, MEATIME, 
+      HEARATE, BRERATE, MEADUROF, 
+      HEABEAT, ROOMEARLY, PREEARLY, 
+      MAXHEARATE, MINHEARATE, REFID, 
+      CRTDAT)
+    values (#{guid,jdbcType=CHAR}, #{usrguid,jdbcType=CHAR}, #{meatime,jdbcType=VARCHAR}, 
+      #{hearate,jdbcType=VARCHAR}, #{brerate,jdbcType=VARCHAR}, #{meadurof,jdbcType=VARCHAR}, 
+      #{heabeat,jdbcType=VARCHAR}, #{roomearly,jdbcType=VARCHAR}, #{preearly,jdbcType=VARCHAR}, 
+      #{maxhearate,jdbcType=VARCHAR}, #{minhearate,jdbcType=VARCHAR}, #{refid,jdbcType=VARCHAR}, 
+      #{crtdat,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gz.medicine.gzyun.heaman.bean.HmEcgRecord">
+    insert into GZJK_ECGRECORD
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        GUID,
+      </if>
+      <if test="usrguid != null">
+        USRGUID,
+      </if>
+      <if test="meatime != null">
+        MEATIME,
+      </if>
+      <if test="hearate != null">
+        HEARATE,
+      </if>
+      <if test="brerate != null">
+        BRERATE,
+      </if>
+      <if test="meadurof != null">
+        MEADUROF,
+      </if>
+      <if test="heabeat != null">
+        HEABEAT,
+      </if>
+      <if test="roomearly != null">
+        ROOMEARLY,
+      </if>
+      <if test="preearly != null">
+        PREEARLY,
+      </if>
+      <if test="maxhearate != null">
+        MAXHEARATE,
+      </if>
+      <if test="minhearate != null">
+        MINHEARATE,
+      </if>
+      <if test="refid != null">
+        REFID,
+      </if>
+      <if test="crtdat != null">
+        CRTDAT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        #{guid,jdbcType=CHAR},
+      </if>
+      <if test="usrguid != null">
+        #{usrguid,jdbcType=CHAR},
+      </if>
+      <if test="meatime != null">
+        #{meatime,jdbcType=VARCHAR},
+      </if>
+      <if test="hearate != null">
+        #{hearate,jdbcType=VARCHAR},
+      </if>
+      <if test="brerate != null">
+        #{brerate,jdbcType=VARCHAR},
+      </if>
+      <if test="meadurof != null">
+        #{meadurof,jdbcType=VARCHAR},
+      </if>
+      <if test="heabeat != null">
+        #{heabeat,jdbcType=VARCHAR},
+      </if>
+      <if test="roomearly != null">
+        #{roomearly,jdbcType=VARCHAR},
+      </if>
+      <if test="preearly != null">
+        #{preearly,jdbcType=VARCHAR},
+      </if>
+      <if test="maxhearate != null">
+        #{maxhearate,jdbcType=VARCHAR},
+      </if>
+      <if test="minhearate != null">
+        #{minhearate,jdbcType=VARCHAR},
+      </if>
+      <if test="refid != null">
+        #{refid,jdbcType=VARCHAR},
+      </if>
+      <if test="crtdat != null">
+        #{crtdat,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gz.medicine.gzyun.heaman.bean.HmEcgRecord">
+    update GZJK_ECGRECORD
+    <set>
+      <if test="usrguid != null">
+        USRGUID = #{usrguid,jdbcType=CHAR},
+      </if>
+      <if test="meatime != null">
+        MEATIME = #{meatime,jdbcType=VARCHAR},
+      </if>
+      <if test="hearate != null">
+        HEARATE = #{hearate,jdbcType=VARCHAR},
+      </if>
+      <if test="brerate != null">
+        BRERATE = #{brerate,jdbcType=VARCHAR},
+      </if>
+      <if test="meadurof != null">
+        MEADUROF = #{meadurof,jdbcType=VARCHAR},
+      </if>
+      <if test="heabeat != null">
+        HEABEAT = #{heabeat,jdbcType=VARCHAR},
+      </if>
+      <if test="roomearly != null">
+        ROOMEARLY = #{roomearly,jdbcType=VARCHAR},
+      </if>
+      <if test="preearly != null">
+        PREEARLY = #{preearly,jdbcType=VARCHAR},
+      </if>
+      <if test="maxhearate != null">
+        MAXHEARATE = #{maxhearate,jdbcType=VARCHAR},
+      </if>
+      <if test="minhearate != null">
+        MINHEARATE = #{minhearate,jdbcType=VARCHAR},
+      </if>
+      <if test="refid != null">
+        REFID = #{refid,jdbcType=VARCHAR},
+      </if>
+      <if test="crtdat != null">
+        CRTDAT = #{crtdat,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where GUID = #{guid,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gz.medicine.gzyun.heaman.bean.HmEcgRecord">
+    update GZJK_ECGRECORD
+    set USRGUID = #{usrguid,jdbcType=CHAR},
+      MEATIME = #{meatime,jdbcType=VARCHAR},
+      HEARATE = #{hearate,jdbcType=VARCHAR},
+      BRERATE = #{brerate,jdbcType=VARCHAR},
+      MEADUROF = #{meadurof,jdbcType=VARCHAR},
+      HEABEAT = #{heabeat,jdbcType=VARCHAR},
+      ROOMEARLY = #{roomearly,jdbcType=VARCHAR},
+      PREEARLY = #{preearly,jdbcType=VARCHAR},
+      MAXHEARATE = #{maxhearate,jdbcType=VARCHAR},
+      MINHEARATE = #{minhearate,jdbcType=VARCHAR},
+      REFID = #{refid,jdbcType=VARCHAR},
+      CRTDAT = #{crtdat,jdbcType=TIMESTAMP}
+    where GUID = #{guid,jdbcType=CHAR}
+  </update>
+<!--  <insert id="insertSelectiveAll" parameterType="com.gz.medicine.gzyun.heaman.bean.HmEcgRecord">
+  	insert into GZJK_ECGRECORD 
+  	 
+  	
+  	 
+  </insert>  -->
+</mapper>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:task="http://www.springframework.org/schema/task" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:tx="http://www.springframework.org/schema/tx"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+
+	   xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+		                    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+		                    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		                    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+
+		                    http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.0.xsd">
+
+	<context:component-scan base-package="com.gz.medicine" />
+	<task:annotation-driven />
+	<task:scheduled-tasks>
+		<task:scheduled ref="updateOracleData" method="updateData"
+						cron="0 0 3 * * ?" />
+	</task:scheduled-tasks>
+	<task:scheduled-tasks>
+		<task:scheduled ref="unsubscribeImageOrder" method="imageOrder"
+						cron="5 0 0 * * ?" /> <!-- 5 0 0 * * ? --><!-- */3 * * * * * -->
+	</task:scheduled-tasks>
+
+	<!--5 分钟: 0 55 0/1 * * ?  每小时的55分扫一次-->
+	<task:scheduled-tasks>
+		<task:scheduled ref="fiveMinutesOrdeTask" method="SendMessage"
+						cron="0 55 0/1 * * ?" />
+	</task:scheduled-tasks>
+
+	<!--1 小时: 0 0/1 * * * ? 1分钟扫一次-->
+	<task:scheduled-tasks>
+		<task:scheduled ref="aminuteOutDateOrderTask" method="SendMessage"
+						cron="0 0/1 * * * ?" />
+	</task:scheduled-tasks>
+
+	<!--30 分钟: 0 0/1 * * * ? 1分钟扫一次-->
+	<task:scheduled-tasks>
+		<task:scheduled ref="aminuteTimeoutOrderTask" method="SendMessage"
+						cron="0 0/1 * * * ?" />  <!--一秒钟执行一次: 0/1 0/1 0/1 * * ?  -->
+	</task:scheduled-tasks>
+
+	<!--24 小时: 0 0 0/1 * * ?  1小时扫一次-->
+	<task:scheduled-tasks>
+		<task:scheduled ref="aminuteOutDateOrderRefundTask" method="SendMessage"
+						cron="0 0 0/1 * * ? " />
+	</task:scheduled-tasks>
+
+	<!-- 1小时扫一次 给患者发送短信以及推送-->
+	<task:scheduled-tasks>
+		<task:scheduled ref="oneHoursPushAndMessageTask" method="SendMessage"
+						cron="0 0 0/1 * * ? " />
+	</task:scheduled-tasks>
+
+	<task:scheduled-tasks scheduler="scheduler">
+		<task:scheduled ref="kafkaProductorServiceTask" method="startTask"
+						cron="0/2 * * * * ? "  />
+	</task:scheduled-tasks>
+
+	<task:scheduler id="scheduler" pool-size="1" />
+</beans>

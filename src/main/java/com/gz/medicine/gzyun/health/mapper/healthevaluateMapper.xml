@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gz.medicine.gzyun.health.mapper.healthevaluateMapper" >
+  <resultMap id="BaseResultMap" type="com.gz.medicine.gzyun.health.bean.healthevaluate" >
+    <result column="ID" property="id" jdbcType="CHAR" />
+    <result column="DOCID" property="docid" jdbcType="CHAR" />
+    <result column="USRID" property="usrid" jdbcType="CHAR" />
+    <result column="SCORE" property="score" jdbcType="VARCHAR" />
+    <result column="CONSULTATIONID" property="consultationid" jdbcType="VARCHAR" />
+    <result column="EVALUATIONDESCRIPTION" property="evaluationdescription" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+    <result column="CREATEDATE" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="CREATENAME" property="createname" jdbcType="VARCHAR" />
+    <result column="UPDATEDATE" property="updatedate" jdbcType="TIMESTAMP" />
+    <result column="UPDATENAME" property="updatename" jdbcType="VARCHAR" />  
+    <result column="ORDERID" property="orderid" jdbcType="VARCHAR" />
+    <result column="EVALUATIONDESCRIPTION" property="evaluationdescription" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.gz.medicine.gzyun.health.bean.healthevaluate" >
+    insert into HEALTHEVALUATE (ID, DOCID, USRID, SCORE, 
+      CONSULTATIONID, EVALUATIONDESCRIPTION, 
+      STATE, CREATEDATE, REMARK, 
+      CREATENAME, UPDATEDATE, UPDATENAME
+      )
+    values (#{id,jdbcType=CHAR}, #{docid,jdbcType=CHAR}, #{usrid,jdbcType=CHAR}, #{score,jdbcType=VARCHAR}, 
+      #{consultationid,jdbcType=VARCHAR}, #{evaluationdescription,jdbcType=VARCHAR}, 
+      #{state,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, 
+      #{createname,jdbcType=VARCHAR}, #{updatedate,jdbcType=TIMESTAMP}, #{updatename,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gz.medicine.gzyun.health.bean.healthevaluate" >
+    insert into HEALTHEVALUATE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="docid != null" >
+        DOCID,
+      </if>
+      <if test="usrid != null" >
+        USRID,
+      </if>
+      <if test="score != null" >
+        SCORE,
+      </if>
+      <if test="consultationid != null" >
+        CONSULTATIONID,
+      </if>
+      <if test="evaluationdescription != null" >
+        EVALUATIONDESCRIPTION,
+      </if>
+      <if test="state != null" >
+        STATE,
+      </if>
+      <if test="createdate != null" >
+        CREATEDATE,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="createname != null" >
+        CREATENAME,
+      </if>
+      <if test="updatedate != null" >
+        UPDATEDATE,
+      </if>
+      <if test="updatename != null" >
+        UPDATENAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="docid != null" >
+        #{docid,jdbcType=CHAR},
+      </if>
+      <if test="usrid != null" >
+        #{usrid,jdbcType=CHAR},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=VARCHAR},
+      </if>
+      <if test="consultationid != null" >
+        #{consultationid,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluationdescription != null" >
+        #{evaluationdescription,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createname != null" >
+        #{createname,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedate != null" >
+        #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatename != null" >
+        #{updatename,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="queryPageDocid" parameterType="com.gz.medicine.common.mybatisPageVo.Page" resultType="com.gz.medicine.gzyun.health.reponse.UserRatingReponse">
+    select logins.name,luate.score,to_char(luate.updatedate, 'yyyy-mm-dd HH24:mi') as updatedate,luate.evaluationdescription from usr logins,healthevaluate luate where logins.guid=luate.usrid and luate.docid=#{docid,jdbcType=VARCHAR} order by updatedate desc
+ </select>
+
+
+  <select id="selectCountByDocid" parameterType="java.lang.String" resultType="java.lang.String" >
+      select count(*)as num from healthevaluate where docid=#{docid,jdbcType=VARCHAR} GROUP BY docid
+  </select>
+
+    <!--分页查询评价-->
+  <select id="queryPageMyid" parameterType="com.gz.medicine.common.mybatisPageVo.Page" resultMap="ResultMap">
+	SELECT m.*, u.name
+FROM (SELECT a.usrid, a.docid, a.score, a.consultationid,a.evaluationdescription,
+        to_char(a.createdate, 'yyyy-MM-dd HH24:mi') AS createdate,b.name AS usrname,c.orderid
+	FROM healthevaluate a,usr b,HEALTHCONSULTATION c
+	where a.usrid=b.guid
+	and a.docid= #{docid,jdbcType=VARCHAR}
+	and c.id = a.consultationid
+	 <if test="usrname!=null and usrname!=''">
+           and  b.name like '%'||#{usrname,jdbcType=VARCHAR} || '%'
+        </if>
+     <if test="score!=null and score!='' and score!='不限'">
+           and  score = #{score,jdbcType=VARCHAR}
+        </if>
+	) m
+	LEFT JOIN healthDoctor u ON m.docid = u.id 	ORDER BY m.createdate DESC
+
+  </select>
+  <resultMap id="ResultMap" type="java.util.HashMap" >
+    <result column="USRID" property="usrid" jdbcType="VARCHAR" />
+    <result column="CREATEDATE" property="createdate" jdbcType="VARCHAR" />
+    <result column="SCORE" property="score" jdbcType="VARCHAR" />
+    <result column="EVALUATIONDESCRIPTION" property="evaluationdescription" jdbcType="VARCHAR" />
+	<result column="CONSULTATIONID" property="consultationid" jdbcType="VARCHAR" />
+	<result column="USRNAME" property="usrname" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  
+    <resultMap id="ResultMaps" type="java.util.Map" >
+	    <result column="EVALUATEDATE" property="evaluatedate" jdbcType="VARCHAR" />
+	    <result column="EVALUATENUM" property="evaluatenum" jdbcType="VARCHAR" />
+    </resultMap>
+  
+   <!-- 累计评价数  舵主 -->
+   <select id="queryListByeValuaCum" resultMap="ResultMaps" parameterType="com.gz.medicine.gzyun.health.request.HealthOrderStatisRequest">
+		 select to_char(CREATEDATE, 'YYYY-MM-DD') as evaluatedate,
+		        count(1) evaluatenum
+		   from healthevaluate
+		   where state = '1'
+		   and CREATEDATE between
+		        to_date(#{strdate, jdbcType = VARCHAR}, 'yyyy-mm-dd') and
+		        to_date(#{enddate, jdbcType = VARCHAR}, 'yyyy-mm-dd')
+		  group by to_char(CREATEDATE, 'YYYY-MM-DD')  order by to_char(CREATEDATE, 'YYYY-MM-DD')  asc </select>
+		  
+		  <!--修改评价消息为已读  -->
+  <update id="updatIsread" parameterType="com.gz.medicine.common.mybatisPageVo.Page" >
+    update healthevaluate set isread='1' where docid= #{docid,jdbcType=CHAR} and isread='0'
+  </update>
+</mapper>

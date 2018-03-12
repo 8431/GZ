@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gz.medicine.gzyun.health.mapper.HealthTemplateContentMapper">
+  <resultMap id="BaseResultMap" type="com.gz.medicine.gzyun.health.bean.HealthTemplateContent">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="TYPECODE" jdbcType="VARCHAR" property="typecode" />
+    <result column="TYPENAME" jdbcType="VARCHAR" property="typename" />
+    <result column="TYPECONTENT" jdbcType="VARCHAR" property="typecontent" />
+    <result column="CREATEDATE" jdbcType="TIMESTAMP" property="createdate" />
+    <result column="CREATENAME" jdbcType="VARCHAR" property="createname" />
+    <result column="UPDATEDATE" jdbcType="TIMESTAMP" property="updatedate" />
+    <result column="UPDATENAME" jdbcType="VARCHAR" property="updatename" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    ID, TYPECODE, TYPENAME, TYPECONTENT, CREATEDATE, CREATENAME, UPDATEDATE, UPDATENAME
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TEMPLATECONTENT
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TEMPLATECONTENT
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.gz.medicine.gzyun.health.bean.HealthTemplateContent">
+    insert into TEMPLATECONTENT (ID, TYPECODE, TYPENAME, 
+      TYPECONTENT, CREATEDATE, CREATENAME, 
+      UPDATEDATE, UPDATENAME)
+    values (#{id,jdbcType=VARCHAR}, #{typecode,jdbcType=VARCHAR}, #{typename,jdbcType=VARCHAR}, 
+      #{typecontent,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}, #{createname,jdbcType=VARCHAR}, 
+      #{updatedate,jdbcType=TIMESTAMP}, #{updatename,jdbcType=VARCHAR})
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.gz.medicine.gzyun.health.bean.HealthTemplateContent">
+    insert into TEMPLATECONTENT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="typecode != null">
+        TYPECODE,
+      </if>
+      <if test="typename != null">
+        TYPENAME,
+      </if>
+      <if test="typecontent != null">
+        TYPECONTENT,
+      </if>
+      <if test="createdate != null">
+        CREATEDATE,
+      </if>
+      <if test="createname != null">
+        CREATENAME,
+      </if>
+      <if test="updatedate != null">
+        UPDATEDATE,
+      </if>
+      <if test="updatename != null">
+        UPDATENAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="typecode != null">
+        #{typecode,jdbcType=VARCHAR},
+      </if>
+      <if test="typename != null">
+        #{typename,jdbcType=VARCHAR},
+      </if>
+      <if test="typecontent != null">
+        #{typecontent,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null">
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createname != null">
+        #{createname,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedate != null">
+        #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatename != null">
+        #{updatename,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.gz.medicine.gzyun.health.bean.HealthTemplateContent">
+    update TEMPLATECONTENT
+    <set>
+      <if test="typecode != null">
+        TYPECODE = #{typecode,jdbcType=VARCHAR},
+      </if>
+      <if test="typename != null">
+        TYPENAME = #{typename,jdbcType=VARCHAR},
+      </if>
+      <if test="typecontent != null">
+        TYPECONTENT = #{typecontent,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null">
+        CREATEDATE = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createname != null">
+        CREATENAME = #{createname,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedate != null">
+        UPDATEDATE = #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatename != null">
+        UPDATENAME = #{updatename,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.gz.medicine.gzyun.health.bean.HealthTemplateContent">
+    update TEMPLATECONTENT
+    set TYPECODE = #{typecode,jdbcType=VARCHAR},
+      TYPENAME = #{typename,jdbcType=VARCHAR},
+      TYPECONTENT = #{typecontent,jdbcType=VARCHAR},
+      CREATEDATE = #{createdate,jdbcType=TIMESTAMP},
+      CREATENAME = #{createname,jdbcType=VARCHAR},
+      UPDATEDATE = #{updatedate,jdbcType=TIMESTAMP},
+      UPDATENAME = #{updatename,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+</mapper>

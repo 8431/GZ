@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.gz.medicine.gzyun.health.mapper.HealthAddrInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.gz.medicine.gzyun.health.bean.HealthAddrInfo" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="USRID" property="usrid" jdbcType="VARCHAR" />
+    <result column="CONSIGNEE" property="consignee" jdbcType="VARCHAR" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+    <result column="AREA" property="area" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="LABEL" property="label" jdbcType="VARCHAR" />
+    <result column="DEFAULTADDR" property="defaultaddr" jdbcType="VARCHAR" />
+    <result column="CREATEDATE" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="CREATENAME" property="createname" jdbcType="VARCHAR" />
+    <result column="UPDATEDATE" property="updatedate" jdbcType="TIMESTAMP" />
+    <result column="UPDATENAME" property="updatename" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <insert id="insert" parameterType="com.gz.medicine.gzyun.health.bean.HealthAddrInfo" >
+    insert into HEALTHADDRINFO (ID, USRID, CONSIGNEE, 
+      PHONE, AREA, ADDRESS, 
+      LABEL, DEFAULTADDR, CREATEDATE, 
+      CREATENAME, UPDATEDATE, UPDATENAME
+      )
+    values (#{id,jdbcType=VARCHAR}, #{usrid,jdbcType=VARCHAR}, #{consignee,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{label,jdbcType=VARCHAR}, #{defaultaddr,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}, 
+      #{createname,jdbcType=VARCHAR}, #{updatedate,jdbcType=TIMESTAMP}, #{updatename,jdbcType=VARCHAR}
+      )
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.gz.medicine.gzyun.health.bean.HealthAddrInfo" >
+    insert into HEALTHADDRINFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="usrid != null" >
+        USRID,
+      </if>
+      <if test="consignee != null" >
+        CONSIGNEE,
+      </if>
+      <if test="phone != null" >
+        PHONE,
+      </if>
+      <if test="area != null" >
+        AREA,
+      </if>
+      <if test="address != null" >
+        ADDRESS,
+      </if>
+      <if test="label != null" >
+        LABEL,
+      </if>
+      <if test="defaultaddr != null" >
+        DEFAULTADDR,
+      </if>
+      <if test="createdate != null" >
+        CREATEDATE,
+      </if>
+      <if test="createname != null" >
+        CREATENAME,
+      </if>
+      <if test="updatedate != null" >
+        UPDATEDATE,
+      </if>
+      <if test="updatename != null" >
+        UPDATENAME,
+      </if>
+    </trim>
+
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="usrid != null" >
+        #{usrid,jdbcType=VARCHAR},
+      </if>
+      <if test="consignee != null" >
+        #{consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="label != null" >
+        #{label,jdbcType=VARCHAR},
+      </if>
+      <if test="defaultaddr != null" >
+        #{defaultaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createname != null" >
+        #{createname,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedate != null" >
+        #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatename != null" >
+        #{updatename,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+    
+  <!--修改所有defaultaddr为0 -->
+  <update id="updatestate" parameterType="java.lang.String">
+   update  HEALTHADDRINFO set defaultaddr='0' where usrid=#{usrid,jdbcType=VARCHAR}
+  </update>
+	<!--修改该条defaultaddr为1 -->
+	 <update id="updateone" parameterType="java.lang.String">
+   update  HEALTHADDRINFO set defaultaddr='1' where id=#{id,jdbcType=VARCHAR}
+  </update>
+  	<!--修改该条地址 -->
+	 <update id="updatebyid" parameterType="com.gz.medicine.gzyun.health.bean.HealthAddrInfo">
+    update HEALTHADDRINFO set consignee =#{consignee,jdbcType=VARCHAR},phone =#{phone,jdbcType=VARCHAR}, area =#{area,jdbcType=VARCHAR},address =#{address,jdbcType=VARCHAR},label =#{label,jdbcType=VARCHAR},defaultaddr =#{defaultaddr,jdbcType=VARCHAR} where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <!--删除该条地址 -->
+   <update id="deletebyid" parameterType="com.gz.medicine.gzyun.health.bean.HealthAddrInfo">
+   update HEALTHADDRINFO set state='0' where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+   <!--查询所有地址 -->
+   <select id="selectbyuid" parameterType="com.gz.medicine.gzyun.health.bean.HealthAddrInfo" resultMap="BaseResultMap">
+  select   ID,USRID,CONSIGNEE,PHONE,AREA,ADDRESS,LABEL,DEFAULTADDR from HEALTHADDRINFO where usrid=#{usrid,jdbcType=VARCHAR} and state='1' order by DEFAULTADDR desc,UPDATEDATE desc 
+  </select>
+  
+</mapper>

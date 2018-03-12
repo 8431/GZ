@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gz.medicine.gzyun.health.mapper.HealthyDoctorformMapper" >
+    <resultMap id="BaseResultMap" type="com.gz.medicine.gzyun.health.bean.HealthyDoctorform" >
+        <result column="ID" property="id" jdbcType="CHAR" />
+        <result column="DOCID" property="docid" jdbcType="VARCHAR" />
+        <result column="HEALTHYTYPESETTINGTIME" property="healthytypesettingtime" jdbcType="TIMESTAMP" />
+        <result column="STATE" property="state" jdbcType="CHAR" />
+        <result column="CREATEDATE" property="createdate" jdbcType="TIMESTAMP" />
+        <result column="CREATENAME" property="createname" jdbcType="VARCHAR" />
+        <result column="UPDATEDATE" property="updatedate" jdbcType="TIMESTAMP" />
+        <result column="UPDATENAME" property="updatename" jdbcType="VARCHAR" />
+        <result column="INTERVALDATE" property="intervaldate" jdbcType="VARCHAR" />
+    </resultMap>
+    <resultMap id="BaseResultMap2" type="com.gz.medicine.gzyun.health.reponse.HealthyDoctorformreponse" >
+        <result column="HEALTHYTYPESETTINGTIME" property="healthytypesettingtime" jdbcType="VARCHAR" />
+        <result column="DOCNAME" property="docname" jdbcType="VARCHAR" />
+        <result column="intervaldate" property="intervaldate" jdbcType="VARCHAR" />
+    </resultMap>
+    <insert id="insert" parameterType="com.gz.medicine.gzyun.health.bean.HealthyDoctorform" >
+    insert into HEALTHYDOCTORFORM (ID, DOCID, HEALTHYTYPESETTINGTIME, 
+      STATE, CREATEDATE, CREATENAME, 
+      UPDATEDATE, UPDATENAME)
+    values (#{id,jdbcType=CHAR}, #{docid,jdbcType=VARCHAR}, #{healthytypesettingtime,jdbcType=TIMESTAMP}, 
+      #{state,jdbcType=CHAR}, #{createdate,jdbcType=TIMESTAMP}, #{createname,jdbcType=VARCHAR}, 
+      #{updatedate,jdbcType=TIMESTAMP}, #{updatename,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.gz.medicine.gzyun.health.bean.HealthyDoctorform" >
+        insert into HEALTHYDOCTORFORM
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                ID,
+            </if>
+            <if test="docid != null" >
+                DOCID,
+            </if>
+            <if test="healthytypesettingtime != null" >
+                HEALTHYTYPESETTINGTIME,
+            </if>
+            <if test="state != null" >
+                STATE,
+            </if>
+            <if test="createdate != null" >
+                CREATEDATE,
+            </if>
+            <if test="createname != null" >
+                CREATENAME,
+            </if>
+            <if test="updatedate != null" >
+                UPDATEDATE,
+            </if>
+            <if test="updatename != null" >
+                UPDATENAME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=CHAR},
+            </if>
+            <if test="docid != null" >
+                #{docid,jdbcType=VARCHAR},
+            </if>
+            <if test="healthytypesettingtime != null" >
+                #{healthytypesettingtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="state != null" >
+                #{state,jdbcType=CHAR},
+            </if>
+            <if test="createdate != null" >
+                #{createdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createname != null" >
+                #{createname,jdbcType=VARCHAR},
+            </if>
+            <if test="updatedate != null" >
+                #{updatedate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatename != null" >
+                #{updatename,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <resultMap id="BaseResultMap3" type="com.gz.medicine.gzyun.health.reponse.HealthyOrderReponse" >
+        <result column="DOCID" property="docid" jdbcType="VARCHAR" />
+        <result column="USRID" property="usrid" jdbcType="VARCHAR" />
+        <result column="USRNAME" property="usrname" jdbcType="VARCHAR" />
+        <result column="SCHEDULINGDAYS" property="schedulingdays" jdbcType="VARCHAR" />
+        <result column="HEALTHYTYPESETTINGTIME" property="healthytypesettingtime" jdbcType="VARCHAR" />
+        <result column="INTERVALDATE" property="intervalDate" jdbcType="VARCHAR" />
+        <result column="IMGGUID" property="imgguid" jdbcType="VARCHAR" />
+    </resultMap>
+    <!-- 排班统计 www-->
+    <select id="queryPageSchedulingStatistics" resultMap="BaseResultMap3" parameterType="com.gz.medicine.common.mybatisPageVo.Page">
+        select HEALTHYTYPESETTINGTIME, wm_concat(INTERVALDATE) INTERVALDATE from
+        (
+        select a.healthytypesettingtime,b.intervalDate,a.docid from HealthyDoctorform a,HealthyIntervalTime b,healthDoctor c where a.docid=c.id and a.id=b.DoctorformId
+        and 1=1
+        <if test="healthytypesettingtime != null">
+            and a.healthytypesettingtime like '${'%' + healthytypesettingtime + '%'}'
+        </if>
+        and a.DOCID = #{docid,jdbcType=CHAR} and a.STATE='1' and b.STATE='1'
+        )
+        group by HEALTHYTYPESETTINGTIME order by HEALTHYTYPESETTINGTIME desc
+    </select>
+    <!--排班统计天数 www -->
+    <select id="querySchedulingDays" resultMap="BaseResultMap3" parameterType="java.util.Map">
+        select sum(count(*)) schedulingdays from HealthyDoctorform where 1=1
+        <if test="healthytypesettingtime != null">
+            and healthytypesettingtime like '${'%' + healthytypesettingtime + '%'}'
+        </if>
+        and docid=#{docid,jdbcType=CHAR} group by healthytypesettingtime
+    </select>
+    <!--查询当月排班  金 -->
+    <select id="queryItemDocId" resultMap="BaseResultMap" parameterType="com.gz.medicine.gzyun.health.request.HealthyDocformRequest" >
+    select HEALTHYTYPESETTINGTIME, wm_concat(INTERVALDATE) INTERVALDATE
+  from (select m.*, n.intervaldate
+          from (select h.HEALTHYTYPESETTINGTIME, h.id
+                  from HealthyDoctorform h
+                 where STATE='1' 
+                 and docid = #{docid,jdbcType=VARCHAR}
+                   and substr(h.HEALTHYTYPESETTINGTIME,0,7) = #{startdate,jdbcType=VARCHAR}
+                      ) m
+          left join HealthyIntervalTime n
+            on m.id = n.doctorformid
+            and n.STATE='1')
+ group by HEALTHYTYPESETTINGTIME
+  </select>
+
+    <!-- 医生排班管理  舵主 -->
+    <select id="queryListByMapHealthyDoctorform" parameterType="com.gz.medicine.gzyun.health.request.HealthyDoctorformrequest" resultMap="BaseResultMap2">
+  	  select  a.healthytypesettingtime, b.name as docname,WM_CONCAT(c.intervaldate) as intervaldate
+      from HealthyDoctorform a , healthDoctor b ,HealthyIntervalTime c
+      where 
+      a.docid = b.id and 
+      a.state='1' and
+      c.state='1' and 
+      a.id = c.doctorformid and 
+      a.healthytypesettingtime like #{schedate,jdbcType=VARCHAR} || '%'  GROUP BY a.healthytypesettingtime,b.name order by a.healthytypesettingtime,b.name         
+  </select>
+
+    <resultMap id="BaseResultMaps" type="java.util.Map" >
+        <result column="DOCID" property="docid" jdbcType="VARCHAR" />
+        <result column="DFID" property="dfid" jdbcType="VARCHAR" />
+        <result column="DOCNAME" property="docname" jdbcType="VARCHAR" />
+        <result column="DATEA" property="datea" jdbcType="VARCHAR" />
+        <result column="INTERVALDATE" property="intervaldate" jdbcType="VARCHAR" />
+    </resultMap>
+
+
+    <!-- 医生搜索接口 -->
+    <select id="queryDoctorformseach"  parameterType="com.gz.medicine.gzyun.health.request.HealthDoctorformIdRequest"  resultMap="BaseResultMaps" >
+  	select a.id dfid , a.docid docid, a.HEALTHYTYPESETTINGTIME datea, b.name  docname,c.intervaldate intervaldate
+ 	 from HealthyDoctorform a , healthDoctor b ,  HealthyIntervalTime c
+	 where a.docid=b.id and 
+  a.state='1' and
+  c.state='1' and 
+ 	a.id = c.doctorformid and 
+ 	docid = #{docid,jdbcType=VARCHAR}
+  	 and a.HEALTHYTYPESETTINGTIME  like '${datea + '%'}' 
+  </select>
+
+    <!-- 查询某个医生的的排班情况 -->
+    <select id="queryDoctorformId"   resultType="java.lang.String" parameterType="com.gz.medicine.gzyun.health.request.HealthDoctorformIdRequest" >
+  	select count(*) from HealthyDoctorform where docid= #{docid,jdbcType=VARCHAR} and HealthyTypesettingTime= #{date,jdbcType=VARCHAR} and STATE='1'
+  </select>
+
+
+    <!-- 新增排班信息 -->
+    <insert id="createItemDoctorform"   parameterType="com.gz.medicine.gzyun.health.bean.HealthyDoctorform">
+  	insert into HealthyDoctorform  (docId,HealthyTypesettingTime,state,createName,updateDate,updateName)   
+	values (#{docid,jdbcType=VARCHAR},#{datea,jdbcType=VARCHAR},'1','管理员',sysdate,'管理员')
+  </insert>
+    <select id="queryDoctorformBydocidAndDate"   resultType="com.gz.medicine.gzyun.health.bean.HealthyDoctorform" parameterType="java.lang.String" >
+        select * from HealthyDoctorform where docid= #{0} and HealthyTypesettingTime= #{1} and STATE='1'
+    </select>
+
+
+
+    <update id="update"  parameterType="java.lang.String" >
+        update  HealthyDoctorform set state='0' where id=#{0}
+    </update>
+
+</mapper>

@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gz.medicine.yun.doctor.mapper.DTfollowupRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.gz.medicine.yun.doctor.bean.DTfollowupRecord" >
+    <id column="GUID" property="guid" jdbcType="VARCHAR" />
+    <result column="ORG" property="org" jdbcType="VARCHAR" />
+    <result column="DOCGUID" property="docguid" jdbcType="VARCHAR" />
+    <result column="USRGUID" property="usrguid" jdbcType="VARCHAR" />
+    <result column="SICGUID" property="sicguid" jdbcType="VARCHAR" />
+    <result column="FOLLOWOPTION" property="followoption" jdbcType="VARCHAR" />
+    <result column="FOLLOWDATETIME" property="followdatetime" jdbcType="TIMESTAMP" />
+    <result column="TEMPERATURE" property="temperature" jdbcType="DOUBLE" />
+    <result column="WEIGHT" property="weight" jdbcType="DOUBLE" />
+    <result column="HEARTRATE" property="heartrate" jdbcType="DOUBLE" />
+    <result column="BLOODSUGAR" property="bloodsugar" jdbcType="DOUBLE" />
+    <result column="BLOODPRESSUREH" property="bloodpressureh" jdbcType="DOUBLE" />
+    <result column="BLOODPRESSUREL" property="bloodpressurel" jdbcType="DOUBLE" />
+    <result column="BLOODOXYGEN" property="bloodoxygen" jdbcType="DOUBLE" />
+    <result column="FOLLOWCONCLUSION" property="followconclusion" jdbcType="VARCHAR" />
+    <result column="CRTUSR" property="crtusr" jdbcType="VARCHAR" />
+    <result column="CRTDAT" property="crtdat" jdbcType="TIMESTAMP" />
+    <result column="UPDATEUSR" property="updateusr" jdbcType="VARCHAR" />
+    <result column="UPDATEDATE" property="updatedate" jdbcType="TIMESTAMP" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR"/>
+    <!--<result column="followupDATE" property="followupdate" jdbcType="VARCHAR"/>
+    <result column="followTYPE" property="followtype" jdbcType="VARCHAR"/>-->
+    <result column="NAME" property="name" jdbcType="VARCHAR"/>
+    <result column="HEALTHPROGRAMME" property="healthprogramme" jdbcType="VARCHAR"/>
+    <result column="NEEDATTENTION" property="needattention" jdbcType="VARCHAR"></result>
+    </resultMap>
+    <resultMap id="BaseResultMap2" type="com.gz.medicine.yun.doctor.reponse.DTfollowupRecordResponse" >
+    <id column="GUID" property="guid" jdbcType="VARCHAR" />
+    <result column="ORG" property="org" jdbcType="VARCHAR" />
+    <result column="DOCGUID" property="docguid" jdbcType="VARCHAR" />
+    <result column="USRGUID" property="usrguid" jdbcType="VARCHAR" />
+    <result column="SICGUID" property="sicguid" jdbcType="VARCHAR" />
+    <result column="FOLLOWOPTION" property="followoption" jdbcType="VARCHAR" />
+    <result column="FOLLOWDATETIME" property="followdatetime" jdbcType="TIMESTAMP" />
+    <result column="TEMPERATURE" property="temperature" jdbcType="DECIMAL" />
+    <result column="WEIGHT" property="weight" jdbcType="DECIMAL" />
+    <result column="HEARTRATE" property="heartrate" jdbcType="DECIMAL" />
+    <result column="BLOODSUGAR" property="bloodsugar" jdbcType="DECIMAL" />
+    <result column="BLOODPRESSUREH" property="bloodpressureh" jdbcType="DECIMAL" />
+    <result column="BLOODPRESSUREL" property="bloodpressurel" jdbcType="DECIMAL" />
+    <result column="BLOODOXYGEN" property="bloodoxygen" jdbcType="DECIMAL" />
+    <result column="FOLLOWCONCLUSION" property="followconclusion" jdbcType="VARCHAR" />
+    <result column="CRTUSR" property="crtusr" jdbcType="VARCHAR" />
+    <result column="CRTDAT" property="crtdat" jdbcType="TIMESTAMP" />
+    <result column="UPDATEUSR" property="updateusr" jdbcType="VARCHAR" />
+    <result column="UPDATEDATE" property="updatedate" jdbcType="TIMESTAMP" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR"/>
+    <result column="NAME" property="usrname" jdbcType="VARCHAR"/>
+    <result column="AGE" property="age" jdbcType="VARCHAR"/>
+    <result column="SEX" property="sex" jdbcType="VARCHAR"/>
+    <result column="DOCNAME" property="docname" jdbcType="VARCHAR"/>
+    <result column="ZHAND" property="zhand" jdbcType="VARCHAR"/>
+      <result column="HEALTHPROGRAMME" property="healthprogramme" jdbcType="VARCHAR"/>
+      <result column="NEEDATTENTION" property="needattention" jdbcType="VARCHAR"/>
+      <result column="MZFZTIME" property="mzfztime" jdbcType="VARCHAR"/>
+      <result column="XSFZTIME" property="xsfztime" jdbcType="VARCHAR"/>
+      <result column="FOLLOWUPPLANID" property="followupplanid" jdbcType="VARCHAR"/>
+    <result column="DEPARTMENT" property="department" jdbcType="VARCHAR"></result>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    GUID, ORG, DOCGUID, USRGUID, SICGUID, FOLLOWOPTION, FOLLOWDATETIME, TEMPERATURE, 
+    WEIGHT, HEARTRATE, BLOODSUGAR, BLOODPRESSUREH, BLOODPRESSUREL, BLOODOXYGEN, FOLLOWCONCLUSION, 
+    CRTUSR, CRTDAT, UPDATEUSR, UPDATEDATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from CHIS_FOLLOWUP_RECORD
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from CHIS_FOLLOWUP_RECORD
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gz.medicine.yun.doctor.bean.DTfollowupRecord" >
+    insert into CHIS_FOLLOWUP_RECORD (GUID, ORG, DOCGUID, 
+      USRGUID, SICGUID, FOLLOWOPTION, 
+      FOLLOWDATETIME, TEMPERATURE, WEIGHT, 
+      HEARTRATE, BLOODSUGAR, BLOODPRESSUREH, 
+      BLOODPRESSUREL, BLOODOXYGEN, FOLLOWCONCLUSION, 
+      CRTUSR, CRTDAT, UPDATEUSR, 
+      UPDATEDATE)
+    values (#{guid,jdbcType=VARCHAR}, #{org,jdbcType=VARCHAR}, #{docguid,jdbcType=VARCHAR}, 
+      #{usrguid,jdbcType=VARCHAR}, #{sicguid,jdbcType=VARCHAR}, #{followoption,jdbcType=VARCHAR}, 
+      #{followdatetime,jdbcType=TIMESTAMP}, #{temperature,jdbcType=DECIMAL}, #{weight,jdbcType=DECIMAL}, 
+      #{heartrate,jdbcType=DECIMAL}, #{bloodsugar,jdbcType=DECIMAL}, #{bloodpressureh,jdbcType=DECIMAL},
+      #{bloodpressurel,jdbcType=DECIMAL}, #{bloodoxygen,jdbcType=DECIMAL}, #{followconclusion,jdbcType=VARCHAR}, 
+      #{crtusr,jdbcType=VARCHAR}, #{crtdat,jdbcType=TIMESTAMP}, #{updateusr,jdbcType=VARCHAR}, 
+      #{updatedate,jdbcType=TIMESTAMP})
+  </insert>
+
+  <insert id="insertFollowUp" parameterType="com.gz.medicine.yun.doctor.request.DTfollowupRecordRequest">
+    insert into CHIS_FOLLOWUP_RECORD (GUID, ORG, DOCGUID,
+      USRGUID, TEMPERATURE, WEIGHT,
+      HEARTRATE, BLOODSUGAR, BLOODPRESSUREH,
+      BLOODPRESSUREL, BLOODOXYGEN, FOLLOWCONCLUSION, CRTDAT,CRTUSR,SICGUID,FOLLOWOPTION,FOLLOWDATETIME,
+      HEALTHPROGRAMME,NEEDATTENTION)
+    values (#{guid,jdbcType=VARCHAR},#{org,jdbcType=VARCHAR},#{docguid,jdbcType=VARCHAR},
+          #{usrguid,jdbcType=VARCHAR},#{temperature,jdbcType=DOUBLE}, #{weight,jdbcType=DOUBLE},
+          #{heartrate,jdbcType=DOUBLE},#{bloodsugar,jdbcType=DOUBLE},#{bloodpressureh,jdbcType=DOUBLE},
+          #{bloodpressurel,jdbcType=DOUBLE},#{bloodoxygen,jdbcType=DOUBLE},#{followconclusion,jdbcType=VARCHAR},
+         #{crtdat,jdbcType=TIMESTAMP},#{crtusr,jdbcType=VARCHAR},#{sicguid,jdbcType=VARCHAR},#{followoption,jdbcType=VARCHAR},
+         #{followdatetime,jdbcType=VARCHAR},#{healthprogramme,jdbcType=VARCHAR},#{needattention,jdbcType=VARCHAR}
+    )
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.gz.medicine.yun.doctor.bean.DTfollowupRecord" >
+    insert into CHIS_FOLLOWUP_RECORD
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        GUID,
+      </if>
+      <if test="org != null" >
+        ORG,
+      </if>
+      <if test="docguid != null" >
+        DOCGUID,
+      </if>
+      <if test="usrguid != null" >
+        USRGUID,
+      </if>
+      <if test="sicguid != null" >
+        SICGUID,
+      </if>
+      <if test="followoption != null" >
+        FOLLOWOPTION,
+      </if>
+      <if test="followdatetime != null" >
+        FOLLOWDATETIME,
+      </if>
+      <if test="temperature != null" >
+        TEMPERATURE,
+      </if>
+      <if test="weight != null" >
+        WEIGHT,
+      </if>
+      <if test="heartrate != null" >
+        HEARTRATE,
+      </if>
+      <if test="bloodsugar != null" >
+        BLOODSUGAR,
+      </if>
+      <if test="bloodpressureh != null" >
+        BLOODPRESSUREH,
+      </if>
+      <if test="bloodpressurel != null" >
+        BLOODPRESSUREL,
+      </if>
+      <if test="bloodoxygen != null" >
+        BLOODOXYGEN,
+      </if>
+      <if test="followconclusion != null" >
+        FOLLOWCONCLUSION,
+      </if>
+      <if test="crtusr != null" >
+        CRTUSR,
+      </if>
+      <if test="crtdat != null" >
+        CRTDAT,
+      </if>
+      <if test="updateusr != null" >
+        UPDATEUSR,
+      </if>
+      <if test="updatedate != null" >
+        UPDATEDATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        #{guid,jdbcType=VARCHAR},
+      </if>
+      <if test="org != null" >
+        #{org,jdbcType=VARCHAR},
+      </if>
+      <if test="docguid != null" >
+        #{docguid,jdbcType=VARCHAR},
+      </if>
+      <if test="usrguid != null" >
+        #{usrguid,jdbcType=VARCHAR},
+      </if>
+      <if test="sicguid != null" >
+        #{sicguid,jdbcType=VARCHAR},
+      </if>
+      <if test="followoption != null" >
+        #{followoption,jdbcType=VARCHAR},
+      </if>
+      <if test="followdatetime != null" >
+        #{followdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="temperature != null" >
+        #{temperature,jdbcType=DECIMAL},
+      </if>
+      <if test="weight != null" >
+        #{weight,jdbcType=DECIMAL},
+      </if>
+      <if test="heartrate != null" >
+        #{heartrate,jdbcType=DECIMAL},
+      </if>
+      <if test="bloodsugar != null" >
+        #{bloodsugar,jdbcType=DECIMAL},
+      </if>
+      <if test="bloodpressureh != null" >
+        #{bloodpressureh,jdbcType=DECIMAL},
+      </if>
+      <if test="bloodpressurel != null" >
+        #{bloodpressurel,jdbcType=DECIMAL},
+      </if>
+      <if test="bloodoxygen != null" >
+        #{bloodoxygen,jdbcType=DECIMAL},
+      </if>
+      <if test="followconclusion != null" >
+        #{followconclusion,jdbcType=VARCHAR},
+      </if>
+      <if test="crtusr != null" >
+        #{crtusr,jdbcType=VARCHAR},
+      </if>
+      <if test="crtdat != null" >
+        #{crtdat,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateusr != null" >
+        #{updateusr,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedate != null" >
+        #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.gz.medicine.yun.doctor.bean.DTfollowupRecord" >
+    update CHIS_FOLLOWUP_RECORD
+    <set >
+      <if test="org != null" >
+        ORG = #{org,jdbcType=VARCHAR},
+      </if>
+      <if test="docguid != null" >
+        DOCGUID = #{docguid,jdbcType=VARCHAR},
+      </if>
+      <if test="usrguid != null" >
+        USRGUID = #{usrguid,jdbcType=VARCHAR},
+      </if>
+      <if test="sicguid != null" >
+        SICGUID = #{sicguid,jdbcType=VARCHAR},
+      </if>
+      <if test="followoption != null" >
+        FOLLOWOPTION = #{followoption,jdbcType=VARCHAR},
+      </if>
+      <if test="followdatetime != null" >
+        FOLLOWDATETIME = #{followdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="temperature != null" >
+        TEMPERATURE = #{temperature,jdbcType=DECIMAL},
+      </if>
+      <if test="weight != null" >
+        WEIGHT = #{weight,jdbcType=DECIMAL},
+      </if>
+      <if test="heartrate != null" >
+        HEARTRATE = #{heartrate,jdbcType=DECIMAL},
+      </if>
+      <if test="bloodsugar != null" >
+        BLOODSUGAR = #{bloodsugar,jdbcType=DECIMAL},
+      </if>
+      <if test="bloodpressureh != null" >
+        BLOODPRESSUREH = #{bloodpressureh,jdbcType=DECIMAL},
+      </if>
+      <if test="bloodpressurel != null" >
+        BLOODPRESSUREL = #{bloodpressurel,jdbcType=DECIMAL},
+      </if>
+      <if test="bloodoxygen != null" >
+        BLOODOXYGEN = #{bloodoxygen,jdbcType=DECIMAL},
+      </if>
+      <if test="followconclusion != null" >
+        FOLLOWCONCLUSION = #{followconclusion,jdbcType=VARCHAR},
+      </if>
+      <if test="crtusr != null" >
+        CRTUSR = #{crtusr,jdbcType=VARCHAR},
+      </if>
+      <if test="crtdat != null" >
+        CRTDAT = #{crtdat,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateusr != null" >
+        UPDATEUSR = #{updateusr,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedate != null" >
+        UPDATEDATE = #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gz.medicine.yun.doctor.bean.DTfollowupRecord" >
+    update CHIS_FOLLOWUP_RECORD
+    set ORG = #{org,jdbcType=VARCHAR},
+      DOCGUID = #{docguid,jdbcType=VARCHAR},
+      USRGUID = #{usrguid,jdbcType=VARCHAR},
+      SICGUID = #{sicguid,jdbcType=VARCHAR},
+      FOLLOWOPTION = #{followoption,jdbcType=VARCHAR},
+      FOLLOWDATETIME = #{followdatetime,jdbcType=TIMESTAMP},
+      TEMPERATURE = #{temperature,jdbcType=DECIMAL},
+      WEIGHT = #{weight,jdbcType=DECIMAL},
+      HEARTRATE = #{heartrate,jdbcType=DECIMAL},
+      BLOODSUGAR = #{bloodsugar,jdbcType=DECIMAL},
+      BLOODPRESSUREH = #{bloodpressureh,jdbcType=DECIMAL},
+      BLOODPRESSUREL = #{bloodpressurel,jdbcType=DECIMAL},
+      BLOODOXYGEN = #{bloodoxygen,jdbcType=DECIMAL},
+      FOLLOWCONCLUSION = #{followconclusion,jdbcType=VARCHAR},
+      CRTUSR = #{crtusr,jdbcType=VARCHAR},
+      CRTDAT = #{crtdat,jdbcType=TIMESTAMP},
+      UPDATEUSR = #{updateusr,jdbcType=VARCHAR},
+      UPDATEDATE = #{updatedate,jdbcType=TIMESTAMP}
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </update>
+  <!--www 视频  医生端 -->
+  <select id="selectDTfollowupRecord" resultMap="BaseResultMap2" parameterType="java.lang.String" >
+    select a.healthprogramme,
+       a.needattention,
+       a.GUID,
+       a.FOLLOWUPPLANID,
+       a.DOCGUID,
+       a.USRGUID,
+       a.SICGUID,
+       a.FOLLOWOPTION,
+       to_char(a.FOLLOWDATETIME, 'yyyy-mm-dd hh24:mi:ss') FOLLOWDATETIME,
+       a.TEMPERATURE,
+       a.WEIGHT,
+       a.HEARTRATE,
+       a.BLOODSUGAR,
+       a.BLOODPRESSUREH,
+       a.BLOODPRESSUREL,
+       a.BLOODOXYGEN,
+       a.FOLLOWCONCLUSION,
+       a.HEALTHPROGRAMME,
+       a.NEEDATTENTION,
+       a.XSFZTIME,
+       a.MZFZTIME,
+       b.idcard,
+       a.CRTUSR,
+       to_char(a.crtdat, 'yyyy-mm-dd hh24:mi:ss') CRTDAT,
+       a.UPDATEUSR,
+       to_char(a.UPDATEDATE, 'yyyy-mm-dd hh24:mi:ss') UPDATEDATE,
+       b.name usrname,
+       case
+         when length(b.idcard) = 18 then
+          ceil((to_char(sysdate, 'yyyyMMdd') -
+               to_char(to_date(substr(b.idcard, 7, 8), 'yyyy-MM-dd'),
+                        'yyyyMMdd')) / 10000)
+         when length(b.idcard) = 15 then
+          ceil((to_char(sysdate, 'yyyyMMdd') -
+               to_char(to_date('19' || substr(b.idcard, 7, 6), 'yyyy-MM-dd'),
+                        'yyyyMMdd')) / 10000)
+       end as age,
+       case
+         when length(b.idcard) = 18 then
+          decode(mod(to_number(substr(b.idcard, 17, 1)), 2), 0, '2', '1')
+         when length(b.idcard) = 15 then
+          decode(mod(to_number(b.idcard), 2), 0, '2', '1')
+       end as sex,
+       c.name docname,
+       e.name department,
+       f.ZDNAM zhand
+  from CHIS_FOLLOWUP_RECORD a,
+       usr                  b,
+       usr                  c,
+       yx_doc               d,
+       SICKBLHDR            f,
+       V_YX_DOCDEPT         e
+ where a.usrguid = b.guid
+   and a.docguid = c.guid
+   and c.id = d.id
+   and a.usrguid = f.sickguid
+   and f.guid = a.sicguid
+   and d.DEPARTMENT = e.ID(+)
+   and a.FOLLOWUPPLANID = #{guid, jdbcType = VARCHAR}
+
+  </select>
+  
+  <!-- 视频  pc  -->
+  <select id="queryPageMessageRecord" resultMap="BaseResultMap" parameterType="com.gz.medicine.common.mybatisPageVo.Page">
+   select a.healthprogramme,a.needattention,a.DOCGUID,a.usrguid,a.guid,a.FOLLOWOPTION,
+   to_char(a.followdatetime,'yyyy-mm-dd hh24:mi:ss') followdatetime,c.name,b.name department 
+   from CHIS_followup_Record a,V_YX_DOCDEPT b, usr d ,yx_doc c where d.guid=a.docguid and  c.DEPARTMENT=b.ID(+) and c.id=d.id
+   and a.usrguid=#{usrguid,jdbcType=VARCHAR} 
+   order by a.followdatetime desc
+  </select>
+  
+  <!--www end -->
+  
+  <!-- 根据医生docguid查询随访任务列表（搜索、分页） -->
+  <select id="follUpTasks" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select  * from CHIS_followup_Plan
+    where DOCGUID = #{docguid,jdbcType=VARCHAR} and status=1
+  </select>
+  
+  <!-- 随访任务选择模板查询内容接口 -->
+   <select id="sfSMSdetails" resultType="java.lang.String" parameterType="java.lang.String">
+    select   templatecontent from CHIS_message_Template
+    where guid = #{guid,jdbcType=VARCHAR} and status=1
+  </select>
+
+
+  <!--随访计划 列表-->
+  <select id="queryPageUserGuid" resultMap="BaseResultMap" parameterType="com.gz.medicine.common.mybatisPageVo.Page">
+
+    select c.guid,c.org,c.usrguid,c.DOCGUID,c.SICGUID,c.FOLLOWOPTION,c.FOLLOWDATETIME,c.FOLLOWSTATE,c.CRTDAT,c.UPDATEUSR,c.UPDATEDATE,c.STATUS,y.Name as CRTUSR from CHIS_followup_Plan c,YX_DOC y where c.USRGUID = #{usrguid,jdbcType=CHAR} and c.status=1 and c.DOCGUID=y.GUID
+
+  </select>
+
+  
+
+  <!-- 随访任务发送短信 addSMSreTasks -->
+  <insert id="addSMSreTasks" parameterType="com.gz.medicine.yun.doctor.bean.DTfollowupRecord" >
+  	insert  into CHIS_message_Record 
+  	(DOCGUID,USRGUID,MESSAGESENDDATE,MESSAGESENDCONTENT,CRTUSR,ORG) 
+  	values(#{docguid,jdbcType=VARCHAR},
+  	#{usrguid,jdbcType=VARCHAR},
+  	#{messagesenddate,jdbcType=TIMESTAMP},
+  	#{messagesendcontent,jdbcType=VARCHAR},
+  	#{crtusr,jdbcType=VARCHAR},
+  	'CHIS')
+  </insert>
+  
+  
+  
+  
+  
+</mapper>

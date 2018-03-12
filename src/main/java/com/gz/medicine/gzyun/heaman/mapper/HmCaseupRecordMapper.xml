@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gz.medicine.gzyun.heaman.mapper.HmCaseupRecordMapper">
+  <resultMap id="BaseResultMap" type="com.gz.medicine.gzyun.heaman.bean.HmCaseupRecord">
+    <id column="GUID" jdbcType="CHAR" property="guid" />
+    <result column="USRGUID" jdbcType="CHAR" property="usrguid" />
+    <result column="REPORTTYPE" jdbcType="VARCHAR" property="reporttype" />
+    <result column="REPORTTIME" jdbcType="TIMESTAMP" property="reporttime" />
+    <result column="PICTURE" jdbcType="VARCHAR" property="picture" />
+    <result column="JDUSR" jdbcType="VARCHAR" property="jdusr" />
+    <result column="JDDATE" jdbcType="VARCHAR" property="jddate" />
+    <result column="JDREPORT" jdbcType="VARCHAR" property="jdreport" />
+    <result column="STUTS" jdbcType="VARCHAR" property="stuts" />
+    <result column="CRTDAT" jdbcType="TIMESTAMP" property="crtdat" />
+    <result column="AGE" jdbcType="VARCHAR" property="age" />
+    <result column="SEX" jdbcType="VARCHAR" property="sex" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    GUID, USRGUID, REPORTTYPE, REPORTTIME, PICTURE, JDUSR, JDDATE, JDREPORT, STUTS, CRTDAT
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from GZJK_CASEUPRECORD
+    where GUID = #{guid,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from GZJK_CASEUPRECORD
+    where GUID = #{guid,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gz.medicine.gzyun.heaman.bean.HmCaseupRecord">
+    insert into GZJK_CASEUPRECORD (GUID, USRGUID, REPORTTYPE, 
+      REPORTTIME, PICTURE, JDUSR, 
+      JDDATE, JDREPORT, STUTS, 
+      CRTDAT)
+    values (#{guid,jdbcType=CHAR}, #{usrguid,jdbcType=CHAR}, #{reporttype,jdbcType=VARCHAR}, 
+      #{reporttime,jdbcType=TIMESTAMP}, #{picture,jdbcType=VARCHAR}, #{jdusr,jdbcType=VARCHAR}, 
+      #{jddate,jdbcType=VARCHAR}, #{jdreport,jdbcType=VARCHAR}, #{stuts,jdbcType=VARCHAR}, 
+      #{crtdat,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gz.medicine.gzyun.heaman.bean.HmCaseupRecord">
+    insert into GZJK_CASEUPRECORD
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        GUID,
+      </if>
+      <if test="usrguid != null">
+        USRGUID,
+      </if>
+      <if test="reporttype != null">
+        REPORTTYPE,
+      </if>
+      <if test="reporttime != null">
+        REPORTTIME,
+      </if>
+      <if test="picture != null">
+        PICTURE,
+      </if>
+      <if test="jdusr != null">
+        JDUSR,
+      </if>
+      <if test="jddate != null">
+        JDDATE,
+      </if>
+      <if test="jdreport != null">
+        JDREPORT,
+      </if>
+      <if test="stuts != null">
+        STUTS,
+      </if>
+      <if test="crtdat != null">
+        CRTDAT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        #{guid,jdbcType=CHAR},
+      </if>
+      <if test="usrguid != null">
+        #{usrguid,jdbcType=CHAR},
+      </if>
+      <if test="reporttype != null">
+        #{reporttype,jdbcType=VARCHAR},
+      </if>
+      <if test="reporttime != null">
+        #{reporttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="picture != null">
+        #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="jdusr != null">
+        #{jdusr,jdbcType=VARCHAR},
+      </if>
+      <if test="jddate != null">
+        #{jddate,jdbcType=VARCHAR},
+      </if>
+      <if test="jdreport != null">
+        #{jdreport,jdbcType=VARCHAR},
+      </if>
+      <if test="stuts != null">
+        #{stuts,jdbcType=VARCHAR},
+      </if>
+      <if test="crtdat != null">
+        #{crtdat,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gz.medicine.gzyun.heaman.bean.HmCaseupRecord">
+    update GZJK_CASEUPRECORD
+    <set>
+      <if test="usrguid != null">
+        USRGUID = #{usrguid,jdbcType=CHAR},
+      </if>
+      <if test="reporttype != null">
+        REPORTTYPE = #{reporttype,jdbcType=VARCHAR},
+      </if>
+      <if test="reporttime != null">
+        REPORTTIME = #{reporttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="picture != null">
+        PICTURE = #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="jdusr != null">
+        JDUSR = #{jdusr,jdbcType=VARCHAR},
+      </if>
+      <if test="jddate != null">
+        JDDATE = #{jddate,jdbcType=VARCHAR},
+      </if>
+      <if test="jdreport != null">
+        JDREPORT = #{jdreport,jdbcType=VARCHAR},
+      </if>
+      <if test="stuts != null">
+        STUTS = #{stuts,jdbcType=VARCHAR},
+      </if>
+      <if test="crtdat != null">
+        CRTDAT = #{crtdat,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where GUID = #{guid,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gz.medicine.gzyun.heaman.bean.HmCaseupRecord">
+    update GZJK_CASEUPRECORD
+    set USRGUID = #{usrguid,jdbcType=CHAR},
+      REPORTTYPE = #{reporttype,jdbcType=VARCHAR},
+      REPORTTIME = #{reporttime,jdbcType=TIMESTAMP},
+      PICTURE = #{picture,jdbcType=VARCHAR},
+      JDUSR = #{jdusr,jdbcType=VARCHAR},
+      JDDATE = #{jddate,jdbcType=VARCHAR},
+      JDREPORT = #{jdreport,jdbcType=VARCHAR},
+      STUTS = #{stuts,jdbcType=VARCHAR},
+      CRTDAT = #{crtdat,jdbcType=TIMESTAMP}
+    where GUID = #{guid,jdbcType=CHAR}
+  </update>
+  
+  <select id="selectByCaseup" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    USRGUID,GUID,REPORTTYPE,REPORTTIME,PICTURE 
+    from GZJK_CASEUPRECORD
+    where USRGUID = #{usrguid,jdbcType=CHAR} order by REPORTTIME desc
+  </select>
+  
+  <select id="ListCaseup" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    GUID, USRGUID, REPORTTYPE, to_char(to_date(substr(REPORTTIME,0,19),'yyyy-mm-dd hh24:mi:ss'),'yyyy-mm-dd hh24:mi:ss') REPORTTIME, PICTURE
+    from GZJK_CASEUPRECORD
+    where <![CDATA[ROWNUM<=10]]>
+  </select>
+  
+  <select id="selectByDetails" parameterType="java.lang.String" resultMap="BaseResultMap">
+  select a.USRGUID,a.GUID,to_char(to_date(substr(JDDATE,0,10),'yyyy-mm-dd'),'yyyy-mm-dd')  JDDATE,a.JDREPORT,a.JDUSR,b.name,b.age,decode(mod (to_number( substr(b.idcard ,17, 1)),2 ),0, '女','男' ) as sex 
+  from GZJK_caseupRecord a,GZJK_PERMSGRECORD b 
+  where b.usrguid=a.usrguid and a.GUID=#{guid,jdbcType=CHAR}
+  </select>
+  
+  <select id="selectByInterpretation" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    USRGUID,GUID,to_char(to_date(substr(JDDATE,0,19),'yyyy-mm-dd hh24:mi:ss'),'yyyy-mm-dd hh24:mi:ss') JDDATE
+    from GZJK_CASEUPRECORD
+    where USRGUID = #{usrguid,jdbcType=CHAR} order by REPORTTIME desc
+  </select>
+  
+  <insert id="insertCaseup" parameterType="com.gz.medicine.gzyun.heaman.bean.HmCaseupRecord">
+    insert into GZJK_caseupRecord(USRGUID,GUID,REPORTTIME,REPORTTYPE,PICTURE)values (#{usrguid,jdbcType=CHAR},sys_guid(),#{reporttime,jdbcType=TIMESTAMP},#{reporttype,jdbcType=VARCHAR},#{picture,jdbcType=VARCHAR})
+  </insert>
+</mapper>

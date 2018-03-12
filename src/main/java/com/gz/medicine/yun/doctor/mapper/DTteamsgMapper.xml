@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gz.medicine.yun.doctor.mapper.DTteamsgMapper" >
+  <resultMap id="BaseResultMap" type="com.gz.medicine.yun.doctor.bean.DTteamsg" >
+    <result column="GUID" property="guid" jdbcType="CHAR" />
+    <result column="TYPE" property="type" jdbcType="CHAR" />
+    <result column="MSGS" property="msgs" jdbcType="VARCHAR" />
+    <result column="BLOBGUID" property="blobguid" jdbcType="VARCHAR" />
+    <result column="BLGUID" property="blguid" jdbcType="VARCHAR" />
+    <result column="MSGDAT" property="msgdat" jdbcType="VARCHAR" />
+    <result column="CRTDAT" property="crtdat" jdbcType="TIMESTAMP" />
+    <result column="MSGSUSRGUID" property="msgsusrguid" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.gz.medicine.yun.doctor.bean.DTteamsg" >
+    insert into CHIS_TEAMSG (GUID, TYPE, MSGS, BLOBGUID, 
+      BLGUID, MSGDAT, CRTDAT, 
+      MSGSUSRGUID)
+    values (#{guid,jdbcType=CHAR}, #{type,jdbcType=CHAR}, #{msgs,jdbcType=VARCHAR}, #{blobguid,jdbcType=VARCHAR}, 
+      #{blguid,jdbcType=VARCHAR}, #{msgdat,jdbcType=VARCHAR}, #{crtdat,jdbcType=TIMESTAMP}, 
+      #{msgsusrguid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gz.medicine.yun.doctor.bean.DTteamsg" >
+    insert into CHIS_TEAMSG
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        GUID,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="msgs != null" >
+        MSGS,
+      </if>
+      <if test="blobguid != null" >
+        BLOBGUID,
+      </if>
+      <if test="blguid != null" >
+        BLGUID,
+      </if>
+      <if test="msgdat != null" >
+        MSGDAT,
+      </if>
+      <if test="crtdat != null" >
+        CRTDAT,
+      </if>
+      <if test="msgsusrguid != null" >
+        MSGSUSRGUID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        #{guid,jdbcType=CHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=CHAR},
+      </if>
+      <if test="msgs != null" >
+        #{msgs,jdbcType=VARCHAR},
+      </if>
+      <if test="blobguid != null" >
+        #{blobguid,jdbcType=VARCHAR},
+      </if>
+      <if test="blguid != null" >
+        #{blguid,jdbcType=VARCHAR},
+      </if>
+      <if test="msgdat != null" >
+        #{msgdat,jdbcType=VARCHAR},
+      </if>
+      <if test="crtdat != null" >
+        #{crtdat,jdbcType=TIMESTAMP},
+      </if>
+      <if test="msgsusrguid != null" >
+        #{msgsusrguid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="queryPageTeamsg" parameterType="com.gz.medicine.common.mybatisPageVo.Page" resultMap="ResultMap">
+     select m.*,u.id,y.name,y.img from ( select * from CHIS_TEAMSG
+   where MSGSUSRGUID in(
+       select docguid from  CHIS_TEAM_DOC where  teamguid= #{teamGuid,jdbcType=VARCHAR}
+    ) ) m left join usr u on m.MSGSUSRGUID=u.guid left join yx_doc y on u.id=y.id
+
+  </select>
+  <resultMap id="ResultMap" type="java.util.HashMap" >
+    <result column="GUID" property="guid" jdbcType="CHAR" />
+    <result column="TYPE" property="type" jdbcType="CHAR" />
+    <result column="MSGS" property="msgs" jdbcType="VARCHAR" />
+    <result column="BLOBGUID" property="blobguid" jdbcType="VARCHAR" />
+    <result column="BLGUID" property="blguid" jdbcType="VARCHAR" />
+    <result column="MSGDAT" property="msgdat" jdbcType="VARCHAR" />
+    <result column="CRTDAT" property="crtdat" jdbcType="TIMESTAMP" />
+    <result column="MSGSUSRGUID" property="msgsusrguid" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="IMG" property="img" jdbcType="VARCHAR" />
+  </resultMap>
+
+</mapper>

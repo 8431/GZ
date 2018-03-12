@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gz.medicine.yun.doctor.mapper.DTpreoffMapper" >
+  <resultMap id="BaseResultMap" type="com.gz.medicine.yun.doctor.bean.DTpreoff" >
+    <result column="GUID" property="guid" jdbcType="VARCHAR" />
+    <result column="ACC" property="acc" jdbcType="VARCHAR" />
+    <result column="SYT" property="syt" jdbcType="VARCHAR" />
+    <result column="ORG" property="org" jdbcType="VARCHAR" />
+    <result column="CRTDAT" property="crtdat" jdbcType="TIMESTAMP" />
+    <result column="FLG" property="flg" jdbcType="VARCHAR" />
+    <result column="SEQID" property="seqid" jdbcType="DECIMAL" />
+    <result column="PRENO" property="preno" jdbcType="VARCHAR" />
+    <result column="PREDAT" property="predat" jdbcType="VARCHAR" />
+    <result column="USRID" property="usrid" jdbcType="VARCHAR" />
+    <result column="DOCID" property="docid" jdbcType="VARCHAR" />
+    <result column="DOCNAM" property="docnam" jdbcType="VARCHAR" />
+    <result column="CARDNO" property="cardno" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />  
+    <result column="SEX" property="sex" jdbcType="VARCHAR" />
+    <result column="AGE" property="age" jdbcType="VARCHAR" />
+    <result column="IMGGUID" property="imgguid" jdbcType="VARCHAR" /> 
+  </resultMap>
+  <insert id="insert" parameterType="com.gz.medicine.yun.doctor.bean.DTpreoff" >
+    insert into CHIS_PREOFF (GUID, ACC, SYT, 
+      ORG, CRTDAT, FLG, 
+      SEQID, PRENO, PREDAT, 
+      USRID, DOCID)
+    values (#{guid,jdbcType=VARCHAR}, #{acc,jdbcType=VARCHAR}, #{syt,jdbcType=VARCHAR}, 
+      #{org,jdbcType=VARCHAR}, #{crtdat,jdbcType=TIMESTAMP}, #{flg,jdbcType=VARCHAR}, 
+      #{seqid,jdbcType=DECIMAL}, #{preno,jdbcType=VARCHAR}, #{predat,jdbcType=VARCHAR}, 
+      #{usrid,jdbcType=VARCHAR}, #{docid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gz.medicine.yun.doctor.bean.DTpreoff" >
+    insert into CHIS_PREOFF
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        GUID,
+      </if>
+      <if test="acc != null" >
+        ACC,
+      </if>
+      <if test="syt != null" >
+        SYT,
+      </if>
+      <if test="org != null" >
+        ORG,
+      </if>
+      <if test="crtdat != null" >
+        CRTDAT,
+      </if>
+      <if test="flg != null" >
+        FLG,
+      </if>
+      <if test="seqid != null" >
+        SEQID,
+      </if>
+      <if test="preno != null" >
+        PRENO,
+      </if>
+      <if test="predat != null" >
+        PREDAT,
+      </if>
+      <if test="usrid != null" >
+        USRID,
+      </if>
+      <if test="docid != null" >
+        DOCID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        #{guid,jdbcType=VARCHAR},
+      </if>
+      <if test="acc != null" >
+        #{acc,jdbcType=VARCHAR},
+      </if>
+      <if test="syt != null" >
+        #{syt,jdbcType=VARCHAR},
+      </if>
+      <if test="org != null" >
+        #{org,jdbcType=VARCHAR},
+      </if>
+      <if test="crtdat != null" >
+        #{crtdat,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flg != null" >
+        #{flg,jdbcType=VARCHAR},
+      </if>
+      <if test="seqid != null" >
+        #{seqid,jdbcType=DECIMAL},
+      </if>
+      <if test="preno != null" >
+        #{preno,jdbcType=VARCHAR},
+      </if>
+      <if test="predat != null" >
+        #{predat,jdbcType=VARCHAR},
+      </if>
+      <if test="usrid != null" >
+        #{usrid,jdbcType=VARCHAR},
+      </if>
+      <if test="docid != null" >
+        #{docid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+   <!--分页-->
+  <select id="queryPageUsrid" parameterType="com.gz.medicine.common.mybatisPageVo.Page" resultMap="ResultMap">
+
+
+    <![CDATA[
+  select b.id,case
+                when length(b.idcard) = 18 then
+                 ceil((to_char(sysdate, 'yyyyMMdd') -
+                      to_char(to_date(substr(b.idcard, 7, 8), 'yyyy-MM-dd'),
+                               'yyyyMMdd')) / 10000)
+                when length(b.idcard) = 15 then
+                 ceil((to_char(sysdate, 'yyyyMMdd') -
+                      to_char(to_date('19' || substr(b.idcard, 7, 6),
+                                       'yyyy-MM-dd'),
+                               'yyyyMMdd')) / 10000)
+              end as age,
+              case
+                when length(b.idcard) = 18 then
+                 decode(mod(to_number(substr(b.idcard, 17, 1)), 2),
+                        0,
+                        '2',
+                        '1')
+                when length(b.idcard) = 15 then
+                 decode(mod(to_number(b.idcard), 2), 0, '2', '1')
+              end as sex,
+b.name,b.guid,b.cardno,b.imgguid,c.id docid,c.name docnam,a.predat,a.preno,to_char(a.crtdat,'yyyy-MM-dd HH24:mi') as crtdat from chis_preoff a, usr b,usr c 
+where a.usrid=b.id
+and a.docid=c.id
+and b.org='CHIS'
+and c.org='CHIS'
+and  a.usrid is not null 
+and a.docid is not null 
+and c.id=#{id,jdbcType=VARCHAR}
+ORDER BY CRTDAT DESC
+    ]]>
+  </select>
+  <resultMap id="ResultMap" type="java.util.HashMap" >
+	<result column="GUID" property="guid" jdbcType="VARCHAR" />
+    <result column="ACC" property="acc" jdbcType="VARCHAR" />
+    <result column="SYT" property="syt" jdbcType="VARCHAR" />
+    <result column="ORG" property="org" jdbcType="VARCHAR" />
+    <result column="CRTDAT" property="crtdat" jdbcType="VARCHAR" />
+    <result column="FLG" property="flg" jdbcType="VARCHAR" />
+    <result column="SEQID" property="seqid" jdbcType="DECIMAL" />
+    <result column="PRENO" property="preno" jdbcType="VARCHAR" />
+    <result column="PREDAT" property="predat" jdbcType="VARCHAR" />
+    <result column="USRID" property="usrid" jdbcType="VARCHAR" />
+    <result column="DOCID" property="docid" jdbcType="VARCHAR" />   
+    <result column="DOCNAM" property="docnam" jdbcType="VARCHAR" />
+    <result column="CARDNO" property="cardno" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />      
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="SEX" property="sex" jdbcType="VARCHAR" />
+    <result column="AGE" property="age" jdbcType="VARCHAR" />
+    <result column="IMGGUID" property="imgguid" jdbcType="VARCHAR" />
+  </resultMap>
+</mapper>

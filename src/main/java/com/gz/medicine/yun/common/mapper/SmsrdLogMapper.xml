@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gz.medicine.yun.common.mapper.SmsrdLogMapper" >
+
+  <resultMap id="BaseResultMap" type="com.gz.medicine.yun.common.bean.SmsrdLog" >
+    <id column="GUID" property="guid" jdbcType="CHAR" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+    <result column="PLATFORM" property="platform" jdbcType="VARCHAR" />
+    <result column="NOTE" property="note" jdbcType="VARCHAR" />
+    <result column="CRTDAT" property="crtdat" jdbcType="TIMESTAMP" />
+    <result column="HOSPITAL" property="hospital" jdbcType="VARCHAR" />
+    <result column="IPADDR" property="ipaddr" jdbcType="VARCHAR" />
+    <result column="VERIFCODE" property="verifcode" jdbcType="VARCHAR" />
+  </resultMap>
+
+
+  <select id="getCountIp" resultType="java.lang.Integer">
+    select count(*) from chis_smsrdlog where IPADDR=#{ip,jdbcType=VARCHAR} and to_char(crtdat,'yyyy-mm-dd')=to_char(sysdate,'yyyy-mm-dd')
+  </select>
+
+  <select id="getCountPhone" resultType="java.lang.Integer">
+    select count(*) from chis_smsrdlog where PHONE=#{phone,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getCountMin" resultType="java.lang.Integer">
+    select ROUND(TO_NUMBER(sysdate - to_date((select to_char(max(CRTDAT),'yyyy-mm-dd hh24:mi:ss') from chis_smsrdlog where PHONE=#{phone,jdbcType=VARCHAR}),'yyyy-mm-dd hh24:mi:ss')) * 24 * 60) XCDAT from dual
+  </select>
+
+  <select id="getCountCntNum" resultType="java.lang.Integer">
+    select count(*) from chis_smsrdlog where PHONE=#{phone,jdbcType=VARCHAR} and to_char(crtdat,'yyyy-mm-dd')=to_char(sysdate,'yyyy-mm-dd')
+  </select>
+
+  <insert id="insertSelective" parameterType="com.gz.medicine.yun.common.bean.SmsrdLog" >
+    insert into CHIS_SMSRDLOG
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      <if test="guid != null" >
+        GUID,
+      </if>
+      <if test="phone != null" >
+        PHONE,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="platform != null" >
+        PLATFORM,
+      </if>
+      <if test="note != null" >
+        NOTE,
+      </if>
+      <if test="crtdat != null" >
+        CRTDAT,
+      </if>
+      <if test="hospital != null" >
+        HOSPITAL,
+      </if>
+      <if test="ipaddr != null" >
+        IPADDR,
+      </if>
+      <if test="verifcode != null" >
+        VERIFCODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        #{guid,jdbcType=CHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="platform != null" >
+        #{platform,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="crtdat != null" >
+        #{crtdat,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hospital != null" >
+        #{hospital,jdbcType=VARCHAR},
+      </if>
+      <if test="ipaddr != null" >
+        #{ipaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="verifcode != null" >
+        #{verifcode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+</mapper>

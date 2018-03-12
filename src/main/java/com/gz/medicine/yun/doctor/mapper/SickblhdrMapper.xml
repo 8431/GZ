@@ -1,0 +1,1420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gz.medicine.yun.doctor.mapper.SickblhdrMapper">
+
+	<resultMap id="BaseResultMap" type="com.gz.medicine.yun.doctor.bean.Sickblhdr">
+	          <id column="GUID" jdbcType="CHAR" property="guid"/>
+              <result column="CARDID" jdbcType="VARCHAR" property="cardid"/>  
+              <result column="NAME" jdbcType="VARCHAR" property="name"/>  
+              <result column="SEX" jdbcType="VARCHAR" property="sex"/>  
+              <result column="DEPT" jdbcType="VARCHAR" property="dept"/>  
+              <result column="AGE" jdbcType="VARCHAR" property="age"/>  
+              <result column="GMS" jdbcType="VARCHAR" property="gms"/>  
+              <result column="BLDAT" jdbcType="TIMESTAMP" property="bldat"/>  
+              <result column="MAINN" jdbcType="VARCHAR" property="mainn"/>  
+              <result column="XBS" jdbcType="VARCHAR" property="xbs"/>  
+              <result column="JWS" jdbcType="VARCHAR" property="jws"/>  
+              <result column="HEIGHT" jdbcType="VARCHAR" property="height"/>  
+              <result column="WEIGHT" jdbcType="VARCHAR" property="weight"/>  
+              <result column="XY1" jdbcType="VARCHAR" property="xy1"/>  
+              <result column="XY2" jdbcType="VARCHAR" property="xy2"/>  
+              <result column="TW" jdbcType="VARCHAR" property="tw"/>  
+              <result column="XL" jdbcType="VARCHAR" property="xl"/>  
+              <result column="OTHER" jdbcType="VARCHAR" property="other"/>  
+              <result column="ZHAND" jdbcType="VARCHAR" property="zhand"/>  
+              <result column="NOTE" jdbcType="VARCHAR" property="note"/>  
+              <result column="BJFA" jdbcType="VARCHAR" property="bjfa"/>  
+              <result column="DOUTYP" jdbcType="VARCHAR" property="doutyp"/>  
+              <result column="PRE" jdbcType="VARCHAR" property="pre"/>  
+              <result column="DOC" jdbcType="VARCHAR" property="doc"/>  
+              <result column="WDAT" jdbcType="TIMESTAMP" property="wdat"/>  
+              <result column="ACC" jdbcType="VARCHAR" property="acc"/>  
+              <result column="ORG" jdbcType="VARCHAR" property="org"/>  
+              <result column="SICKGUID" jdbcType="VARCHAR" property="sickguid"/>  
+              <result column="DOCGUID" jdbcType="VARCHAR" property="docguid"/>  
+              <result column="PRENO" jdbcType="VARCHAR" property="preno"/>  
+              <result column="PRENOTE" jdbcType="VARCHAR" property="prenote"/>  
+              <result column="ZDNAM" jdbcType="VARCHAR" property="zdnam"/>  
+              <result column="MAINNE" jdbcType="VARCHAR" property="mainne"/>  
+              <result column="XBSNAM" jdbcType="VARCHAR" property="xbsnam"/>  
+              <result column="CRTDAT" jdbcType="TIMESTAMP" property="crtdat"/>  
+              <result column="CHANGDOC" jdbcType="VARCHAR" property="changdoc"/>  
+              <result column="SENDKA" jdbcType="VARCHAR" property="sendka"/>  
+              <result column="TELEPHONE" jdbcType="VARCHAR" property="telephone"/>  
+              <result column="ISFOLLOW" jdbcType="VARCHAR" property="isfollow"/>  
+              <result column="PRETIM" jdbcType="VARCHAR" property="pretim"/>  
+              <result column="DEPTID" jdbcType="VARCHAR" property="deptid"/>  
+              <result column="CLUCOSE" jdbcType="VARCHAR" property="clucose"/>  
+              <result column="GLUCOSE" jdbcType="VARCHAR" property="glucose"/>  
+              <result column="LINEDATE" jdbcType="VARCHAR" property="linedate"/>  
+              <result column="LINETIME" jdbcType="VARCHAR" property="linetime"/>  
+              <result column="ORDERSTATUS" jdbcType="VARCHAR" property="orderstatus"/>  
+              <result column="MEDICINEWAY" jdbcType="VARCHAR" property="medicineway"/>  
+              <result column="LOCGUID" jdbcType="CHAR" property="locguid"/>  
+              <result column="SENDFLG" jdbcType="VARCHAR" property="sendflg"/>  
+              <result column="YBTYP" jdbcType="VARCHAR" property="ybtyp"/>  
+              <result column="ISVIDEOPUSH" jdbcType="VARCHAR" property="isvideopush"/>  
+              <result column="NOTEEXT" jdbcType="VARCHAR" property="noteext"/>  
+              <result column="MZID" jdbcType="VARCHAR" property="mzid"/>  
+              <result column="ZYID" jdbcType="VARCHAR" property="zyid"/>  
+              <result column="CHK_XGN" jdbcType="VARCHAR" property="chkxgn"/>  
+              <result column="CHK_JL" jdbcType="VARCHAR" property="chkjl"/>  
+              <result column="CHK_PH" jdbcType="VARCHAR" property="chkph"/>  
+              <result column="CHK_RR" jdbcType="VARCHAR" property="chkrr"/>  
+              <result column="CHECKXT" jdbcType="VARCHAR" property="checkxt"/>  
+              <result column="FZZD" jdbcType="VARCHAR" property="fzzd"/>  
+              <result column="FZZDNOTE" jdbcType="VARCHAR" property="fzzdnote"/>  
+              <result column="CFTYP" jdbcType="VARCHAR" property="cftyp"/>  
+              <result column="MEDICARECARD" jdbcType="VARCHAR" property="medicarecard"/>  
+              <result column="BIRTHDAY" jdbcType="VARCHAR" property="birthday"/>  
+              <result column="MEDICALID" jdbcType="VARCHAR" property="medicalid"/>
+              <result column="AGEOPTIONS" jdbcType="VARCHAR" property="ageoptions"/>
+              <result column="CODON" jdbcType="VARCHAR" property="codon"/>
+              <result column="CLINICALTIME" jdbcType="TIMESTAMP" property="clinicaltime"/>
+              <result column="PERIODTIME" jdbcType="VARCHAR" property="periodtime"/>
+                <result column="CREATENAME" jdbcType="VARCHAR" property="createname"/>
+                <result column="UPDATENAME" jdbcType="TIMESTAMP" property="updatename"/>
+                <result column="UPDATEDATE" jdbcType="VARCHAR" property="updatedate"/>
+	</resultMap>
+
+	 <sql id="Base_Column_List">
+			     GUID, CARDID, NAME, SEX, DEPT, AGE, GMS, BLDAT, MAINN, XBS, JWS, HEIGHT, WEIGHT, XY1, XY2, TW, XL, OTHER, ZHAND, NOTE, BJFA, DOUTYP, PRE, DOC, WDAT, ACC, ORG, SICKGUID, DOCGUID, PRENO, PRENOTE, ZDNAM, MAINNE, XBSNAM, CRTDAT, CHANGDOC, SENDKA, TELEPHONE, ISFOLLOW, PRETIM, DEPTID, CLUCOSE, GLUCOSE, LINEDATE, LINETIME, ORDERSTATUS, MEDICINEWAY, LOCGUID, SENDFLG, YBTYP, ISVIDEOPUSH, NOTEEXT, MZID, ZYID, CHK_XGN, CHK_JL, CHK_PH, CHK_RR, CHECKXT, FZZD, FZZDNOTE, CFTYP, MEDICARECARD, BIRTHDAY, MEDICALID,AGEOPTIONS,CODON,CLINICALTIME,PERIODTIME,CREATENAME,UPDATENAME,UPDATEDATE
+	 </sql>
+
+     <!-- 根据主键获取对象 -->
+	 <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from Sickblhdr
+	    where  GUID = #{guid,jdbcType=CHAR}
+	  </select>
+	
+	  <!-- 根据主键删除 -->
+	  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+	    update Sickblhdr
+		<set>
+		    STATE = '1'
+		</set>
+		where GUID = #{guid,jdbcType=CHAR}
+	  </delete>
+	
+	  <!-- 新增对象(所有字段) -->
+	  <insert id="insert" parameterType="com.gz.medicine.yun.doctor.bean.Sickblhdr">
+		insert into Sickblhdr(
+			<include refid="Base_Column_List" />
+		)
+		values(	  
+	             #{guid,jdbcType=CHAR} 
+                 
+	             ,#{cardid,jdbcType=VARCHAR}
+                 
+	             ,#{name,jdbcType=VARCHAR}
+                 
+	             ,#{sex,jdbcType=VARCHAR}
+                 
+	             ,#{dept,jdbcType=VARCHAR}
+                 
+	             ,#{age,jdbcType=VARCHAR}
+                 
+	             ,#{gms,jdbcType=VARCHAR}
+                 
+	             ,#{bldat,jdbcType=TIMESTAMP}
+                 
+	             ,#{mainn,jdbcType=VARCHAR}
+                 
+	             ,#{xbs,jdbcType=VARCHAR}
+                 
+	             ,#{jws,jdbcType=VARCHAR}
+                 
+	             ,#{height,jdbcType=VARCHAR}
+                 
+	             ,#{weight,jdbcType=VARCHAR}
+                 
+	             ,#{xy1,jdbcType=VARCHAR}
+                 
+	             ,#{xy2,jdbcType=VARCHAR}
+                 
+	             ,#{tw,jdbcType=VARCHAR}
+                 
+	             ,#{xl,jdbcType=VARCHAR}
+                 
+	             ,#{other,jdbcType=VARCHAR}
+                 
+	             ,#{zhand,jdbcType=VARCHAR}
+                 
+	             ,#{note,jdbcType=VARCHAR}
+                 
+	             ,#{bjfa,jdbcType=VARCHAR}
+                 
+	             ,#{doutyp,jdbcType=VARCHAR}
+                 
+	             ,#{pre,jdbcType=VARCHAR}
+                 
+	             ,#{doc,jdbcType=VARCHAR}
+                 
+	             ,#{wdat,jdbcType=TIMESTAMP}
+                 
+	             ,#{acc,jdbcType=VARCHAR}
+                 
+	             ,#{org,jdbcType=VARCHAR}
+                 
+	             ,#{sickguid,jdbcType=VARCHAR}
+                 
+	             ,#{docguid,jdbcType=VARCHAR}
+                 
+	             ,#{preno,jdbcType=VARCHAR}
+                 
+	             ,#{prenote,jdbcType=VARCHAR}
+                 
+	             ,#{zdnam,jdbcType=VARCHAR}
+                 
+	             ,#{mainne,jdbcType=VARCHAR}
+                 
+	             ,#{xbsnam,jdbcType=VARCHAR}
+                 
+	             ,#{crtdat,jdbcType=TIMESTAMP}
+                 
+	             ,#{changdoc,jdbcType=VARCHAR}
+                 
+	             ,#{sendka,jdbcType=VARCHAR}
+                 
+	             ,#{telephone,jdbcType=VARCHAR}
+                 
+	             ,#{isfollow,jdbcType=VARCHAR}
+                 
+	             ,#{pretim,jdbcType=VARCHAR}
+                 
+	             ,#{deptid,jdbcType=VARCHAR}
+                 
+	             ,#{clucose,jdbcType=VARCHAR}
+                 
+	             ,#{glucose,jdbcType=VARCHAR}
+                 
+	             ,#{linedate,jdbcType=VARCHAR}
+                 
+	             ,#{linetime,jdbcType=VARCHAR}
+                 
+	             ,#{orderstatus,jdbcType=VARCHAR}
+                 
+	             ,#{medicineway,jdbcType=VARCHAR}
+                 
+	             ,#{locguid,jdbcType=CHAR}
+                 
+	             ,#{sendflg,jdbcType=VARCHAR}
+                 
+	             ,#{ybtyp,jdbcType=VARCHAR}
+                 
+	             ,#{isvideopush,jdbcType=VARCHAR}
+                 
+	             ,#{noteext,jdbcType=VARCHAR}
+                 
+	             ,#{mzid,jdbcType=VARCHAR}
+                 
+	             ,#{zyid,jdbcType=VARCHAR}
+                 
+	             ,#{chkxgn,jdbcType=VARCHAR}
+                 
+	             ,#{chkjl,jdbcType=VARCHAR}
+                 
+	             ,#{chkph,jdbcType=VARCHAR}
+                 
+	             ,#{chkrr,jdbcType=VARCHAR}
+                 
+	             ,#{checkxt,jdbcType=VARCHAR}
+                 
+	             ,#{fzzd,jdbcType=VARCHAR}
+                 
+	             ,#{fzzdnote,jdbcType=VARCHAR}
+                 
+	             ,#{cftyp,jdbcType=VARCHAR}
+                 
+	             ,#{medicarecard,jdbcType=VARCHAR}
+                 
+	             ,#{birthday,jdbcType=VARCHAR}
+                 
+	             ,#{medicalid,jdbcType=VARCHAR}
+
+                 ,#{ageoptions,jdbcType=VARCHAR}
+
+                  ,#{codon,jdbcType=VARCHAR}
+
+              ,#{clinicaltime,jdbcType=TIMESTAMP}
+
+              ,#{periodtime,jdbcType=VARCHAR}
+
+          ,#{createname,jdbcType=VARCHAR}
+
+          ,#{updatename,jdbcType=TIMESTAMP}
+
+          ,#{updatedate,jdbcType=VARCHAR}
+               )
+	  </insert>
+	
+	  <!-- 新增对象(部分字段) -->
+	  <insert id="insertSelective" parameterType="com.gz.medicine.yun.doctor.bean.Sickblhdr">
+	    insert into Sickblhdr
+	    <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="guid != null and guid != ''">  
+                GUID,
+            </if>  
+            <if test="cardid != null and cardid != ''">  
+                CARDID,
+            </if>  
+            <if test="name != null and name != ''">  
+                NAME,
+            </if>  
+            <if test="sex != null and sex != ''">  
+                SEX,
+            </if>  
+            <if test="dept != null and dept != ''">  
+                DEPT,
+            </if>  
+            <if test="age != null and age != ''">  
+                AGE,
+            </if>  
+            <if test="gms != null and gms != ''">  
+                GMS,
+            </if>  
+            <if test="bldat != null and bldat != ''">  
+                BLDAT,
+            </if>  
+            <if test="mainn != null and mainn != ''">  
+                MAINN,
+            </if>  
+            <if test="xbs != null and xbs != ''">  
+                XBS,
+            </if>  
+            <if test="jws != null and jws != ''">  
+                JWS,
+            </if>  
+            <if test="height != null and height != ''">  
+                HEIGHT,
+            </if>  
+            <if test="weight != null and weight != ''">  
+                WEIGHT,
+            </if>  
+            <if test="xy1 != null and xy1 != ''">  
+                XY1,
+            </if>  
+            <if test="xy2 != null and xy2 != ''">  
+                XY2,
+            </if>  
+            <if test="tw != null and tw != ''">  
+                TW,
+            </if>  
+            <if test="xl != null and xl != ''">  
+                XL,
+            </if>  
+            <if test="other != null and other != ''">  
+                OTHER,
+            </if>  
+            <if test="zhand != null and zhand != ''">  
+                ZHAND,
+            </if>  
+            <if test="note != null and note != ''">  
+                NOTE,
+            </if>  
+            <if test="bjfa != null and bjfa != ''">  
+                BJFA,
+            </if>  
+            <if test="doutyp != null and doutyp != ''">  
+                DOUTYP,
+            </if>  
+            <if test="pre != null and pre != ''">  
+                PRE,
+            </if>  
+            <if test="doc != null and doc != ''">  
+                DOC,
+            </if>  
+            <if test="wdat != null and wdat != ''">  
+                WDAT,
+            </if>  
+            <if test="acc != null and acc != ''">  
+                ACC,
+            </if>  
+            <if test="org != null and org != ''">  
+                ORG,
+            </if>  
+            <if test="sickguid != null and sickguid != ''">  
+                SICKGUID,
+            </if>  
+            <if test="docguid != null and docguid != ''">  
+                DOCGUID,
+            </if>  
+            <if test="preno != null and preno != ''">  
+                PRENO,
+            </if>  
+            <if test="prenote != null and prenote != ''">  
+                PRENOTE,
+            </if>  
+            <if test="zdnam != null and zdnam != ''">  
+                ZDNAM,
+            </if>  
+            <if test="mainne != null and mainne != ''">  
+                MAINNE,
+            </if>  
+            <if test="xbsnam != null and xbsnam != ''">  
+                XBSNAM,
+            </if>  
+            <if test="crtdat != null and crtdat != ''">  
+                CRTDAT,
+            </if>  
+            <if test="changdoc != null and changdoc != ''">  
+                CHANGDOC,
+            </if>  
+            <if test="sendka != null and sendka != ''">  
+                SENDKA,
+            </if>  
+            <if test="telephone != null and telephone != ''">  
+                TELEPHONE,
+            </if>  
+            <if test="isfollow != null and isfollow != ''">  
+                ISFOLLOW,
+            </if>  
+            <if test="pretim != null and pretim != ''">  
+                PRETIM,
+            </if>  
+            <if test="deptid != null and deptid != ''">  
+                DEPTID,
+            </if>  
+            <if test="clucose != null and clucose != ''">  
+                CLUCOSE,
+            </if>  
+            <if test="glucose != null and glucose != ''">  
+                GLUCOSE,
+            </if>  
+            <if test="linedate != null and linedate != ''">  
+                LINEDATE,
+            </if>  
+            <if test="linetime != null and linetime != ''">  
+                LINETIME,
+            </if>  
+            <if test="orderstatus != null and orderstatus != ''">  
+                ORDERSTATUS,
+            </if>  
+            <if test="medicineway != null and medicineway != ''">  
+                MEDICINEWAY,
+            </if>  
+            <if test="locguid != null and locguid != ''">  
+                LOCGUID,
+            </if>  
+            <if test="sendflg != null and sendflg != ''">  
+                SENDFLG,
+            </if>  
+            <if test="ybtyp != null and ybtyp != ''">  
+                YBTYP,
+            </if>  
+            <if test="isvideopush != null and isvideopush != ''">  
+                ISVIDEOPUSH,
+            </if>  
+            <if test="noteext != null and noteext != ''">  
+                NOTEEXT,
+            </if>  
+            <if test="mzid != null and mzid != ''">  
+                MZID,
+            </if>  
+            <if test="zyid != null and zyid != ''">  
+                ZYID,
+            </if>  
+            <if test="chkxgn != null and chkxgn != ''">  
+                CHK_XGN,
+            </if>  
+            <if test="chkjl != null and chkjl != ''">  
+                CHK_JL,
+            </if>  
+            <if test="chkph != null and chkph != ''">  
+                CHK_PH,
+            </if>  
+            <if test="chkrr != null and chkrr != ''">  
+                CHK_RR,
+            </if>  
+            <if test="checkxt != null and checkxt != ''">  
+                CHECKXT,
+            </if>  
+            <if test="fzzd != null and fzzd != ''">  
+                FZZD,
+            </if>  
+            <if test="fzzdnote != null and fzzdnote != ''">  
+                FZZDNOTE,
+            </if>  
+            <if test="cftyp != null and cftyp != ''">  
+                CFTYP,
+            </if>  
+            <if test="medicarecard != null and medicarecard != ''">  
+                MEDICARECARD,
+            </if>  
+            <if test="birthday != null and birthday != ''">  
+                BIRTHDAY,
+            </if>  
+            <if test="medicalid != null and medicalid != ''">  
+                MEDICALID,
+            </if>
+            <if test="ageoptions != null and ageoptions != ''">
+                AGEOPTIONS,
+            </if>
+            <if test="codon != null and codon != ''">
+                CODON,
+            </if>
+            <if test="clinicaltime != null and clinicaltime != ''">
+                CLINICALTIME,
+            </if>
+            <if test="periodtime != null and periodtime != ''">
+                PERIODTIME,
+            </if>
+            <if test="createname != null and createname != ''">
+                CREATENAME,
+            </if>
+            <if test="updatename != null and updatename != ''">
+                UPDATENAME,
+            </if>
+            <if test="updatedate != null and updatedate != ''">
+                UPDATEDATE,
+            </if>
+        </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides=",">
+	            <if test="guid != null and guid != ''">  
+	                  #{guid,jdbcType=CHAR},  
+	            </if>  
+	            <if test="cardid != null and cardid != ''">  
+	                  #{cardid,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="name != null and name != ''">  
+	                  #{name,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="sex != null and sex != ''">  
+	                  #{sex,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="dept != null and dept != ''">  
+	                  #{dept,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="age != null and age != ''">  
+	                  #{age,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="gms != null and gms != ''">  
+	                  #{gms,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="bldat != null and bldat != ''">  
+	                  #{bldat,jdbcType=TIMESTAMP},  
+	            </if>  
+	            <if test="mainn != null and mainn != ''">  
+	                  #{mainn,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="xbs != null and xbs != ''">  
+	                  #{xbs,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="jws != null and jws != ''">  
+	                  #{jws,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="height != null and height != ''">  
+	                  #{height,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="weight != null and weight != ''">  
+	                  #{weight,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="xy1 != null and xy1 != ''">  
+	                  #{xy1,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="xy2 != null and xy2 != ''">  
+	                  #{xy2,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="tw != null and tw != ''">  
+	                  #{tw,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="xl != null and xl != ''">  
+	                  #{xl,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="other != null and other != ''">  
+	                  #{other,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="zhand != null and zhand != ''">  
+	                  #{zhand,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="note != null and note != ''">  
+	                  #{note,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="bjfa != null and bjfa != ''">  
+	                  #{bjfa,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="doutyp != null and doutyp != ''">  
+	                  #{doutyp,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="pre != null and pre != ''">  
+	                  #{pre,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="doc != null and doc != ''">  
+	                  #{doc,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="wdat != null and wdat != ''">  
+	                  #{wdat,jdbcType=TIMESTAMP},  
+	            </if>  
+	            <if test="acc != null and acc != ''">  
+	                  #{acc,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="org != null and org != ''">  
+	                  #{org,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="sickguid != null and sickguid != ''">  
+	                  #{sickguid,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="docguid != null and docguid != ''">  
+	                  #{docguid,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="preno != null and preno != ''">  
+	                  #{preno,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="prenote != null and prenote != ''">  
+	                  #{prenote,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="zdnam != null and zdnam != ''">  
+	                  #{zdnam,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="mainne != null and mainne != ''">  
+	                  #{mainne,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="xbsnam != null and xbsnam != ''">  
+	                  #{xbsnam,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="crtdat != null and crtdat != ''">  
+	                  #{crtdat,jdbcType=TIMESTAMP},  
+	            </if>  
+	            <if test="changdoc != null and changdoc != ''">  
+	                  #{changdoc,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="sendka != null and sendka != ''">  
+	                  #{sendka,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="telephone != null and telephone != ''">  
+	                  #{telephone,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="isfollow != null and isfollow != ''">  
+	                  #{isfollow,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="pretim != null and pretim != ''">  
+	                  #{pretim,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="deptid != null and deptid != ''">  
+	                  #{deptid,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="clucose != null and clucose != ''">  
+	                  #{clucose,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="glucose != null and glucose != ''">  
+	                  #{glucose,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="linedate != null and linedate != ''">  
+	                  #{linedate,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="linetime != null and linetime != ''">  
+	                  #{linetime,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="orderstatus != null and orderstatus != ''">  
+	                  #{orderstatus,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="medicineway != null and medicineway != ''">  
+	                  #{medicineway,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="locguid != null and locguid != ''">  
+	                  #{locguid,jdbcType=CHAR},  
+	            </if>  
+	            <if test="sendflg != null and sendflg != ''">  
+	                  #{sendflg,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="ybtyp != null and ybtyp != ''">  
+	                  #{ybtyp,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="isvideopush != null and isvideopush != ''">  
+	                  #{isvideopush,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="noteext != null and noteext != ''">  
+	                  #{noteext,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="mzid != null and mzid != ''">  
+	                  #{mzid,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="zyid != null and zyid != ''">  
+	                  #{zyid,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="chkxgn != null and chkxgn != ''">  
+	                  #{chkxgn,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="chkjl != null and chkjl != ''">  
+	                  #{chkjl,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="chkph != null and chkph != ''">  
+	                  #{chkph,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="chkrr != null and chkrr != ''">  
+	                  #{chkrr,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="checkxt != null and checkxt != ''">  
+	                  #{checkxt,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="fzzd != null and fzzd != ''">  
+	                  #{fzzd,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="fzzdnote != null and fzzdnote != ''">  
+	                  #{fzzdnote,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="cftyp != null and cftyp != ''">  
+	                  #{cftyp,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="medicarecard != null and medicarecard != ''">  
+	                  #{medicarecard,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="birthday != null and birthday != ''">  
+	                  #{birthday,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="medicalid != null and medicalid != ''">  
+	                  #{medicalid,jdbcType=VARCHAR},  
+	            </if>
+                <if test="ageoptions != null and ageoptions != ''">
+                    #{ageoptions,jdbcType=VARCHAR},
+                </if>
+                <if test="codon != null and codon != ''">
+                    #{codon,jdbcType=VARCHAR},
+                </if>
+            <if test="clinicaltime != null and clinicaltime != ''">
+                #{clinicaltime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="periodtime != null and periodtime != ''">
+                #{periodtime,jdbcType=VARCHAR},
+            </if>
+            <if test="createname != null and createname != ''">
+                #{createname,jdbcType=VARCHAR},
+            </if>
+            <if test="updatename != null and updatename != ''">
+                #{updatename,jdbcType=VARCHAR},
+            </if>
+            <if test="updatedate != null and updatedate != ''">
+                #{updatedate,jdbcType=VARCHAR},
+            </if>
+        </trim>
+	  </insert>
+	
+	  <update id="updateByPrimaryKeySelective" parameterType="com.gz.medicine.yun.doctor.bean.Sickblhdr">
+	    update Sickblhdr
+		<set>
+            <if test="guid != null and guid != ''">  
+                  GUID = #{guid,jdbcType=CHAR}
+                    
+            </if>  
+            <if test="cardid != null and cardid != ''">  
+                  , CARDID = #{cardid,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="name != null and name != ''">  
+                  , NAME = #{name,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="sex != null and sex != ''">  
+                  , SEX = #{sex,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="dept != null and dept != ''">  
+                  , DEPT = #{dept,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="age != null and age != ''">  
+                  , AGE = #{age,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="gms != null and gms != ''">  
+                  , GMS = #{gms,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="bldat != null and bldat != ''">  
+                  , BLDAT = #{bldat,jdbcType=TIMESTAMP}
+                    
+            </if>  
+            <if test="mainn != null and mainn != ''">  
+                  , MAINN = #{mainn,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="xbs != null and xbs != ''">  
+                  , XBS = #{xbs,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="jws != null and jws != ''">  
+                  , JWS = #{jws,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="height != null and height != ''">  
+                  , HEIGHT = #{height,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="weight != null and weight != ''">  
+                  , WEIGHT = #{weight,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="xy1 != null and xy1 != ''">  
+                  , XY1 = #{xy1,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="xy2 != null and xy2 != ''">  
+                  , XY2 = #{xy2,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="tw != null and tw != ''">  
+                  , TW = #{tw,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="xl != null and xl != ''">  
+                  , XL = #{xl,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="other != null and other != ''">  
+                  , OTHER = #{other,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="zhand != null and zhand != ''">  
+                  , ZHAND = #{zhand,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="note != null and note != ''">  
+                  , NOTE = #{note,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="bjfa != null and bjfa != ''">  
+                  , BJFA = #{bjfa,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="doutyp != null and doutyp != ''">  
+                  , DOUTYP = #{doutyp,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="pre != null and pre != ''">  
+                  , PRE = #{pre,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="doc != null and doc != ''">  
+                  , DOC = #{doc,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="wdat != null and wdat != ''">  
+                  , WDAT = #{wdat,jdbcType=TIMESTAMP}
+                    
+            </if>  
+            <if test="acc != null and acc != ''">  
+                  , ACC = #{acc,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="org != null and org != ''">  
+                  , ORG = #{org,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="sickguid != null and sickguid != ''">  
+                  , SICKGUID = #{sickguid,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="docguid != null and docguid != ''">  
+                  , DOCGUID = #{docguid,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="preno != null and preno != ''">  
+                  , PRENO = #{preno,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="prenote != null and prenote != ''">  
+                  , PRENOTE = #{prenote,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="zdnam != null and zdnam != ''">  
+                  , ZDNAM = #{zdnam,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="mainne != null and mainne != ''">  
+                  , MAINNE = #{mainne,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="xbsnam != null and xbsnam != ''">  
+                  , XBSNAM = #{xbsnam,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="crtdat != null and crtdat != ''">  
+                  , CRTDAT = #{crtdat,jdbcType=TIMESTAMP}
+                    
+            </if>  
+            <if test="changdoc != null and changdoc != ''">  
+                  , CHANGDOC = #{changdoc,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="sendka != null and sendka != ''">  
+                  , SENDKA = #{sendka,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="telephone != null and telephone != ''">  
+                  , TELEPHONE = #{telephone,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="isfollow != null and isfollow != ''">  
+                  , ISFOLLOW = #{isfollow,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="pretim != null and pretim != ''">  
+                  , PRETIM = #{pretim,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="deptid != null and deptid != ''">  
+                  , DEPTID = #{deptid,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="clucose != null and clucose != ''">  
+                  , CLUCOSE = #{clucose,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="glucose != null and glucose != ''">  
+                  , GLUCOSE = #{glucose,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="linedate != null and linedate != ''">  
+                  , LINEDATE = #{linedate,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="linetime != null and linetime != ''">  
+                  , LINETIME = #{linetime,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="orderstatus != null and orderstatus != ''">  
+                  , ORDERSTATUS = #{orderstatus,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="medicineway != null and medicineway != ''">  
+                  , MEDICINEWAY = #{medicineway,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="locguid != null and locguid != ''">  
+                  , LOCGUID = #{locguid,jdbcType=CHAR}
+                    
+            </if>  
+            <if test="sendflg != null and sendflg != ''">  
+                  , SENDFLG = #{sendflg,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="ybtyp != null and ybtyp != ''">  
+                  , YBTYP = #{ybtyp,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="isvideopush != null and isvideopush != ''">  
+                  , ISVIDEOPUSH = #{isvideopush,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="noteext != null and noteext != ''">  
+                  , NOTEEXT = #{noteext,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="mzid != null and mzid != ''">  
+                  , MZID = #{mzid,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="zyid != null and zyid != ''">  
+                  , ZYID = #{zyid,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="chkxgn != null and chkxgn != ''">  
+                  , CHK_XGN = #{chkxgn,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="chkjl != null and chkjl != ''">  
+                  , CHK_JL = #{chkjl,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="chkph != null and chkph != ''">  
+                  , CHK_PH = #{chkph,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="chkrr != null and chkrr != ''">  
+                  , CHK_RR = #{chkrr,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="checkxt != null and checkxt != ''">  
+                  , CHECKXT = #{checkxt,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="fzzd != null and fzzd != ''">  
+                  , FZZD = #{fzzd,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="fzzdnote != null and fzzdnote != ''">  
+                  , FZZDNOTE = #{fzzdnote,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="cftyp != null and cftyp != ''">  
+                  , CFTYP = #{cftyp,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="medicarecard != null and medicarecard != ''">  
+                  , MEDICARECARD = #{medicarecard,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="birthday != null and birthday != ''">  
+                  , BIRTHDAY = #{birthday,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="medicalid != null and medicalid != ''">  
+                  , MEDICALID = #{medicalid,jdbcType=VARCHAR}
+                    
+            </if>
+            <if test="ageoptions != null and ageoptions != ''">
+                , AGEOPTIONS = #{ageoptions,jdbcType=VARCHAR}
+
+            </if>
+            <if test="codon != null and codon != ''">
+                , CODON = #{codon,jdbcType=VARCHAR}
+
+            </if>
+            <if test="clinicaltime != null and clinicaltime != ''">
+                , CLINICALTIME = #{clinicaltime,jdbcType=TIMESTAMP}
+
+            </if>
+            <if test="periodtime != null and periodtime != ''">
+                , PERIODTIME = #{periodtime,jdbcType=VARCHAR}
+
+            </if>
+            <if test="createname != null and createname != ''">
+                , CREATENAME = #{createname,jdbcType=VARCHAR}
+            </if>
+            <if test="updatename != null and updatename != ''">
+                ,UPDATENAME = #{updatename,jdbcType=VARCHAR}
+            </if>
+            <if test="updatedate != null and updatedate != ''">
+                ,UPDATEDATE = #{updatedate,jdbcType=VARCHAR}
+            </if>
+        </set>
+		where GUID = #{guid,jdbcType=CHAR}
+	  </update>
+	
+	  <!-- 修改对象(所有字段) -->
+	  <update id="updateByPrimaryKey" parameterType="com.gz.medicine.yun.doctor.bean.Sickblhdr">
+		update Sickblhdr
+		set
+               GUID = #{guid,jdbcType=CHAR}
+               , CARDID = #{cardid,jdbcType=VARCHAR}
+               , NAME = #{name,jdbcType=VARCHAR}
+               , SEX = #{sex,jdbcType=VARCHAR}
+               , DEPT = #{dept,jdbcType=VARCHAR}
+               , AGE = #{age,jdbcType=VARCHAR}
+               , GMS = #{gms,jdbcType=VARCHAR}
+               , BLDAT = #{bldat,jdbcType=TIMESTAMP}
+               , MAINN = #{mainn,jdbcType=VARCHAR}
+               , XBS = #{xbs,jdbcType=VARCHAR}
+               , JWS = #{jws,jdbcType=VARCHAR}
+               , HEIGHT = #{height,jdbcType=VARCHAR}
+               , WEIGHT = #{weight,jdbcType=VARCHAR}
+               , XY1 = #{xy1,jdbcType=VARCHAR}
+               , XY2 = #{xy2,jdbcType=VARCHAR}
+               , TW = #{tw,jdbcType=VARCHAR}
+               , XL = #{xl,jdbcType=VARCHAR}
+               , OTHER = #{other,jdbcType=VARCHAR}
+               , ZHAND = #{zhand,jdbcType=VARCHAR}
+               , NOTE = #{note,jdbcType=VARCHAR}
+               , BJFA = #{bjfa,jdbcType=VARCHAR}
+               , DOUTYP = #{doutyp,jdbcType=VARCHAR}
+               , PRE = #{pre,jdbcType=VARCHAR}
+               , DOC = #{doc,jdbcType=VARCHAR}
+               , WDAT = #{wdat,jdbcType=TIMESTAMP}
+               , ACC = #{acc,jdbcType=VARCHAR}
+               , ORG = #{org,jdbcType=VARCHAR}
+               , SICKGUID = #{sickguid,jdbcType=VARCHAR}
+               , DOCGUID = #{docguid,jdbcType=VARCHAR}
+               , PRENO = #{preno,jdbcType=VARCHAR}
+               , PRENOTE = #{prenote,jdbcType=VARCHAR}
+               , ZDNAM = #{zdnam,jdbcType=VARCHAR}
+               , MAINNE = #{mainne,jdbcType=VARCHAR}
+               , XBSNAM = #{xbsnam,jdbcType=VARCHAR}
+               , CRTDAT = #{crtdat,jdbcType=TIMESTAMP}
+               , CHANGDOC = #{changdoc,jdbcType=VARCHAR}
+               , SENDKA = #{sendka,jdbcType=VARCHAR}
+               , TELEPHONE = #{telephone,jdbcType=VARCHAR}
+               , ISFOLLOW = #{isfollow,jdbcType=VARCHAR}
+               , PRETIM = #{pretim,jdbcType=VARCHAR}
+               , DEPTID = #{deptid,jdbcType=VARCHAR}
+               , CLUCOSE = #{clucose,jdbcType=VARCHAR}
+               , GLUCOSE = #{glucose,jdbcType=VARCHAR}
+               , LINEDATE = #{linedate,jdbcType=VARCHAR}
+               , LINETIME = #{linetime,jdbcType=VARCHAR}
+               , ORDERSTATUS = #{orderstatus,jdbcType=VARCHAR}
+               , MEDICINEWAY = #{medicineway,jdbcType=VARCHAR}
+               , LOCGUID = #{locguid,jdbcType=CHAR}
+               , SENDFLG = #{sendflg,jdbcType=VARCHAR}
+               , YBTYP = #{ybtyp,jdbcType=VARCHAR}
+               , ISVIDEOPUSH = #{isvideopush,jdbcType=VARCHAR}
+               , NOTEEXT = #{noteext,jdbcType=VARCHAR}
+               , MZID = #{mzid,jdbcType=VARCHAR}
+               , ZYID = #{zyid,jdbcType=VARCHAR}
+               , CHK_XGN = #{chkxgn,jdbcType=VARCHAR}
+               , CHK_JL = #{chkjl,jdbcType=VARCHAR}
+               , CHK_PH = #{chkph,jdbcType=VARCHAR}
+               , CHK_RR = #{chkrr,jdbcType=VARCHAR}
+               , CHECKXT = #{checkxt,jdbcType=VARCHAR}
+               , FZZD = #{fzzd,jdbcType=VARCHAR}
+               , FZZDNOTE = #{fzzdnote,jdbcType=VARCHAR}
+               , CFTYP = #{cftyp,jdbcType=VARCHAR}
+               , MEDICARECARD = #{medicarecard,jdbcType=VARCHAR}
+               , BIRTHDAY = #{birthday,jdbcType=VARCHAR}
+               , MEDICALID = #{medicalid,jdbcType=VARCHAR}
+               , AGEOPTIONS = #{ageoptions,jdbcType=VARCHAR}
+               , CODON = #{codon,jdbcType=VARCHAR}
+               , CLINICALTIME = #{clinicaltime,jdbcType=TIMESTAMP}
+               , PERIODTIME = #{periodtime,jdbcType=VARCHAR}
+		where GUID = #{guid,jdbcType=CHAR}
+	  </update>
+	
+	  <!-- 根据条件获取所有数据 -->
+	  <select id="selectAll" parameterType="com.gz.medicine.yun.doctor.bean.Sickblhdr" resultMap="BaseResultMap">
+	    select * from Sickblhdr
+	    <where>
+            <if test="guid != null and GUID != ''"> 
+                   
+                   GUID = #{guid,jdbcType=CHAR}
+ 
+            </if>  
+            <if test="cardid != null and CARDID != ''"> 
+                   
+                    and CARDID = #{cardid,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="name != null and NAME != ''"> 
+                   
+                    and NAME = #{name,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="sex != null and SEX != ''"> 
+                   
+                    and SEX = #{sex,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="dept != null and DEPT != ''"> 
+                   
+                    and DEPT = #{dept,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="age != null and AGE != ''"> 
+                   
+                    and AGE = #{age,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="gms != null and GMS != ''"> 
+                   
+                    and GMS = #{gms,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="bldat != null and BLDAT != ''"> 
+                   
+                    and BLDAT = #{bldat,jdbcType=TIMESTAMP} 
+ 
+            </if>  
+            <if test="mainn != null and MAINN != ''"> 
+                   
+                    and MAINN = #{mainn,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="xbs != null and XBS != ''"> 
+                   
+                    and XBS = #{xbs,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="jws != null and JWS != ''"> 
+                   
+                    and JWS = #{jws,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="height != null and HEIGHT != ''"> 
+                   
+                    and HEIGHT = #{height,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="weight != null and WEIGHT != ''"> 
+                   
+                    and WEIGHT = #{weight,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="xy1 != null and XY1 != ''"> 
+                   
+                    and XY1 = #{xy1,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="xy2 != null and XY2 != ''"> 
+                   
+                    and XY2 = #{xy2,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="tw != null and TW != ''"> 
+                   
+                    and TW = #{tw,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="xl != null and XL != ''"> 
+                   
+                    and XL = #{xl,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="other != null and OTHER != ''"> 
+                   
+                    and OTHER = #{other,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="zhand != null and ZHAND != ''"> 
+                   
+                    and ZHAND = #{zhand,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="note != null and NOTE != ''"> 
+                   
+                    and NOTE = #{note,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="bjfa != null and BJFA != ''"> 
+                   
+                    and BJFA = #{bjfa,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="doutyp != null and DOUTYP != ''"> 
+                   
+                    and DOUTYP = #{doutyp,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="pre != null and PRE != ''"> 
+                   
+                    and PRE = #{pre,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="doc != null and DOC != ''"> 
+                   
+                    and DOC = #{doc,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="wdat != null and WDAT != ''"> 
+                   
+                    and WDAT = #{wdat,jdbcType=TIMESTAMP} 
+ 
+            </if>  
+            <if test="acc != null and ACC != ''"> 
+                   
+                    and ACC = #{acc,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="org != null and ORG != ''"> 
+                   
+                    and ORG = #{org,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="sickguid != null and SICKGUID != ''"> 
+                   
+                    and SICKGUID = #{sickguid,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="docguid != null and DOCGUID != ''"> 
+                   
+                    and DOCGUID = #{docguid,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="preno != null and PRENO != ''"> 
+                   
+                    and PRENO = #{preno,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="prenote != null and PRENOTE != ''"> 
+                   
+                    and PRENOTE = #{prenote,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="zdnam != null and ZDNAM != ''"> 
+                   
+                    and ZDNAM = #{zdnam,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="mainne != null and MAINNE != ''"> 
+                   
+                    and MAINNE = #{mainne,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="xbsnam != null and XBSNAM != ''"> 
+                   
+                    and XBSNAM = #{xbsnam,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="crtdat != null and CRTDAT != ''"> 
+                   
+                    and CRTDAT = #{crtdat,jdbcType=TIMESTAMP} 
+ 
+            </if>  
+            <if test="changdoc != null and CHANGDOC != ''"> 
+                   
+                    and CHANGDOC = #{changdoc,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="sendka != null and SENDKA != ''"> 
+                   
+                    and SENDKA = #{sendka,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="telephone != null and TELEPHONE != ''"> 
+                   
+                    and TELEPHONE = #{telephone,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="isfollow != null and ISFOLLOW != ''"> 
+                   
+                    and ISFOLLOW = #{isfollow,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="pretim != null and PRETIM != ''"> 
+                   
+                    and PRETIM = #{pretim,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="deptid != null and DEPTID != ''"> 
+                   
+                    and DEPTID = #{deptid,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="clucose != null and CLUCOSE != ''"> 
+                   
+                    and CLUCOSE = #{clucose,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="glucose != null and GLUCOSE != ''"> 
+                   
+                    and GLUCOSE = #{glucose,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="linedate != null and LINEDATE != ''"> 
+                   
+                    and LINEDATE = #{linedate,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="linetime != null and LINETIME != ''"> 
+                   
+                    and LINETIME = #{linetime,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="orderstatus != null and ORDERSTATUS != ''"> 
+                   
+                    and ORDERSTATUS = #{orderstatus,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="medicineway != null and MEDICINEWAY != ''"> 
+                   
+                    and MEDICINEWAY = #{medicineway,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="locguid != null and LOCGUID != ''"> 
+                   
+                    and LOCGUID = #{locguid,jdbcType=CHAR} 
+ 
+            </if>  
+            <if test="sendflg != null and SENDFLG != ''"> 
+                   
+                    and SENDFLG = #{sendflg,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="ybtyp != null and YBTYP != ''"> 
+                   
+                    and YBTYP = #{ybtyp,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="isvideopush != null and ISVIDEOPUSH != ''"> 
+                   
+                    and ISVIDEOPUSH = #{isvideopush,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="noteext != null and NOTEEXT != ''"> 
+                   
+                    and NOTEEXT = #{noteext,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="mzid != null and MZID != ''"> 
+                   
+                    and MZID = #{mzid,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="zyid != null and ZYID != ''"> 
+                   
+                    and ZYID = #{zyid,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="chkxgn != null and CHKXGN != ''"> 
+                   
+                    and CHK_XGN = #{chkxgn,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="chkjl != null and CHKJL != ''"> 
+                   
+                    and CHK_JL = #{chkjl,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="chkph != null and CHKPH != ''"> 
+                   
+                    and CHK_PH = #{chkph,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="chkrr != null and CHKRR != ''"> 
+                   
+                    and CHK_RR = #{chkrr,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="checkxt != null and CHECKXT != ''"> 
+                   
+                    and CHECKXT = #{checkxt,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="fzzd != null and FZZD != ''"> 
+                   
+                    and FZZD = #{fzzd,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="fzzdnote != null and FZZDNOTE != ''"> 
+                   
+                    and FZZDNOTE = #{fzzdnote,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="cftyp != null and CFTYP != ''"> 
+                   
+                    and CFTYP = #{cftyp,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="medicarecard != null and MEDICARECARD != ''"> 
+                   
+                    and MEDICARECARD = #{medicarecard,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="birthday != null and BIRTHDAY != ''"> 
+                   
+                    and BIRTHDAY = #{birthday,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="medicalid != null and MEDICALID != ''"> 
+                   
+                    and MEDICALID = #{medicalid,jdbcType=VARCHAR} 
+ 
+            </if>
+            <if test="ageoptions != null and ageoptions != ''">
+
+                and MEDICALID = #{medicalid,jdbcType=VARCHAR}
+
+            </if>
+            <if test="codon != null and codon != ''">
+
+                and CODON = #{codon,jdbcType=VARCHAR}
+
+            </if>
+            <if test="clinicaltime != null and clinicaltime != ''">
+
+                and CLINICALTIME = #{clinicaltime,jdbcType=TIMESTAMP}
+
+            </if>
+            <if test="periodtime != null and periodtime != ''">
+
+                and PERIODTIME = #{periodtime,jdbcType=VARCHAR}
+
+            </if>
+        </where>
+	  </select>
+	
+	  <!-- 分页数据 -->
+	  <select id="queryPage" parameterType="com.gz.medicine.common.mybatisPageVo.Page" resultMap="BaseResultMap">
+	    select * from Sickblhdr
+	  </select>
+
+
+</mapper>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gz.medicine.gzyun.yidiagnosis.mapper.YGsickbldtlMapper" >
+  <resultMap id="BaseResultMap" type="com.gz.medicine.gzyun.yidiagnosis.bean.YGsickbldtl" >
+    <result column="GUID" property="guid" jdbcType="CHAR" />
+    <result column="SEQID" property="seqid" jdbcType="DECIMAL" />
+    <result column="FORMGUID" property="formguid" jdbcType="CHAR" />
+    <result column="DRUID" property="druid" jdbcType="VARCHAR" />
+    <result column="DRUNAM" property="drunam" jdbcType="VARCHAR" />
+    <result column="UNIT" property="unit" jdbcType="VARCHAR" />
+    <result column="YPNUM" property="ypnum" jdbcType="DECIMAL" />
+    <result column="CI" property="ci" jdbcType="VARCHAR" />
+    <result column="PIAN" property="pian" jdbcType="VARCHAR" />
+    <result column="DAY" property="day" jdbcType="VARCHAR" />
+    <result column="NUMNIT" property="numnit" jdbcType="VARCHAR" />
+    <result column="KFWY" property="kfwy" jdbcType="VARCHAR" />
+    <result column="PC" property="pc" jdbcType="VARCHAR" />
+    <result column="PCNAME" property="pcname" jdbcType="VARCHAR" />
+    <result column="KFWYNAME" property="kfwyname" jdbcType="VARCHAR" />
+    <result column="SMLUNT" property="smlunt" jdbcType="VARCHAR" />
+    <result column="ST_PRICE" property="stPrice" jdbcType="DECIMAL" />
+    <result column="ST_QTY" property="stQty" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.gz.medicine.gzyun.yidiagnosis.bean.YGsickbldtl" >
+    insert into SICKBLDTL (GUID, SEQID, FORMGUID, 
+      DRUID, DRUNAM, UNIT, 
+      YPNUM, CI, PIAN, DAY, 
+      NUMNIT, KFWY, PC, PCNAME, 
+      KFWYNAME, SMLUNT, ST_PRICE, 
+      ST_QTY)
+    values (#{guid,jdbcType=CHAR}, #{seqid,jdbcType=DECIMAL}, #{formguid,jdbcType=CHAR}, 
+      #{druid,jdbcType=VARCHAR}, #{drunam,jdbcType=VARCHAR}, #{unit,jdbcType=VARCHAR}, 
+      #{ypnum,jdbcType=DECIMAL}, #{ci,jdbcType=VARCHAR}, #{pian,jdbcType=VARCHAR}, #{day,jdbcType=VARCHAR}, 
+      #{numnit,jdbcType=VARCHAR}, #{kfwy,jdbcType=VARCHAR}, #{pc,jdbcType=VARCHAR}, #{pcname,jdbcType=VARCHAR}, 
+      #{kfwyname,jdbcType=VARCHAR}, #{smlunt,jdbcType=VARCHAR}, #{stPrice,jdbcType=DECIMAL}, 
+      #{stQty,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gz.medicine.gzyun.yidiagnosis.bean.YGsickbldtl" >
+    insert into SICKBLDTL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        GUID,
+      </if>
+      <if test="seqid != null" >
+        SEQID,
+      </if>
+      <if test="formguid != null" >
+        FORMGUID,
+      </if>
+      <if test="druid != null" >
+        DRUID,
+      </if>
+      <if test="drunam != null" >
+        DRUNAM,
+      </if>
+      <if test="unit != null" >
+        UNIT,
+      </if>
+      <if test="ypnum != null" >
+        YPNUM,
+      </if>
+      <if test="ci != null" >
+        CI,
+      </if>
+      <if test="pian != null" >
+        PIAN,
+      </if>
+      <if test="day != null" >
+        DAY,
+      </if>
+      <if test="numnit != null" >
+        NUMNIT,
+      </if>
+      <if test="kfwy != null" >
+        KFWY,
+      </if>
+      <if test="pc != null" >
+        PC,
+      </if>
+      <if test="pcname != null" >
+        PCNAME,
+      </if>
+      <if test="kfwyname != null" >
+        KFWYNAME,
+      </if>
+      <if test="smlunt != null" >
+        SMLUNT,
+      </if>
+      <if test="stPrice != null" >
+        ST_PRICE,
+      </if>
+      <if test="stQty != null" >
+        ST_QTY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        #{guid,jdbcType=CHAR},
+      </if>
+      <if test="seqid != null" >
+        #{seqid,jdbcType=DECIMAL},
+      </if>
+      <if test="formguid != null" >
+        #{formguid,jdbcType=CHAR},
+      </if>
+      <if test="druid != null" >
+        #{druid,jdbcType=VARCHAR},
+      </if>
+      <if test="drunam != null" >
+        #{drunam,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="ypnum != null" >
+        #{ypnum,jdbcType=DECIMAL},
+      </if>
+      <if test="ci != null" >
+        #{ci,jdbcType=VARCHAR},
+      </if>
+      <if test="pian != null" >
+        #{pian,jdbcType=VARCHAR},
+      </if>
+      <if test="day != null" >
+        #{day,jdbcType=VARCHAR},
+      </if>
+      <if test="numnit != null" >
+        #{numnit,jdbcType=VARCHAR},
+      </if>
+      <if test="kfwy != null" >
+        #{kfwy,jdbcType=VARCHAR},
+      </if>
+      <if test="pc != null" >
+        #{pc,jdbcType=VARCHAR},
+      </if>
+      <if test="pcname != null" >
+        #{pcname,jdbcType=VARCHAR},
+      </if>
+      <if test="kfwyname != null" >
+        #{kfwyname,jdbcType=VARCHAR},
+      </if>
+      <if test="smlunt != null" >
+        #{smlunt,jdbcType=VARCHAR},
+      </if>
+      <if test="stPrice != null" >
+        #{stPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="stQty != null" >
+        #{stQty,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="selectBySickbldtlKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select b.drunam,b.pian,b.pcname,b.kfwyname from SICKBLDTL b 
+    where b.formguid=#{formguid,jdbcType=VARCHAR}
+  </select>
+</mapper>

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gz.medicine.yun.doctor.mapper.DTmessageRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.gz.medicine.yun.doctor.bean.DTmessageRecord" >
+    <id column="GUID" property="guid" jdbcType="VARCHAR" />
+    <result column="ORG" property="org" jdbcType="VARCHAR" />
+    <result column="DOCGUID" property="docguid" jdbcType="VARCHAR" />
+    <result column="USRGUID" property="usrguid" jdbcType="VARCHAR" />
+    <result column="MESSAGESENDDATE" property="messagesenddate" jdbcType="TIMESTAMP" />
+    <result column="MESSAGESENDCONTENT" property="messagesendcontent" jdbcType="VARCHAR" />
+    <result column="CRTUSR" property="crtusr" jdbcType="VARCHAR" />
+    <result column="CRTDAT" property="crtdat" jdbcType="TIMESTAMP" />
+    <result column="UPDATEUSR" property="updateusr" jdbcType="VARCHAR" />
+    <result column="UPDATEDATE" property="updatedate" jdbcType="TIMESTAMP" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR"/>
+    <result column="followupDATE" property="followupdate" jdbcType="VARCHAR"/>
+    <result column="followTYPE" property="followtype" jdbcType="VARCHAR"/>
+    <result column="NAME" property="name" jdbcType="VARCHAR"></result>
+    
+  </resultMap>
+  <sql id="Base_Column_List" >
+    GUID, ORG, DOCGUID, USRGUID, MESSAGESENDDATE, MESSAGESENDCONTENT, CRTUSR, CRTDAT, 
+    UPDATEUSR, UPDATEDATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from CHIS_MESSAGE_RECORD
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from CHIS_MESSAGE_RECORD
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gz.medicine.yun.doctor.bean.DTmessageRecord" >
+    insert into CHIS_MESSAGE_RECORD (GUID, ORG, DOCGUID, 
+      USRGUID, MESSAGESENDDATE, MESSAGESENDCONTENT, 
+      CRTUSR, CRTDAT, UPDATEUSR, 
+      UPDATEDATE)
+    values (#{guid,jdbcType=VARCHAR}, #{org,jdbcType=VARCHAR}, #{docguid,jdbcType=VARCHAR}, 
+      #{usrguid,jdbcType=VARCHAR}, #{messagesenddate,jdbcType=TIMESTAMP}, #{messagesendcontent,jdbcType=VARCHAR}, 
+      #{crtusr,jdbcType=VARCHAR}, #{crtdat,jdbcType=TIMESTAMP}, #{updateusr,jdbcType=VARCHAR}, 
+      #{updatedate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gz.medicine.yun.doctor.bean.DTmessageRecord" >
+    insert into CHIS_MESSAGE_RECORD
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        GUID,
+      </if>
+      <if test="org != null" >
+        ORG,
+      </if>
+      <if test="docguid != null" >
+        DOCGUID,
+      </if>
+      <if test="usrguid != null" >
+        USRGUID,
+      </if>
+      <if test="messagesenddate != null" >
+        MESSAGESENDDATE,
+      </if>
+      <if test="messagesendcontent != null" >
+        MESSAGESENDCONTENT,
+      </if>
+      <if test="crtusr != null" >
+        CRTUSR,
+      </if>
+      <if test="crtdat != null" >
+        CRTDAT,
+      </if>
+      <if test="updateusr != null" >
+        UPDATEUSR,
+      </if>
+      <if test="updatedate != null" >
+        UPDATEDATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        #{guid,jdbcType=VARCHAR},
+      </if>
+      <if test="org != null" >
+        #{org,jdbcType=VARCHAR},
+      </if>
+      <if test="docguid != null" >
+        #{docguid,jdbcType=VARCHAR},
+      </if>
+      <if test="usrguid != null" >
+        #{usrguid,jdbcType=VARCHAR},
+      </if>
+      <if test="messagesenddate != null" >
+        #{messagesenddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="messagesendcontent != null" >
+        #{messagesendcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="crtusr != null" >
+        #{crtusr,jdbcType=VARCHAR},
+      </if>
+      <if test="crtdat != null" >
+        #{crtdat,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateusr != null" >
+        #{updateusr,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedate != null" >
+        #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gz.medicine.yun.doctor.bean.DTmessageRecord" >
+    update CHIS_MESSAGE_RECORD
+    <set >
+      <if test="org != null" >
+        ORG = #{org,jdbcType=VARCHAR},
+      </if>
+      <if test="docguid != null" >
+        DOCGUID = #{docguid,jdbcType=VARCHAR},
+      </if>
+      <if test="usrguid != null" >
+        USRGUID = #{usrguid,jdbcType=VARCHAR},
+      </if>
+      <if test="messagesenddate != null" >
+        MESSAGESENDDATE = #{messagesenddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="messagesendcontent != null" >
+        MESSAGESENDCONTENT = #{messagesendcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="crtusr != null" >
+        CRTUSR = #{crtusr,jdbcType=VARCHAR},
+      </if>
+      <if test="crtdat != null" >
+        CRTDAT = #{crtdat,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateusr != null" >
+        UPDATEUSR = #{updateusr,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedate != null" >
+        UPDATEDATE = #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gz.medicine.yun.doctor.bean.DTmessageRecord" >
+    update CHIS_MESSAGE_RECORD
+    set ORG = #{org,jdbcType=VARCHAR},
+      DOCGUID = #{docguid,jdbcType=VARCHAR},
+      USRGUID = #{usrguid,jdbcType=VARCHAR},
+      MESSAGESENDDATE = #{messagesenddate,jdbcType=TIMESTAMP},
+      MESSAGESENDCONTENT = #{messagesendcontent,jdbcType=VARCHAR},
+      CRTUSR = #{crtusr,jdbcType=VARCHAR},
+      CRTDAT = #{crtdat,jdbcType=TIMESTAMP},
+      UPDATEUSR = #{updateusr,jdbcType=VARCHAR},
+      UPDATEDATE = #{updatedate,jdbcType=TIMESTAMP}
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByGuidKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+     <include refid="Base_Column_List" />
+    from CHIS_MESSAGE_RECORD
+    where GUID = #{guid,jdbcType=VARCHAR} and status='1'
+  </select>
+  <!-- 随访记录  列表 ，分页 -->
+  <select id="queryPageByMessageRecord" resultMap="BaseResultMap" parameterType="com.gz.medicine.common.mybatisPageVo.Page" >
+   select t.GUID,t.USRGUID,t.DOCGUID,t.followupDATE,
+decode((max(t.f1) + max(t.f2)),1,'视频随访',2,'短信随访','AB') as followTYPE,t.name from
+(select a.GUID,a.USRGUID,a.DOCGUID, to_char(a.FOLLOWDATETIME,'yyyy-mm-dd hh24:mi:ss') as followupDATE,1 as f1,0 as f2,b.name  from CHIS_followup_Record a,usr b where a.DOCGUID=b.guid(+)
+union all
+select a.GUID,a.USRGUID,a.DOCGUID,to_char(a.MESSAGESENDDATE,'yyyy-mm-dd hh24:mi:ss') as followupDATE,0 ,2,b.name from CHIS_message_Record a,usr b where a.DOCGUID=b.guid(+))t
+where t.USRGUID=#{usrguid,jdbcType=VARCHAR} and t.docguid=#{docguid,jdbcType=VARCHAR}
+group by t.GUID,t.USRGUID,t.DOCGUID,t.followupDATE,t.name order by t.followupDATE
+  </select>
+</mapper>

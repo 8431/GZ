@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gz.medicine.gzyun.yidiagnosis.mapper.YGchisJwslogMapper" >
+  <resultMap id="BaseResultMap" type="com.gz.medicine.gzyun.yidiagnosis.bean.YGchisJwslog" >
+    <result column="GUID" property="guid" jdbcType="CHAR" />
+    <result column="BLGUID" property="blguid" jdbcType="CHAR" />
+    <result column="CRTDAT" property="crtdat" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <insert id="insert" parameterType="com.gz.medicine.gzyun.yidiagnosis.bean.YGchisJwslog" >
+    insert into CHIS_JWSLOG (GUID, BLGUID, CRTDAT
+      )
+    values (#{guid,jdbcType=CHAR}, #{blguid,jdbcType=CHAR}, #{crtdat,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gz.medicine.gzyun.yidiagnosis.bean.YGchisJwslog" >
+    insert into CHIS_JWSLOG
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        GUID,
+      </if>
+      <if test="blguid != null" >
+        BLGUID,
+      </if>
+      <if test="crtdat != null" >
+        CRTDAT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        #{guid,jdbcType=CHAR},
+      </if>
+      <if test="blguid != null" >
+        #{blguid,jdbcType=CHAR},
+      </if>
+      <if test="crtdat != null" >
+        #{crtdat,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="selectCount" resultMap="BaseResultMap" parameterType="java.lang.String" >
+   select count(*) cnt from CHIS_JWSLOG where BLGUID=#{blguid,jdbcType=CHAR} order by CRTDAT desc
+  </select>
+  
+  <insert id="insertBlguid" parameterType="com.gz.medicine.gzyun.yidiagnosis.bean.YGchisJwslog" >
+    insert into CHIS_JWSLOG(blguid) values (#{blguid,jdbcType=CHAR})
+  </insert>
+  
+</mapper>

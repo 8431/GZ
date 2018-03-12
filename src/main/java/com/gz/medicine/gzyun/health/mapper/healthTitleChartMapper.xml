@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gz.medicine.gzyun.health.mapper.healthTitleChartMapper" >
+  <resultMap id="BaseResultMap" type="com.gz.medicine.gzyun.health.bean.healthTitleChart" >
+    <result column="ID" property="id" jdbcType="CHAR" />
+    <result column="TITLECODE" property="titlecode" jdbcType="VARCHAR" />
+    <result column="TITLENAME" property="titlename" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.gz.medicine.gzyun.health.bean.healthTitleChart" >
+    insert into HEALTHTITLECHART (ID, TITLECODE, TITLENAME
+      )
+    values (#{id,jdbcType=CHAR}, #{titlecode,jdbcType=VARCHAR}, #{titlename,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gz.medicine.gzyun.health.bean.healthTitleChart" >
+    insert into HEALTHTITLECHART
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="titlecode != null" >
+        TITLECODE,
+      </if>
+      <if test="titlename != null" >
+        TITLENAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="titlecode != null" >
+        #{titlecode,jdbcType=VARCHAR},
+      </if>
+      <if test="titlename != null" >
+        #{titlename,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gz.medicine.gzyun.heaman.mapper.HmOrderMapper">
+
+
+  <resultMap id="BaseResultMap" type="com.gz.medicine.gzyun.heaman.bean.HmOrder">
+    <id column="GUID" jdbcType="CHAR" property="guid" />
+    <result column="ORDERID" jdbcType="VARCHAR" property="orderid" />
+    <result column="PACKAGEID" jdbcType="VARCHAR" property="packageid" />
+    <result column="ORDERNAME" jdbcType="VARCHAR" property="ordername" />
+    <result column="ORDERMON" jdbcType="DECIMAL" property="ordermon" />
+    <result column="MEOFPAY" jdbcType="VARCHAR" property="meofpay" />
+    <result column="USRID" jdbcType="VARCHAR" property="usrid" />
+    <result column="USRNAME" jdbcType="VARCHAR" property="usrname" />
+    <result column="ORDERCRTDAT" jdbcType="TIMESTAMP" property="ordercrtdat" />
+    <result column="MEDAT" jdbcType="VARCHAR" property="medat" />
+    <result column="ORDERTYPE" jdbcType="VARCHAR" property="ordertype" />
+    <result column="USRGUID" jdbcType="VARCHAR" property="usrguid" />
+    <result column="CLORDERNOTE" jdbcType="VARCHAR" property="clordernote" />
+    <result column="CLORDERDAT" jdbcType="VARCHAR" property="clorderdat" />
+    <result column="REVIEW" jdbcType="VARCHAR" property="review" />
+    <result column="REVIEWDAT" jdbcType="VARCHAR" property="reviewdat" />
+    <result column="REFUNDS" jdbcType="VARCHAR" property="refunds" />
+    <result column="REFUNDSDAT" jdbcType="VARCHAR" property="refundsdat" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    GUID, ORDERID, PACKAGEID, ORDERNAME, ORDERMON, MEOFPAY, USRID, USRNAME, ORDERCRTDAT, 
+    MEDAT, ORDERTYPE, USRGUID, CLORDERNOTE, CLORDERDAT, REVIEW, REVIEWDAT, REFUNDS, REFUNDSDAT
+  </sql>
+  
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from GZJK_ORDER
+    where GUID = #{guid,jdbcType=CHAR}
+  </select>
+  
+    <select id="getByUsrGuidAsOrdercrtdatDesc" parameterType="java.lang.String" resultMap="BaseResultMap">     
+     
+      select 
+      <include refid="Base_Column_List" />
+      from GZJK_order where USRGUID=#{usrguid} order by ORDERCRTDAT desc
+      
+  </select> 
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from GZJK_ORDER
+    where GUID = #{guid,jdbcType=CHAR}
+  </delete>
+  
+  
+  <insert id="insert" parameterType="com.gz.medicine.gzyun.heaman.bean.HmOrder">
+    insert into GZJK_ORDER (GUID, ORDERID, PACKAGEID, 
+      ORDERNAME, ORDERMON, MEOFPAY, 
+      USRID, USRNAME, ORDERCRTDAT, 
+      MEDAT, ORDERTYPE, USRGUID, 
+      CLORDERNOTE, CLORDERDAT, REVIEW, 
+      REVIEWDAT, REFUNDS, REFUNDSDAT
+      )
+    values (#{guid,jdbcType=CHAR}, #{orderid,jdbcType=VARCHAR}, #{packageid,jdbcType=VARCHAR}, 
+      #{ordername,jdbcType=VARCHAR}, #{ordermon,jdbcType=DECIMAL}, #{meofpay,jdbcType=VARCHAR}, 
+      #{usrid,jdbcType=VARCHAR}, #{usrname,jdbcType=VARCHAR}, #{ordercrtdat,jdbcType=TIMESTAMP}, 
+      #{medat,jdbcType=VARCHAR}, #{ordertype,jdbcType=VARCHAR}, #{usrguid,jdbcType=VARCHAR}, 
+      #{clordernote,jdbcType=VARCHAR}, #{clorderdat,jdbcType=VARCHAR}, #{review,jdbcType=VARCHAR}, 
+      #{reviewdat,jdbcType=VARCHAR}, #{refunds,jdbcType=VARCHAR}, #{refundsdat,jdbcType=VARCHAR}
+      )
+  </insert>
+  
+  
+  <insert id="insertSelective" parameterType="com.gz.medicine.gzyun.heaman.bean.HmOrder">
+    insert into GZJK_ORDER
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        GUID,
+      </if>
+      <if test="orderid != null">
+        ORDERID,
+      </if>
+      <if test="packageid != null">
+        PACKAGEID,
+      </if>
+      <if test="ordername != null">
+        ORDERNAME,
+      </if>
+      <if test="ordermon != null">
+        ORDERMON,
+      </if>
+      <if test="meofpay != null">
+        MEOFPAY,
+      </if>
+      <if test="usrid != null">
+        USRID,
+      </if>
+      <if test="usrname != null">
+        USRNAME,
+      </if>
+      <if test="ordercrtdat != null">
+        ORDERCRTDAT,
+      </if>
+      <if test="medat != null">
+        MEDAT,
+      </if>
+      <if test="ordertype != null">
+        ORDERTYPE,
+      </if>
+      <if test="usrguid != null">
+        USRGUID,
+      </if>
+      <if test="clordernote != null">
+        CLORDERNOTE,
+      </if>
+      <if test="clorderdat != null">
+        CLORDERDAT,
+      </if>
+      <if test="review != null">
+        REVIEW,
+      </if>
+      <if test="reviewdat != null">
+        REVIEWDAT,
+      </if>
+      <if test="refunds != null">
+        REFUNDS,
+      </if>
+      <if test="refundsdat != null">
+        REFUNDSDAT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        #{guid,jdbcType=CHAR},
+      </if>
+      <if test="orderid != null">
+        #{orderid,jdbcType=VARCHAR},
+      </if>
+      <if test="packageid != null">
+        #{packageid,jdbcType=VARCHAR},
+      </if>
+      <if test="ordername != null">
+        #{ordername,jdbcType=VARCHAR},
+      </if>
+      <if test="ordermon != null">
+        #{ordermon,jdbcType=DECIMAL},
+      </if>
+      <if test="meofpay != null">
+        #{meofpay,jdbcType=VARCHAR},
+      </if>
+      <if test="usrid != null">
+        #{usrid,jdbcType=VARCHAR},
+      </if>
+      <if test="usrname != null">
+        #{usrname,jdbcType=VARCHAR},
+      </if>
+      <if test="ordercrtdat != null">
+        #{ordercrtdat,jdbcType=TIMESTAMP},
+      </if>
+      <if test="medat != null">
+        #{medat,jdbcType=VARCHAR},
+      </if>
+      <if test="ordertype != null">
+        #{ordertype,jdbcType=VARCHAR},
+      </if>
+      <if test="usrguid != null">
+        #{usrguid,jdbcType=VARCHAR},
+      </if>
+      <if test="clordernote != null">
+        #{clordernote,jdbcType=VARCHAR},
+      </if>
+      <if test="clorderdat != null">
+        #{clorderdat,jdbcType=VARCHAR},
+      </if>
+      <if test="review != null">
+        #{review,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewdat != null">
+        #{reviewdat,jdbcType=VARCHAR},
+      </if>
+      <if test="refunds != null">
+        #{refunds,jdbcType=VARCHAR},
+      </if>
+      <if test="refundsdat != null">
+        #{refundsdat,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.gz.medicine.gzyun.heaman.bean.HmOrder">
+    update GZJK_ORDER
+    <set>
+      <if test="orderid != null">
+        ORDERID = #{orderid,jdbcType=VARCHAR},
+      </if>
+      <if test="packageid != null">
+        PACKAGEID = #{packageid,jdbcType=VARCHAR},
+      </if>
+      <if test="ordername != null">
+        ORDERNAME = #{ordername,jdbcType=VARCHAR},
+      </if>
+      <if test="ordermon != null">
+        ORDERMON = #{ordermon,jdbcType=DECIMAL},
+      </if>
+      <if test="meofpay != null">
+        MEOFPAY = #{meofpay,jdbcType=VARCHAR},
+      </if>
+      <if test="usrid != null">
+        USRID = #{usrid,jdbcType=VARCHAR},
+      </if>
+      <if test="usrname != null">
+        USRNAME = #{usrname,jdbcType=VARCHAR},
+      </if>
+      <if test="ordercrtdat != null">
+        ORDERCRTDAT = #{ordercrtdat,jdbcType=TIMESTAMP},
+      </if>
+      <if test="medat != null">
+        MEDAT = #{medat,jdbcType=VARCHAR},
+      </if>
+      <if test="ordertype != null">
+        ORDERTYPE = #{ordertype,jdbcType=VARCHAR},
+      </if>
+      <if test="usrguid != null">
+        USRGUID = #{usrguid,jdbcType=VARCHAR},
+      </if>
+      <if test="clordernote != null">
+        CLORDERNOTE = #{clordernote,jdbcType=VARCHAR},
+      </if>
+      <if test="clorderdat != null">
+        CLORDERDAT = #{clorderdat,jdbcType=VARCHAR},
+      </if>
+      <if test="review != null">
+        REVIEW = #{review,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewdat != null">
+        REVIEWDAT = #{reviewdat,jdbcType=VARCHAR},
+      </if>
+      <if test="refunds != null">
+        REFUNDS = #{refunds,jdbcType=VARCHAR},
+      </if>
+      <if test="refundsdat != null">
+        REFUNDSDAT = #{refundsdat,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where GUID = #{guid,jdbcType=CHAR}
+  </update>
+  
+  
+  <select id="selectCountByUsrguIdAndOrderId" parameterType="com.gz.medicine.gzyun.heaman.bean.HmOrder" resultType="java.lang.Integer">
+	SELECT COUNT(*) from GZJK_order where 
+	<if test="usrguid != null">
+	   USRGUID= #{usrguid,jdbcType=VARCHAR} 
+	</if>
+	and 
+	<if test="orderid!=null">
+	   ORDERID= #{orderid,jdbcType=VARCHAR}
+	</if>
+	
+  </select>
+  
+    <select id="getByOrderId" resultMap="BaseResultMap">
+	SELECT 
+	
+	<include refid="Base_Column_List" />
+	
+	 from GZJK_order where ORDERID= #{0,jdbcType=VARCHAR}
+	
+  </select>
+  
+  
+     <select id="getSumByOrderId" resultType="java.lang.Integer">
+     
+     
+	 select to_number(ORDERMON*100) from GZJK_order where ORDERID= #{0,jdbcType=VARCHAR}
+	
+    </select>
+  
+   <select id="getByUsrguIdAndOrderId" parameterType="com.gz.medicine.gzyun.heaman.bean.HmOrder" resultMap="BaseResultMap">
+	SELECT <include refid="Base_Column_List" />
+	 from GZJK_order where 
+	 
+	 <if test="usrguid!=null">
+	 USRGUID= #{usrguid,jdbcType=VARCHAR}
+	 </if>
+	 
+	  and 
+	  
+	  <if test="orderid!=null">
+	    ORDERID= #{orderid,jdbcType=VARCHAR}
+	  </if>
+	  
+	  
+  </select> 
+  
+  <select id="getByUsrguIdAndOrderTypeDesc" parameterType="com.gz.medicine.gzyun.heaman.bean.HmOrder" resultMap="BaseResultMap">
+    
+    select * from (select * from GZJK_order where
+    
+      <if test="usrguid!=null">
+	    USRGUID= #{usrguid,jdbcType=VARCHAR}
+	  </if>
+	  
+     and 
+     
+    <if test="ordertype != null">
+	    ORDERTYPE &lt;  #{ordertype,jdbcType=VARCHAR}
+	</if>
+	  
+	  
+     order by ORDERTYPE desc) where rownum=1
+    
+    
+ 
+  </select>
+  
+  <update id="updateByUsrguIdAndOrderId" parameterType="com.gz.medicine.gzyun.heaman.bean.HmOrder">
+     update GZJK_ORDER 
+     
+      <set> 
+      <if test="clordernote!=null">
+        CLORDERNOTE= #{clordernote,jdbcType=VARCHAR} ,
+      </if>
+      
+
+      <if test="ordertype!=null">
+         ORDERTYPE=#{ordertype,jdbcType=VARCHAR},
+      </if>
+      
+     <if test="clorderdat!=null">
+         CLORDERDAT=#{clorderdat,jdbcType=VARCHAR}
+      </if>
+      
+      </set>
+     where USRGUID=#{usrguid,jdbcType=VARCHAR} and ORDERID= #{orderid,jdbcType=VARCHAR}
+  </update>
+  
+  
+  <update id="updateMedatByOrderId" >
+     update GZJK_order set MEOFPAY='微信',MEDAT=to_char(sysdate,'yyyy-mm-dd hh24:mi:ss') where ORDERID=#{0,jdbcType=VARCHAR}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.gz.medicine.gzyun.heaman.bean.HmOrder">
+    update GZJK_ORDER
+    set 
+      PACKAGEID = #{packageid,jdbcType=VARCHAR},
+      ORDERNAME = #{ordername,jdbcType=VARCHAR},
+      ORDERMON = #{ordermon,jdbcType=DECIMAL},
+      MEOFPAY = #{meofpay,jdbcType=VARCHAR},
+      USRID = #{usrid,jdbcType=VARCHAR},
+      USRNAME = #{usrname,jdbcType=VARCHAR},
+      ORDERCRTDAT = #{ordercrtdat,jdbcType=TIMESTAMP},
+      MEDAT = #{medat,jdbcType=VARCHAR},
+      ORDERTYPE = #{ordertype,jdbcType=VARCHAR},
+      USRGUID = #{usrguid,jdbcType=VARCHAR},
+      CLORDERNOTE = #{clordernote,jdbcType=VARCHAR},
+      CLORDERDAT = #{clorderdat,jdbcType=VARCHAR},
+      REVIEW = #{review,jdbcType=VARCHAR},
+      REVIEWDAT = #{reviewdat,jdbcType=VARCHAR},
+      REFUNDS = #{refunds,jdbcType=VARCHAR},
+      REFUNDSDAT = #{refundsdat,jdbcType=VARCHAR}
+    where ORDERID = #{orderid,jdbcType=CHAR}
+  </update>
+  
+  <!-- 订单支付接口 -->
+   <update id="updateByPrimaryKeyZhifu" parameterType="com.gz.medicine.gzyun.heaman.bean.HmOrder">
+    update GZJK_ORDER
+    set 
+      MEOFPAY = #{meofpay,jdbcType=VARCHAR},
+      MEDAT = #{medat,jdbcType=VARCHAR},
+      ORDERTYPE = #{ordertype,jdbcType=VARCHAR}
+    where ORDERID = #{orderid,jdbcType=CHAR}
+  </update>
+  
+  <!-- 查询系统当前时间 -->
+ <!--   <select id="selectSysdate"  resultType="java.sql.Timestamp" >
+	select sysdate from dual
+  </select>   -->
+  
+  <!-- 根据订单编号查询数据 -->
+   <select id="selectCount" parameterType="com.gz.medicine.gzyun.heaman.bean.HmOrder" resultType="java.lang.Integer">
+	select count(*) from GZJK_ORDER where ORDERID = #{orderid,jdbcType=CHAR}
+  </select> 
+</mapper>

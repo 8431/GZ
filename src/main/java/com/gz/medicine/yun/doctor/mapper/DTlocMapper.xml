@@ -1,0 +1,713 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gz.medicine.yun.doctor.mapper.DTlocMapper" >
+  <resultMap id="BaseResultMap" type="com.gz.medicine.yun.doctor.bean.DTloc" >
+    <id column="GUID" property="guid" jdbcType="CHAR" />
+    <result column="ORG" property="org" jdbcType="VARCHAR" />
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="LONGNAME" property="longname" jdbcType="VARCHAR" />
+    <result column="LOCTYP" property="loctyp" jdbcType="VARCHAR" />
+    <result column="ADDR" property="addr" jdbcType="VARCHAR" />
+    <result column="MAN" property="man" jdbcType="VARCHAR" />
+    <result column="TEL" property="tel" jdbcType="VARCHAR" />
+    <result column="FAX" property="fax" jdbcType="VARCHAR" />
+    <result column="DEFSLT1" property="defslt1" jdbcType="CHAR" />
+    <result column="DEFSLT2" property="defslt2" jdbcType="CHAR" />
+    <result column="DEFSLT3" property="defslt3" jdbcType="CHAR" />
+    <result column="DEFSLT4" property="defslt4" jdbcType="CHAR" />
+    <result column="DEFSLT5" property="defslt5" jdbcType="CHAR" />
+    <result column="DEFSLT6" property="defslt6" jdbcType="CHAR" />
+    <result column="DEFSLT7" property="defslt7" jdbcType="CHAR" />
+    <result column="CRTUSR" property="crtusr" jdbcType="VARCHAR" />
+    <result column="CRTDAT" property="crtdat" jdbcType="TIMESTAMP" />
+    <result column="USEFLG" property="useflg" jdbcType="CHAR" />
+    <result column="ENDFLG" property="endflg" jdbcType="CHAR" />
+    <result column="REFID" property="refid" jdbcType="VARCHAR" />
+    <result column="ACC" property="acc" jdbcType="VARCHAR" />
+    <result column="SUBLOCID" property="sublocid" jdbcType="VARCHAR" />
+    <result column="SUBACC" property="subacc" jdbcType="VARCHAR" />
+    <result column="DEFSLT8" property="defslt8" jdbcType="VARCHAR" />
+    <result column="IFXN" property="ifxn" jdbcType="CHAR" />
+    <result column="ISDAIX" property="isdaix" jdbcType="CHAR" />
+    <result column="SKZT" property="skzt" jdbcType="DECIMAL" />
+    <result column="CKZT" property="ckzt" jdbcType="DECIMAL" />
+    <result column="CKBZQ" property="ckbzq" jdbcType="DECIMAL" />
+    <result column="SKBZQ" property="skbzq" jdbcType="DECIMAL" />
+    <result column="OLDID" property="oldid" jdbcType="VARCHAR" />
+    <result column="DXCORPID" property="dxcorpid" jdbcType="VARCHAR" />
+    <result column="LOCFUNC" property="locfunc" jdbcType="VARCHAR" />
+    <result column="CHKINV" property="chkinv" jdbcType="CHAR" />
+    <result column="CHKPOQTY" property="chkpoqty" jdbcType="CHAR" />
+    <result column="EDIFLAG" property="ediflag" jdbcType="CHAR" />
+    <result column="REFCON" property="refcon" jdbcType="VARCHAR" />
+    <result column="REFPRO" property="refpro" jdbcType="VARCHAR" />
+    <result column="REFCITY" property="refcity" jdbcType="VARCHAR" />
+    <result column="IFDQLOC" property="ifdqloc" jdbcType="VARCHAR" />
+    <result column="IFSBLOC" property="ifsbloc" jdbcType="VARCHAR" />
+    <result column="SEQ" property="seq" jdbcType="DECIMAL" />
+    <result column="UPDFLG" property="updflg" jdbcType="CHAR" />
+    <result column="UPDDAT" property="upddat" jdbcType="TIMESTAMP" />
+    <result column="DEPTID" property="deptid" jdbcType="VARCHAR" />
+    <result column="DEPTNAM" property="deptnam" jdbcType="VARCHAR" />
+    <result column="PID" property="pid" jdbcType="VARCHAR" />
+    <result column="CID" property="cid" jdbcType="VARCHAR" />
+    <result column="AID" property="aid" jdbcType="VARCHAR" />
+    <result column="XXDZ" property="xxdz" jdbcType="VARCHAR" />
+    <result column="SSJGFL" property="ssjgfl" jdbcType="VARCHAR" />
+    <result column="DTJD" property="dtjd" jdbcType="VARCHAR" />
+    <result column="DTWD" property="dtwd" jdbcType="VARCHAR" />
+    <result column="LSTYPE" property="lstype" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    GUID, ORG, ID, NAME, LONGNAME, LOCTYP, ADDR, MAN, TEL, FAX, DEFSLT1, DEFSLT2, DEFSLT3, 
+    DEFSLT4, DEFSLT5, DEFSLT6, DEFSLT7, CRTUSR, CRTDAT, USEFLG, ENDFLG, REFID, ACC, SUBLOCID, 
+    SUBACC, DEFSLT8, IFXN, ISDAIX, SKZT, CKZT, CKBZQ, SKBZQ, OLDID, DXCORPID, LOCFUNC, 
+    CHKINV, CHKPOQTY, EDIFLAG, REFCON, REFPRO, REFCITY, IFDQLOC, IFSBLOC, SEQ, UPDFLG, 
+    UPDDAT, DEPTID, DEPTNAM, PID, CID, AID, XXDZ, SSJGFL, DTJD, DTWD, LSTYPE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from LOC
+    where GUID = #{guid,jdbcType=CHAR}
+  </select>
+
+  <select id="selectByIdAndChis" resultMap="BaseResultMap" parameterType="java.lang.String">
+
+    select
+    <include refid="Base_Column_List" />
+    from LOC
+    where org='CHIS' AND ID = #{deptIdNum,jdbcType=CHAR}
+
+  </select>
+
+
+  <resultMap id="ResultMap" type="java.util.Map" >
+    <result column="WEIGHT" property="Weight" jdbcType="VARCHAR" />
+    <result column="OXYGEN" property="Oxygen" jdbcType="VARCHAR" />
+    <result column="HR" property="Hr" jdbcType="VARCHAR" />
+    <result column="TEMPERATURE" property="Temperature" jdbcType="VARCHAR" />
+    <result column="BLOODSUGAR" property="BloodSugar" jdbcType="VARCHAR" />
+    <result column="HIGHPRESSURE" property="HighPressure" jdbcType="VARCHAR" />
+    <result column="LOWPRESSURE" property="LowPressure" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="selectByBloodpressureId" parameterType="java.lang.String" resultMap="ResultMap">
+    select * from (select Weight,Oxygen,Hr,Temperature,BloodSugar,HighPressure,LowPressure,rownum as rn from CHIS_BLOODPRESSURE where IDCODE=(select idcard from usr where guid=#{guid,jdbcType=VARCHAR}) order by CREATEDATE desc ) where rn = 1
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from LOC
+    where GUID = #{guid,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gz.medicine.yun.doctor.bean.DTloc" >
+    insert into LOC (GUID, ORG, ID, NAME, 
+      LONGNAME, LOCTYP, ADDR, 
+      MAN, TEL, FAX, DEFSLT1, 
+      DEFSLT2, DEFSLT3, DEFSLT4, DEFSLT5, 
+      DEFSLT6, DEFSLT7, CRTUSR, 
+      CRTDAT, USEFLG, ENDFLG, 
+      REFID, ACC, SUBLOCID, 
+      SUBACC, DEFSLT8, IFXN, 
+      ISDAIX, SKZT, CKZT, CKBZQ, 
+      SKBZQ, OLDID, DXCORPID, 
+      LOCFUNC, CHKINV, CHKPOQTY, 
+      EDIFLAG, REFCON, REFPRO, 
+      REFCITY, IFDQLOC, IFSBLOC, 
+      SEQ, UPDFLG, UPDDAT, 
+      DEPTID, DEPTNAM, PID, 
+      CID, AID, XXDZ, SSJGFL, 
+      DTJD, DTWD, LSTYPE)
+    values (#{guid,jdbcType=CHAR}, #{org,jdbcType=VARCHAR}, #{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{longname,jdbcType=VARCHAR}, #{loctyp,jdbcType=VARCHAR}, #{addr,jdbcType=VARCHAR}, 
+      #{man,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{fax,jdbcType=VARCHAR}, #{defslt1,jdbcType=CHAR}, 
+      #{defslt2,jdbcType=CHAR}, #{defslt3,jdbcType=CHAR}, #{defslt4,jdbcType=CHAR}, #{defslt5,jdbcType=CHAR}, 
+      #{defslt6,jdbcType=CHAR}, #{defslt7,jdbcType=CHAR}, #{crtusr,jdbcType=VARCHAR}, 
+      #{crtdat,jdbcType=TIMESTAMP}, #{useflg,jdbcType=CHAR}, #{endflg,jdbcType=CHAR}, 
+      #{refid,jdbcType=VARCHAR}, #{acc,jdbcType=VARCHAR}, #{sublocid,jdbcType=VARCHAR}, 
+      #{subacc,jdbcType=VARCHAR}, #{defslt8,jdbcType=VARCHAR}, #{ifxn,jdbcType=CHAR}, 
+      #{isdaix,jdbcType=CHAR}, #{skzt,jdbcType=DECIMAL}, #{ckzt,jdbcType=DECIMAL}, #{ckbzq,jdbcType=DECIMAL}, 
+      #{skbzq,jdbcType=DECIMAL}, #{oldid,jdbcType=VARCHAR}, #{dxcorpid,jdbcType=VARCHAR}, 
+      #{locfunc,jdbcType=VARCHAR}, #{chkinv,jdbcType=CHAR}, #{chkpoqty,jdbcType=CHAR}, 
+      #{ediflag,jdbcType=CHAR}, #{refcon,jdbcType=VARCHAR}, #{refpro,jdbcType=VARCHAR}, 
+      #{refcity,jdbcType=VARCHAR}, #{ifdqloc,jdbcType=VARCHAR}, #{ifsbloc,jdbcType=VARCHAR}, 
+      #{seq,jdbcType=DECIMAL}, #{updflg,jdbcType=CHAR}, #{upddat,jdbcType=TIMESTAMP}, 
+      #{deptid,jdbcType=VARCHAR}, #{deptnam,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR}, 
+      #{cid,jdbcType=VARCHAR}, #{aid,jdbcType=VARCHAR}, #{xxdz,jdbcType=VARCHAR}, #{ssjgfl,jdbcType=VARCHAR}, 
+      #{dtjd,jdbcType=VARCHAR}, #{dtwd,jdbcType=VARCHAR}, #{lstype,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gz.medicine.yun.doctor.bean.DTloc" >
+    insert into LOC
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        GUID,
+      </if>
+      <if test="org != null" >
+        ORG,
+      </if>
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="longname != null" >
+        LONGNAME,
+      </if>
+      <if test="loctyp != null" >
+        LOCTYP,
+      </if>
+      <if test="addr != null" >
+        ADDR,
+      </if>
+      <if test="man != null" >
+        MAN,
+      </if>
+      <if test="tel != null" >
+        TEL,
+      </if>
+      <if test="fax != null" >
+        FAX,
+      </if>
+      <if test="defslt1 != null" >
+        DEFSLT1,
+      </if>
+      <if test="defslt2 != null" >
+        DEFSLT2,
+      </if>
+      <if test="defslt3 != null" >
+        DEFSLT3,
+      </if>
+      <if test="defslt4 != null" >
+        DEFSLT4,
+      </if>
+      <if test="defslt5 != null" >
+        DEFSLT5,
+      </if>
+      <if test="defslt6 != null" >
+        DEFSLT6,
+      </if>
+      <if test="defslt7 != null" >
+        DEFSLT7,
+      </if>
+      <if test="crtusr != null" >
+        CRTUSR,
+      </if>
+      <if test="crtdat != null" >
+        CRTDAT,
+      </if>
+      <if test="useflg != null" >
+        USEFLG,
+      </if>
+      <if test="endflg != null" >
+        ENDFLG,
+      </if>
+      <if test="refid != null" >
+        REFID,
+      </if>
+      <if test="acc != null" >
+        ACC,
+      </if>
+      <if test="sublocid != null" >
+        SUBLOCID,
+      </if>
+      <if test="subacc != null" >
+        SUBACC,
+      </if>
+      <if test="defslt8 != null" >
+        DEFSLT8,
+      </if>
+      <if test="ifxn != null" >
+        IFXN,
+      </if>
+      <if test="isdaix != null" >
+        ISDAIX,
+      </if>
+      <if test="skzt != null" >
+        SKZT,
+      </if>
+      <if test="ckzt != null" >
+        CKZT,
+      </if>
+      <if test="ckbzq != null" >
+        CKBZQ,
+      </if>
+      <if test="skbzq != null" >
+        SKBZQ,
+      </if>
+      <if test="oldid != null" >
+        OLDID,
+      </if>
+      <if test="dxcorpid != null" >
+        DXCORPID,
+      </if>
+      <if test="locfunc != null" >
+        LOCFUNC,
+      </if>
+      <if test="chkinv != null" >
+        CHKINV,
+      </if>
+      <if test="chkpoqty != null" >
+        CHKPOQTY,
+      </if>
+      <if test="ediflag != null" >
+        EDIFLAG,
+      </if>
+      <if test="refcon != null" >
+        REFCON,
+      </if>
+      <if test="refpro != null" >
+        REFPRO,
+      </if>
+      <if test="refcity != null" >
+        REFCITY,
+      </if>
+      <if test="ifdqloc != null" >
+        IFDQLOC,
+      </if>
+      <if test="ifsbloc != null" >
+        IFSBLOC,
+      </if>
+      <if test="seq != null" >
+        SEQ,
+      </if>
+      <if test="updflg != null" >
+        UPDFLG,
+      </if>
+      <if test="upddat != null" >
+        UPDDAT,
+      </if>
+      <if test="deptid != null" >
+        DEPTID,
+      </if>
+      <if test="deptnam != null" >
+        DEPTNAM,
+      </if>
+      <if test="pid != null" >
+        PID,
+      </if>
+      <if test="cid != null" >
+        CID,
+      </if>
+      <if test="aid != null" >
+        AID,
+      </if>
+      <if test="xxdz != null" >
+        XXDZ,
+      </if>
+      <if test="ssjgfl != null" >
+        SSJGFL,
+      </if>
+      <if test="dtjd != null" >
+        DTJD,
+      </if>
+      <if test="dtwd != null" >
+        DTWD,
+      </if>
+      <if test="lstype != null" >
+        LSTYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        #{guid,jdbcType=CHAR},
+      </if>
+      <if test="org != null" >
+        #{org,jdbcType=VARCHAR},
+      </if>
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="longname != null" >
+        #{longname,jdbcType=VARCHAR},
+      </if>
+      <if test="loctyp != null" >
+        #{loctyp,jdbcType=VARCHAR},
+      </if>
+      <if test="addr != null" >
+        #{addr,jdbcType=VARCHAR},
+      </if>
+      <if test="man != null" >
+        #{man,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="defslt1 != null" >
+        #{defslt1,jdbcType=CHAR},
+      </if>
+      <if test="defslt2 != null" >
+        #{defslt2,jdbcType=CHAR},
+      </if>
+      <if test="defslt3 != null" >
+        #{defslt3,jdbcType=CHAR},
+      </if>
+      <if test="defslt4 != null" >
+        #{defslt4,jdbcType=CHAR},
+      </if>
+      <if test="defslt5 != null" >
+        #{defslt5,jdbcType=CHAR},
+      </if>
+      <if test="defslt6 != null" >
+        #{defslt6,jdbcType=CHAR},
+      </if>
+      <if test="defslt7 != null" >
+        #{defslt7,jdbcType=CHAR},
+      </if>
+      <if test="crtusr != null" >
+        #{crtusr,jdbcType=VARCHAR},
+      </if>
+      <if test="crtdat != null" >
+        #{crtdat,jdbcType=TIMESTAMP},
+      </if>
+      <if test="useflg != null" >
+        #{useflg,jdbcType=CHAR},
+      </if>
+      <if test="endflg != null" >
+        #{endflg,jdbcType=CHAR},
+      </if>
+      <if test="refid != null" >
+        #{refid,jdbcType=VARCHAR},
+      </if>
+      <if test="acc != null" >
+        #{acc,jdbcType=VARCHAR},
+      </if>
+      <if test="sublocid != null" >
+        #{sublocid,jdbcType=VARCHAR},
+      </if>
+      <if test="subacc != null" >
+        #{subacc,jdbcType=VARCHAR},
+      </if>
+      <if test="defslt8 != null" >
+        #{defslt8,jdbcType=VARCHAR},
+      </if>
+      <if test="ifxn != null" >
+        #{ifxn,jdbcType=CHAR},
+      </if>
+      <if test="isdaix != null" >
+        #{isdaix,jdbcType=CHAR},
+      </if>
+      <if test="skzt != null" >
+        #{skzt,jdbcType=DECIMAL},
+      </if>
+      <if test="ckzt != null" >
+        #{ckzt,jdbcType=DECIMAL},
+      </if>
+      <if test="ckbzq != null" >
+        #{ckbzq,jdbcType=DECIMAL},
+      </if>
+      <if test="skbzq != null" >
+        #{skbzq,jdbcType=DECIMAL},
+      </if>
+      <if test="oldid != null" >
+        #{oldid,jdbcType=VARCHAR},
+      </if>
+      <if test="dxcorpid != null" >
+        #{dxcorpid,jdbcType=VARCHAR},
+      </if>
+      <if test="locfunc != null" >
+        #{locfunc,jdbcType=VARCHAR},
+      </if>
+      <if test="chkinv != null" >
+        #{chkinv,jdbcType=CHAR},
+      </if>
+      <if test="chkpoqty != null" >
+        #{chkpoqty,jdbcType=CHAR},
+      </if>
+      <if test="ediflag != null" >
+        #{ediflag,jdbcType=CHAR},
+      </if>
+      <if test="refcon != null" >
+        #{refcon,jdbcType=VARCHAR},
+      </if>
+      <if test="refpro != null" >
+        #{refpro,jdbcType=VARCHAR},
+      </if>
+      <if test="refcity != null" >
+        #{refcity,jdbcType=VARCHAR},
+      </if>
+      <if test="ifdqloc != null" >
+        #{ifdqloc,jdbcType=VARCHAR},
+      </if>
+      <if test="ifsbloc != null" >
+        #{ifsbloc,jdbcType=VARCHAR},
+      </if>
+      <if test="seq != null" >
+        #{seq,jdbcType=DECIMAL},
+      </if>
+      <if test="updflg != null" >
+        #{updflg,jdbcType=CHAR},
+      </if>
+      <if test="upddat != null" >
+        #{upddat,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deptid != null" >
+        #{deptid,jdbcType=VARCHAR},
+      </if>
+      <if test="deptnam != null" >
+        #{deptnam,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="cid != null" >
+        #{cid,jdbcType=VARCHAR},
+      </if>
+      <if test="aid != null" >
+        #{aid,jdbcType=VARCHAR},
+      </if>
+      <if test="xxdz != null" >
+        #{xxdz,jdbcType=VARCHAR},
+      </if>
+      <if test="ssjgfl != null" >
+        #{ssjgfl,jdbcType=VARCHAR},
+      </if>
+      <if test="dtjd != null" >
+        #{dtjd,jdbcType=VARCHAR},
+      </if>
+      <if test="dtwd != null" >
+        #{dtwd,jdbcType=VARCHAR},
+      </if>
+      <if test="lstype != null" >
+        #{lstype,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gz.medicine.yun.doctor.bean.DTloc" >
+    update LOC
+    <set >
+      <if test="org != null" >
+        ORG = #{org,jdbcType=VARCHAR},
+      </if>
+      <if test="id != null" >
+        ID = #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="longname != null" >
+        LONGNAME = #{longname,jdbcType=VARCHAR},
+      </if>
+      <if test="loctyp != null" >
+        LOCTYP = #{loctyp,jdbcType=VARCHAR},
+      </if>
+      <if test="addr != null" >
+        ADDR = #{addr,jdbcType=VARCHAR},
+      </if>
+      <if test="man != null" >
+        MAN = #{man,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        TEL = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        FAX = #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="defslt1 != null" >
+        DEFSLT1 = #{defslt1,jdbcType=CHAR},
+      </if>
+      <if test="defslt2 != null" >
+        DEFSLT2 = #{defslt2,jdbcType=CHAR},
+      </if>
+      <if test="defslt3 != null" >
+        DEFSLT3 = #{defslt3,jdbcType=CHAR},
+      </if>
+      <if test="defslt4 != null" >
+        DEFSLT4 = #{defslt4,jdbcType=CHAR},
+      </if>
+      <if test="defslt5 != null" >
+        DEFSLT5 = #{defslt5,jdbcType=CHAR},
+      </if>
+      <if test="defslt6 != null" >
+        DEFSLT6 = #{defslt6,jdbcType=CHAR},
+      </if>
+      <if test="defslt7 != null" >
+        DEFSLT7 = #{defslt7,jdbcType=CHAR},
+      </if>
+      <if test="crtusr != null" >
+        CRTUSR = #{crtusr,jdbcType=VARCHAR},
+      </if>
+      <if test="crtdat != null" >
+        CRTDAT = #{crtdat,jdbcType=TIMESTAMP},
+      </if>
+      <if test="useflg != null" >
+        USEFLG = #{useflg,jdbcType=CHAR},
+      </if>
+      <if test="endflg != null" >
+        ENDFLG = #{endflg,jdbcType=CHAR},
+      </if>
+      <if test="refid != null" >
+        REFID = #{refid,jdbcType=VARCHAR},
+      </if>
+      <if test="acc != null" >
+        ACC = #{acc,jdbcType=VARCHAR},
+      </if>
+      <if test="sublocid != null" >
+        SUBLOCID = #{sublocid,jdbcType=VARCHAR},
+      </if>
+      <if test="subacc != null" >
+        SUBACC = #{subacc,jdbcType=VARCHAR},
+      </if>
+      <if test="defslt8 != null" >
+        DEFSLT8 = #{defslt8,jdbcType=VARCHAR},
+      </if>
+      <if test="ifxn != null" >
+        IFXN = #{ifxn,jdbcType=CHAR},
+      </if>
+      <if test="isdaix != null" >
+        ISDAIX = #{isdaix,jdbcType=CHAR},
+      </if>
+      <if test="skzt != null" >
+        SKZT = #{skzt,jdbcType=DECIMAL},
+      </if>
+      <if test="ckzt != null" >
+        CKZT = #{ckzt,jdbcType=DECIMAL},
+      </if>
+      <if test="ckbzq != null" >
+        CKBZQ = #{ckbzq,jdbcType=DECIMAL},
+      </if>
+      <if test="skbzq != null" >
+        SKBZQ = #{skbzq,jdbcType=DECIMAL},
+      </if>
+      <if test="oldid != null" >
+        OLDID = #{oldid,jdbcType=VARCHAR},
+      </if>
+      <if test="dxcorpid != null" >
+        DXCORPID = #{dxcorpid,jdbcType=VARCHAR},
+      </if>
+      <if test="locfunc != null" >
+        LOCFUNC = #{locfunc,jdbcType=VARCHAR},
+      </if>
+      <if test="chkinv != null" >
+        CHKINV = #{chkinv,jdbcType=CHAR},
+      </if>
+      <if test="chkpoqty != null" >
+        CHKPOQTY = #{chkpoqty,jdbcType=CHAR},
+      </if>
+      <if test="ediflag != null" >
+        EDIFLAG = #{ediflag,jdbcType=CHAR},
+      </if>
+      <if test="refcon != null" >
+        REFCON = #{refcon,jdbcType=VARCHAR},
+      </if>
+      <if test="refpro != null" >
+        REFPRO = #{refpro,jdbcType=VARCHAR},
+      </if>
+      <if test="refcity != null" >
+        REFCITY = #{refcity,jdbcType=VARCHAR},
+      </if>
+      <if test="ifdqloc != null" >
+        IFDQLOC = #{ifdqloc,jdbcType=VARCHAR},
+      </if>
+      <if test="ifsbloc != null" >
+        IFSBLOC = #{ifsbloc,jdbcType=VARCHAR},
+      </if>
+      <if test="seq != null" >
+        SEQ = #{seq,jdbcType=DECIMAL},
+      </if>
+      <if test="updflg != null" >
+        UPDFLG = #{updflg,jdbcType=CHAR},
+      </if>
+      <if test="upddat != null" >
+        UPDDAT = #{upddat,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deptid != null" >
+        DEPTID = #{deptid,jdbcType=VARCHAR},
+      </if>
+      <if test="deptnam != null" >
+        DEPTNAM = #{deptnam,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null" >
+        PID = #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="cid != null" >
+        CID = #{cid,jdbcType=VARCHAR},
+      </if>
+      <if test="aid != null" >
+        AID = #{aid,jdbcType=VARCHAR},
+      </if>
+      <if test="xxdz != null" >
+        XXDZ = #{xxdz,jdbcType=VARCHAR},
+      </if>
+      <if test="ssjgfl != null" >
+        SSJGFL = #{ssjgfl,jdbcType=VARCHAR},
+      </if>
+      <if test="dtjd != null" >
+        DTJD = #{dtjd,jdbcType=VARCHAR},
+      </if>
+      <if test="dtwd != null" >
+        DTWD = #{dtwd,jdbcType=VARCHAR},
+      </if>
+      <if test="lstype != null" >
+        LSTYPE = #{lstype,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where GUID = #{guid,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gz.medicine.yun.doctor.bean.DTloc" >
+    update LOC
+    set ORG = #{org,jdbcType=VARCHAR},
+      ID = #{id,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      LONGNAME = #{longname,jdbcType=VARCHAR},
+      LOCTYP = #{loctyp,jdbcType=VARCHAR},
+      ADDR = #{addr,jdbcType=VARCHAR},
+      MAN = #{man,jdbcType=VARCHAR},
+      TEL = #{tel,jdbcType=VARCHAR},
+      FAX = #{fax,jdbcType=VARCHAR},
+      DEFSLT1 = #{defslt1,jdbcType=CHAR},
+      DEFSLT2 = #{defslt2,jdbcType=CHAR},
+      DEFSLT3 = #{defslt3,jdbcType=CHAR},
+      DEFSLT4 = #{defslt4,jdbcType=CHAR},
+      DEFSLT5 = #{defslt5,jdbcType=CHAR},
+      DEFSLT6 = #{defslt6,jdbcType=CHAR},
+      DEFSLT7 = #{defslt7,jdbcType=CHAR},
+      CRTUSR = #{crtusr,jdbcType=VARCHAR},
+      CRTDAT = #{crtdat,jdbcType=TIMESTAMP},
+      USEFLG = #{useflg,jdbcType=CHAR},
+      ENDFLG = #{endflg,jdbcType=CHAR},
+      REFID = #{refid,jdbcType=VARCHAR},
+      ACC = #{acc,jdbcType=VARCHAR},
+      SUBLOCID = #{sublocid,jdbcType=VARCHAR},
+      SUBACC = #{subacc,jdbcType=VARCHAR},
+      DEFSLT8 = #{defslt8,jdbcType=VARCHAR},
+      IFXN = #{ifxn,jdbcType=CHAR},
+      ISDAIX = #{isdaix,jdbcType=CHAR},
+      SKZT = #{skzt,jdbcType=DECIMAL},
+      CKZT = #{ckzt,jdbcType=DECIMAL},
+      CKBZQ = #{ckbzq,jdbcType=DECIMAL},
+      SKBZQ = #{skbzq,jdbcType=DECIMAL},
+      OLDID = #{oldid,jdbcType=VARCHAR},
+      DXCORPID = #{dxcorpid,jdbcType=VARCHAR},
+      LOCFUNC = #{locfunc,jdbcType=VARCHAR},
+      CHKINV = #{chkinv,jdbcType=CHAR},
+      CHKPOQTY = #{chkpoqty,jdbcType=CHAR},
+      EDIFLAG = #{ediflag,jdbcType=CHAR},
+      REFCON = #{refcon,jdbcType=VARCHAR},
+      REFPRO = #{refpro,jdbcType=VARCHAR},
+      REFCITY = #{refcity,jdbcType=VARCHAR},
+      IFDQLOC = #{ifdqloc,jdbcType=VARCHAR},
+      IFSBLOC = #{ifsbloc,jdbcType=VARCHAR},
+      SEQ = #{seq,jdbcType=DECIMAL},
+      UPDFLG = #{updflg,jdbcType=CHAR},
+      UPDDAT = #{upddat,jdbcType=TIMESTAMP},
+      DEPTID = #{deptid,jdbcType=VARCHAR},
+      DEPTNAM = #{deptnam,jdbcType=VARCHAR},
+      PID = #{pid,jdbcType=VARCHAR},
+      CID = #{cid,jdbcType=VARCHAR},
+      AID = #{aid,jdbcType=VARCHAR},
+      XXDZ = #{xxdz,jdbcType=VARCHAR},
+      SSJGFL = #{ssjgfl,jdbcType=VARCHAR},
+      DTJD = #{dtjd,jdbcType=VARCHAR},
+      DTWD = #{dtwd,jdbcType=VARCHAR},
+      LSTYPE = #{lstype,jdbcType=VARCHAR}
+    where GUID = #{guid,jdbcType=CHAR}
+  </update>
+</mapper>

@@ -1,0 +1,954 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gz.medicine.yun.doctor.mapper.DTdocMapper" >
+  <resultMap id="BaseResultMap" type="com.gz.medicine.yun.doctor.bean.DTdoc" >
+    <id column="GUID" property="guid" jdbcType="CHAR" />
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="HOSPITAL" property="hospital" jdbcType="VARCHAR" />
+    <result column="JOBTITLE" property="jobtitle" jdbcType="VARCHAR" />
+    <result column="EDUCATION" property="education" jdbcType="VARCHAR" />
+    <result column="SKILL" property="skill" jdbcType="VARCHAR" />
+    <result column="NOTE" property="note" jdbcType="VARCHAR" />
+    <result column="IMG" property="img" jdbcType="VARCHAR" />
+    <result column="SEX" property="sex" jdbcType="VARCHAR" />
+    <result column="IDCPHOTO" property="idcphoto" jdbcType="VARCHAR" />
+    <result column="PRAPHOTO" property="praphoto" jdbcType="VARCHAR" />
+    <result column="JOBPHOTO" property="jobphoto" jdbcType="VARCHAR" />
+    <result column="REFID" property="refid" jdbcType="VARCHAR" />
+    <result column="READPRICE" property="readprice" jdbcType="VARCHAR" />
+    <result column="IDZPHOTO" property="idzphoto" jdbcType="VARCHAR" />
+    <result column="IDFTPHOTO" property="idftphoto" jdbcType="VARCHAR" />
+    <result column="REFNME" property="refnme" jdbcType="VARCHAR" />
+    <result column="DOCLICENSE" property="doclicense" jdbcType="VARCHAR" />
+    <result column="FLG" property="flg" jdbcType="DECIMAL" />
+    <result column="TEAMSTAT" property="teamstat" jdbcType="VARCHAR" />
+    <result column="DISTRIBUTION" property="distribution" jdbcType="VARCHAR" />
+    <result column="FLAG" property="flag" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="EMAILL" property="emaill" jdbcType="VARCHAR" />
+    <result column="TELEPHONE" property="telephone" jdbcType="VARCHAR" />
+    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+    <result column="LICENSEID" property="licenseid" jdbcType="VARCHAR" />
+    <result column="DEPARTMENT" property="department" jdbcType="VARCHAR" />
+    <result column="POSITION" property="position" jdbcType="VARCHAR" />
+    <result column="BEGOODAT" property="begoodat" jdbcType="VARCHAR" />
+    <result column="EDUNAME" property="eduname" jdbcType="VARCHAR" />
+    <result column="VISCERA" property="viscera" jdbcType="VARCHAR" />
+    <result column="EQUTYPE" property="equtype" jdbcType="VARCHAR" />
+    <result column="ACCTYPE" property="acctype" jdbcType="VARCHAR" />
+    <result column="ACCNAME" property="accname" jdbcType="VARCHAR" />
+    <result column="ZFBACC" property="zfbacc" jdbcType="VARCHAR" />
+    <result column="FLAG1" property="flag1" jdbcType="VARCHAR" />
+    <result column="ZFBNAM" property="zfbnam" jdbcType="VARCHAR" />
+    <result column="ACCID" property="accid" jdbcType="VARCHAR" />
+    <result column="ACCOUNTID" property="accountid" jdbcType="VARCHAR" />
+    <result column="ZFBFLAG" property="zfbflag" jdbcType="VARCHAR" />
+    <result column="ACCFLAG" property="accflag" jdbcType="VARCHAR" />
+    <result column="SYT" property="syt" jdbcType="VARCHAR" />
+    <result column="ACC" property="acc" jdbcType="VARCHAR" />
+    <result column="ORG" property="org" jdbcType="VARCHAR" />
+    <result column="ZXFLG" property="zxflg" jdbcType="VARCHAR" />
+    <result column="DEPTNAM" property="deptnam" jdbcType="VARCHAR" />
+    <result column="BEGOODATNAM" property="begoodatnam" jdbcType="VARCHAR" />
+    <result column="USRSTAT" property="usrstat" jdbcType="VARCHAR" />
+    <result column="CRTDAT" property="crtdat" jdbcType="VARCHAR" />
+    <result column="SP" property="sp" jdbcType="VARCHAR" />
+    <result column="BGP" property="bgp" jdbcType="VARCHAR" />
+    <result column="OPENROOM" property="openroom" jdbcType="VARCHAR" />
+    <result column="SORTID" property="sortid" jdbcType="DECIMAL" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+    <result column="TYPE2" property="type2" jdbcType="VARCHAR" />
+    <result column="ISKF" property="iskf" jdbcType="VARCHAR" />
+    <result column="ISTY" property="isty" jdbcType="VARCHAR" />
+    <result column="PASSWD" property="passwd" jdbcType="VARCHAR" />
+    <result column="DEPARTMENT2" property="department2" jdbcType="VARCHAR" />
+    <result column="IMGGUID" property="imgguid" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <resultMap id="BaseResultMaps" type="com.gz.medicine.yun.doctor.bean.DTdoc" >
+    <id column="GUID" property="guid" jdbcType="CHAR" />
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="HOSPITAL" property="hospital" jdbcType="VARCHAR" />
+    <result column="JOBTITLE" property="jobtitle" jdbcType="VARCHAR" />
+    <result column="EDUCATION" property="education" jdbcType="VARCHAR" />
+    <result column="SKILL" property="skill" jdbcType="VARCHAR" />
+    <result column="NOTE" property="note" jdbcType="VARCHAR" />
+    <result column="IMG" property="img" jdbcType="VARCHAR" />
+    <result column="SEX" property="sex" jdbcType="VARCHAR" />
+    <result column="IDCPHOTO" property="idcphoto" jdbcType="VARCHAR" />
+    <result column="PRAPHOTO" property="praphoto" jdbcType="VARCHAR" />
+    <result column="JOBPHOTO" property="jobphoto" jdbcType="VARCHAR" />
+    <result column="REFID" property="refid" jdbcType="VARCHAR" />
+    <result column="READPRICE" property="readprice" jdbcType="VARCHAR" />
+    <result column="IDZPHOTO" property="idzphoto" jdbcType="VARCHAR" />
+    <result column="IDFTPHOTO" property="idftphoto" jdbcType="VARCHAR" />
+    <result column="REFNME" property="refnme" jdbcType="VARCHAR" />
+    <result column="DOCLICENSE" property="doclicense" jdbcType="VARCHAR" />
+    <result column="FLG" property="flg" jdbcType="DECIMAL" />
+    <result column="TEAMSTAT" property="teamstat" jdbcType="VARCHAR" />
+    <result column="DISTRIBUTION" property="distribution" jdbcType="VARCHAR" />
+    <result column="FLAG" property="flag" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="EMAILL" property="emaill" jdbcType="VARCHAR" />
+    <result column="TELEPHONE" property="telephone" jdbcType="VARCHAR" />
+    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+    <result column="LICENSEID" property="licenseid" jdbcType="VARCHAR" />
+    <result column="DEPARTMENT" property="department" jdbcType="VARCHAR" />
+    <result column="POSITION" property="position" jdbcType="VARCHAR" />
+    <result column="BEGOODAT" property="begoodat" jdbcType="VARCHAR" />
+    <result column="EDUNAME" property="eduname" jdbcType="VARCHAR" />
+    <result column="VISCERA" property="viscera" jdbcType="VARCHAR" />
+    <result column="EQUTYPE" property="equtype" jdbcType="VARCHAR" />
+    <result column="ACCTYPE" property="acctype" jdbcType="VARCHAR" />
+    <result column="ACCNAME" property="accname" jdbcType="VARCHAR" />
+    <result column="ZFBACC" property="zfbacc" jdbcType="VARCHAR" />
+    <result column="FLAG1" property="flag1" jdbcType="VARCHAR" />
+    <result column="ZFBNAM" property="zfbnam" jdbcType="VARCHAR" />
+    <result column="ACCID" property="accid" jdbcType="VARCHAR" />
+    <result column="ACCOUNTID" property="accountid" jdbcType="VARCHAR" />
+    <result column="ZFBFLAG" property="zfbflag" jdbcType="VARCHAR" />
+    <result column="ACCFLAG" property="accflag" jdbcType="VARCHAR" />
+    <result column="SYT" property="syt" jdbcType="VARCHAR" />
+    <result column="ACC" property="acc" jdbcType="VARCHAR" />
+    <result column="ORG" property="org" jdbcType="VARCHAR" />
+    <result column="ZXFLG" property="zxflg" jdbcType="VARCHAR" />
+    <result column="DEPTNAM" property="deptnam" jdbcType="VARCHAR" />
+    <result column="BEGOODATNAM" property="begoodatnam" jdbcType="VARCHAR" />
+    <result column="USRSTAT" property="usrstat" jdbcType="VARCHAR" />
+    <result column="CRTDAT" property="crtdat" jdbcType="VARCHAR" />
+    <result column="SP" property="sp" jdbcType="VARCHAR" />
+    <result column="BGP" property="bgp" jdbcType="VARCHAR" />
+    <result column="OPENROOM" property="openroom" jdbcType="VARCHAR" />
+    <result column="SORTID" property="sortid" jdbcType="DECIMAL" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+    <result column="TYPE2" property="type2" jdbcType="VARCHAR" />
+    <result column="ISKF" property="iskf" jdbcType="VARCHAR" />
+    <result column="ISTY" property="isty" jdbcType="VARCHAR" />
+    <result column="PASSWD" property="passwd" jdbcType="VARCHAR" />
+    <result column="DEPARTMENT2" property="department2" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    GUID, ID, NAME, HOSPITAL, JOBTITLE, EDUCATION, SKILL, NOTE, IMG, SEX, IDCPHOTO, PRAPHOTO, 
+    JOBPHOTO, REFID, READPRICE, IDZPHOTO, IDFTPHOTO, REFNME, DOCLICENSE, FLG, TEAMSTAT, 
+    DISTRIBUTION, FLAG, ADDRESS, EMAILL, TELEPHONE, PASSWORD, LICENSEID, DEPARTMENT, 
+    POSITION, BEGOODAT, EDUNAME, VISCERA, EQUTYPE, ACCTYPE, ACCNAME, ZFBACC, FLAG1, ZFBNAM, 
+    ACCID, ACCOUNTID, ZFBFLAG, ACCFLAG, SYT, ACC, ORG, ZXFLG, DEPTNAM, BEGOODATNAM, USRSTAT, 
+    CRTDAT, SP, BGP, OPENROOM, SORTID, TYPE, TYPE2, ISKF, ISTY, DEPARTMENT2,IMGGUID
+  </sql>
+
+  <sql id="Base_Column_Lists" >
+    GUID, ID, NAME, HOSPITAL, JOBTITLE, EDUCATION, SKILL, NOTE, IMG, SEX, IDCPHOTO, PRAPHOTO,
+    JOBPHOTO, REFID, READPRICE, IDZPHOTO, IDFTPHOTO, REFNME, DOCLICENSE, FLG, TEAMSTAT,
+    DISTRIBUTION, FLAG, ADDRESS, EMAILL, TELEPHONE, PASSWORD, LICENSEID, DEPARTMENT,
+    POSITION, BEGOODAT, EDUNAME, VISCERA, EQUTYPE, ACCTYPE, ACCNAME, ZFBACC, FLAG1, ZFBNAM,
+    ACCID, ACCOUNTID, ZFBFLAG, ACCFLAG, SYT, ACC, ORG, ZXFLG, DEPTNAM, BEGOODATNAM, USRSTAT,
+    CRTDAT, SP, BGP, OPENROOM, SORTID, TYPE, TYPE2, ISKF, ISTY, DEPARTMENT2
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+   select
+    <include refid="Base_Column_List" />
+    from YX_DOC
+    where GUID = #{guid,jdbcType=CHAR}
+  </select>
+
+
+  <!--fedno 更改-->
+  <select id="selectByPrimaryKeys" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_Lists" />
+    from YX_DOC
+    where GUID = #{guid,jdbcType=CHAR}
+  </select>
+
+  <select id="selectByDocguids" resultMap="BaseResultMap" parameterType="java.lang.String">
+
+    select
+    <include refid="Base_Column_List" />
+    from YX_DOC
+    where GUID = #{guid,jdbcType=CHAR}
+
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from YX_DOC
+    where GUID = #{guid,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gz.medicine.yun.doctor.bean.DTdoc" >
+    insert into YX_DOC (GUID, ID, NAME, 
+      HOSPITAL, JOBTITLE, EDUCATION, 
+      SKILL, NOTE, IMG, SEX, 
+      IDCPHOTO, PRAPHOTO, JOBPHOTO, 
+      REFID, READPRICE, IDZPHOTO, 
+      IDFTPHOTO, REFNME, DOCLICENSE, 
+      FLG, TEAMSTAT, DISTRIBUTION, 
+      FLAG, ADDRESS, EMAILL, 
+      TELEPHONE, PASSWORD, LICENSEID, 
+      DEPARTMENT, POSITION, BEGOODAT, 
+      EDUNAME, VISCERA, EQUTYPE, 
+      ACCTYPE, ACCNAME, ZFBACC, 
+      FLAG1, ZFBNAM, ACCID, 
+      ACCOUNTID, ZFBFLAG, ACCFLAG, 
+      SYT, ACC, ORG, ZXFLG, 
+      DEPTNAM, BEGOODATNAM, USRSTAT, 
+      CRTDAT, SP, BGP, OPENROOM, 
+      SORTID, TYPE, TYPE2, 
+      ISKF, ISTY, DEPARTMENT2
+      )
+    values (#{guid,jdbcType=CHAR}, #{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{hospital,jdbcType=VARCHAR}, #{jobtitle,jdbcType=VARCHAR}, #{education,jdbcType=VARCHAR}, 
+      #{skill,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, #{img,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+      #{idcphoto,jdbcType=VARCHAR}, #{praphoto,jdbcType=VARCHAR}, #{jobphoto,jdbcType=VARCHAR}, 
+      #{refid,jdbcType=VARCHAR}, #{readprice,jdbcType=VARCHAR}, #{idzphoto,jdbcType=VARCHAR}, 
+      #{idftphoto,jdbcType=VARCHAR}, #{refnme,jdbcType=VARCHAR}, #{doclicense,jdbcType=VARCHAR}, 
+      #{flg,jdbcType=DECIMAL}, #{teamstat,jdbcType=VARCHAR}, #{distribution,jdbcType=VARCHAR}, 
+      #{flag,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{emaill,jdbcType=VARCHAR}, 
+      #{telephone,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{licenseid,jdbcType=VARCHAR}, 
+      #{department,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}, #{begoodat,jdbcType=VARCHAR}, 
+      #{eduname,jdbcType=VARCHAR}, #{viscera,jdbcType=VARCHAR}, #{equtype,jdbcType=VARCHAR}, 
+      #{acctype,jdbcType=VARCHAR}, #{accname,jdbcType=VARCHAR}, #{zfbacc,jdbcType=VARCHAR}, 
+      #{flag1,jdbcType=VARCHAR}, #{zfbnam,jdbcType=VARCHAR}, #{accid,jdbcType=VARCHAR}, 
+      #{accountid,jdbcType=VARCHAR}, #{zfbflag,jdbcType=VARCHAR}, #{accflag,jdbcType=VARCHAR}, 
+      #{syt,jdbcType=VARCHAR}, #{acc,jdbcType=VARCHAR}, #{org,jdbcType=VARCHAR}, #{zxflg,jdbcType=VARCHAR}, 
+      #{deptnam,jdbcType=VARCHAR}, #{begoodatnam,jdbcType=VARCHAR}, #{usrstat,jdbcType=VARCHAR}, 
+      #{crtdat,jdbcType=VARCHAR}, #{sp,jdbcType=VARCHAR}, #{bgp,jdbcType=VARCHAR}, #{openroom,jdbcType=VARCHAR}, 
+      #{sortid,jdbcType=DECIMAL}, #{type,jdbcType=VARCHAR}, #{type2,jdbcType=VARCHAR}, 
+      #{iskf,jdbcType=VARCHAR}, #{isty,jdbcType=VARCHAR}, #{department2,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gz.medicine.yun.doctor.bean.DTdoc" >
+    insert into YX_DOC
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        GUID,
+      </if>
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="hospital != null" >
+        HOSPITAL,
+      </if>
+      <if test="jobtitle != null" >
+        JOBTITLE,
+      </if>
+      <if test="education != null" >
+        EDUCATION,
+      </if>
+      <if test="skill != null" >
+        SKILL,
+      </if>
+      <if test="note != null" >
+        NOTE,
+      </if>
+      <if test="img != null" >
+        IMG,
+      </if>
+      <if test="sex != null" >
+        SEX,
+      </if>
+      <if test="idcphoto != null" >
+        IDCPHOTO,
+      </if>
+      <if test="praphoto != null" >
+        PRAPHOTO,
+      </if>
+      <if test="jobphoto != null" >
+        JOBPHOTO,
+      </if>
+      <if test="refid != null" >
+        REFID,
+      </if>
+      <if test="readprice != null" >
+        READPRICE,
+      </if>
+      <if test="idzphoto != null" >
+        IDZPHOTO,
+      </if>
+      <if test="idftphoto != null" >
+        IDFTPHOTO,
+      </if>
+      <if test="refnme != null" >
+        REFNME,
+      </if>
+      <if test="doclicense != null" >
+        DOCLICENSE,
+      </if>
+      <if test="flg != null" >
+        FLG,
+      </if>
+      <if test="teamstat != null" >
+        TEAMSTAT,
+      </if>
+      <if test="distribution != null" >
+        DISTRIBUTION,
+      </if>
+      <if test="flag != null" >
+        FLAG,
+      </if>
+      <if test="address != null" >
+        ADDRESS,
+      </if>
+      <if test="emaill != null" >
+        EMAILL,
+      </if>
+      <if test="telephone != null" >
+        TELEPHONE,
+      </if>
+      <if test="password != null" >
+        PASSWORD,
+      </if>
+      <if test="licenseid != null" >
+        LICENSEID,
+      </if>
+      <if test="department != null" >
+        DEPARTMENT,
+      </if>
+      <if test="position != null" >
+        POSITION,
+      </if>
+      <if test="begoodat != null" >
+        BEGOODAT,
+      </if>
+      <if test="eduname != null" >
+        EDUNAME,
+      </if>
+      <if test="viscera != null" >
+        VISCERA,
+      </if>
+      <if test="equtype != null" >
+        EQUTYPE,
+      </if>
+      <if test="acctype != null" >
+        ACCTYPE,
+      </if>
+      <if test="accname != null" >
+        ACCNAME,
+      </if>
+      <if test="zfbacc != null" >
+        ZFBACC,
+      </if>
+      <if test="flag1 != null" >
+        FLAG1,
+      </if>
+      <if test="zfbnam != null" >
+        ZFBNAM,
+      </if>
+      <if test="accid != null" >
+        ACCID,
+      </if>
+      <if test="accountid != null" >
+        ACCOUNTID,
+      </if>
+      <if test="zfbflag != null" >
+        ZFBFLAG,
+      </if>
+      <if test="accflag != null" >
+        ACCFLAG,
+      </if>
+      <if test="syt != null" >
+        SYT,
+      </if>
+      <if test="acc != null" >
+        ACC,
+      </if>
+      <if test="org != null" >
+        ORG,
+      </if>
+      <if test="zxflg != null" >
+        ZXFLG,
+      </if>
+      <if test="deptnam != null" >
+        DEPTNAM,
+      </if>
+      <if test="begoodatnam != null" >
+        BEGOODATNAM,
+      </if>
+      <if test="usrstat != null" >
+        USRSTAT,
+      </if>
+      <if test="crtdat != null" >
+        CRTDAT,
+      </if>
+      <if test="sp != null" >
+        SP,
+      </if>
+      <if test="bgp != null" >
+        BGP,
+      </if>
+      <if test="openroom != null" >
+        OPENROOM,
+      </if>
+      <if test="sortid != null" >
+        SORTID,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="type2 != null" >
+        TYPE2,
+      </if>
+      <if test="iskf != null" >
+        ISKF,
+      </if>
+      <if test="isty != null" >
+        ISTY,
+      </if>
+      <if test="department2 != null" >
+        DEPARTMENT2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        #{guid,jdbcType=CHAR},
+      </if>
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="hospital != null" >
+        #{hospital,jdbcType=VARCHAR},
+      </if>
+      <if test="jobtitle != null" >
+        #{jobtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null" >
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="skill != null" >
+        #{skill,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="img != null" >
+        #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="idcphoto != null" >
+        #{idcphoto,jdbcType=VARCHAR},
+      </if>
+      <if test="praphoto != null" >
+        #{praphoto,jdbcType=VARCHAR},
+      </if>
+      <if test="jobphoto != null" >
+        #{jobphoto,jdbcType=VARCHAR},
+      </if>
+      <if test="refid != null" >
+        #{refid,jdbcType=VARCHAR},
+      </if>
+      <if test="readprice != null" >
+        #{readprice,jdbcType=VARCHAR},
+      </if>
+      <if test="idzphoto != null" >
+        #{idzphoto,jdbcType=VARCHAR},
+      </if>
+      <if test="idftphoto != null" >
+        #{idftphoto,jdbcType=VARCHAR},
+      </if>
+      <if test="refnme != null" >
+        #{refnme,jdbcType=VARCHAR},
+      </if>
+      <if test="doclicense != null" >
+        #{doclicense,jdbcType=VARCHAR},
+      </if>
+      <if test="flg != null" >
+        #{flg,jdbcType=DECIMAL},
+      </if>
+      <if test="teamstat != null" >
+        #{teamstat,jdbcType=VARCHAR},
+      </if>
+      <if test="distribution != null" >
+        #{distribution,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="emaill != null" >
+        #{emaill,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseid != null" >
+        #{licenseid,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="begoodat != null" >
+        #{begoodat,jdbcType=VARCHAR},
+      </if>
+      <if test="eduname != null" >
+        #{eduname,jdbcType=VARCHAR},
+      </if>
+      <if test="viscera != null" >
+        #{viscera,jdbcType=VARCHAR},
+      </if>
+      <if test="equtype != null" >
+        #{equtype,jdbcType=VARCHAR},
+      </if>
+      <if test="acctype != null" >
+        #{acctype,jdbcType=VARCHAR},
+      </if>
+      <if test="accname != null" >
+        #{accname,jdbcType=VARCHAR},
+      </if>
+      <if test="zfbacc != null" >
+        #{zfbacc,jdbcType=VARCHAR},
+      </if>
+      <if test="flag1 != null" >
+        #{flag1,jdbcType=VARCHAR},
+      </if>
+      <if test="zfbnam != null" >
+        #{zfbnam,jdbcType=VARCHAR},
+      </if>
+      <if test="accid != null" >
+        #{accid,jdbcType=VARCHAR},
+      </if>
+      <if test="accountid != null" >
+        #{accountid,jdbcType=VARCHAR},
+      </if>
+      <if test="zfbflag != null" >
+        #{zfbflag,jdbcType=VARCHAR},
+      </if>
+      <if test="accflag != null" >
+        #{accflag,jdbcType=VARCHAR},
+      </if>
+      <if test="syt != null" >
+        #{syt,jdbcType=VARCHAR},
+      </if>
+      <if test="acc != null" >
+        #{acc,jdbcType=VARCHAR},
+      </if>
+      <if test="org != null" >
+        #{org,jdbcType=VARCHAR},
+      </if>
+      <if test="zxflg != null" >
+        #{zxflg,jdbcType=VARCHAR},
+      </if>
+      <if test="deptnam != null" >
+        #{deptnam,jdbcType=VARCHAR},
+      </if>
+      <if test="begoodatnam != null" >
+        #{begoodatnam,jdbcType=VARCHAR},
+      </if>
+      <if test="usrstat != null" >
+        #{usrstat,jdbcType=VARCHAR},
+      </if>
+      <if test="crtdat != null" >
+        #{crtdat,jdbcType=VARCHAR},
+      </if>
+      <if test="sp != null" >
+        #{sp,jdbcType=VARCHAR},
+      </if>
+      <if test="bgp != null" >
+        #{bgp,jdbcType=VARCHAR},
+      </if>
+      <if test="openroom != null" >
+        #{openroom,jdbcType=VARCHAR},
+      </if>
+      <if test="sortid != null" >
+        #{sortid,jdbcType=DECIMAL},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="type2 != null" >
+        #{type2,jdbcType=VARCHAR},
+      </if>
+      <if test="iskf != null" >
+        #{iskf,jdbcType=VARCHAR},
+      </if>
+      <if test="isty != null" >
+        #{isty,jdbcType=VARCHAR},
+      </if>
+      <if test="department2 != null" >
+        #{department2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gz.medicine.yun.doctor.bean.DTdoc" >
+    update YX_DOC
+    <set >
+      <if test="id != null" >
+        ID = #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="hospital != null" >
+        HOSPITAL = #{hospital,jdbcType=VARCHAR},
+      </if>
+      <if test="jobtitle != null" >
+        JOBTITLE = #{jobtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null" >
+        EDUCATION = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="skill != null" >
+        SKILL = #{skill,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        NOTE = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="img != null" >
+        IMG = #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        SEX = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="idcphoto != null" >
+        IDCPHOTO = #{idcphoto,jdbcType=VARCHAR},
+      </if>
+      <if test="praphoto != null" >
+        PRAPHOTO = #{praphoto,jdbcType=VARCHAR},
+      </if>
+      <if test="jobphoto != null" >
+        JOBPHOTO = #{jobphoto,jdbcType=VARCHAR},
+      </if>
+      <if test="refid != null" >
+        REFID = #{refid,jdbcType=VARCHAR},
+      </if>
+      <if test="readprice != null" >
+        READPRICE = #{readprice,jdbcType=VARCHAR},
+      </if>
+      <if test="idzphoto != null" >
+        IDZPHOTO = #{idzphoto,jdbcType=VARCHAR},
+      </if>
+      <if test="idftphoto != null" >
+        IDFTPHOTO = #{idftphoto,jdbcType=VARCHAR},
+      </if>
+      <if test="refnme != null" >
+        REFNME = #{refnme,jdbcType=VARCHAR},
+      </if>
+      <if test="doclicense != null" >
+        DOCLICENSE = #{doclicense,jdbcType=VARCHAR},
+      </if>
+      <if test="flg != null" >
+        FLG = #{flg,jdbcType=DECIMAL},
+      </if>
+      <if test="teamstat != null" >
+        TEAMSTAT = #{teamstat,jdbcType=VARCHAR},
+      </if>
+      <if test="distribution != null" >
+        DISTRIBUTION = #{distribution,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        FLAG = #{flag,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="emaill != null" >
+        EMAILL = #{emaill,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        TELEPHONE = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseid != null" >
+        LICENSEID = #{licenseid,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+        DEPARTMENT = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        POSITION = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="begoodat != null" >
+        BEGOODAT = #{begoodat,jdbcType=VARCHAR},
+      </if>
+      <if test="eduname != null" >
+        EDUNAME = #{eduname,jdbcType=VARCHAR},
+      </if>
+      <if test="viscera != null" >
+        VISCERA = #{viscera,jdbcType=VARCHAR},
+      </if>
+      <if test="equtype != null" >
+        EQUTYPE = #{equtype,jdbcType=VARCHAR},
+      </if>
+      <if test="acctype != null" >
+        ACCTYPE = #{acctype,jdbcType=VARCHAR},
+      </if>
+      <if test="accname != null" >
+        ACCNAME = #{accname,jdbcType=VARCHAR},
+      </if>
+      <if test="zfbacc != null" >
+        ZFBACC = #{zfbacc,jdbcType=VARCHAR},
+      </if>
+      <if test="flag1 != null" >
+        FLAG1 = #{flag1,jdbcType=VARCHAR},
+      </if>
+      <if test="zfbnam != null" >
+        ZFBNAM = #{zfbnam,jdbcType=VARCHAR},
+      </if>
+      <if test="accid != null" >
+        ACCID = #{accid,jdbcType=VARCHAR},
+      </if>
+      <if test="accountid != null" >
+        ACCOUNTID = #{accountid,jdbcType=VARCHAR},
+      </if>
+      <if test="zfbflag != null" >
+        ZFBFLAG = #{zfbflag,jdbcType=VARCHAR},
+      </if>
+      <if test="accflag != null" >
+        ACCFLAG = #{accflag,jdbcType=VARCHAR},
+      </if>
+      <if test="syt != null" >
+        SYT = #{syt,jdbcType=VARCHAR},
+      </if>
+      <if test="acc != null" >
+        ACC = #{acc,jdbcType=VARCHAR},
+      </if>
+      <if test="org != null" >
+        ORG = #{org,jdbcType=VARCHAR},
+      </if>
+      <if test="zxflg != null" >
+        ZXFLG = #{zxflg,jdbcType=VARCHAR},
+      </if>
+      <if test="deptnam != null" >
+        DEPTNAM = #{deptnam,jdbcType=VARCHAR},
+      </if>
+      <if test="begoodatnam != null" >
+        BEGOODATNAM = #{begoodatnam,jdbcType=VARCHAR},
+      </if>
+      <if test="usrstat != null" >
+        USRSTAT = #{usrstat,jdbcType=VARCHAR},
+      </if>
+      <if test="crtdat != null" >
+        CRTDAT = #{crtdat,jdbcType=VARCHAR},
+      </if>
+      <if test="sp != null" >
+        SP = #{sp,jdbcType=VARCHAR},
+      </if>
+      <if test="bgp != null" >
+        BGP = #{bgp,jdbcType=VARCHAR},
+      </if>
+      <if test="openroom != null" >
+        OPENROOM = #{openroom,jdbcType=VARCHAR},
+      </if>
+      <if test="sortid != null" >
+        SORTID = #{sortid,jdbcType=DECIMAL},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="type2 != null" >
+        TYPE2 = #{type2,jdbcType=VARCHAR},
+      </if>
+      <if test="iskf != null" >
+        ISKF = #{iskf,jdbcType=VARCHAR},
+      </if>
+      <if test="isty != null" >
+        ISTY = #{isty,jdbcType=VARCHAR},
+      </if>
+      <if test="department2 != null" >
+        DEPARTMENT2 = #{department2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where GUID = #{guid,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gz.medicine.yun.doctor.bean.DTdoc" >
+    update YX_DOC
+    set ID = #{id,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      HOSPITAL = #{hospital,jdbcType=VARCHAR},
+      JOBTITLE = #{jobtitle,jdbcType=VARCHAR},
+      EDUCATION = #{education,jdbcType=VARCHAR},
+      SKILL = #{skill,jdbcType=VARCHAR},
+      NOTE = #{note,jdbcType=VARCHAR},
+      IMG = #{img,jdbcType=VARCHAR},
+      SEX = #{sex,jdbcType=VARCHAR},
+      IDCPHOTO = #{idcphoto,jdbcType=VARCHAR},
+      PRAPHOTO = #{praphoto,jdbcType=VARCHAR},
+      JOBPHOTO = #{jobphoto,jdbcType=VARCHAR},
+      REFID = #{refid,jdbcType=VARCHAR},
+      READPRICE = #{readprice,jdbcType=VARCHAR},
+      IDZPHOTO = #{idzphoto,jdbcType=VARCHAR},
+      IDFTPHOTO = #{idftphoto,jdbcType=VARCHAR},
+      REFNME = #{refnme,jdbcType=VARCHAR},
+      DOCLICENSE = #{doclicense,jdbcType=VARCHAR},
+      FLG = #{flg,jdbcType=DECIMAL},
+      TEAMSTAT = #{teamstat,jdbcType=VARCHAR},
+      DISTRIBUTION = #{distribution,jdbcType=VARCHAR},
+      FLAG = #{flag,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      EMAILL = #{emaill,jdbcType=VARCHAR},
+      TELEPHONE = #{telephone,jdbcType=VARCHAR},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      LICENSEID = #{licenseid,jdbcType=VARCHAR},
+      DEPARTMENT = #{department,jdbcType=VARCHAR},
+      POSITION = #{position,jdbcType=VARCHAR},
+      BEGOODAT = #{begoodat,jdbcType=VARCHAR},
+      EDUNAME = #{eduname,jdbcType=VARCHAR},
+      VISCERA = #{viscera,jdbcType=VARCHAR},
+      EQUTYPE = #{equtype,jdbcType=VARCHAR},
+      ACCTYPE = #{acctype,jdbcType=VARCHAR},
+      ACCNAME = #{accname,jdbcType=VARCHAR},
+      ZFBACC = #{zfbacc,jdbcType=VARCHAR},
+      FLAG1 = #{flag1,jdbcType=VARCHAR},
+      ZFBNAM = #{zfbnam,jdbcType=VARCHAR},
+      ACCID = #{accid,jdbcType=VARCHAR},
+      ACCOUNTID = #{accountid,jdbcType=VARCHAR},
+      ZFBFLAG = #{zfbflag,jdbcType=VARCHAR},
+      ACCFLAG = #{accflag,jdbcType=VARCHAR},
+      SYT = #{syt,jdbcType=VARCHAR},
+      ACC = #{acc,jdbcType=VARCHAR},
+      ORG = #{org,jdbcType=VARCHAR},
+      ZXFLG = #{zxflg,jdbcType=VARCHAR},
+      DEPTNAM = #{deptnam,jdbcType=VARCHAR},
+      BEGOODATNAM = #{begoodatnam,jdbcType=VARCHAR},
+      USRSTAT = #{usrstat,jdbcType=VARCHAR},
+      CRTDAT = #{crtdat,jdbcType=VARCHAR},
+      SP = #{sp,jdbcType=VARCHAR},
+      BGP = #{bgp,jdbcType=VARCHAR},
+      OPENROOM = #{openroom,jdbcType=VARCHAR},
+      SORTID = #{sortid,jdbcType=DECIMAL},
+      TYPE = #{type,jdbcType=VARCHAR},
+      TYPE2 = #{type2,jdbcType=VARCHAR},
+      ISKF = #{iskf,jdbcType=VARCHAR},
+      ISTY = #{isty,jdbcType=VARCHAR},
+      DEPARTMENT2 = #{department2,jdbcType=VARCHAR}
+    where GUID = #{guid,jdbcType=CHAR}
+  </update>
+   <select id="select" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select a.imgguid,a.id,a.name,a.PASSWD,a.guid,c.name jobtitle from USR a,YX_DOC b,YX_DOCJOB c 
+    where a.id=b.id
+	and a.org=b.org
+	and a.org='CHIS'
+	and b.jobtitle=c.id(+)
+	and a.ID=#{id,jdbcType=CHAR}
+  </select>
+  
+   <!--分页查询在岗医生-->
+    <select id="queryPageId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  <![CDATA[select  c.guid guid,a.img ICON,a.name NAME,a.id,'擅长:'||a.BEGOODAT SUBNAME
+                    from yx_doc a,yx_docjob b,usr c, yx_docdept d 
+                    where a.jobtitle=b.id(+) 
+                    and a.department=d.id(+)
+                    and d.org(+)='CHIS'
+                    and a.org='CHIS' 
+                    and c.org='CHIS'
+                    and a.id not in('15288888888','zcc','lw','zmg','15388888888',#{id,jdbcType=VARCHAR})
+                    and a.id=c.id 
+                    and (sysdate - c.currenttime) * 24 * 60 * 60 < 15]]>
+  </select>
+   <resultMap id="ResultMap" type="java.util.HashMap" >
+    <id column="GUID" property="guid" jdbcType="CHAR" />
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="HOSPITAL" property="hospital" jdbcType="VARCHAR" />
+    <result column="JOBTITLE" property="jobtitle" jdbcType="VARCHAR" />
+    <result column="EDUCATION" property="education" jdbcType="VARCHAR" />
+    <result column="SKILL" property="skill" jdbcType="VARCHAR" />
+    <result column="NOTE" property="note" jdbcType="VARCHAR" />
+    <result column="IMG" property="img" jdbcType="VARCHAR" />
+    <result column="SEX" property="sex" jdbcType="VARCHAR" />
+    <result column="IDCPHOTO" property="idcphoto" jdbcType="VARCHAR" />
+    <result column="PRAPHOTO" property="praphoto" jdbcType="VARCHAR" />
+    <result column="JOBPHOTO" property="jobphoto" jdbcType="VARCHAR" />
+    <result column="REFID" property="refid" jdbcType="VARCHAR" />
+    <result column="READPRICE" property="readprice" jdbcType="VARCHAR" />
+    <result column="IDZPHOTO" property="idzphoto" jdbcType="VARCHAR" />
+    <result column="IDFTPHOTO" property="idftphoto" jdbcType="VARCHAR" />
+    <result column="REFNME" property="refnme" jdbcType="VARCHAR" />
+    <result column="DOCLICENSE" property="doclicense" jdbcType="VARCHAR" />
+    <result column="FLG" property="flg" jdbcType="DECIMAL" />
+    <result column="TEAMSTAT" property="teamstat" jdbcType="VARCHAR" />
+    <result column="DISTRIBUTION" property="distribution" jdbcType="VARCHAR" />
+    <result column="FLAG" property="flag" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="EMAILL" property="emaill" jdbcType="VARCHAR" />
+    <result column="TELEPHONE" property="telephone" jdbcType="VARCHAR" />
+    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+    <result column="LICENSEID" property="licenseid" jdbcType="VARCHAR" />
+    <result column="DEPARTMENT" property="department" jdbcType="VARCHAR" />
+    <result column="POSITION" property="position" jdbcType="VARCHAR" />
+    <result column="BEGOODAT" property="begoodat" jdbcType="VARCHAR" />
+    <result column="EDUNAME" property="eduname" jdbcType="VARCHAR" />
+    <result column="VISCERA" property="viscera" jdbcType="VARCHAR" />
+    <result column="EQUTYPE" property="equtype" jdbcType="VARCHAR" />
+    <result column="ACCTYPE" property="acctype" jdbcType="VARCHAR" />
+    <result column="ACCNAME" property="accname" jdbcType="VARCHAR" />
+    <result column="ZFBACC" property="zfbacc" jdbcType="VARCHAR" />
+    <result column="FLAG1" property="flag1" jdbcType="VARCHAR" />
+    <result column="ZFBNAM" property="zfbnam" jdbcType="VARCHAR" />
+    <result column="ACCID" property="accid" jdbcType="VARCHAR" />
+    <result column="ACCOUNTID" property="accountid" jdbcType="VARCHAR" />
+    <result column="ZFBFLAG" property="zfbflag" jdbcType="VARCHAR" />
+    <result column="ACCFLAG" property="accflag" jdbcType="VARCHAR" />
+    <result column="SYT" property="syt" jdbcType="VARCHAR" />
+    <result column="ACC" property="acc" jdbcType="VARCHAR" />
+    <result column="ORG" property="org" jdbcType="VARCHAR" />
+    <result column="ZXFLG" property="zxflg" jdbcType="VARCHAR" />
+    <result column="DEPTNAM" property="deptnam" jdbcType="VARCHAR" />
+    <result column="BEGOODATNAM" property="begoodatnam" jdbcType="VARCHAR" />
+    <result column="USRSTAT" property="usrstat" jdbcType="VARCHAR" />
+    <result column="CRTDAT" property="crtdat" jdbcType="VARCHAR" />
+    <result column="SP" property="sp" jdbcType="VARCHAR" />
+    <result column="BGP" property="bgp" jdbcType="VARCHAR" />
+    <result column="OPENROOM" property="openroom" jdbcType="VARCHAR" />
+    <result column="SORTID" property="sortid" jdbcType="DECIMAL" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+    <result column="TYPE2" property="type2" jdbcType="VARCHAR" />
+    <result column="ISKF" property="iskf" jdbcType="VARCHAR" />
+    <result column="ISTY" property="isty" jdbcType="VARCHAR" />
+    <result column="PASSWD" property="passwd" jdbcType="VARCHAR" />
+    <result column="DEPARTMENT2" property="department2" jdbcType="VARCHAR" />
+    <result column="ICON" property="icon" jdbcType="VARCHAR" />
+    <result column="SUBNAME" property="subname" jdbcType="VARCHAR" />
+    
+  </resultMap>
+
+
+  <resultMap id="DoctorMap" type="java.util.HashMap">
+    <result column="GUID" jdbcType="VARCHAR" property="guid" />
+    <result column="DOCID" jdbcType="VARCHAR" property="docid" />
+    <result column="SEX" jdbcType="VARCHAR" property="sex" />
+    <result column="POSITIONTITLE" jdbcType="VARCHAR" property="positiontitle" />
+    <result column="DOCNAME" jdbcType="VARCHAR" property="docname" />
+    <result column="BIRTHDAY" jdbcType="VARCHAR" property="birthday" />
+    <result column="IDCARD" jdbcType="VARCHAR" property="idcard" />
+    <result column="DEPTID" jdbcType="VARCHAR" property="deptid" />
+    <result column="DEPTNAME" jdbcType="VARCHAR" property="deptname" />
+    <result column="HOSPITAL" jdbcType="VARCHAR" property="hospital" />
+    <result column="MEDICINE" jdbcType="VARCHAR" property="medicine" />
+    <result column="HOSPITALID" jdbcType="VARCHAR" property="hospitalid" />
+    <result column="ISOL" jdbcType="VARCHAR" property="isol" />
+  </resultMap>
+
+  <select id="selectDocList"  resultType="com.gz.medicine.yun.doctor.bean.DoctorOnDuty" >
+      <![CDATA[
+      
+         SELECT b.BIRTHDAY, b.idcard, b.isol, a.guid AS docid, b.guid AS guid
+          , a.sex AS sex, c.name AS positiontitle, a.name AS docname, d.id AS deptid, d.name AS deptname
+          , a.hospital AS hospital, a.BEGOODAT AS medicine, case when (sysdate - currenttime) * 24 * 60 * 60   <15    then '1' else '2' end stat
+      FROM yx_doc a
+          LEFT JOIN usr b ON a.id = b.id
+          LEFT JOIN YX_DOCJOB c ON c.id = a.jobtitle
+          LEFT JOIN YX_DOCDEPT d ON d.id = a.department
+      WHERE b.isdoc = '1'  ]]>
+  </select>
+  
+</mapper>

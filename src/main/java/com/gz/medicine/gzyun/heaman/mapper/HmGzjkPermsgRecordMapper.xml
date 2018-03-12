@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gz.medicine.gzyun.heaman.mapper.HmGzjkPermsgRecordMapper">
+  <resultMap id="BaseResultMap" type="com.gz.medicine.gzyun.heaman.bean.HmGzjkPermsgRecord">
+    <id column="GUID" jdbcType="CHAR" property="guid" />
+    <result column="USRGUID" jdbcType="CHAR" property="usrguid" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="IDCARD" jdbcType="VARCHAR" property="idcard" />
+    <result column="SEX" jdbcType="CHAR" property="sex" />
+    <result column="AGE" jdbcType="VARCHAR" property="age" />
+    <result column="MOBILE" jdbcType="VARCHAR" property="mobile" />
+    <result column="URGENCYNAME" jdbcType="VARCHAR" property="urgencyname" />
+    <result column="URGENCYMOBILE" jdbcType="VARCHAR" property="urgencymobile" />
+    <result column="HEIGHT" jdbcType="VARCHAR" property="height" />
+    <result column="WEIGHT" jdbcType="VARCHAR" property="weight" />
+    <result column="XBS" jdbcType="VARCHAR" property="xbs" />
+    <result column="XBSREPLENISH" jdbcType="VARCHAR" property="xbsreplenish" />
+    <result column="JWS" jdbcType="VARCHAR" property="jws" />
+    <result column="JWSREPLENISH" jdbcType="VARCHAR" property="jwsreplenish" />
+    <result column="SURGERY" jdbcType="VARCHAR" property="surgery" />
+    <result column="SURGERYREPLENISH" jdbcType="VARCHAR" property="surgeryreplenish" />
+    <result column="DRUGALLERGY" jdbcType="VARCHAR" property="drugallergy" />
+    <result column="DAREPLENISH" jdbcType="VARCHAR" property="dareplenish" />
+    <result column="FOODALLERGY" jdbcType="VARCHAR" property="foodallergy" />
+    <result column="FAREPLENISH" jdbcType="VARCHAR" property="fareplenish" />
+    <result column="LIVINGHABITS" jdbcType="VARCHAR" property="livinghabits" />
+    <result column="LHREPLENISH" jdbcType="VARCHAR" property="lhreplenish" />
+    <result column="SMOKE" jdbcType="VARCHAR" property="smoke" />
+    <result column="DRINK" jdbcType="VARCHAR" property="drink" />
+    <result column="MARSTA" jdbcType="VARCHAR" property="marsta" />
+    <result column="HEALINDEX" jdbcType="CHAR" property="healindex" />
+    <result column="FERTILITY" jdbcType="VARCHAR" property="fertility" />
+    <result column="REDATE" jdbcType="DATE" property="redate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    GUID, USRGUID, NAME, IDCARD, SEX, AGE, MOBILE, URGENCYNAME, URGENCYMOBILE, HEIGHT, 
+    WEIGHT, XBS, XBSREPLENISH, JWS, JWSREPLENISH, SURGERY, SURGERYREPLENISH, DRUGALLERGY, 
+    DAREPLENISH, FOODALLERGY, FAREPLENISH, LIVINGHABITS, LHREPLENISH, SMOKE, DRINK, MARSTA, 
+    HEALINDEX, FERTILITY, REDATE
+  </sql>
+  <insert id="insertSelective" parameterType="com.gz.medicine.gzyun.heaman.bean.HmGzjkPermsgRecord">
+    insert into GZJK_PERMSGRECORD
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        GUID,
+      </if>
+      <if test="usrguid != null">
+        USRGUID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="idcard != null">
+        IDCARD,
+      </if>
+      <if test="sex != null">
+        SEX,
+      </if>
+      <if test="age != null">
+        AGE,
+      </if>
+      <if test="mobile != null">
+        MOBILE,
+      </if>
+      <if test="urgencyname != null">
+        URGENCYNAME,
+      </if>
+      <if test="urgencymobile != null">
+        URGENCYMOBILE,
+      </if>
+      <if test="height != null">
+        HEIGHT,
+      </if>
+      <if test="weight != null">
+        WEIGHT,
+      </if>
+      <if test="xbs != null">
+        XBS,
+      </if>
+      <if test="xbsreplenish != null">
+        XBSREPLENISH,
+      </if>
+      <if test="jws != null">
+        JWS,
+      </if>
+      <if test="jwsreplenish != null">
+        JWSREPLENISH,
+      </if>
+      <if test="surgery != null">
+        SURGERY,
+      </if>
+      <if test="surgeryreplenish != null">
+        SURGERYREPLENISH,
+      </if>
+      <if test="drugallergy != null">
+        DRUGALLERGY,
+      </if>
+      <if test="dareplenish != null">
+        DAREPLENISH,
+      </if>
+      <if test="foodallergy != null">
+        FOODALLERGY,
+      </if>
+      <if test="fareplenish != null">
+        FAREPLENISH,
+      </if>
+      <if test="livinghabits != null">
+        LIVINGHABITS,
+      </if>
+      <if test="lhreplenish != null">
+        LHREPLENISH,
+      </if>
+      <if test="smoke != null">
+        SMOKE,
+      </if>
+      <if test="drink != null">
+        DRINK,
+      </if>
+      <if test="marsta != null">
+        MARSTA,
+      </if>
+      <if test="healindex != null">
+        HEALINDEX,
+      </if>
+      <if test="fertility != null">
+        FERTILITY,
+      </if>
+      <if test="redate != null">
+        REDATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        #{guid,jdbcType=CHAR},
+      </if>
+      <if test="usrguid != null">
+        #{usrguid,jdbcType=CHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null">
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=CHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="urgencyname != null">
+        #{urgencyname,jdbcType=VARCHAR},
+      </if>
+      <if test="urgencymobile != null">
+        #{urgencymobile,jdbcType=VARCHAR},
+      </if>
+      <if test="height != null">
+        #{height,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null">
+        #{weight,jdbcType=VARCHAR},
+      </if>
+      <if test="xbs != null">
+        #{xbs,jdbcType=VARCHAR},
+      </if>
+      <if test="xbsreplenish != null">
+        #{xbsreplenish,jdbcType=VARCHAR},
+      </if>
+      <if test="jws != null">
+        #{jws,jdbcType=VARCHAR},
+      </if>
+      <if test="jwsreplenish != null">
+        #{jwsreplenish,jdbcType=VARCHAR},
+      </if>
+      <if test="surgery != null">
+        #{surgery,jdbcType=VARCHAR},
+      </if>
+      <if test="surgeryreplenish != null">
+        #{surgeryreplenish,jdbcType=VARCHAR},
+      </if>
+      <if test="drugallergy != null">
+        #{drugallergy,jdbcType=VARCHAR},
+      </if>
+      <if test="dareplenish != null">
+        #{dareplenish,jdbcType=VARCHAR},
+      </if>
+      <if test="foodallergy != null">
+        #{foodallergy,jdbcType=VARCHAR},
+      </if>
+      <if test="fareplenish != null">
+        #{fareplenish,jdbcType=VARCHAR},
+      </if>
+      <if test="livinghabits != null">
+        #{livinghabits,jdbcType=VARCHAR},
+      </if>
+      <if test="lhreplenish != null">
+        #{lhreplenish,jdbcType=VARCHAR},
+      </if>
+      <if test="smoke != null">
+        #{smoke,jdbcType=VARCHAR},
+      </if>
+      <if test="drink != null">
+        #{drink,jdbcType=VARCHAR},
+      </if>
+      <if test="marsta != null">
+        #{marsta,jdbcType=VARCHAR},
+      </if>
+      <if test="healindex != null">
+        #{healindex,jdbcType=CHAR},
+      </if>
+      <if test="fertility != null">
+        #{fertility,jdbcType=VARCHAR},
+      </if>
+      <if test="redate != null">
+        #{redate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gz.medicine.gzyun.heaman.bean.HmGzjkPermsgRecord">
+    update GZJK_PERMSGRECORD
+    <set>
+
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null">
+        IDCARD = #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        SEX = #{sex,jdbcType=CHAR},
+      </if>
+      <if test="age != null">
+        AGE = #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        MOBILE = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="urgencyname != null">
+        URGENCYNAME = #{urgencyname,jdbcType=VARCHAR},
+      </if>
+      <if test="urgencymobile != null">
+        URGENCYMOBILE = #{urgencymobile,jdbcType=VARCHAR},
+      </if>
+      <if test="height != null">
+        HEIGHT = #{height,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null">
+        WEIGHT = #{weight,jdbcType=VARCHAR},
+      </if>
+      <if test="xbs != null">
+        XBS = #{xbs,jdbcType=VARCHAR},
+      </if>
+      <if test="xbsreplenish != null">
+        XBSREPLENISH = #{xbsreplenish,jdbcType=VARCHAR},
+      </if>
+      <if test="jws != null">
+        JWS = #{jws,jdbcType=VARCHAR},
+      </if>
+      <if test="jwsreplenish != null">
+        JWSREPLENISH = #{jwsreplenish,jdbcType=VARCHAR},
+      </if>
+      <if test="surgery != null">
+        SURGERY = #{surgery,jdbcType=VARCHAR},
+      </if>
+      <if test="surgeryreplenish != null">
+        SURGERYREPLENISH = #{surgeryreplenish,jdbcType=VARCHAR},
+      </if>
+      <if test="drugallergy != null">
+        DRUGALLERGY = #{drugallergy,jdbcType=VARCHAR},
+      </if>
+      <if test="dareplenish != null">
+        DAREPLENISH = #{dareplenish,jdbcType=VARCHAR},
+      </if>
+      <if test="foodallergy != null">
+        FOODALLERGY = #{foodallergy,jdbcType=VARCHAR},
+      </if>
+      <if test="fareplenish != null">
+        FAREPLENISH = #{fareplenish,jdbcType=VARCHAR},
+      </if>
+      <if test="livinghabits != null">
+        LIVINGHABITS = #{livinghabits,jdbcType=VARCHAR},
+      </if>
+      <if test="lhreplenish != null">
+        LHREPLENISH = #{lhreplenish,jdbcType=VARCHAR},
+      </if>
+      <if test="smoke != null">
+        SMOKE = #{smoke,jdbcType=VARCHAR},
+      </if>
+      <if test="drink != null">
+        DRINK = #{drink,jdbcType=VARCHAR},
+      </if>
+      <if test="marsta != null">
+        MARSTA = #{marsta,jdbcType=VARCHAR},
+      </if>
+      <if test="healindex != null">
+        HEALINDEX = #{healindex,jdbcType=CHAR},
+      </if>
+      <if test="fertility != null">
+        FERTILITY = #{fertility,jdbcType=VARCHAR},
+      </if>
+      <if test="redate != null">
+        REDATE = #{redate,jdbcType=DATE},
+      </if>
+    </set>
+    where USRGUID = #{usrguid,jdbcType=CHAR}
+  </update>
+
+
+  <select id="selectByPrimaryKeyUsrGuid" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from GZJK_PERMSGRECORD
+    where USRGUID = #{0,jdbcType=CHAR}
+  </select>
+  <select id="selectTotalSize" parameterType="java.lang.String" resultType="java.lang.Integer">
+    select
+   count(1)
+    from GZJK_PERMSGRECORD
+    where USRGUID = #{0,jdbcType=CHAR}
+  </select>
+
+</mapper>

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gz.medicine.yun.doctor.mapper.DTdruMapper" >
+
+  <resultMap id="BaseResultMap" type="com.gz.medicine.yun.doctor.bean.DTdru" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="SP" property="sp" jdbcType="VARCHAR" />
+    <result column="UNIT" property="unit" jdbcType="VARCHAR" />
+    <result column="CORP" property="corp" jdbcType="VARCHAR" />
+    <result column="GUID" property="guid" jdbcType="VARCHAR" />
+    <result column="ACC" property="acc" jdbcType="VARCHAR" />
+    <result column="ORG" property="org" jdbcType="VARCHAR" />
+    <result column="SYT" property="syt" jdbcType="VARCHAR" />
+    <result column="CRTDAT" property="crtdat" jdbcType="VARCHAR" />
+    <result column="YFID" property="yfid" jdbcType="VARCHAR" />
+    <result column="MINQTY" property="minqty" jdbcType="VARCHAR" />
+    <result column="MINUN" property="minun" jdbcType="VARCHAR" />
+    <result column="MAXQTY" property="maxqty" jdbcType="VARCHAR" />
+    <result column="MAXUN" property="maxun" jdbcType="VARCHAR" />
+    <result column="USEFLG" property="useflg" jdbcType="VARCHAR" />
+    <result column="SEQID" property="seqid" jdbcType="VARCHAR" />
+    <result column="REFCORP" property="refcorp" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <insert id="insert" parameterType="com.gz.medicine.yun.doctor.bean.DTdru" >
+    insert into CHIS_DRU (ID, NAME, SP, 
+      UNIT, CORP, GUID, ACC, 
+      ORG, SYT, CRTDAT, 
+      YFID, MINQTY, MINUN, 
+      MAXQTY, MAXUN, USEFLG, 
+      SEQID, REFCORP)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{sp,jdbcType=VARCHAR}, 
+      #{unit,jdbcType=VARCHAR}, #{corp,jdbcType=VARCHAR}, #{guid,jdbcType=VARCHAR}, #{acc,jdbcType=VARCHAR}, 
+      #{org,jdbcType=VARCHAR}, #{syt,jdbcType=VARCHAR}, #{crtdat,jdbcType=VARCHAR},
+      #{yfid,jdbcType=VARCHAR}, #{minqty,jdbcType=VARCHAR}, #{minun,jdbcType=VARCHAR}, 
+      #{maxqty,jdbcType=VARCHAR}, #{maxun,jdbcType=VARCHAR}, #{useflg,jdbcType=VARCHAR}, 
+      #{seqid,jdbcType=VARCHAR}, #{refcorp,jdbcType=VARCHAR})
+  </insert>
+
+  <!--分页-->
+  <select id="queryPageLikeName" parameterType="com.gz.medicine.common.mybatisPageVo.Page" resultType="com.gz.medicine.yun.doctor.reponse.DTdruResponse">
+
+    select id,name,sp,unit,corp,guid,acc,org,syt,to_char(crtdat,'yyyy-mm-dd hh24:mi') as crtdat,yfid,minqty,minun,maxqty,maxun,useflg,seqid,refcorp,to_char(minqty)||minun||'*'||to_char(maxqty)||unit spec from CHIS_DRU
+
+    <if test="name != null and name!=''">
+     where name like '%'||#{name,jdbcType=VARCHAR}||'%'
+    </if>
+
+
+  </select>
+
+  <insert id="insertSelective" parameterType="com.gz.medicine.yun.doctor.bean.DTdru" >
+    insert into CHIS_DRU
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="sp != null" >
+        SP,
+      </if>
+      <if test="unit != null" >
+        UNIT,
+      </if>
+      <if test="corp != null" >
+        CORP,
+      </if>
+      <if test="guid != null" >
+        GUID,
+      </if>
+      <if test="acc != null" >
+        ACC,
+      </if>
+      <if test="org != null" >
+        ORG,
+      </if>
+      <if test="syt != null" >
+        SYT,
+      </if>
+      <if test="crtdat != null" >
+        CRTDAT,
+      </if>
+      <if test="yfid != null" >
+        YFID,
+      </if>
+      <if test="minqty != null" >
+        MINQTY,
+      </if>
+      <if test="minun != null" >
+        MINUN,
+      </if>
+      <if test="maxqty != null" >
+        MAXQTY,
+      </if>
+      <if test="maxun != null" >
+        MAXUN,
+      </if>
+      <if test="useflg != null" >
+        USEFLG,
+      </if>
+      <if test="seqid != null" >
+        SEQID,
+      </if>
+      <if test="refcorp != null" >
+        REFCORP,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sp != null" >
+        #{sp,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="corp != null" >
+        #{corp,jdbcType=VARCHAR},
+      </if>
+      <if test="guid != null" >
+        #{guid,jdbcType=VARCHAR},
+      </if>
+      <if test="acc != null" >
+        #{acc,jdbcType=VARCHAR},
+      </if>
+      <if test="org != null" >
+        #{org,jdbcType=VARCHAR},
+      </if>
+      <if test="syt != null" >
+        #{syt,jdbcType=VARCHAR},
+      </if>
+      <if test="crtdat != null" >
+        #{crtdat,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yfid != null" >
+        #{yfid,jdbcType=VARCHAR},
+      </if>
+      <if test="minqty != null" >
+        #{minqty,jdbcType=VARCHAR},
+      </if>
+      <if test="minun != null" >
+        #{minun,jdbcType=VARCHAR},
+      </if>
+      <if test="maxqty != null" >
+        #{maxqty,jdbcType=VARCHAR},
+      </if>
+      <if test="maxun != null" >
+        #{maxun,jdbcType=VARCHAR},
+      </if>
+      <if test="useflg != null" >
+        #{useflg,jdbcType=VARCHAR},
+      </if>
+      <if test="seqid != null" >
+        #{seqid,jdbcType=VARCHAR},
+      </if>
+      <if test="refcorp != null" >
+        #{refcorp,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

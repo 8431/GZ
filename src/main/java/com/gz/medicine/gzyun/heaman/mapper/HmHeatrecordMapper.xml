@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gz.medicine.gzyun.heaman.mapper.HmHeatrecordMapper">
+  <resultMap id="BaseResultMap" type="com.gz.medicine.gzyun.heaman.bean.HmHeatrecord">
+    <id column="GUID" jdbcType="CHAR" property="guid" />
+    <result column="USRGUID" jdbcType="CHAR" property="usrguid" />
+    <result column="MEATIME" jdbcType="VARCHAR" property="meatime" />
+    <result column="HEAT" jdbcType="CHAR" property="heat" />
+    <result column="ORG" jdbcType="VARCHAR" property="org" />
+    <result column="CRTDAT" jdbcType="TIMESTAMP" property="crtdat" />
+    <result column="BLGLU" jdbcType="VARCHAR" property="blglu" />
+    <result column="TOTCHOLE" jdbcType="VARCHAR" property="totchole" />
+    <result column="TOTURIAC" jdbcType="VARCHAR" property="toturiac" />
+    <result column="DIABLOPRE" jdbcType="VARCHAR" property="diablopre" />
+    <result column="SYSBLOPRE" jdbcType="VARCHAR" property="sysblopre" />
+</resultMap>
+  <sql id="Base_Column_List">
+    GUID, USRGUID, MEATIME, HEAT, ORG, CRTDAT
+  </sql>
+  <select id="queryHeat" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from GZJK_HEATRECORD
+    where USRGUID = #{usrguid,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from GZJK_HEATRECORD
+    where GUID = #{guid,jdbcType=CHAR}
+  </delete>
+  <insert id="insertHeat" parameterType="com.gz.medicine.gzyun.heaman.bean.HmHeatrecord">
+    insert into GZJK_HEATRECORD (GUID, USRGUID, MEATIME, 
+      HEAT, ORG, CRTDAT)
+    values (#{guid,jdbcType=CHAR}, #{usrguid,jdbcType=VARCHAR}, #{meatime,jdbcType=VARCHAR}, 
+      #{heat,jdbcType=CHAR}, #{org,jdbcType=VARCHAR}, #{crtdat,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gz.medicine.gzyun.heaman.bean.HmHeatrecord">
+    insert into GZJK_HEATRECORD
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        GUID,
+      </if>
+      <if test="usrguid != null">
+        USRGUID,
+      </if>
+      <if test="meatime != null">
+        MEATIME,
+      </if>
+      <if test="heat != null">
+        HEAT,
+      </if>
+      <if test="org != null">
+        ORG,
+      </if>
+      <if test="crtdat != null">
+        CRTDAT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        #{guid,jdbcType=CHAR},
+      </if>
+      <if test="usrguid != null">
+        #{usrguid,jdbcType=VARCHAR},
+      </if>
+      <if test="meatime != null">
+        #{meatime,jdbcType=VARCHAR},
+      </if>
+      <if test="heat != null">
+        #{heat,jdbcType=CHAR},
+      </if>
+      <if test="org != null">
+        #{org,jdbcType=VARCHAR},
+      </if>
+      <if test="crtdat != null">
+        #{crtdat,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gz.medicine.gzyun.heaman.bean.HmHeatrecord">
+    update GZJK_HEATRECORD
+    <set>
+      <if test="usrguid != null">
+        USRGUID = #{usrguid,jdbcType=VARCHAR},
+      </if>
+      <if test="meatime != null">
+        MEATIME = #{meatime,jdbcType=VARCHAR},
+      </if>
+      <if test="heat != null">
+        HEAT = #{heat,jdbcType=CHAR},
+      </if>
+      <if test="org != null">
+        ORG = #{org,jdbcType=VARCHAR},
+      </if>
+      <if test="crtdat != null">
+        CRTDAT = #{crtdat,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where GUID = #{guid,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gz.medicine.gzyun.heaman.bean.HmHeatrecord">
+    update GZJK_HEATRECORD
+    set USRGUID = #{usrguid,jdbcType=VARCHAR},
+      MEATIME = #{meatime,jdbcType=VARCHAR},
+      HEAT = #{heat,jdbcType=CHAR},
+      ORG = #{org,jdbcType=VARCHAR},
+      CRTDAT = #{crtdat,jdbcType=TIMESTAMP}
+    where GUID = #{guid,jdbcType=CHAR}
+  </update>
+  
+   <select id="selectSign" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select a.meatime,a.heat,b.meatime meatime1,b.blglu,c.meatime meatime2,c.TOTCHOLE,d.meatime meatime3,d.TOTURIAC,
+			e.meatime meatime4,e.DIABLOPRE,e.SYSBLOPRE from GZJK_heatRecord a,GZJK_blgRecord b,GZJK_choRecord c,GZJK_txpRecord d,GZJK_blpRecord e where a.usrguid=b.usrguid
+			 and a.usrguid=c.usrguid
+			 and a.usrguid=d.usrguid
+			 and a.usrguid=e.usrguid and e.USRGUID = #{usrguid,jdbcType=CHAR}
+	</select>
+</mapper>

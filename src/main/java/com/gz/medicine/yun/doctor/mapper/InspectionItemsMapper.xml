@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gz.medicine.yun.doctor.mapper.InspectionItemsMapper">
+
+	<resultMap id="BaseResultMap" type="com.gz.medicine.yun.doctor.bean.InspectionItems">
+	          <id column="ID" jdbcType="VARCHAR" property="id"/>
+              <result column="PROJECTNAME" jdbcType="VARCHAR" property="projectname"/>  
+              <result column="REMARKS" jdbcType="VARCHAR" property="remarks"/>  
+              <result column="STATE" jdbcType="VARCHAR" property="state"/>  
+              <result column="CREATEDATE" jdbcType="TIMESTAMP" property="createdate"/>  
+              <result column="CREATENAME" jdbcType="VARCHAR" property="createname"/>  
+              <result column="UPDATEDATE" jdbcType="TIMESTAMP" property="updatedate"/>  
+              <result column="UPDATENAME" jdbcType="VARCHAR" property="updatename"/>  
+              <result column="SICKBLHDRID" jdbcType="VARCHAR" property="sickblhdrid"/>  
+	</resultMap>
+
+	 <sql id="Base_Column_List">
+			     ID, PROJECTNAME, REMARKS, STATE, CREATEDATE, CREATENAME, UPDATEDATE, UPDATENAME, SICKBLHDRID
+	 </sql>
+
+     <!-- 根据主键获取对象 -->
+	 <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from InspectionItems
+	    where  ID = #{id,jdbcType=VARCHAR}
+	  </select>
+
+    <select id="getInspectionItemsList" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from InspectionItems
+        where  SICKBLHDRID = #{sickguid,jdbcType=VARCHAR} AND STATE='1'
+    </select>
+	
+	  <!-- 根据主键删除 -->
+	  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+	    update InspectionItems
+		<set>
+		    STATE = '0'
+		</set>
+		where ID = #{id,jdbcType=VARCHAR}
+	  </delete>
+    <delete id="deleteByInspectionItems" parameterType="java.lang.String">
+        delete from InspectionItems where SICKBLHDRID = #{sickguid,jdbcType=VARCHAR}
+    </delete>
+
+    <!-- 新增对象(所有字段) -->
+	  <insert id="insert" parameterType="com.gz.medicine.yun.doctor.bean.InspectionItems">
+		insert into InspectionItems(
+			<include refid="Base_Column_List" />
+		)
+		values(	  
+	             #{id,jdbcType=VARCHAR} 
+                 
+	             ,#{projectname,jdbcType=VARCHAR}
+                 
+	             ,#{remarks,jdbcType=VARCHAR}
+                 
+	             ,#{state,jdbcType=VARCHAR}
+                 
+	             ,#{createdate,jdbcType=TIMESTAMP}
+                 
+	             ,#{createname,jdbcType=VARCHAR}
+                 
+	             ,#{updatedate,jdbcType=TIMESTAMP}
+                 
+	             ,#{updatename,jdbcType=VARCHAR}
+                 
+	             ,#{sickblhdrid,jdbcType=VARCHAR}
+               )
+	  </insert>
+	
+	  <!-- 新增对象(部分字段) -->
+	  <insert id="insertSelective" parameterType="com.gz.medicine.yun.doctor.bean.InspectionItems">
+	    insert into InspectionItems
+	    <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and id != ''">  
+                ID,
+            </if>  
+            <if test="projectname != null and projectname != ''">  
+                PROJECTNAME,
+            </if>  
+            <if test="remarks != null and remarks != ''">  
+                REMARKS,
+            </if>  
+            <if test="state != null and state != ''">  
+                STATE,
+            </if>  
+            <if test="createdate != null and createdate != ''">  
+                CREATEDATE,
+            </if>  
+            <if test="createname != null and createname != ''">  
+                CREATENAME,
+            </if>  
+            <if test="updatedate != null and updatedate != ''">  
+                UPDATEDATE,
+            </if>  
+            <if test="updatename != null and updatename != ''">  
+                UPDATENAME,
+            </if>  
+            <if test="sickblhdrid != null and sickblhdrid != ''">  
+                SICKBLHDRID,
+            </if>  
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides=",">
+	            <if test="id != null and id != ''">  
+	                  #{id,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="projectname != null and projectname != ''">  
+	                  #{projectname,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="remarks != null and remarks != ''">  
+	                  #{remarks,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="state != null and state != ''">  
+	                  #{state,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="createdate != null and createdate != ''">  
+	                  #{createdate,jdbcType=TIMESTAMP},  
+	            </if>  
+	            <if test="createname != null and createname != ''">  
+	                  #{createname,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="updatedate != null and updatedate != ''">  
+	                  #{updatedate,jdbcType=TIMESTAMP},  
+	            </if>  
+	            <if test="updatename != null and updatename != ''">  
+	                  #{updatename,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="sickblhdrid != null and sickblhdrid != ''">  
+	                  #{sickblhdrid,jdbcType=VARCHAR},  
+	            </if>  
+	    </trim>
+	  </insert>
+	
+	  <update id="updateByPrimaryKeySelective" parameterType="com.gz.medicine.yun.doctor.bean.InspectionItems">
+	    update InspectionItems
+		<set>
+            <if test="projectname != null and projectname != ''">  
+                  , PROJECTNAME = #{projectname,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="remarks != null and remarks != ''">  
+                  , REMARKS = #{remarks,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="state != null and state != ''">  
+                  , STATE = #{state,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="createdate != null and createdate != ''">  
+                  , CREATEDATE = #{createdate,jdbcType=TIMESTAMP}
+                    
+            </if>  
+            <if test="createname != null and createname != ''">  
+                  , CREATENAME = #{createname,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="updatedate != null and updatedate != ''">  
+                  , UPDATEDATE = #{updatedate,jdbcType=TIMESTAMP}
+                    
+            </if>  
+            <if test="updatename != null and updatename != ''">  
+                  , UPDATENAME = #{updatename,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="sickblhdrid != null and sickblhdrid != ''">  
+                  , SICKBLHDRID = #{sickblhdrid,jdbcType=VARCHAR}
+                    
+            </if>  
+		</set>
+		where ID = #{id,jdbcType=VARCHAR}
+	  </update>
+	
+	  <!-- 修改对象(所有字段) -->
+	  <update id="updateByPrimaryKey" parameterType="com.gz.medicine.yun.doctor.bean.InspectionItems">
+		update InspectionItems
+		set
+               ID = #{id,jdbcType=VARCHAR}
+               , PROJECTNAME = #{projectname,jdbcType=VARCHAR}
+               , REMARKS = #{remarks,jdbcType=VARCHAR}
+               , STATE = #{state,jdbcType=VARCHAR}
+               , CREATEDATE = #{createdate,jdbcType=TIMESTAMP}
+               , CREATENAME = #{createname,jdbcType=VARCHAR}
+               , UPDATEDATE = #{updatedate,jdbcType=TIMESTAMP}
+               , UPDATENAME = #{updatename,jdbcType=VARCHAR}
+               , SICKBLHDRID = #{sickblhdrid,jdbcType=VARCHAR}
+		where ID = #{id,jdbcType=VARCHAR}
+	  </update>
+	
+	  <!-- 根据条件获取所有数据 -->
+	  <select id="selectAll" parameterType="com.gz.medicine.yun.doctor.bean.InspectionItems" resultMap="BaseResultMap">
+	    select * from InspectionItems
+	    <where>
+            <if test="id != null and ID != ''"> 
+                   
+                   ID = #{id,jdbcType=VARCHAR}
+ 
+            </if>  
+            <if test="projectname != null and PROJECTNAME != ''"> 
+                   
+                    and PROJECTNAME = #{projectname,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="remarks != null and REMARKS != ''"> 
+                   
+                    and REMARKS = #{remarks,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="state != null and STATE != ''"> 
+                   
+                    and STATE = #{state,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="createdate != null and CREATEDATE != ''"> 
+                   
+                    and CREATEDATE = #{createdate,jdbcType=TIMESTAMP} 
+ 
+            </if>  
+            <if test="createname != null and CREATENAME != ''"> 
+                   
+                    and CREATENAME = #{createname,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="updatedate != null and UPDATEDATE != ''"> 
+                   
+                    and UPDATEDATE = #{updatedate,jdbcType=TIMESTAMP} 
+ 
+            </if>  
+            <if test="updatename != null and UPDATENAME != ''"> 
+                   
+                    and UPDATENAME = #{updatename,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="sickblhdrid != null and SICKBLHDRID != ''"> 
+                   
+                    and SICKBLHDRID = #{sickblhdrid,jdbcType=VARCHAR} 
+ 
+            </if>  
+	    </where>
+	  </select>
+	
+	  <!-- 分页数据 -->
+	  <select id="queryPage" parameterType="com.gz.medicine.common.mybatisPageVo.Page" resultMap="BaseResultMap">
+	    select * from InspectionItems
+	  </select>
+
+
+</mapper>

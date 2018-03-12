@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gz.medicine.gzyun.health.mapper.HealthyLoginMapper" >
+
+ <resultMap id="BaseResultMap" type="com.gz.medicine.gzyun.health.bean.HealthyLogin" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="PASSWORD" property="password" jdbcType="CHAR" />
+    <result column="CREATEDATE" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="CREATENAME" property="createname" jdbcType="VARCHAR" />
+    <result column="UPDATENAME" property="updatename" jdbcType="VARCHAR" />
+    <result column="UPDATEDATE" property="updatedate" jdbcType="TIMESTAMP" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+    <result column="TITLENAME" property="titlename" jdbcType="VARCHAR" />
+    <result column="BEGOOD" property="begood" jdbcType="VARCHAR" />
+    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+    <result column="PHOTOID" property="photoid" jdbcType="VARCHAR" />
+	<result column="QUALIFICATIONSID" property="qualificationsid" jdbcType="VARCHAR" />
+    <result column="PERINTRODUCTION" property="perintroduction" jdbcType="VARCHAR" />
+    <result column="TRAININGEXPERIENCE" property="trainingexperience" jdbcType="VARCHAR" />
+    <result column="DOCPHONE" property="docphone" jdbcType="VARCHAR" />
+    <result column="DOCID" property="docid" jdbcType="VARCHAR" />
+    <result column="ROLE" property="role" jdbcType="VARCHAR" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+        ID, NAME, PASSWORD, CREATEDATE, CREATENAME, UPDATENAME, UPDATEDATE, STATE,
+        TITLENAME,BEGOOD,PASSWORD,PHOTOID,QUALIFICATIONSID,PERINTRODUCTION,TRAININGEXPERIENCE,DOCPHONE,DOCID,ROLE
+  </sql>
+
+
+  <insert id="insert" parameterType="com.gz.medicine.gzyun.health.bean.HealthyLogin" >
+    insert into HEALTHYLOGIN (ID, NAME, PASSWORD, 
+      CREATEDATE, CREATENAME, UPDATENAME, 
+      UPDATEDATE, STATE)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=CHAR}, #{password,jdbcType=CHAR}, 
+      #{createdate,jdbcType=TIMESTAMP}, #{createname,jdbcType=VARCHAR}, #{updatename,jdbcType=VARCHAR}, 
+      #{updatedate,jdbcType=TIMESTAMP}, #{state,jdbcType=VARCHAR})
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.gz.medicine.gzyun.health.bean.HealthyLogin" >
+    insert into HEALTHYLOGIN
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="password != null" >
+        PASSWORD,
+      </if>
+      <if test="createdate != null" >
+        CREATEDATE,
+      </if>
+      <if test="createname != null" >
+        CREATENAME,
+      </if>
+      <if test="updatename != null" >
+        UPDATENAME,
+      </if>
+      <if test="updatedate != null" >
+        UPDATEDATE,
+      </if>
+      <if test="state != null" >
+        STATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=CHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=CHAR},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createname != null" >
+        #{createname,jdbcType=VARCHAR},
+      </if>
+      <if test="updatename != null" >
+        #{updatename,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedate != null" >
+        #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <select id="queryItemByName" resultMap="BaseResultMap" parameterType="com.gz.medicine.gzyun.health.request.HealthyLoginRequest" >
+   SELECT a.id id, a.name as docphone,a.password password,(
+		SELECT titleName
+		FROM healthTitleChart
+		WHERE titlecode = b.titlecode
+		) AS titlename,b.name name,b.begood begood, c.FTPURL || b.photoid photoid
+	, b.qualificationsId qualificationsId, b.perIntroduction perIntroduction, b.trainingExperience trainingExperience,b.id as docid
+	FROM HealthyLogin a, healthDoctor b,HEALTHFTPPATH c
+	WHERE a.id = b.loginid and c.pathcode= b.pathcode
+	AND a.name = #{name,jdbcType=VARCHAR}
+  </select>
+   <select id="queryItemById" resultType="java.lang.String" parameterType="java.lang.String" >
+    select password from HealthyLogin where ID = #{id,jdbcType=VARCHAR}
+  </select>
+
+    <sql id="Base_Column_Liste">
+        ID, NAME, PASSWORD, CREATEDATE, CREATENAME, UPDATENAME, UPDATEDATE, STATE,ROLE
+    </sql>
+
+  <select id="selectByState" resultMap="BaseResultMap">
+
+    SELECT  <include refid="Base_Column_Liste" />
+    FROM HealthyLogin WHERE state='1' and ROLE = '8'
+
+  </select>
+
+
+  <update id="updateItemById" parameterType="com.gz.medicine.gzyun.health.bean.HealthyLogin" >
+    update HealthyLogin  set Password = #{password,jdbcType=VARCHAR} where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="queryAdminByRole" resultType="java.lang.String" resultMap="BaseResultMap">
+
+     select * from HealthyLogin where state='1' and role=#{0}
+
+  </select>
+  <select id="queryHealthyLogin" parameterType="java.lang.String" resultMap="BaseResultMap">
+
+    select * from HealthyLogin where state='1' and  id=#{0}
+
+  </select>
+<select id="login" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select * from HealthyLogin where state='1' and name=#{0} and password=#{1} and role in ('8','9')
+</select>
+</mapper>

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gz.medicine.gzyun.health.mapper.healthDoctorMapper" >
+  <resultMap id="BaseResultMap" type="com.gz.medicine.gzyun.health.bean.healthDoctor" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="LOGINID" property="loginid" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="TITLECODE" property="titlecode" jdbcType="VARCHAR" />
+    <result column="BEGOOD" property="begood" jdbcType="VARCHAR" />
+    <result column="PHOTOID" property="photoid" jdbcType="VARCHAR" />
+    <result column="QUALIFICATIONSID" property="qualificationsid" jdbcType="VARCHAR" />
+    <result column="PERINTRODUCTION" property="perintroduction" jdbcType="VARCHAR" />
+    <result column="TRAININGEXPERIENCE" property="trainingexperience" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+    <result column="CREATEDATE" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="CREATENAME" property="createname" jdbcType="VARCHAR" />
+    <result column="UPDATEDATE" property="updatedate" jdbcType="TIMESTAMP" />
+    <result column="UPDATENAME" property="updatename" jdbcType="VARCHAR" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    ID, LOGINID, NAME, TITLECODE, BEGOOD, PHOTOID, QUALIFICATIONSID, PERINTRODUCTION,
+    TRAININGEXPERIENCE, STATE, CREATEDATE, CREATENAME, UPDATEDATE, UPDATENAME, PATHCODE,
+    SENIORITYCODE,PHONE
+  </sql>
+
+  <insert id="insert" parameterType="com.gz.medicine.gzyun.health.bean.healthDoctor" >
+    insert into HEALTHDOCTOR (ID, LOGINID, NAME, 
+      TITLECODE, BEGOOD, PHOTOID, 
+      QUALIFICATIONSID, PERINTRODUCTION, TRAININGEXPERIENCE, 
+      STATE, CREATEDATE, CREATENAME, 
+      UPDATEDATE, UPDATENAME)
+    values (#{id,jdbcType=VARCHAR}, #{loginid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{titlecode,jdbcType=VARCHAR}, #{begood,jdbcType=VARCHAR}, #{photoid,jdbcType=VARCHAR}, 
+      #{qualificationsid,jdbcType=VARCHAR}, #{perintroduction,jdbcType=VARCHAR}, #{trainingexperience,jdbcType=VARCHAR}, 
+      #{state,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}, #{createname,jdbcType=VARCHAR}, 
+      #{updatedate,jdbcType=TIMESTAMP}, #{updatename,jdbcType=VARCHAR})
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.gz.medicine.gzyun.health.bean.healthDoctor" >
+    insert into HEALTHDOCTOR
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="loginid != null" >
+        LOGINID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="titlecode != null" >
+        TITLECODE,
+      </if>
+      <if test="begood != null" >
+        BEGOOD,
+      </if>
+      <if test="photoid != null" >
+        PHOTOID,
+      </if>
+      <if test="qualificationsid != null" >
+        QUALIFICATIONSID,
+      </if>
+      <if test="perintroduction != null" >
+        PERINTRODUCTION,
+      </if>
+      <if test="trainingexperience != null" >
+        TRAININGEXPERIENCE,
+      </if>
+      <if test="state != null" >
+        STATE,
+      </if>
+      <if test="createdate != null" >
+        CREATEDATE,
+      </if>
+      <if test="createname != null" >
+        CREATENAME,
+      </if>
+      <if test="updatedate != null" >
+        UPDATEDATE,
+      </if>
+      <if test="updatename != null" >
+        UPDATENAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="loginid != null" >
+        #{loginid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="titlecode != null" >
+        #{titlecode,jdbcType=VARCHAR},
+      </if>
+      <if test="begood != null" >
+        #{begood,jdbcType=VARCHAR},
+      </if>
+      <if test="photoid != null" >
+        #{photoid,jdbcType=VARCHAR},
+      </if>
+      <if test="qualificationsid != null" >
+        #{qualificationsid,jdbcType=VARCHAR},
+      </if>
+      <if test="perintroduction != null" >
+        #{perintroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="trainingexperience != null" >
+        #{trainingexperience,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createname != null" >
+        #{createname,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedate != null" >
+        #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatename != null" >
+        #{updatename,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from HEALTHDOCTOR
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectDoctorParticularsList" parameterType="java.lang.String" resultType="com.gz.medicine.gzyun.health.reponse.DoctorParticularsReponse">
+
+    SELECT configs.VIDEOSERVICE, configs.VOICESERVICE, configs.IMAGESERVICE, doc.id AS docid, sp.ftpurl AS seniorityurl
+        , hp.FTPURL || doc.PHOTOID AS FTPURL, doc.name AS docname, doc.PerIntroduction AS perIntroduction, doc.TrainingExperience AS trainingExperience, doc.begood AS begood
+        , doc.QUALIFICATIONSID AS qualificationsids, luate.score AS praise, chart.titlename AS doctitle, price.GraphicPrice AS graphicprice, price.SpeechPrice AS speechprice
+        , price.VideoPrice AS videoprice, price.id AS categoryid
+    FROM HEALTHDOCTOR doc
+    LEFT JOIN (
+        SELECT round(AVG(score), 1) AS score, docid
+        FROM healthevaluate
+        WHERE docid = #{docid,jdbcType=VARCHAR}
+        GROUP BY docid
+    ) luate ON luate.docid = doc.id
+    LEFT JOIN HealthServiceConfig configs ON doc.id = configs.docid
+    LEFT JOIN healthPrice price ON doc.id = price.docid
+    LEFT JOIN healthTitleChart chart ON chart.titlecode = doc.titlecode
+    LEFT JOIN HEALTHFTPPATH hp ON doc.pathcode = hp.pathcode
+    LEFT JOIN HEALTHFTPPATH sp ON sp.pathcode = doc.senioritycode
+    WHERE doc.id = #{docid,jdbcType=VARCHAR}
+
+  </select>
+  
+  <resultMap id="BaseResultMap2" type="java.util.Map" >
+    <result column="DOCID" property="docid" jdbcType="VARCHAR" />
+    <result column="DOCNAME" property="docname" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  
+  <!-- 查询所有医生 -->
+  <select id="queryListDoctorName"  resultMap="BaseResultMap2"  >
+  select  id as docid , name as docname  from  healthDoctor where state='1'
+  </select>
+  <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap"  >
+    select *  from  healthDoctor where state='1' and id=#{0}
+  </select>
+
+
+</mapper>

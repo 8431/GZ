@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gz.medicine.gzyun.push.mapper.HealthUmengEquipmentMapper">
+
+  <resultMap id="BaseResultMap" type="com.gz.medicine.gzyun.push.bean.HealthUmengEquipment">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="USERID" jdbcType="VARCHAR" property="userid" />
+    <result column="PHONETYPE" jdbcType="VARCHAR" property="phonetype" />
+    <result column="APPMASTERSECRET" jdbcType="VARCHAR" property="appmastersecret" />
+    <result column="UMENGMESSAGESECRET" jdbcType="VARCHAR" property="umengmessagesecret" />
+    <result column="APPKEY" jdbcType="VARCHAR" property="appkey" />
+    <result column="ALIAS_TYPE" jdbcType="VARCHAR" property="aliasType" />
+    <result column="ALIAS" jdbcType="VARCHAR" property="alias" />
+    <result column="DEVICETOKENS" jdbcType="VARCHAR" property="devicetokens" />
+    <result column="STATE" jdbcType="VARCHAR" property="state" />
+    <result column="CREATEDATE" jdbcType="TIMESTAMP" property="createdate" />
+    <result column="CREATENAME" jdbcType="VARCHAR" property="createname" />
+    <result column="UPDATEDATE" jdbcType="TIMESTAMP" property="updatedate" />
+    <result column="UPDATENAME" jdbcType="VARCHAR" property="updatename" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    ID, USERID, PHONETYPE, APPMASTERSECRET, UMENGMESSAGESECRET, APPKEY, ALIAS_TYPE, ALIAS, 
+    DEVICETOKENS, STATE, CREATEDATE, CREATENAME, UPDATEDATE, UPDATENAME
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from UMENGEQUIPMENT
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByUserID" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from UMENGEQUIPMENT
+    where USERID = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByUsrid" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from UMENGEQUIPMENT
+    where USERID = #{0,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from UMENGEQUIPMENT
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.gz.medicine.gzyun.push.bean.HealthUmengEquipment">
+    insert into UMENGEQUIPMENT (ID, USERID, PHONETYPE, 
+      APPMASTERSECRET, UMENGMESSAGESECRET, APPKEY, 
+      ALIAS_TYPE, ALIAS, DEVICETOKENS, 
+      STATE, CREATEDATE, CREATENAME, 
+      UPDATEDATE, UPDATENAME)
+    values (#{id,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, #{phonetype,jdbcType=VARCHAR}, 
+      #{appmastersecret,jdbcType=VARCHAR}, #{umengmessagesecret,jdbcType=VARCHAR}, #{appkey,jdbcType=VARCHAR}, 
+      #{aliasType,jdbcType=VARCHAR}, #{alias,jdbcType=VARCHAR}, #{devicetokens,jdbcType=VARCHAR}, 
+      #{state,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}, #{createname,jdbcType=VARCHAR}, 
+      #{updatedate,jdbcType=TIMESTAMP}, #{updatename,jdbcType=VARCHAR})
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.gz.medicine.gzyun.push.bean.HealthUmengEquipment">
+    insert into UMENGEQUIPMENT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="userid != null">
+        USERID,
+      </if>
+      <if test="phonetype != null">
+        PHONETYPE,
+      </if>
+      <if test="appmastersecret != null">
+        APPMASTERSECRET,
+      </if>
+      <if test="umengmessagesecret != null">
+        UMENGMESSAGESECRET,
+      </if>
+      <if test="appkey != null">
+        APPKEY,
+      </if>
+      <if test="aliasType != null">
+        ALIAS_TYPE,
+      </if>
+      <if test="alias != null">
+        ALIAS,
+      </if>
+      <if test="devicetokens != null">
+        DEVICETOKENS,
+      </if>
+      <if test="state != null">
+        STATE,
+      </if>
+      <if test="createdate != null">
+        CREATEDATE,
+      </if>
+      <if test="createname != null">
+        CREATENAME,
+      </if>
+      <if test="updatedate != null">
+        UPDATEDATE,
+      </if>
+      <if test="updatename != null">
+        UPDATENAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="phonetype != null">
+        #{phonetype,jdbcType=VARCHAR},
+      </if>
+      <if test="appmastersecret != null">
+        #{appmastersecret,jdbcType=VARCHAR},
+      </if>
+      <if test="umengmessagesecret != null">
+        #{umengmessagesecret,jdbcType=VARCHAR},
+      </if>
+      <if test="appkey != null">
+        #{appkey,jdbcType=VARCHAR},
+      </if>
+      <if test="aliasType != null">
+        #{aliasType,jdbcType=VARCHAR},
+      </if>
+      <if test="alias != null">
+        #{alias,jdbcType=VARCHAR},
+      </if>
+      <if test="devicetokens != null">
+        #{devicetokens,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null">
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createname != null">
+        #{createname,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedate != null">
+        #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatename != null">
+        #{updatename,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.gz.medicine.gzyun.push.bean.HealthUmengEquipment">
+    update UMENGEQUIPMENT
+    <set>
+      <if test="userid != null">
+        USERID = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="phonetype != null">
+        PHONETYPE = #{phonetype,jdbcType=VARCHAR},
+      </if>
+      <if test="appmastersecret != null">
+        APPMASTERSECRET = #{appmastersecret,jdbcType=VARCHAR},
+      </if>
+      <if test="umengmessagesecret != null">
+        UMENGMESSAGESECRET = #{umengmessagesecret,jdbcType=VARCHAR},
+      </if>
+      <if test="appkey != null">
+        APPKEY = #{appkey,jdbcType=VARCHAR},
+      </if>
+      <if test="aliasType != null">
+        ALIAS_TYPE = #{aliasType,jdbcType=VARCHAR},
+      </if>
+      <if test="alias != null">
+        ALIAS = #{alias,jdbcType=VARCHAR},
+      </if>
+      <if test="devicetokens != null and devicetokens!=''">
+        DEVICETOKENS = #{devicetokens,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null">
+        CREATEDATE = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createname != null">
+        CREATENAME = #{createname,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedate != null">
+        UPDATEDATE = #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatename != null">
+        UPDATENAME = #{updatename,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <update id="updateByUserId" parameterType="com.gz.medicine.gzyun.push.bean.HealthUmengEquipment">
+    update UMENGEQUIPMENT
+    <set>
+      <if test="phonetype != null">
+        PHONETYPE = #{phonetype,jdbcType=VARCHAR},
+      </if>
+      <if test="appmastersecret != null">
+        APPMASTERSECRET = #{appmastersecret,jdbcType=VARCHAR},
+      </if>
+      <if test="umengmessagesecret != null">
+        UMENGMESSAGESECRET = #{umengmessagesecret,jdbcType=VARCHAR},
+      </if>
+      <if test="appkey != null">
+        APPKEY = #{appkey,jdbcType=VARCHAR},
+      </if>
+      <if test="aliasType != null">
+        ALIAS_TYPE = #{aliasType,jdbcType=VARCHAR},
+      </if>
+      <if test="alias != null">
+        ALIAS = #{alias,jdbcType=VARCHAR},
+      </if>
+      <if test="devicetokens != null and devicetokens!=''">
+        DEVICETOKENS = #{devicetokens,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null">
+        CREATEDATE = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createname != null">
+        CREATENAME = #{createname,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedate != null">
+        UPDATEDATE = #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatename != null">
+        UPDATENAME = #{updatename,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where USERID = #{userid,jdbcType=VARCHAR}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.gz.medicine.gzyun.push.bean.HealthUmengEquipment">
+    update UMENGEQUIPMENT
+    set USERID = #{userid,jdbcType=VARCHAR},
+      PHONETYPE = #{phonetype,jdbcType=VARCHAR},
+      APPMASTERSECRET = #{appmastersecret,jdbcType=VARCHAR},
+      UMENGMESSAGESECRET = #{umengmessagesecret,jdbcType=VARCHAR},
+      APPKEY = #{appkey,jdbcType=VARCHAR},
+      ALIAS_TYPE = #{aliasType,jdbcType=VARCHAR},
+      ALIAS = #{alias,jdbcType=VARCHAR},
+      DEVICETOKENS = #{devicetokens,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=VARCHAR},
+      CREATEDATE = #{createdate,jdbcType=TIMESTAMP},
+      CREATENAME = #{createname,jdbcType=VARCHAR},
+      UPDATEDATE = #{updatedate,jdbcType=TIMESTAMP},
+      UPDATENAME = #{updatename,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+</mapper>

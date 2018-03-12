@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gz.medicine.yun.doctor.mapper.DTteamDocMapper" >
+  <resultMap id="BaseResultMap" type="com.gz.medicine.yun.doctor.bean.DTteamDoc" >
+    <result column="GUID" property="guid" jdbcType="CHAR" />
+    <result column="ORG" property="org" jdbcType="VARCHAR" />
+    <result column="CRTDAT" property="crtdat" jdbcType="TIMESTAMP" />
+    <result column="TEAMGUID" property="teamguid" jdbcType="VARCHAR" />
+    <result column="DOCGUID" property="docguid" jdbcType="VARCHAR" />
+    <result column="NODE" property="node" jdbcType="VARCHAR" />
+    <result column="MESSAGESTAT" property="messagestat" jdbcType="INTEGER" />
+  </resultMap>
+
+  <insert id="insertSelective" parameterType="com.gz.medicine.yun.doctor.bean.DTteamDoc" >
+    insert into CHIS_TEAM_DOC
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        GUID,
+      </if>
+      <if test="org != null" >
+        ORG,
+      </if>
+      <if test="crtdat != null" >
+        CRTDAT,
+      </if>
+      <if test="teamguid != null" >
+        TEAMGUID,
+      </if>
+      <if test="docguid != null" >
+        DOCGUID,
+      </if>
+      <if test="node != null" >
+        NODE,
+      </if>
+      <if test="messagestat != null" >
+        MESSAGESTAT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        #{guid,jdbcType=CHAR},
+      </if>
+      <if test="org != null" >
+        #{org,jdbcType=VARCHAR},
+      </if>
+      <if test="crtdat != null" >
+        #{crtdat,jdbcType=TIMESTAMP},
+      </if>
+      <if test="teamguid != null" >
+        #{teamguid,jdbcType=VARCHAR},
+      </if>
+      <if test="docguid != null" >
+        #{docguid,jdbcType=VARCHAR},
+      </if>
+      <if test="node != null" >
+        #{node,jdbcType=VARCHAR},
+      </if>
+      <if test="messagestat != null" >
+        #{messagestat,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="UpdateMessagestat" parameterType="java.util.Map">
+    <foreach collection="teamList" item="teamListItem" index="teamListIndex" close=";end;" open="begin" separator=";">
+      update CHIS_TEAM_DOC set
+      MESSAGESTAT=MESSAGESTAT+1
+      where TEAMGUID=#{teamguid,jdbcType=VARCHAR}
+      and
+      DOCGUID=#{teamListItem}
+    </foreach>
+  </update>
+
+  <update id="updateUnreadMsg" parameterType="java.lang.String">
+    update CHIS_TEAM_DOC set
+    MESSAGESTAT=0
+    where TEAMGUID=#{0,jdbcType=VARCHAR} and
+
+    DOCGUID=#{1,jdbcType=VARCHAR}
+  </update>
+
+</mapper>

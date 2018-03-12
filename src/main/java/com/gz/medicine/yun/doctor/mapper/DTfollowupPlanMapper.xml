@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gz.medicine.yun.doctor.mapper.DTfollowupPlanMapper" >
+  <resultMap id="BaseResultMap" type="com.gz.medicine.yun.doctor.bean.DTfollowupPlan" >
+    <id column="GUID" property="guid" jdbcType="VARCHAR" />
+    <result column="ORG" property="org" jdbcType="VARCHAR" />
+    <result column="DOCGUID" property="docguid" jdbcType="VARCHAR" />
+    <result column="USRGUID" property="usrguid" jdbcType="VARCHAR" />
+    <result column="SICGUID" property="sicguid" jdbcType="VARCHAR" />
+    <result column="FOLLOWOPTION" property="followoption" jdbcType="VARCHAR" />
+    <result column="FOLLOWDATETIME" property="followdatetime" jdbcType="TIMESTAMP" />
+    <result column="FOLLOWSTATE" property="followstate" jdbcType="VARCHAR" />
+    <result column="CRTUSR" property="crtusr" jdbcType="VARCHAR" />
+    <result column="CRTDAT" property="crtdat" jdbcType="TIMESTAMP" />
+    <result column="UPDATEUSR" property="updateusr" jdbcType="VARCHAR" />
+    <result column="UPDATEDATE" property="updatedate" jdbcType="TIMESTAMP" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR"></result>
+    <result column="ZDNAM" property="zdnam" jdbcType="VARCHAR"></result>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    GUID, ORG, DOCGUID, USRGUID, SICGUID, FOLLOWOPTION, FOLLOWDATETIME, FOLLOWSTATE, 
+    CRTUSR, CRTDAT, UPDATEUSR, UPDATEDATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from CHIS_FOLLOWUP_PLAN
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from CHIS_FOLLOWUP_PLAN
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </delete>
+
+    <delete id="deleteByFollowupPlan" parameterType="java.lang.String">
+            delete from CHIS_FOLLOWUP_PLAN
+            where SICGUID = #{sickguid,jdbcType=VARCHAR}
+    </delete>
+
+    <insert id="insert" parameterType="com.gz.medicine.yun.doctor.bean.DTfollowupPlan" >
+    insert into CHIS_FOLLOWUP_PLAN (GUID, ORG, DOCGUID, 
+      USRGUID, SICGUID, FOLLOWOPTION, 
+      FOLLOWDATETIME, FOLLOWSTATE, CRTUSR, 
+      CRTDAT, UPDATEUSR, UPDATEDATE
+      )
+    values (#{guid,jdbcType=VARCHAR}, #{org,jdbcType=VARCHAR}, #{docguid,jdbcType=VARCHAR}, 
+      #{usrguid,jdbcType=VARCHAR}, #{sicguid,jdbcType=VARCHAR}, #{followoption,jdbcType=VARCHAR}, 
+      #{followdatetime,jdbcType=TIMESTAMP}, #{followstate,jdbcType=VARCHAR}, #{crtusr,jdbcType=VARCHAR}, 
+      #{crtdat,jdbcType=TIMESTAMP}, #{updateusr,jdbcType=VARCHAR}, #{updatedate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gz.medicine.yun.doctor.bean.DTfollowupPlan" >
+    insert into CHIS_FOLLOWUP_PLAN
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        GUID,
+      </if>
+      <if test="org != null" >
+        ORG,
+      </if>
+      <if test="docguid != null" >
+        DOCGUID,
+      </if>
+      <if test="usrguid != null" >
+        USRGUID,
+      </if>
+      <if test="sicguid != null" >
+        SICGUID,
+      </if>
+      <if test="followoption != null" >
+        FOLLOWOPTION,
+      </if>
+      <if test="followdatetime != null" >
+        FOLLOWDATETIME,
+      </if>
+      <if test="followstate != null" >
+        FOLLOWSTATE,
+      </if>
+      <if test="crtusr != null" >
+        CRTUSR,
+      </if>
+      <if test="crtdat != null" >
+        CRTDAT,
+      </if>
+      <if test="updateusr != null" >
+        UPDATEUSR,
+      </if>
+      <if test="updatedate != null" >
+        UPDATEDATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        #{guid,jdbcType=VARCHAR},
+      </if>
+      <if test="org != null" >
+        #{org,jdbcType=VARCHAR},
+      </if>
+      <if test="docguid != null" >
+        #{docguid,jdbcType=VARCHAR},
+      </if>
+      <if test="usrguid != null" >
+        #{usrguid,jdbcType=VARCHAR},
+      </if>
+      <if test="sicguid != null" >
+        #{sicguid,jdbcType=VARCHAR},
+      </if>
+      <if test="followoption != null" >
+        #{followoption,jdbcType=VARCHAR},
+      </if>
+      <if test="followdatetime != null" >
+        #{followdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="followstate != null" >
+        #{followstate,jdbcType=VARCHAR},
+      </if>
+      <if test="crtusr != null" >
+        #{crtusr,jdbcType=VARCHAR},
+      </if>
+      <if test="crtdat != null" >
+        #{crtdat,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateusr != null" >
+        #{updateusr,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedate != null" >
+        #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gz.medicine.yun.doctor.bean.DTfollowupPlan" >
+    update CHIS_FOLLOWUP_PLAN
+    <set >
+      <if test="org != null" >
+        ORG = #{org,jdbcType=VARCHAR},
+      </if>
+      <if test="docguid != null" >
+        DOCGUID = #{docguid,jdbcType=VARCHAR},
+      </if>
+      <if test="usrguid != null" >
+        USRGUID = #{usrguid,jdbcType=VARCHAR},
+      </if>
+      <if test="sicguid != null" >
+        SICGUID = #{sicguid,jdbcType=VARCHAR},
+      </if>
+      <if test="followoption != null" >
+        FOLLOWOPTION = #{followoption,jdbcType=VARCHAR},
+      </if>
+      <if test="followdatetime != null" >
+        FOLLOWDATETIME = #{followdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="followstate != null" >
+        FOLLOWSTATE = #{followstate,jdbcType=VARCHAR},
+      </if>
+      <if test="crtusr != null" >
+        CRTUSR = #{crtusr,jdbcType=VARCHAR},
+      </if>
+      <if test="crtdat != null" >
+        CRTDAT = #{crtdat,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateusr != null" >
+        UPDATEUSR = #{updateusr,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedate != null" >
+        UPDATEDATE = #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </update>
+
+    <update id="updateByfollowState" parameterType="com.gz.medicine.yun.doctor.bean.DTfollowupPlan">
+
+         update CHIS_FOLLOWUP_PLAN
+        <if test="followstate != null and followstate!='' " >
+            set
+            FOLLOWSTATE = #{followstate,jdbcType=VARCHAR}
+        </if>
+        where GUID = #{guid,jdbcType=VARCHAR}
+    </update>
+
+
+  <update id="updateByPrimaryKey" parameterType="com.gz.medicine.yun.doctor.bean.DTfollowupPlan" >
+    update CHIS_FOLLOWUP_PLAN
+    set ORG = #{org,jdbcType=VARCHAR},
+      DOCGUID = #{docguid,jdbcType=VARCHAR},
+      USRGUID = #{usrguid,jdbcType=VARCHAR},
+      SICGUID = #{sicguid,jdbcType=VARCHAR},
+      FOLLOWOPTION = #{followoption,jdbcType=VARCHAR},
+      FOLLOWDATETIME = #{followdatetime,jdbcType=TIMESTAMP},
+      FOLLOWSTATE = #{followstate,jdbcType=VARCHAR},
+      CRTUSR = #{crtusr,jdbcType=VARCHAR},
+      CRTDAT = #{crtdat,jdbcType=TIMESTAMP},
+      UPDATEUSR = #{updateusr,jdbcType=VARCHAR},
+      UPDATEDATE = #{updatedate,jdbcType=TIMESTAMP}
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </update>
+
+
+  <select id="queryPageHzsfjh" parameterType="com.gz.medicine.common.mybatisPageVo.Page" resultMap="ResultMap">
+select * from (
+select *
+     from (select c.followoption,to_char(c.followdatetime,'YYYY-MM-DD HH24:MI') as followdatetime, c.guid as sfjhguid, c.docguid
+             from (select * from CHIS_followup_Plan where status='1' and usrguid =  #{usrguid,jdbcType=VARCHAR} and
+             FOLLOWDATETIME>=to_date(to_char(sysdate,'yyyy-MM-dd'),'yyyy-MM-dd')
+             )  c
+             left join usr u
+               on c.usrguid = u.guid
+              ) m
+     left join (select dc.*,v.name as deptnam from (select y.name, y.hospital,y.department, u.guid
+                  from usr u, yx_doc y
+                 where u.id = y.id) dc left join   V_YX_DOCDEPT v  on dc.department=v.id            ) n
+       on m.docguid = n.guid)
+       order by followdatetime desc
+  </select>
+
+
+  <resultMap id="ResultMap" type="java.util.HashMap" >
+    <id column="GUID" property="guid" jdbcType="VARCHAR" />
+    <result column="ORG" property="org" jdbcType="VARCHAR" />
+    <result column="DOCGUID" property="docguid" jdbcType="VARCHAR" />
+    <result column="USRGUID" property="usrguid" jdbcType="VARCHAR" />
+    <result column="SICGUID" property="sicguid" jdbcType="VARCHAR" />
+    <result column="FOLLOWOPTION" property="followoption" jdbcType="VARCHAR" />
+    <result column="FOLLOWDATETIME" property="followdatetime" jdbcType="TIMESTAMP" />
+    <result column="FOLLOWSTATE" property="followstate" jdbcType="VARCHAR" />
+    <result column="CRTUSR" property="crtusr" jdbcType="VARCHAR" />
+    <result column="CRTDAT" property="crtdat" jdbcType="TIMESTAMP" />
+    <result column="UPDATEUSR" property="updateusr" jdbcType="VARCHAR" />
+    <result column="UPDATEDATE" property="updatedate" jdbcType="TIMESTAMP" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR"></result>
+    <result column="NAME" property="name" jdbcType="VARCHAR"></result>
+    <result column="HOSPITAL" property="hospital" jdbcType="VARCHAR"></result>
+    <result column="SFJHGUID" property="sfjhguid" jdbcType="VARCHAR"></result>
+    <result column="DEPTNAM" property="deptnam" jdbcType="VARCHAR"></result>
+    <result column="SEX" property="sex" jdbcType="VARCHAR"></result>
+    <result column="AGE" property="age" jdbcType="VARCHAR"></result>
+    <result column="TELPHONE" property="telphone" jdbcType="VARCHAR"></result>
+    <result column="FOLLOWDATETIME2" property="followdatetime2" jdbcType="VARCHAR"></result>
+    <result column="ZDNAM" property="zdnam" jdbcType="VARCHAR"></result>
+  </resultMap>
+
+<!-- 云随访诊室结束随访接口 根据患者GUID -->
+ <update id="setFollowUpEnd" parameterType="com.gz.medicine.yun.doctor.bean.DTfollowupPlan" >
+	 update CHIS_FOLLOWUP_PLAN
+     set FOLLOWSTATE = '1'
+    where DOCGUID = #{docguid,jdbcType=VARCHAR} and USRGUID = #{usrguid,jdbcType=VARCHAR}
+  </update>
+  <select id="queryPlan" parameterType="java.lang.String" resultMap="ResultMap">
+    select c.crtusr,
+       c.usrguid,
+       c.followoption,
+       c.guid,
+       c.docguid,
+       to_char(c.FOLLOWDATETIME, 'yyyy-mm-dd HH24:mi') as FOLLOWDATETIME
+          from chis_followup_plan c
+         where
+            c.status = '1'
+            and c.DOCGUID=#{0,jdbcType=VARCHAR}
+            and c.USRGUID=#{1,jdbcType=VARCHAR}
+            and FOLLOWDATETIME>=to_date(to_char(sysdate,'yyyy-MM-dd'),'yyyy-MM-dd')
+            order by FOLLOWDATETIME desc
+
+  </select>
+  <select id="queryUsrDetail" parameterType="java.lang.String" resultMap="ResultMap">
+
+select   name,
+ case when  length(idcard)=18 then decode(mod (to_number( substr(idcard ,17, 1)),2 ),0, '2','1' )
+       when  length(idcard)=15  then decode(mod(to_number(idcard),2),0,'2','1')
+        end as sex,
+         case when length(idcard)=18 then    ceil((to_char(sysdate,'yyyyMMdd')-to_char(to_date(substr(idcard,7,8),'yyyy-MM-dd'),'yyyyMMdd'))/10000)
+                           when length(idcard)=15 then  ceil((to_char(sysdate,'yyyyMMdd')-to_char(to_date('19'||substr(idcard,7,6),'yyyy-MM-dd'),'yyyyMMdd'))/10000)
+                           end as age,
+       ID as telPhone
+
+ from usr  where guid= #{0,jdbcType=VARCHAR} and org='CHIS'
+  </select>
+
+
+<select id="queryPageFollUpTasks" parameterType="com.gz.medicine.common.mybatisPageVo.Page" resultMap="ResultMap">
+  select b.name ,decode(mod (to_number( substr(b.idcard ,17, 1)),2 ),0, '2','1' ) as sex ,b.guid usrguid , b.imgguid,   case when length(b.idcard)=18 then    ceil((to_char(sysdate,'yyyyMMdd')-to_char(to_date(substr(b.idcard,7,8),'yyyy-MM-dd'),'yyyyMMdd'))/10000)
+    when length(b.idcard)=15 then  ceil((to_char(sysdate,'yyyyMMdd')-to_char(to_date('19'||substr(b.idcard,7,6),'yyyy-MM-dd'),'yyyyMMdd'))/10000)
+    end as age, a.ZDNAM ZHAND , to_char(a.crtdat,'YYYY-MM-DD HH24:MI:SS') crtdat, c.followoption ,c.guid , to_char(c.followdatetime,'YYYY-MM-DD HH24:MI:SS') followdatetime, c.followstate
+          from CHIS_followup_Plan c, usr b, SICKBLHDR a
+         where c.docguid = #{docguid,jdbcType=VARCHAR}
+           and c.usrguid = b.guid
+           and c.sicguid = a.guid
+           and FOLLOWDATETIME between
+               to_date(to_char(sysdate, 'YYYY-MM-DD') || ' 00:00:00',
+               'YYYY-MM-DD HH24:MI:SS') and
+               to_date(to_char(sysdate, 'YYYY-MM-DD') || ' 23:59:59',
+               'YYYY-MM-DD HH24:MI:SS')
+           and c.status=1
+           <if test="name != null">
+            and b.name like '${'%' + name + '%'}'
+        </if>
+  </select>
+
+    <select id="queryFollUpTasksNum" parameterType="java.lang.String" resultType="java.lang.Integer">
+        select count(1)
+        from CHIS_followup_Plan c, usr b, SICKBLHDR a
+        where c.docguid = #{0}
+        and c.usrguid = b.guid
+        and c.sicguid = a.guid
+        and FOLLOWDATETIME between
+        to_date(to_char(sysdate, 'YYYY-MM-DD') || ' 00:00:00',
+        'YYYY-MM-DD HH24:MI:SS') and
+        to_date(to_char(sysdate, 'YYYY-MM-DD') || ' 23:59:59',
+        'YYYY-MM-DD HH24:MI:SS')
+        and c.status=1
+        and c.FOLLOWSTATE='0'
+
+    </select>
+
+    <select id="selectDTfollowupPlanList" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List" />
+        from CHIS_FOLLOWUP_PLAN
+        where SICGUID = #{sickguid,jdbcType=VARCHAR} AND STATUS='1'
+
+    </select>
+
+  <select id="queryDoctor" parameterType="java.lang.String" resultMap="ResultMap">
+select m.*,v.name as DEPTNAM from (select
+        case when  length(u.idcard)=18 then decode(mod (to_number( substr(u.idcard ,17, 1)),2 ),0, '2','1' )
+       when  length(u.idcard)=15  then decode(mod(to_number(u.idcard),2),0,'2','1')
+        end as sex,
+       case when length(u.idcard)=18 then    ceil((to_char(sysdate,'yyyyMMdd')-to_char(to_date(substr(u.idcard,7,8),'yyyy-MM-dd'),'yyyyMMdd'))/10000)
+                           when length(u.idcard)=15 then  ceil((to_char(sysdate,'yyyyMMdd')-to_char(to_date('19'||substr(u.idcard,7,6),'yyyy-MM-dd'),'yyyyMMdd'))/10000)
+                           end as age,
+       u.ID as telPhone,
+       u.name,
+       y.department
+
+
+  from usr u, yx_doc y
+ where u.id = y.id
+   and u.org='CHIS'
+   and u.guid = #{0,jdbcType=VARCHAR}) m left join V_YX_DOCDEPT v
+   on m.department=v.id
+
+  </select>
+  <select id="querySic" parameterType="java.lang.String" resultMap="ResultMap">
+    select
+     zdnam
+     from SICKBLHDR
+     where
+     guid=#{0,jdbcType=VARCHAR}
+
+  </select>
+
+
+
+</mapper>

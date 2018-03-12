@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gz.medicine.yun.doctor.mapper.DTteamsgextMapper" >
+  <resultMap id="BaseResultMap" type="com.gz.medicine.yun.doctor.bean.DTteamsgext" >
+    <result column="GUID" property="guid" jdbcType="CHAR" />
+    <result column="MSGGUID" property="msgguid" jdbcType="VARCHAR" />
+    <result column="USRGUID" property="usrguid" jdbcType="VARCHAR" />
+    <result column="TEAMGUID" property="teamguid" jdbcType="VARCHAR" />
+    <result column="STAT" property="stat" jdbcType="CHAR" />
+    <result column="CRTDAT" property="crtdat" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <insert id="insert" parameterType="com.gz.medicine.yun.doctor.bean.DTteamsgext" >
+    insert into CHIS_TEAMSGEXT (GUID, MSGGUID, USRGUID, 
+      TEAMGUID, STAT, CRTDAT
+      )
+    values (#{guid,jdbcType=CHAR}, #{msgguid,jdbcType=VARCHAR}, #{usrguid,jdbcType=VARCHAR}, 
+      #{teamguid,jdbcType=VARCHAR}, #{stat,jdbcType=CHAR}, #{crtdat,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gz.medicine.yun.doctor.bean.DTteamsgext" >
+    insert into CHIS_TEAMSGEXT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        GUID,
+      </if>
+      <if test="msgguid != null" >
+        MSGGUID,
+      </if>
+      <if test="usrguid != null" >
+        USRGUID,
+      </if>
+      <if test="teamguid != null" >
+        TEAMGUID,
+      </if>
+      <if test="stat != null" >
+        STAT,
+      </if>
+      <if test="crtdat != null" >
+        CRTDAT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        #{guid,jdbcType=CHAR},
+      </if>
+      <if test="msgguid != null" >
+        #{msgguid,jdbcType=VARCHAR},
+      </if>
+      <if test="usrguid != null" >
+        #{usrguid,jdbcType=VARCHAR},
+      </if>
+      <if test="teamguid != null" >
+        #{teamguid,jdbcType=VARCHAR},
+      </if>
+      <if test="stat != null" >
+        #{stat,jdbcType=CHAR},
+      </if>
+      <if test="crtdat != null" >
+        #{crtdat,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

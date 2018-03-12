@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gz.medicine.gzyun.health.mapper.HealthServiceConfigMapper">
+  <resultMap id="BaseResultMap" type="com.gz.medicine.gzyun.health.bean.HealthServiceConfig">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="DOCID" jdbcType="VARCHAR" property="docid" />
+    <result column="IMAGESERVICE" jdbcType="VARCHAR" property="imageservice" />
+    <result column="VOICESERVICE" jdbcType="VARCHAR" property="voiceservice" />
+    <result column="VIDEOSERVICE" jdbcType="VARCHAR" property="videoservice" />
+    <result column="STATE" jdbcType="VARCHAR" property="state" />
+    <result column="CREATEDATE" jdbcType="TIMESTAMP" property="createdate" />
+    <result column="CREATENAME" jdbcType="VARCHAR" property="createname" />
+    <result column="UPDATEDATE" jdbcType="TIMESTAMP" property="updatedate" />
+    <result column="UPDATENAME" jdbcType="VARCHAR" property="updatename" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    ID, DOCID, IMAGESERVICE, VOICESERVICE, VIDEOSERVICE, STATE, "CREATEDATE", CREATENAME,
+    UPDATEDATE, UPDATENAME
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HEALTHSERVICECONFIG
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HEALTHSERVICECONFIG
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.gz.medicine.gzyun.health.bean.HealthServiceConfig">
+    insert into HEALTHSERVICECONFIG (ID, DOCID, IMAGESERVICE, 
+      VOICESERVICE, VIDEOSERVICE, STATE,
+      "CREATEDATE ", CREATENAME, UPDATEDATE, 
+      UPDATENAME)
+    values (#{id,jdbcType=VARCHAR}, #{docid,jdbcType=VARCHAR}, #{imageservice,jdbcType=VARCHAR}, 
+      #{voiceservice,jdbcType=VARCHAR}, #{videoservice,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, 
+      #{createdate,jdbcType=TIMESTAMP}, #{createname,jdbcType=VARCHAR}, #{updatedate,jdbcType=TIMESTAMP}, 
+      #{updatename,jdbcType=VARCHAR})
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.gz.medicine.gzyun.health.bean.HealthServiceConfig">
+    insert into HEALTHSERVICECONFIG
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="docid != null">
+        DOCID,
+      </if>
+      <if test="imageservice != null">
+        IMAGESERVICE,
+      </if>
+      <if test="voiceservice != null">
+        VOICESERVICE,
+      </if>
+      <if test="videoservice != null">
+        VIDEOSERVICE,
+      </if>
+      <if test="state != null">
+        STATE,
+      </if>
+      <if test="createdate != null">
+        "CREATEDATE ",
+      </if>
+      <if test="createname != null">
+        CREATENAME,
+      </if>
+      <if test="updatedate != null">
+        UPDATEDATE,
+      </if>
+      <if test="updatename != null">
+        UPDATENAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="docid != null">
+        #{docid,jdbcType=VARCHAR},
+      </if>
+      <if test="imageservice != null">
+        #{imageservice,jdbcType=VARCHAR},
+      </if>
+      <if test="voiceservice != null">
+        #{voiceservice,jdbcType=VARCHAR},
+      </if>
+      <if test="videoservice != null">
+        #{videoservice,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null">
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createname != null">
+        #{createname,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedate != null">
+        #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatename != null">
+        #{updatename,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.gz.medicine.gzyun.health.bean.HealthServiceConfig">
+    update HEALTHSERVICECONFIG
+    <set>
+      <if test="docid != null">
+        DOCID = #{docid,jdbcType=VARCHAR},
+      </if>
+      <if test="imageservice != null">
+        IMAGESERVICE = #{imageservice,jdbcType=VARCHAR},
+      </if>
+      <if test="voiceservice != null">
+        VOICESERVICE = #{voiceservice,jdbcType=VARCHAR},
+      </if>
+      <if test="videoservice != null">
+        "VIDEOSERVICE" = #{videoservice,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null">
+        "CREATEDATE " = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createname != null">
+        CREATENAME = #{createname,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedate != null">
+        UPDATEDATE = #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatename != null">
+        UPDATENAME = #{updatename,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.gz.medicine.gzyun.health.bean.HealthServiceConfig">
+    update HEALTHSERVICECONFIG
+    set DOCID = #{docid,jdbcType=VARCHAR},
+      IMAGESERVICE = #{imageservice,jdbcType=VARCHAR},
+      VOICESERVICE = #{voiceservice,jdbcType=VARCHAR},
+      "VIDEOSERVICE" = #{videoservice,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=VARCHAR},
+      "CREATEDATE " = #{createdate,jdbcType=TIMESTAMP},
+      CREATENAME = #{createname,jdbcType=VARCHAR},
+      UPDATEDATE = #{updatedate,jdbcType=TIMESTAMP},
+      UPDATENAME = #{updatename,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <update id="updateHealthServiceConfig" parameterType="com.gz.medicine.gzyun.health.bean.HealthServiceConfig">
+    update HEALTHSERVICECONFIG
+    set
+    IMAGESERVICE = #{imageservice,jdbcType=VARCHAR},
+    VOICESERVICE = #{voiceservice,jdbcType=VARCHAR},
+    VIDEOSERVICE = #{videoservice,jdbcType=VARCHAR},
+    UPDATEDATE = #{updatedate,jdbcType=TIMESTAMP}
+    where DOCID = #{docid,jdbcType=VARCHAR}
+  </update>
+
+  <insert id="insertHealthServiceConfig" parameterType="com.gz.medicine.gzyun.health.bean.HealthServiceConfig">
+    insert into HEALTHSERVICECONFIG
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="docid != null">
+        DOCID,
+      </if>
+      <if test="imageservice != null">
+        IMAGESERVICE,
+      </if>
+      <if test="voiceservice != null">
+        VOICESERVICE,
+      </if>
+      <if test="videoservice != null">
+        VIDEOSERVICE,
+      </if>
+      STATE,
+      "CREATEDATE",CREATENAME,UPDATEDATE, UPDATENAME
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="docid != null">
+        #{docid,jdbcType=VARCHAR},
+      </if>
+      <if test="imageservice != null">
+        #{imageservice,jdbcType=VARCHAR},
+      </if>
+      <if test="voiceservice != null">
+        #{voiceservice,jdbcType=VARCHAR},
+      </if>
+      <if test="videoservice != null">
+        #{videoservice,jdbcType=VARCHAR},
+      </if>
+        #{state,jdbcType=VARCHAR},
+      #{createdate,jdbcType=VARCHAR},
+      #{createname,jdbcType=VARCHAR},
+        #{updatedate,jdbcType=TIMESTAMP},
+        #{updatename,jdbcType=VARCHAR}
+
+    </trim>
+  </insert>
+
+  <!--查询这个医生的服务设置 -->
+  <select id="selectByHealthServiceConfig" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from HEALTHSERVICECONFIG
+    where DOCID = #{docid,jdbcType=VARCHAR}
+  </select>
+</mapper>

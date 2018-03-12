@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gz.medicine.gzyun.health.mapper.HealthCallStateRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.gz.medicine.gzyun.health.bean.HealthCallStateRecord" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="ORDERID" property="orderid" jdbcType="VARCHAR" />
+    <result column="CALLSTATE" property="callstate" jdbcType="VARCHAR" />
+    <result column="USERID" property="userid" jdbcType="VARCHAR" />
+    <result column="CREATEDATE" property="createdate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ORDERID, CALLSTATE, USERID, CREATEDATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select <include refid="Base_Column_List" /> FROM (
+    select
+    <include refid="Base_Column_List" />
+    from HEALTHCALLSTATERECORD
+    where ORDERID = #{orderid,jdbcType=VARCHAR} order by CREATEDATE desc ) where rownum = 1
+  </select>
+
+  <select id="selectByPrimaryKeySelective" resultMap="BaseResultMap" parameterType="java.lang.String" >
+
+    select <include refid="Base_Column_List" /> FROM (
+    select
+    <include refid="Base_Column_List" />
+    from HEALTHCALLSTATERECORD
+    where ORDERID = #{orderid,jdbcType=VARCHAR} and  CALLSTATE =#{callstate,jdbcType=VARCHAR} order by CREATEDATE desc ) where rownum = 1
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from HEALTHCALLSTATERECORD
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gz.medicine.gzyun.health.bean.HealthCallStateRecord" >
+    insert into HEALTHCALLSTATERECORD (ID, ORDERID, CALLSTATE, 
+      USERID, CREATEDATE)
+    values (#{id,jdbcType=VARCHAR}, #{orderid,jdbcType=VARCHAR}, #{callstate,jdbcType=VARCHAR}, 
+      #{userid,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gz.medicine.gzyun.health.bean.HealthCallStateRecord" >
+    insert into HEALTHCALLSTATERECORD
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="orderid != null" >
+        ORDERID,
+      </if>
+      <if test="callstate != null" >
+        CALLSTATE,
+      </if>
+      <if test="userid != null" >
+        USERID,
+      </if>
+      <if test="createdate != null" >
+        CREATEDATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="orderid != null" >
+        #{orderid,jdbcType=VARCHAR},
+      </if>
+      <if test="callstate != null" >
+        #{callstate,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gz.medicine.gzyun.health.bean.HealthCallStateRecord" >
+    update HEALTHCALLSTATERECORD
+    <set >
+      <if test="orderid != null" >
+        ORDERID = #{orderid,jdbcType=VARCHAR},
+      </if>
+      <if test="callstate != null" >
+        CALLSTATE = #{callstate,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        USERID = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        CREATEDATE = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gz.medicine.gzyun.health.bean.HealthCallStateRecord" >
+    update HEALTHCALLSTATERECORD
+    set ORDERID = #{orderid,jdbcType=VARCHAR},
+      CALLSTATE = #{callstate,jdbcType=VARCHAR},
+      USERID = #{userid,jdbcType=VARCHAR},
+      CREATEDATE = #{createdate,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

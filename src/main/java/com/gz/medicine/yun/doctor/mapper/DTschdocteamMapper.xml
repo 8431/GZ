@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gz.medicine.yun.doctor.mapper.DTschdocteamMapper">
+    <resultMap id="BaseResultMap" type="com.gz.medicine.yun.doctor.bean.DTschdocteam">
+        <result column="GUID" property="guid" jdbcType="CHAR"/>
+        <result column="TEAMID" property="teamid" jdbcType="VARCHAR"/>
+        <result column="TEAMNAME" property="teamname" jdbcType="VARCHAR"/>
+        <result column="TEAMIMG" property="teamimg" jdbcType="CHAR"/>
+        <result column="ACC" property="acc" jdbcType="VARCHAR"/>
+        <result column="ORG" property="org" jdbcType="VARCHAR"/>
+        <result column="SYT" property="syt" jdbcType="VARCHAR"/>
+        <result column="CRTDAT" property="crtdat" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <insert id="insert" parameterType="com.gz.medicine.yun.doctor.bean.DTschdocteam">
+    insert into SCHDOCTEAM (GUID, TEAMID, TEAMNAME, 
+      TEAMIMG, ACC, ORG, SYT, 
+      CRTDAT)
+    values (#{guid,jdbcType=CHAR}, #{teamid,jdbcType=VARCHAR}, #{teamname,jdbcType=VARCHAR}, 
+      #{teamimg,jdbcType=CHAR}, #{acc,jdbcType=VARCHAR}, #{org,jdbcType=VARCHAR}, #{syt,jdbcType=VARCHAR}, 
+      #{crtdat,jdbcType=TIMESTAMP})
+  </insert>
+    <insert id="insertSelective" parameterType="com.gz.medicine.yun.doctor.bean.DTschdocteam">
+        insert into SCHDOCTEAM
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="guid != null">
+                GUID,
+            </if>
+            <if test="teamid != null">
+                TEAMID,
+            </if>
+            <if test="teamname != null">
+                TEAMNAME,
+            </if>
+            <if test="teamimg != null">
+                TEAMIMG,
+            </if>
+            <if test="acc != null">
+                ACC,
+            </if>
+            <if test="org != null">
+                ORG,
+            </if>
+            <if test="syt != null">
+                SYT,
+            </if>
+            <if test="crtdat != null">
+                CRTDAT,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="guid != null">
+                #{guid,jdbcType=CHAR},
+            </if>
+            <if test="teamid != null">
+                #{teamid,jdbcType=VARCHAR},
+            </if>
+            <if test="teamname != null">
+                #{teamname,jdbcType=VARCHAR},
+            </if>
+            <if test="teamimg != null">
+                #{teamimg,jdbcType=CHAR},
+            </if>
+            <if test="acc != null">
+                #{acc,jdbcType=VARCHAR},
+            </if>
+            <if test="org != null">
+                #{org,jdbcType=VARCHAR},
+            </if>
+            <if test="syt != null">
+                #{syt,jdbcType=VARCHAR},
+            </if>
+            <if test="crtdat != null">
+                #{crtdat,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+
+    <select id="queryPageDoctorQuan" parameterType="com.gz.medicine.common.mybatisPageVo.Page" resultMap="ResultMap">
+        select s.*,c.messagestat
+        from (select * from SCHDOCTEAM where 1=1
+        <if test="teamname != null">
+            and teamname like '${'%' + teamname + '%'}'
+        </if>
+        ) s ,(select * from CHIS_TEAM_DOC where docguid=#{docguid,jdbcType=VARCHAR}) c
+        where  s.guid=c.teamguid
+
+
+
+    </select>
+    <select id="queryTeamNum" parameterType="java.lang.String" resultMap="ResultMap">
+   select teamname,
+       (select count(1)
+          from CHIS_TEAM_DOC
+         where teamguid = #{teamGuid,jdbcType=VARCHAR}) as num
+  from SCHDOCTEAM
+ where guid = #{teamGuid,jdbcType=VARCHAR}
+
+  </select>
+
+    <select id="queryTeamDetail" parameterType="java.lang.String" resultMap="ResultMap">
+
+
+select y.name as docName, y.hospital,u.guid as docguid
+  from yx_doc y,(select *
+                from usr
+               where guid in
+                     (select docguid
+                        from CHIS_TEAM_DOC
+
+                       where teamguid =#{0,jdbcType=VARCHAR})) u where y.id=u.id
+
+
+  </select>
+    <select id="queryDoctorDetail" parameterType="java.lang.String" resultMap="ResultMap">
+     select y.name,y.img from  yx_doc y,usr u  where u.id=y.id and u.guid=#{0,jdbcType=VARCHAR}
+
+  </select>
+    <resultMap id="ResultMap" type="java.util.HashMap">
+        <result column="GUID" property="guid" jdbcType="CHAR"/>
+        <result column="TEAMID" property="teamid" jdbcType="VARCHAR"/>
+        <result column="TEAMNAME" property="teamname" jdbcType="VARCHAR"/>
+        <result column="TEAMIMG" property="teamimg" jdbcType="CHAR"/>
+        <result column="ACC" property="acc" jdbcType="VARCHAR"/>
+        <result column="ORG" property="org" jdbcType="VARCHAR"/>
+        <result column="SYT" property="syt" jdbcType="VARCHAR"/>
+        <result column="CRTDAT" property="crtdat" jdbcType="TIMESTAMP"/>
+        <result column="NAME" property="name" jdbcType="VARCHAR"/>
+        <result column="IMG" property="img" jdbcType="VARCHAR"/>
+        <result column="MESSAGESTAT" property="messagestat" jdbcType="VARCHAR"/>
+        <result column="DOCNAME" property="docname" jdbcType="VARCHAR"/>
+        <result column="HOSPITAL" property="hospital" jdbcType="VARCHAR"/>
+        <result column="TEAMNAME" property="teamname" jdbcType="VARCHAR"/>
+        <result column="NUM" property="num" jdbcType="VARCHAR"/>
+        <result column="IMGGUID" property="imgguid" jdbcType="VARCHAR"/>
+        <result column="DOCGUID" property="docguid" jdbcType="VARCHAR"/>
+    </resultMap>
+
+</mapper>

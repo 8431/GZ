@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gz.medicine.yun.doctor.mapper.DTmonthworkMapper" >
+  <resultMap id="BaseResultMap" type="com.gz.medicine.yun.doctor.bean.DTmonthwork" >
+    <result column="GUID" property="guid" jdbcType="CHAR" />
+    <result column="CRTUSR" property="crtusr" jdbcType="VARCHAR" />
+    <result column="MORNING" property="morning" jdbcType="VARCHAR" />
+    <result column="AFTERNOON" property="afternoon" jdbcType="VARCHAR" />
+    <result column="ORG" property="org" jdbcType="VARCHAR" />
+    <result column="ORDERNUM" property="ordernum" jdbcType="DECIMAL" />
+    <result column="USERNUM" property="usernum" jdbcType="DECIMAL" />
+    <result column="ORDERNUMAF" property="ordernumaf" jdbcType="DECIMAL" />
+    <result column="USERNUMAF" property="usernumaf" jdbcType="DECIMAL" />
+    <result column="MORNING1" property="morning1" jdbcType="VARCHAR" />
+    <result column="MORNING2" property="morning2" jdbcType="VARCHAR" />
+    <result column="AFTERNOON1" property="afternoon1" jdbcType="VARCHAR" />
+    <result column="AFTERNOON2" property="afternoon2" jdbcType="VARCHAR" />
+    <result column="DOC" property="doc" jdbcType="VARCHAR" />
+    <result column="DOCXW" property="docxw" jdbcType="VARCHAR" />
+    <result column="DAT" property="dat" jdbcType="VARCHAR" />
+    <result column="DOCSWNAM" property="docswnam" jdbcType="VARCHAR" />
+    <result column="DOCXWNAM" property="docxwnam" jdbcType="VARCHAR" />
+    <result column="CRTDAT" property="crtdat" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <insert id="insert" parameterType="com.gz.medicine.yun.doctor.bean.DTmonthwork" >
+    insert into YX_MONTHWORK (GUID, CRTUSR, MORNING, 
+      AFTERNOON, ORG, ORDERNUM, 
+      USERNUM, ORDERNUMAF, USERNUMAF, 
+      MORNING1, MORNING2, AFTERNOON1, 
+      AFTERNOON2, DOC, DOCXW, 
+      DAT, DOCSWNAM, DOCXWNAM, 
+      CRTDAT)
+    values (#{guid,jdbcType=CHAR}, #{crtusr,jdbcType=VARCHAR}, #{morning,jdbcType=VARCHAR}, 
+      #{afternoon,jdbcType=VARCHAR}, #{org,jdbcType=VARCHAR}, #{ordernum,jdbcType=DECIMAL}, 
+      #{usernum,jdbcType=DECIMAL}, #{ordernumaf,jdbcType=DECIMAL}, #{usernumaf,jdbcType=DECIMAL}, 
+      #{morning1,jdbcType=VARCHAR}, #{morning2,jdbcType=VARCHAR}, #{afternoon1,jdbcType=VARCHAR}, 
+      #{afternoon2,jdbcType=VARCHAR}, #{doc,jdbcType=VARCHAR}, #{docxw,jdbcType=VARCHAR}, 
+      #{dat,jdbcType=VARCHAR}, #{docswnam,jdbcType=VARCHAR}, #{docxwnam,jdbcType=VARCHAR}, 
+      #{crtdat,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gz.medicine.yun.doctor.bean.DTmonthwork" >
+    insert into YX_MONTHWORK
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        GUID,
+      </if>
+      <if test="crtusr != null" >
+        CRTUSR,
+      </if>
+      <if test="morning != null" >
+        MORNING,
+      </if>
+      <if test="afternoon != null" >
+        AFTERNOON,
+      </if>
+      <if test="org != null" >
+        ORG,
+      </if>
+      <if test="ordernum != null" >
+        ORDERNUM,
+      </if>
+      <if test="usernum != null" >
+        USERNUM,
+      </if>
+      <if test="ordernumaf != null" >
+        ORDERNUMAF,
+      </if>
+      <if test="usernumaf != null" >
+        USERNUMAF,
+      </if>
+      <if test="morning1 != null" >
+        MORNING1,
+      </if>
+      <if test="morning2 != null" >
+        MORNING2,
+      </if>
+      <if test="afternoon1 != null" >
+        AFTERNOON1,
+      </if>
+      <if test="afternoon2 != null" >
+        AFTERNOON2,
+      </if>
+      <if test="doc != null" >
+        DOC,
+      </if>
+      <if test="docxw != null" >
+        DOCXW,
+      </if>
+      <if test="dat != null" >
+        DAT,
+      </if>
+      <if test="docswnam != null" >
+        DOCSWNAM,
+      </if>
+      <if test="docxwnam != null" >
+        DOCXWNAM,
+      </if>
+      <if test="crtdat != null" >
+        CRTDAT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        #{guid,jdbcType=CHAR},
+      </if>
+      <if test="crtusr != null" >
+        #{crtusr,jdbcType=VARCHAR},
+      </if>
+      <if test="morning != null" >
+        #{morning,jdbcType=VARCHAR},
+      </if>
+      <if test="afternoon != null" >
+        #{afternoon,jdbcType=VARCHAR},
+      </if>
+      <if test="org != null" >
+        #{org,jdbcType=VARCHAR},
+      </if>
+      <if test="ordernum != null" >
+        #{ordernum,jdbcType=DECIMAL},
+      </if>
+      <if test="usernum != null" >
+        #{usernum,jdbcType=DECIMAL},
+      </if>
+      <if test="ordernumaf != null" >
+        #{ordernumaf,jdbcType=DECIMAL},
+      </if>
+      <if test="usernumaf != null" >
+        #{usernumaf,jdbcType=DECIMAL},
+      </if>
+      <if test="morning1 != null" >
+        #{morning1,jdbcType=VARCHAR},
+      </if>
+      <if test="morning2 != null" >
+        #{morning2,jdbcType=VARCHAR},
+      </if>
+      <if test="afternoon1 != null" >
+        #{afternoon1,jdbcType=VARCHAR},
+      </if>
+      <if test="afternoon2 != null" >
+        #{afternoon2,jdbcType=VARCHAR},
+      </if>
+      <if test="doc != null" >
+        #{doc,jdbcType=VARCHAR},
+      </if>
+      <if test="docxw != null" >
+        #{docxw,jdbcType=VARCHAR},
+      </if>
+      <if test="dat != null" >
+        #{dat,jdbcType=VARCHAR},
+      </if>
+      <if test="docswnam != null" >
+        #{docswnam,jdbcType=VARCHAR},
+      </if>
+      <if test="docxwnam != null" >
+        #{docxwnam,jdbcType=VARCHAR},
+      </if>
+      <if test="crtdat != null" >
+        #{crtdat,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+    http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.2.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <context:component-scan base-package="com.gz.medicine"/>
+    <mvc:annotation-driven>
+        <mvc:argument-resolvers>
+            <bean class=" com.gz.medicine.common.interceptor.PageHandlerMethodArgumentResolver"/>
+        </mvc:argument-resolvers>
+        <mvc:message-converters register-defaults="true">
+            <ref bean="mappingJackson2HttpMessageConverter"/>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <bean id="mappingJackson2HttpMessageConverter"
+          class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+        <property name="supportedMediaTypes">
+            <list>
+                <value>text/html;charset=UTF-8</value>
+                <value>text/json;charset=UTF-8</value>
+                <value>application/json;charset=UTF-8</value>
+            </list>
+        </property>
+        <!--处理map的null改为空-->
+       <property name="objectMapper">
+            <bean class="com.gz.medicine.common.util.JsonObjectMapper"></bean>
+        </property>  
+</bean>
+
+    <bean id="PropertiesConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:log4j.properties</value>
+                <value>classpath:jdbc.properties</value>
+            </list>
+        </property>
+    </bean>
+    <!--springMvc配置  start-->
+
+    <!--Spring整合Mybatis部分 Start-->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+          destroy-method="close"
+          p:driverClassName="${database.driver}" p:url="${database.url}"
+          p:username="${database.username}" p:password="${database.password}">
+        <property name="validationQuery">
+            <value>${database.test.connection}</value>
+        </property>
+        <property name="initialSize">
+            <value>${conn.initial.size}</value>
+        </property>
+        <property name="maxIdle">
+            <value>${conn.max.idle}</value>
+        </property>
+        <property name="minIdle">
+            <value>${conn.min.idle}</value>
+        </property>
+        <property name="maxWait">
+            <value>${conn.max.wait}</value>
+        </property>
+        <property name="maxActive">
+            <value>${conn.max.active}</value>
+        </property>
+        <property name="removeAbandonedTimeout">
+            <value>${conn.remove.abandoned.timeout}</value>
+        </property>
+        <property name="timeBetweenEvictionRunsMillis">
+            <value>${conn.time.between.eviction.runs.millis}</value>
+        </property>
+        <property name="minEvictableIdleTimeMillis">
+            <value>${conn.min.evictable.idle.time.millis}</value>
+        </property>
+        <property name="defaultAutoCommit">
+            <value>${conn.default.auto.commit}</value>
+        </property>
+        <property name="logAbandoned">
+            <value>${conn.log.abandoned}</value>
+        </property>
+        <property name="removeAbandoned">
+            <value>${conn.remove.abandoned}</value>
+        </property>
+        <property name="testOnBorrow">
+            <value>${conn.test.on.borrow}</value>
+        </property>
+        <property name="testOnReturn">
+            <value>${conn.test.on.return}</value>
+        </property>
+        <property name="testWhileIdle">
+            <value>${conn.test.while.idle}</value>
+        </property>
+    </bean>
+
+    <!-- 定义事务管理器 -->
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <!-- 下面使用aop切面的方式来实现 -->
+    <tx:advice id="TestAdvice" transaction-manager="transactionManager">
+        <!--配置事务传播性，隔离级别以及超时回滚等问题 -->
+        <tx:attributes>
+            <tx:method name="*" propagation="REQUIRED"  rollback-for="com.gz.medicine.common.exception.CommonException"/>
+        </tx:attributes>
+    </tx:advice>
+
+
+    <aop:config >
+        <!--配置事务切点 -->
+        <aop:pointcut id="services" expression="execution(* com.gz.medicine.*.*.service.impl.*.*(..))"/>
+        <aop:advisor pointcut-ref="services" advice-ref="TestAdvice" order="0"/>
+    </aop:config>
+
+
+
+    <!-- SqlSessionFactory -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <!--<property name="mapperLocations" value="classpath*:com/gzuser/medicine/*Mapper*.xml"/>-->
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+    </bean>
+
+    <!-- Mybatis sql session -->
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" scope="prototype">
+        <constructor-arg index="0" ref="sqlSessionFactory"/>
+    </bean>
+
+    <!-- Mybatis mapper scanner, scans for java mapper -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.gz.medicine.*.*.mapper"/>
+        <property name="sqlSessionTemplateBeanName" value="sqlSession"/>
+    </bean>
+    <!--Spring整合Mybatis部分 end-->
+
+    <!-- 配置 JSR303 Bean Validator 定义 -->
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
+
+    <!-- 配置MultipartResolver 用于文件上传 使用spring的CommosMultipartResolver -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+          p:defaultEncoding="UTF-8"
+          p:maxUploadSize="524288000"
+    >
+    </bean>
+    <!--FTP连接池配置 by  dlf-->
+    <bean id="ftpclientfactory" class="com.gz.medicine.ftpUtil.FtpClientFactory"/>
+    <bean id="ftpclientpool" class="com.gz.medicine.ftpUtil.FTPClientPool">
+        <constructor-arg ref="ftpclientfactory"/>
+    </bean>
+    <import resource="spring-redis.xml" />
+    <!--<import resource="spring-task.xml" />-->
+    <import resource="applicationContext-kafka-productor.xml" />
+    <!--_______________________________订单提交日志_______________________________________________-->
+    <aop:config>
+        <!-- 定义切点 -->
+        <aop:pointcut id="pointcutTarget"
+                      expression="execution(* com.gz.medicine.gzyun.health.service.impl.*.*AndLog(..))"/>
+        <!-- 定义切面 -->
+        <!--pointcut-ref {切入点}
+                  arg-names {joinPoint:通知函数的第一个参数 reValue:通知函数的第二个参数}
+                  returning {retValue:被切函数的返回值}
+                  method{通知函数}
+                  -->
+        <aop:aspect id="userAspect" ref="ConsultationLogAop" order="1">
+            <aop:after-returning
+                    pointcut-ref="pointcutTarget"
+                    arg-names="joinPoint,retValue"
+                    returning="retValue"
+                    method="AfterConsultationLog"
+            />
+        </aop:aspect>
+    </aop:config>
+
+    <!--日志拦截器:定义一个Interceptor，将拦截所有的请求 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <!-- 定义在mvc:interceptor下面的表示是对特定的请求才进行拦截的 -->
+            <bean class="com.gz.medicine.gzyun.health.Interceptor.LogInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+</beans>
+

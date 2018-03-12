@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gz.medicine.gzyun.health.mapper.HealthDoctorFormMapper">
+
+    <resultMap id="BaseResultMap1" type="com.gz.medicine.gzyun.health.reponse.HealthStatisticsReponse">
+        <result column="FORMDATE" jdbcType="VARCHAR" property="formdate"/>
+        <result column="FORMSTARTTIME" jdbcType="VARCHAR" property="formstarttime"/>
+        <result column="FORMENDTIME" jdbcType="VARCHAR" property="formendtime"/>
+        <result column="FORMSTATE" jdbcType="VARCHAR" property="formstate"/>
+        <result column="STATE" jdbcType="VARCHAR" property="state"/>
+        <result column="INTERVALDATE" property="intervaldate" jdbcType="VARCHAR"/>
+        <result column="SCHEDULINGDAYS" property="schedulingdays" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="BaseResultMap" type="com.gz.medicine.gzyun.health.bean.HealthDoctorForm">
+        <id column="ID" jdbcType="VARCHAR" property="id"/>
+        <result column="DOCID" jdbcType="VARCHAR" property="docid"/>
+        <result column="FORMDATE" jdbcType="VARCHAR" property="formdate"/>
+        <result column="FORMSTARTTIME" jdbcType="VARCHAR" property="formstarttime"/>
+        <result column="FORMENDTIME" jdbcType="VARCHAR" property="formendtime"/>
+        <result column="FORMSTATE" jdbcType="VARCHAR" property="formstate"/>
+        <result column="STATE" jdbcType="VARCHAR" property="state"/>
+        <result column="CREATEDATE" jdbcType="TIMESTAMP" property="createdate"/>
+        <result column="CREATENAME" jdbcType="VARCHAR" property="createname"/>
+        <result column="UPDATEDATE" jdbcType="TIMESTAMP" property="updatedate"/>
+        <result column="UPDATENAME" jdbcType="VARCHAR" property="updatename"/>
+        <result column="FORMTIMES" jdbcType="VARCHAR" property="formtimes"/>
+        <result column="STARTTIME" jdbcType="VARCHAR" property="starttime"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+    ID, DOCID, FORMDATE, FORMSTARTTIME, FORMENDTIME, FORMSTATE, STATE, CREATEDATE, CREATENAME, 
+    UPDATEDATE, UPDATENAME
+  </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from HEALTHDOCTORFORM
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+
+
+    <select id="selectByPrimaryKeyStrList" resultType="java.lang.String">
+    SELECT formdate
+    FROM HEALTHDOCTORFORM
+    WHERE docid = #{docid,jdbcType=VARCHAR} AND substr(formdate,0,7) = #{formdate,jdbcType=VARCHAR}
+     GROUP BY formdate order by formdate asc
+  </select>
+
+    <select id="selectByFormdateList" parameterType="java.lang.String" resultMap="BaseResultMap">
+     select * from HEALTHDOCTORFORM where formdate=#{formdate} AND  TO_DATE(FORMSTARTTIME, 'hh24:mi') > TO_DATE(to_char(sysdate,'hh24:mi'),'hh24:mi') AND docid=#{docid} AND state='1' AND formState='0'
+  </select>
+
+    <select id="selectByFormdateListothers" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select * from HEALTHDOCTORFORM where formdate=#{formdate}  AND docid=#{docid} AND state='1' AND formState='0'
+    </select>
+
+    <select id="selectByFormdateListother" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select * from HEALTHDOCTORFORM where formdate=#{formdate}   AND docid=#{docid} AND state='1' AND formState='0' AND formdate NOT IN(#{enddate})
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HEALTHDOCTORFORM
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+
+    <insert id="insert" parameterType="com.gz.medicine.gzyun.health.bean.HealthDoctorForm">
+    insert into HEALTHDOCTORFORM (ID, DOCID, FORMDATE, 
+      FORMSTARTTIME, FORMENDTIME, FORMSTATE, 
+      STATE, CREATEDATE, CREATENAME, 
+      UPDATEDATE, UPDATENAME)
+    values (#{id,jdbcType=VARCHAR}, #{docid,jdbcType=VARCHAR}, #{formdate,jdbcType=VARCHAR}, 
+      #{formstarttime,jdbcType=VARCHAR}, #{formendtime,jdbcType=VARCHAR}, #{formstate,jdbcType=VARCHAR}, 
+      #{state,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}, #{createname,jdbcType=VARCHAR}, 
+      #{updatedate,jdbcType=TIMESTAMP}, #{updatename,jdbcType=VARCHAR})
+  </insert>
+
+    <insert id="insertSelective" parameterType="com.gz.medicine.gzyun.health.bean.HealthDoctorForm">
+        insert into HEALTHDOCTORFORM
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="docid != null">
+                DOCID,
+            </if>
+            <if test="formdate != null">
+                FORMDATE,
+            </if>
+            <if test="formstarttime != null">
+                FORMSTARTTIME,
+            </if>
+            <if test="formendtime != null">
+                FORMENDTIME,
+            </if>
+            <if test="formstate != null">
+                FORMSTATE,
+            </if>
+            <if test="state != null">
+                STATE,
+            </if>
+            <if test="createdate != null">
+                CREATEDATE,
+            </if>
+            <if test="createname != null">
+                CREATENAME,
+            </if>
+            <if test="updatedate != null">
+                UPDATEDATE,
+            </if>
+            <if test="updatename != null">
+                UPDATENAME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="docid != null">
+                #{docid,jdbcType=VARCHAR},
+            </if>
+            <if test="formdate != null">
+                #{formdate,jdbcType=VARCHAR},
+            </if>
+            <if test="formstarttime != null">
+                #{formstarttime,jdbcType=VARCHAR},
+            </if>
+            <if test="formendtime != null">
+                #{formendtime,jdbcType=VARCHAR},
+            </if>
+            <if test="formstate != null">
+                #{formstate,jdbcType=VARCHAR},
+            </if>
+            <if test="state != null">
+                #{state,jdbcType=VARCHAR},
+            </if>
+            <if test="createdate != null">
+                #{createdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createname != null">
+                #{createname,jdbcType=VARCHAR},
+            </if>
+            <if test="updatedate != null">
+                #{updatedate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatename != null">
+                #{updatename,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.gz.medicine.gzyun.health.bean.HealthDoctorForm">
+        update HEALTHDOCTORFORM
+        <set>
+            <if test="docid != null">
+                DOCID = #{docid,jdbcType=VARCHAR},
+            </if>
+            <if test="formdate != null">
+                FORMDATE = #{formdate,jdbcType=VARCHAR},
+            </if>
+            <if test="formstarttime != null">
+                FORMSTARTTIME = #{formstarttime,jdbcType=VARCHAR},
+            </if>
+            <if test="formendtime != null">
+                FORMENDTIME = #{formendtime,jdbcType=VARCHAR},
+            </if>
+            <if test="formstate != null">
+                FORMSTATE = #{formstate,jdbcType=VARCHAR},
+            </if>
+            <if test="state != null">
+                STATE = #{state,jdbcType=VARCHAR},
+            </if>
+            <if test="createdate != null">
+                CREATEDATE = #{createdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createname != null">
+                CREATENAME = #{createname,jdbcType=VARCHAR},
+            </if>
+            <if test="updatedate != null">
+                UPDATEDATE = #{updatedate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatename != null">
+                UPDATENAME = #{updatename,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.gz.medicine.gzyun.health.bean.HealthDoctorForm">
+    update HEALTHDOCTORFORM
+    set DOCID = #{docid,jdbcType=VARCHAR},
+      FORMDATE = #{formdate,jdbcType=VARCHAR},
+      FORMSTARTTIME = #{formstarttime,jdbcType=VARCHAR},
+      FORMENDTIME = #{formendtime,jdbcType=VARCHAR},
+      FORMSTATE = #{formstate,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=VARCHAR},
+      CREATEDATE = #{createdate,jdbcType=TIMESTAMP},
+      CREATENAME = #{createname,jdbcType=VARCHAR},
+      UPDATEDATE = #{updatedate,jdbcType=TIMESTAMP},
+      UPDATENAME = #{updatename,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+    <update id="deleteHistory" parameterType="com.gz.medicine.gzyun.health.bean.HealthDoctorForm">
+        update HEALTHDOCTORFORM
+            set state='0' where DOCID = #{docid,jdbcType=VARCHAR} and FORMDATE = #{formdate,jdbcType=VARCHAR}
+           and formstate!='1'
+
+  </update>
+
+    <update id="updateDocFormState" parameterType="com.gz.medicine.gzyun.health.bean.HealthDoctorForm">
+
+        update HEALTHDOCTORFORM
+        SET FORMSTATE  = #{formstate,jdbcType=VARCHAR}  where id in(select id from HEALTHDOCTORFORM where formdate=#{formdate,jdbcType=VARCHAR} AND docid=#{docid,jdbcType=VARCHAR} AND FORMSTARTTIME <![CDATA[ >= ]]> #{formstarttime,jdbcType=VARCHAR} AND FORMENDTIME <![CDATA[ > ]]> #{formstarttime,jdbcType=VARCHAR} AND FORMENDTIME <![CDATA[ <= ]]> #{formendtime,jdbcType=VARCHAR})
+
+    </update>
+
+    <select id="countByStateAndEndTime" parameterType="com.gz.medicine.gzyun.health.bean.HealthDoctorForm"
+            resultType="java.lang.Integer">
+        select count(*) from HEALTHDOCTORFORM where FORMSTARTTIME
+         <![CDATA[ >= ]]>
+         #{formstarttime,jdbcType=VARCHAR}
+         and
+       FORMENDTIME <![CDATA[ > ]]> #{formstarttime,jdbcType=VARCHAR}
+
+         and FORMENDTIME
+         <![CDATA[ <= ]]>
+         #{formendtime,jdbcType=VARCHAR} and docid=#{docid}  and state='1' and formstate='0' and formdate=#{formdate}
+    </select>
+
+    <!--查询当月排班  金 -->
+    <select id="queryItemDocId" resultMap="BaseResultMap"
+            parameterType="com.gz.medicine.gzyun.health.request.HealthyDocformRequest">
+select id,docid,formdate,formstarttime,formendtime,formstarttime || '-' || formendtime as formtimes,formstate from HealthDoctorform where docid=#{docid,jdbcType=VARCHAR} and state='1' and substr(FORMDATE,0,7) = #{formdate,jdbcType=VARCHAR} order by formstarttime
+  </select>
+    <!--查询停诊状态个数  金 -->
+    <select id="queryStateId" resultType="java.lang.Integer"
+            parameterType="com.gz.medicine.gzyun.health.request.HealthyDocformRequest">
+ select count(1) from HealthDoctorform where docid=#{docid,jdbcType=VARCHAR} and state='1' and substr(FORMDATE,0,7) = #{formdate,jdbcType=VARCHAR} and formstate='2' order by formstarttime
+   </select>
+    <!--查询是否存在该数据  金 -->
+    <select id="querydataId" resultMap="BaseResultMap" parameterType="java.lang.String">
+  select DOCID,FORMSTATE,STATE,FORMDATE||' '||FORMSTARTTIME AS starttime from HealthDoctorform where id= #{id,jdbcType=VARCHAR}
+   </select>
+    <!--修改排版状态未预约为停诊  金-->
+    <update id="updatebyid" parameterType="java.lang.String">
+  update HealthDoctorform set FORMSTATE='2' where id= #{id,jdbcType=VARCHAR}
+  </update>
+    <!-- 排班统计 www-->
+    <select id="queryPageSchedulingStatistics" resultMap="BaseResultMap1" parameterType="java.util.Map">
+      select t2.formdate, max(INTERVALDATE) INTERVALDATE from
+ (select t1.formdate, wm_concat(t1.INTERVALDATE) over (partition by formdate order by t1.INTERVALDATE) INTERVALDATE from
+    (
+    select b.formdate,b.formStartTime||'-'||b.formEndTime as INTERVALDATE,b.docid from HealthDoctorform b,healthDoctor c where b.docid=c.id
+ and b.formdate like '${'%'+ formdate +'%'}'
+    and b.DOCID = #{docid,jdbcType=CHAR}
+ and b.STATE='1'
+ order by b.formdate,b.formStartTime
+    ) t1)t2
+    group by formdate order by formdate desc
+
+  </select>
+    <!--排班统计天数 www -->
+    <select id="querySchedulingDays" resultMap="BaseResultMap1" parameterType="java.util.Map">
+        select sum(count(*)) schedulingdays from(
+        select formdate from HealthDoctorform where
+        <if test="formdate != null and formdate != ''">
+            formdate like '${'%'+ formdate +'%'}' and
+        </if>
+        docid=#{docid,jdbcType=CHAR} and STATE='1'
+        group by formdate) group by formdate
+    </select>
+    <!--排班预约-->
+    <select id="queryPageIntervalDate" resultMap="BaseResultMap1"
+            parameterType="com.gz.medicine.common.mybatisPageVo.Page">
+        select t2.formdate, max(INTERVALDATE) INTERVALDATE
+        from (select t1.formdate,
+        wm_concat(t1.INTERVALDATE) over(partition by formdate order by t1.INTERVALDATE) INTERVALDATE
+        from (select *
+        from (select b.ReservationDate as
+        formdate,b.ReserStartTime,b.ReserEndTime,b.ReservationDate,b.STATE,b.orderState,
+        b.ReserStartTime || '-' || b.ReserEndTime as INTERVALDATE,
+        b.docid
+        from HealthyOrder b, healthDoctor c
+        where b.docid = c.id ) m where
+        <if test="formdate != null and formdate != ''">
+            m.formdate like '${'%'+ formdate +'%'}'
+        </if>
+        and m.orderState in ('2','5','8')
+        and m.DOCID = #{docid,jdbcType=CHAR} and m.STATE = '1'
+        order by m.ReservationDate, m.ReserStartTime) t1) t2
+        group by formdate
+        order by formdate desc
+    </select>
+    <!-- 排班预约统计天数 www -->
+    <select id="queryIntervalDateDays" resultMap="BaseResultMap1" parameterType="java.util.Map">
+        select sum(count(*)) schedulingdays from(
+        select ReservationDate formdate,STATE,DOCID,orderState from HealthyOrder)m where
+        <if test="formdate != null and formdate != ''">
+            m.formdate like '${'%'+ formdate +'%'}' and
+        </if>
+        m.docid=#{docid,jdbcType=CHAR} and
+        m.STATE='1' and m.orderState in ('2','5','8') group by formdate
+    </select>
+    <select id="queryDocFormByDate" parameterType="java.util.Map" resultMap="ResultMap">
+        select formdate, wm_concat(DISTINCT(name)) as docname, wm_concat(DISTINCT(docid)) as docid
+        from (select h.*, d.name
+        from healthdoctorform h, healthdoctor d
+        where h.docid = d.id
+        and h.state = '1'
+        and d.state='1'
+        and h.formdate like '%'||#{formdate,jdbcType=VARCHAR} || '%'
+        <if test="docname!=null and docname!=''">
+            and d.name like '%'||#{docname,jdbcType=VARCHAR}||'%'
+
+        </if>
+        ) m
+        group by formdate
+
+    </select>
+    <select id="queryDocFormByDocidAndDate" parameterType="java.lang.String" resultMap="ResultMap">
+   select * from ( select formstarttime || '-' || formendtime as time, FORMSTATE, id
+    from healthdoctorform
+    where state = '1'
+   and formdate = #{0}
+   and docid = #{1}) order by time
+
+  </select>
+    <resultMap id="ResultMap" type="java.util.Map">
+        <id column="ID" jdbcType="VARCHAR" property="id"/>
+        <result column="DATE" jdbcType="VARCHAR" property="date"/>
+        <result column="DOCNAME" jdbcType="VARCHAR" property="docname"/>
+        <result column="DOCID" jdbcType="VARCHAR" property="docid"/>
+        <result column="FORMDATE" jdbcType="VARCHAR" property="formdate"/>
+        <result column="TIME" jdbcType="VARCHAR" property="time"/>
+        <result column="FORMSTATE" jdbcType="VARCHAR" property="formstate"/>
+        <result column="FORMTIMES" jdbcType="VARCHAR" property="formtimes"/>
+        <result column="NAME" jdbcType="VARCHAR" property="name"/>
+
+    </resultMap>
+
+    <!--排班预约管理查询所有医生当天排班 金 -->
+
+    <select id="querybyDdoc" parameterType="com.gz.medicine.common.mybatisPageVo.Page" resultMap="BaseResultMap">
+select  wm_concat(docid),formtimes,wm_concat(name) as docname,wm_concat(formstate) from( 
+     SELECT a.id,
+               a.docid,
+               case 
+                 when  a.formstate='0' then '未预约'
+                 when  a.formstate='1' then '已预约'
+                     when  a.formstate='2' then '停诊'
+                       end formstate,
+
+               a.formstarttime || '-' || a.formendtime as formtimes,
+               b.name
+          FROM HealthDoctorform a, healthDoctor b
+         where a.docid = b.id
+           and a.state = '1'
+           and b.state='1'
+           and substr(a.formdate,0,10) =#{formdate,jdbcType=VARCHAR}
+           )m group by formtimes
+
+  </select>
+
+    <!--排班预约管理查询单个医生当天排班 金 -->
+    <select id="querybyDdocOne" parameterType="com.gz.medicine.common.mybatisPageVo.Page" resultMap="BaseResultMap">
+   select  wm_concat(docid),formtimes,wm_concat(name) as docname,wm_concat(formstate) from( 
+     SELECT a.id,
+               a.docid,
+               case 
+                 when  a.formstate='0' then '未预约'
+                 when  a.formstate='1' then '已预约'
+                     when  a.formstate='2' then '停诊'
+                       end formstate,
+
+               a.formstarttime || '-' || a.formendtime as formtimes,
+               b.name
+          FROM HealthDoctorform a, healthDoctor b
+         where a.docid = b.id
+           and a.state = '1'
+           and b.state='1'
+           and substr(a.formdate,0,10) =#{formdate,jdbcType=VARCHAR}
+           and b.name= #{name,jdbcType=VARCHAR}
+           )m group by formtimes
+
+  </select>
+    <select id="queryPageYuYue" parameterType="com.gz.medicine.common.mybatisPageVo.Page" resultMap="ResultMap">
+
+        select name,wm_concat(formtimes) as formtimes,wm_concat(formstate) as formstate from(
+        SELECT a.id,
+        a.docid,
+        case
+        when a.formstate='0' then '未预约'
+        when a.formstate='1' then '已预约'
+        when a.formstate='2' then '已停诊'
+        end formstate,
+
+        a.formstarttime || '-' || a.formendtime as formtimes,
+        b.name
+        FROM HealthDoctorform a, healthDoctor b
+        where a.docid = b.id
+        and a.state = '1'
+        and b.state='1'
+        <if test="docname!=null and docname!=''">
+            and b.name like '%'||#{docname,jdbcType=VARCHAR} || '%'
+        </if>
+        <if test="formdate!=null and formdate!=''">
+            and a.formdate =#{formdate}
+        </if>
+        )m group by name
+
+    </select>
+
+    <update id="updateDocFormTime" parameterType="java.util.Map">
+        update healthdoctorform
+        set formstate = '0'
+        where docid = #{docid}
+        and formdate = #{formdate}
+        and formstarttime  &gt;=#{formstarttime}
+        and formstarttime &lt;= #{formendtime}
+        and state = '1'
+
+    </update>
+    <select id="queryDocFormFormstate" resultType="java.lang.String"
+            parameterType="com.gz.medicine.gzyun.health.bean.HealthDoctorForm">
+select FORMSTATE
+  from healthdoctorform
+ where formdate = #{formdate}
+   and formstarttime = #{formstarttime}
+   and formendtime = #{formendtime}
+   and state = '1'
+   and docid = #{docid}
+
+
+    </select>
+    <resultMap id="DocFormResultMap" type="java.util.Map">
+        <id column="ID" jdbcType="VARCHAR" property="id"/>
+        <result column="DOCID" jdbcType="VARCHAR" property="docid"/>
+        <result column="FORMETIMES" jdbcType="VARCHAR" property="formetimes"/>
+        <result column="FORMSTATE" jdbcType="VARCHAR" property="formstate"/>
+
+    </resultMap>
+    <select id="queryDoctorFormByDate" parameterType="java.lang.String" resultMap="DocFormResultMap">
+
+select h.id,
+       h.formstarttime || '-' || h.formendtime as formetimes,
+       h.formstate
+  from healthdoctorform h
+ where docid =#{0}
+   and formdate = #{1}
+   and state = '1'
+
+
+    </select>
+</mapper>

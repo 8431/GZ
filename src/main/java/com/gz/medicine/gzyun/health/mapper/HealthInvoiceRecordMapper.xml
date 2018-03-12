@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gz.medicine.gzyun.health.mapper.HealthInvoiceRecordMapper">
+    <resultMap id="BaseResultMap" type="com.gz.medicine.gzyun.health.bean.HealthInvoiceRecord">
+        <result column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="USRID" property="usrid" jdbcType="VARCHAR"/>
+        <result column="ORDERID" property="orderid" jdbcType="VARCHAR"/>
+        <result column="CONSIGNEE" property="consignee" jdbcType="VARCHAR"/>
+        <result column="PHONE" property="phone" jdbcType="VARCHAR"/>
+        <result column="ADDR" property="addr" jdbcType="VARCHAR"/>
+        <result column="INVOICETYPE" property="invoicetype" jdbcType="VARCHAR"/>
+        <result column="RISE" property="rise" jdbcType="VARCHAR"/>
+        <result column="TAXNUMBER" property="taxnumber" jdbcType="VARCHAR"/>
+        <result column="EXPRESSNUMBER" property="expressnumber" jdbcType="VARCHAR"/>
+        <result column="EXPRESSTYPE" property="expresstype" jdbcType="VARCHAR"/>
+        <result column="CREATEDATE" property="createdate" jdbcType="TIMESTAMP"/>
+        <result column="CREATENAME" property="createname" jdbcType="VARCHAR"/>
+        <result column="UPDATEDATE" property="updatedate" jdbcType="TIMESTAMP"/>
+        <result column="UPDATENAME" property="updatename" jdbcType="VARCHAR"/>
+    </resultMap>
+    <insert id="insert" parameterType="com.gz.medicine.gzyun.health.bean.HealthInvoiceRecord">
+    insert into HEALTHINVOICERECORD (ID, USRID, ORDERID, 
+      CONSIGNEE, PHONE, ADDR, 
+      INVOICETYPE, RISE, TAXNUMBER, 
+      EXPRESSNUMBER, EXPRESSTYPE, CREATEDATE, 
+      CREATENAME, UPDATEDATE, UPDATENAME
+      )
+    values (#{id,jdbcType=VARCHAR}, #{usrid,jdbcType=VARCHAR}, #{orderid,jdbcType=VARCHAR}, 
+      #{consignee,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{addr,jdbcType=VARCHAR}, 
+      #{invoicetype,jdbcType=VARCHAR}, #{rise,jdbcType=VARCHAR}, #{taxnumber,jdbcType=VARCHAR}, 
+      #{expressnumber,jdbcType=VARCHAR}, #{expresstype,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}, 
+      #{createname,jdbcType=VARCHAR}, #{updatedate,jdbcType=TIMESTAMP}, #{updatename,jdbcType=VARCHAR}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.gz.medicine.gzyun.health.bean.HealthInvoiceRecord">
+        insert into HEALTHINVOICERECORD
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="usrid != null">
+                USRID,
+            </if>
+            <if test="orderid != null">
+                ORDERID,
+            </if>
+            <if test="consignee != null">
+                CONSIGNEE,
+            </if>
+            <if test="phone != null">
+                PHONE,
+            </if>
+            <if test="addr != null">
+                ADDR,
+            </if>
+            <if test="invoicetype != null">
+                INVOICETYPE,
+            </if>
+            <if test="rise != null">
+                RISE,
+            </if>
+            <if test="taxnumber != null">
+                TAXNUMBER,
+            </if>
+            <if test="expressnumber != null">
+                EXPRESSNUMBER,
+            </if>
+            <if test="expresstype != null">
+                EXPRESSTYPE,
+            </if>
+            <if test="createdate != null">
+                CREATEDATE,
+            </if>
+            <if test="createname != null">
+                CREATENAME,
+            </if>
+            <if test="updatedate != null">
+                UPDATEDATE,
+            </if>
+            <if test="updatename != null">
+                UPDATENAME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="usrid != null">
+                #{usrid,jdbcType=VARCHAR},
+            </if>
+            <if test="orderid != null">
+                #{orderid,jdbcType=VARCHAR},
+            </if>
+            <if test="consignee != null">
+                #{consignee,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="addr != null">
+                #{addr,jdbcType=VARCHAR},
+            </if>
+            <if test="invoicetype != null">
+                #{invoicetype,jdbcType=VARCHAR},
+            </if>
+            <if test="rise != null">
+                #{rise,jdbcType=VARCHAR},
+            </if>
+            <if test="taxnumber != null">
+                #{taxnumber,jdbcType=VARCHAR},
+            </if>
+            <if test="expressnumber != null">
+                #{expressnumber,jdbcType=VARCHAR},
+            </if>
+            <if test="expresstype != null">
+                #{expresstype,jdbcType=VARCHAR},
+            </if>
+            <if test="createdate != null">
+                #{createdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createname != null">
+                #{createname,jdbcType=VARCHAR},
+            </if>
+            <if test="updatedate != null">
+                #{updatedate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatename != null">
+                #{updatename,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="queryHealthInvoiceRecordForOrderId" parameterType="java.lang.String" resultMap="BaseResultMap">
+   select * from HEALTHINVOICERECORD where orderid =#{0} and state='1'
+  </select>
+    <select id="queryByid" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select * from HEALTHINVOICERECORD where id =#{0} and state='1'
+    </select>
+
+    <!-- 修改 -->
+    <update id="updateHealthInvoiceRecordForOrderId"
+            parameterType="com.gz.medicine.gzyun.health.bean.HealthInvoiceInfo">
+        update HEALTHINVOICERECORD
+        <set>
+            <if test="expressnumber != null">
+                EXPRESSNUMBER=#{expressnumber},
+            </if>
+            <if test="expresstype != null">
+                EXPRESSTYPE=#{expresstype},
+            </if>
+            <if test="state != null">
+                state=#{state},
+            </if>
+            <if test="1==1">
+                updatedate=sysdate,
+            </if>
+            <if test="createname!=null">
+                createname=#{createname},
+            </if>
+            <if test="updatename!=null">
+                updatename=#{updatename},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+</mapper>

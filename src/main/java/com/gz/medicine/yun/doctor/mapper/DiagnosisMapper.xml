@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gz.medicine.yun.doctor.mapper.DiagnosisMapper">
+
+	<resultMap id="BaseResultMap" type="com.gz.medicine.yun.doctor.bean.Diagnosis">
+	          <id column="GUID" jdbcType="CHAR" property="guid"/>
+              <result column="ORG" jdbcType="VARCHAR" property="org"/>  
+              <result column="ID" jdbcType="VARCHAR" property="id"/>  
+              <result column="NAME" jdbcType="VARCHAR" property="name"/>  
+              <result column="ACC" jdbcType="VARCHAR" property="acc"/>  
+              <result column="SYT" jdbcType="VARCHAR" property="syt"/>  
+              <result column="CRTDAT" jdbcType="TIMESTAMP" property="crtdat"/>  
+              <result column="PY" jdbcType="VARCHAR" property="py"/>  
+              <result column="WB" jdbcType="VARCHAR" property="wb"/>  
+	</resultMap>
+
+	 <sql id="Base_Column_List">
+			     GUID, ORG, ID, NAME, ACC, SYT, CRTDAT, PY, WB
+	 </sql>
+
+     <!-- 根据主键获取对象 -->
+	 <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from Diagnosis
+	    where  GUID = #{guid,jdbcType=CHAR}
+	  </select>
+
+
+    <resultMap id="ResultMap" type="java.util.HashMap">
+        <id column="GUID" jdbcType="CHAR" property="guid"/>
+        <result column="ORG" jdbcType="VARCHAR" property="org"/>
+        <result column="ID" jdbcType="VARCHAR" property="id"/>
+        <result column="NAME" jdbcType="VARCHAR" property="name"/>
+        <result column="ACC" jdbcType="VARCHAR" property="acc"/>
+        <result column="SYT" jdbcType="VARCHAR" property="syt"/>
+        <result column="CRTDAT" jdbcType="TIMESTAMP" property="crtdat"/>
+        <result column="PY" jdbcType="VARCHAR" property="py"/>
+        <result column="WB" jdbcType="VARCHAR" property="wb"/>
+        <result column="NOTE" jdbcType="VARCHAR" property="note"/>
+    </resultMap>
+
+    <select id="queryPagelike" parameterType="com.gz.medicine.common.mybatisPageVo.Page" resultMap="ResultMap">
+      SELECT GUID,ORG,ID,NAME,ACC,SYT,CRTDAT,PY,WB, lower(py) note FROM CHIS_ICDNEW where NAME like '${'%' + name + '%'}' order by ID
+    </select>
+	
+	  <!-- 根据主键删除 -->
+	  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+	    update Diagnosis
+		<set>
+		    STATE = '1'
+		</set>
+		where GUID = #{guid,jdbcType=CHAR}
+	  </delete>
+	
+	  <!-- 新增对象(所有字段) -->
+	  <insert id="insert" parameterType="com.gz.medicine.yun.doctor.bean.Diagnosis">
+		insert into Diagnosis(
+			<include refid="Base_Column_List" />
+		)
+		values(	  
+	             #{guid,jdbcType=CHAR} 
+                 
+	             ,#{org,jdbcType=VARCHAR}
+                 
+	             ,#{id,jdbcType=VARCHAR}
+                 
+	             ,#{name,jdbcType=VARCHAR}
+                 
+	             ,#{acc,jdbcType=VARCHAR}
+                 
+	             ,#{syt,jdbcType=VARCHAR}
+                 
+	             ,#{crtdat,jdbcType=TIMESTAMP}
+                 
+	             ,#{py,jdbcType=VARCHAR}
+                 
+	             ,#{wb,jdbcType=VARCHAR}
+               )
+	  </insert>
+	
+	  <!-- 新增对象(部分字段) -->
+	  <insert id="insertSelective" parameterType="com.gz.medicine.yun.doctor.bean.Diagnosis">
+	    insert into Diagnosis
+	    <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="guid != null and guid != ''">  
+                GUID,
+            </if>  
+            <if test="org != null and org != ''">  
+                ORG,
+            </if>  
+            <if test="id != null and id != ''">  
+                ID,
+            </if>  
+            <if test="name != null and name != ''">  
+                NAME,
+            </if>  
+            <if test="acc != null and acc != ''">  
+                ACC,
+            </if>  
+            <if test="syt != null and syt != ''">  
+                SYT,
+            </if>  
+            <if test="crtdat != null and crtdat != ''">  
+                CRTDAT,
+            </if>  
+            <if test="py != null and py != ''">  
+                PY,
+            </if>  
+            <if test="wb != null and wb != ''">  
+                WB,
+            </if>  
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides=",">
+	            <if test="guid != null and guid != ''">  
+	                  #{guid,jdbcType=CHAR},  
+	            </if>  
+	            <if test="org != null and org != ''">  
+	                  #{org,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="id != null and id != ''">  
+	                  #{id,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="name != null and name != ''">  
+	                  #{name,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="acc != null and acc != ''">  
+	                  #{acc,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="syt != null and syt != ''">  
+	                  #{syt,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="crtdat != null and crtdat != ''">  
+	                  #{crtdat,jdbcType=TIMESTAMP},  
+	            </if>  
+	            <if test="py != null and py != ''">  
+	                  #{py,jdbcType=VARCHAR},  
+	            </if>  
+	            <if test="wb != null and wb != ''">  
+	                  #{wb,jdbcType=VARCHAR},  
+	            </if>  
+	    </trim>
+	  </insert>
+	
+	  <update id="updateByPrimaryKeySelective" parameterType="com.gz.medicine.yun.doctor.bean.Diagnosis">
+	    update Diagnosis
+		<set>
+            <if test="guid != null and guid != ''">  
+                  GUID = #{guid,jdbcType=CHAR}
+                    
+            </if>  
+            <if test="org != null and org != ''">  
+                  , ORG = #{org,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="id != null and id != ''">  
+                  , ID = #{id,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="name != null and name != ''">  
+                  , NAME = #{name,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="acc != null and acc != ''">  
+                  , ACC = #{acc,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="syt != null and syt != ''">  
+                  , SYT = #{syt,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="crtdat != null and crtdat != ''">  
+                  , CRTDAT = #{crtdat,jdbcType=TIMESTAMP}
+                    
+            </if>  
+            <if test="py != null and py != ''">  
+                  , PY = #{py,jdbcType=VARCHAR}
+                    
+            </if>  
+            <if test="wb != null and wb != ''">  
+                  , WB = #{wb,jdbcType=VARCHAR}
+                    
+            </if>  
+		</set>
+		where GUID = #{guid,jdbcType=CHAR}
+	  </update>
+	
+	  <!-- 修改对象(所有字段) -->
+	  <update id="updateByPrimaryKey" parameterType="com.gz.medicine.yun.doctor.bean.Diagnosis">
+		update Diagnosis
+		set
+               GUID = #{guid,jdbcType=CHAR}
+               , ORG = #{org,jdbcType=VARCHAR}
+               , ID = #{id,jdbcType=VARCHAR}
+               , NAME = #{name,jdbcType=VARCHAR}
+               , ACC = #{acc,jdbcType=VARCHAR}
+               , SYT = #{syt,jdbcType=VARCHAR}
+               , CRTDAT = #{crtdat,jdbcType=TIMESTAMP}
+               , PY = #{py,jdbcType=VARCHAR}
+               , WB = #{wb,jdbcType=VARCHAR}
+		where GUID = #{guid,jdbcType=CHAR}
+	  </update>
+	
+	  <!-- 根据条件获取所有数据 -->
+	  <select id="selectAll" parameterType="com.gz.medicine.yun.doctor.bean.Diagnosis" resultMap="BaseResultMap">
+	    select * from Diagnosis
+	    <where>
+            <if test="guid != null and guid != ''"> 
+                   
+                   GUID = #{guid,jdbcType=CHAR}
+ 
+            </if>  
+            <if test="org != null and org != ''"> 
+                   
+                    and ORG = #{org,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="id != null and id != ''"> 
+                   
+                    and ID = #{id,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="name != null and name != ''"> 
+                   
+                    and NAME = #{name,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="acc != null and acc != ''"> 
+                   
+                    and ACC = #{acc,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="syt != null and syt != ''"> 
+                   
+                    and SYT = #{syt,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="crtdat != null and crtdat != ''"> 
+                   
+                    and CRTDAT = #{crtdat,jdbcType=TIMESTAMP} 
+ 
+            </if>  
+            <if test="py != null and py != ''"> 
+                   
+                    and PY = #{py,jdbcType=VARCHAR} 
+ 
+            </if>  
+            <if test="wb != null and wb != ''"> 
+                   
+                    and WB = #{wb,jdbcType=VARCHAR} 
+ 
+            </if>  
+	    </where>
+	  </select>
+	
+	  <!-- 分页数据 -->
+	  <select id="queryPage" parameterType="com.gz.medicine.common.mybatisPageVo.Page" resultMap="BaseResultMap">
+	    select * from Diagnosis
+	  </select>
+	  
+	<resultMap id="ResultMap2" type="com.gz.medicine.yun.doctor.bean.Diagnosisrecords">
+              <result column="ID" jdbcType="VARCHAR" property="id"/>  
+              <result column="ZID" jdbcType="VARCHAR" property="zid"/>  
+              <result column="ZNAME" jdbcType="VARCHAR" property="zname"/>  
+              <result column="SID" jdbcType="VARCHAR" property="sid"/>  
+	</resultMap>
+	 <select id="queryAll" parameterType="java.lang.String" resultMap="ResultMap2">
+	select * from DIAGNOSIS_RECORDS where SID = #{sickid,jdbcType=VARCHAR} 
+    </select>
+</mapper>

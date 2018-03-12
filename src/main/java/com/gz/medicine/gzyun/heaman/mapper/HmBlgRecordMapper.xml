@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gz.medicine.gzyun.heaman.mapper.HmBlgRecordMapper">
+  <resultMap id="BaseResultMap" type="com.gz.medicine.gzyun.heaman.bean.HmBlgRecord">
+    <id column="GUID" jdbcType="CHAR" property="guid" />
+    <result column="USRGUID" jdbcType="CHAR" property="usrguid" />
+    <result column="MEATIME" jdbcType="VARCHAR" property="meatime" />
+    <result column="BLGLU" jdbcType="VARCHAR" property="blglu" />
+    <result column="STATE" jdbcType="CHAR" property="state" />
+    <result column="CRTDAT" jdbcType="TIMESTAMP" property="crtdat" />
+  </resultMap>
+  
+  <select id="selectOne" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select * 
+    from(select GUID,USRGUID,MEATIME,BLGLU,trim(STATE) STATE 
+    from  GZJK_blgRecord  
+    where USRGUID = #{usrguid,jdbcType=CHAR} order by  MEATIME desc)where rownum=1
+    
+  </select>
+ <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    GUID,USRGUID,MEATIME,BLGLU,trim(STATE) STATE 
+    from  GZJK_blgRecord  
+    where USRGUID = #{usrguid,jdbcType=CHAR} order by  MEATIME desc
+    
+  </select>
+  <insert id="insert" parameterType="com.gz.medicine.gzyun.heaman.bean.HmBlgRecord">
+    insert into GZJK_BLGRECORD (GUID, USRGUID, MEATIME, 
+      BLGLU, STATE, CRTDAT
+      )
+    values (#{guid,jdbcType=CHAR}, #{usrguid,jdbcType=CHAR}, #{meatime,jdbcType=VARCHAR}, 
+      #{blglu,jdbcType=VARCHAR}, #{state,jdbcType=CHAR}, #{crtdat,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gz.medicine.gzyun.heaman.bean.HmBlgRecord">
+    insert into GZJK_BLGRECORD
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        GUID,
+      </if>
+      <if test="usrguid != null">
+        USRGUID,
+      </if>
+      <if test="meatime != null">
+        MEATIME,
+      </if>
+      <if test="blglu != null">
+        BLGLU,
+      </if>
+      <if test="state != null">
+        STATE,
+      </if>
+      <if test="crtdat != null">
+        CRTDAT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        #{guid,jdbcType=CHAR},
+      </if>
+      <if test="usrguid != null">
+        #{usrguid,jdbcType=CHAR},
+      </if>
+      <if test="meatime != null">
+        #{meatime,jdbcType=VARCHAR},
+      </if>
+      <if test="blglu != null">
+        #{blglu,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=CHAR},
+      </if>
+      <if test="crtdat != null">
+        #{crtdat,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gz.medicine.gzyun.heaman.bean.HmBlgRecord">
+    update GZJK_BLGRECORD
+    <set>
+      <if test="usrguid != null">
+        USRGUID = #{usrguid,jdbcType=CHAR},
+      </if>
+      <if test="meatime != null">
+        MEATIME = #{meatime,jdbcType=VARCHAR},
+      </if>
+      <if test="blglu != null">
+        BLGLU = #{blglu,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        STATE = #{state,jdbcType=CHAR},
+      </if>
+      <if test="crtdat != null">
+        CRTDAT = #{crtdat,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where GUID = #{guid,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gz.medicine.gzyun.heaman.bean.HmBlgRecord">
+    update GZJK_BLGRECORD
+    set USRGUID = #{usrguid,jdbcType=CHAR},
+      MEATIME = #{meatime,jdbcType=VARCHAR},
+      BLGLU = #{blglu,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=CHAR},
+      CRTDAT = #{crtdat,jdbcType=TIMESTAMP}
+    where GUID = #{guid,jdbcType=CHAR}
+  </update>
+</mapper>

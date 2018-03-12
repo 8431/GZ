@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gz.medicine.gzyun.health.mapper.OrderLogMapper" >
+  <resultMap id="BaseResultMap" type="com.gz.medicine.gzyun.health.bean.OrderLog" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="OPERATINGTIME" property="operatingtime" jdbcType="TIMESTAMP" />
+    <result column="ORDERID" property="orderid" jdbcType="VARCHAR" />
+    <result column="OPERATIONACCOUNT" property="operationaccount" jdbcType="VARCHAR" />
+    <result column="OPERATIONCONTENT" property="operationcontent" jdbcType="VARCHAR" />
+    <result column="CREATEDATE" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="CREATENAME" property="createname" jdbcType="VARCHAR" />
+    <result column="UPDATEDATE" property="updatedate" jdbcType="TIMESTAMP" />
+    <result column="UPDATENAME" property="updatename" jdbcType="VARCHAR" />
+    <result column="ORDERSTATE" property="orderstate" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.gz.medicine.gzyun.health.bean.OrderLog" >
+    insert into ORDERLOG (ID, OPERATINGTIME, ORDERID, 
+      OPERATIONACCOUNT, OPERATIONCONTENT, CREATEDATE, 
+      CREATENAME, UPDATEDATE, UPDATENAME,ORDERSTATE
+      )
+    values (#{id,jdbcType=VARCHAR}, #{operatingtime,jdbcType=TIMESTAMP}, #{orderid,jdbcType=VARCHAR}, 
+      #{operationaccount,jdbcType=VARCHAR}, #{operationcontent,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}, 
+      #{createname,jdbcType=VARCHAR}, #{updatedate,jdbcType=TIMESTAMP}, #{updatename,jdbcType=VARCHAR},#{orderstate,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gz.medicine.gzyun.health.bean.OrderLog" >
+    insert into ORDERLOG
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="operatingtime != null" >
+        OPERATINGTIME,
+      </if>
+      <if test="orderid != null" >
+        ORDERID,
+      </if>
+      <if test="operationaccount != null" >
+        OPERATIONACCOUNT,
+      </if>
+      <if test="operationcontent != null" >
+        OPERATIONCONTENT,
+      </if>
+      <if test="createdate != null" >
+        CREATEDATE,
+      </if>
+      <if test="createname != null" >
+        CREATENAME,
+      </if>
+      <if test="updatedate != null" >
+        UPDATEDATE,
+      </if>
+      <if test="updatename != null" >
+        UPDATENAME,
+      </if>
+      <if test="orderstate != null" >
+        ORDERSTATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="operatingtime != null" >
+        #{operatingtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderid != null" >
+        #{orderid,jdbcType=VARCHAR},
+      </if>
+      <if test="operationaccount != null" >
+        #{operationaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="operationcontent != null" >
+        #{operationcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createname != null" >
+        #{createname,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedate != null" >
+        #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatename != null" >
+        #{updatename,jdbcType=VARCHAR},
+      </if>
+      <if test="orderstate != null" >
+        #{orderstate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <!-- 查询订单日志  舵主 -->
+  <select id="queryItemByIdSelLog" parameterType="java.lang.String"  resultMap="BaseResultMapaa"  >
+  	  select to_char(OPERATINGTIME,'YYYY-MM-DD HH24:MI:SS') OPERATINGTIME ,OPERATIONACCOUNT , OPERATIONCONTENT,updatename from  OrderLog    where orderId= #{orderid,jdbcType=VARCHAR} order by OPERATINGTIME desc
+  </select>
+    <resultMap id="BaseResultMapaa" type="com.gz.medicine.gzyun.health.reponse.HealthLogIdReponse" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="OPERATINGTIME" property="operatingtime" jdbcType="VARCHAR" />
+    <result column="ORDERID" property="orderid" jdbcType="VARCHAR" />
+    <result column="OPERATIONACCOUNT" property="operationaccount" jdbcType="VARCHAR" />
+    <result column="OPERATIONCONTENT" property="operationcontent" jdbcType="VARCHAR" />
+    <result column="CREATEDATE" property="createdate" jdbcType="VARCHAR" />
+    <result column="CREATENAME" property="createname" jdbcType="VARCHAR" />
+    <result column="UPDATEDATE" property="updatedate" jdbcType="VARCHAR" />
+    <result column="UPDATENAME" property="updatename" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMap" type="java.util.Map" >
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+  </resultMap>
+  
+   <!-- 新增订单日志  舵主   insertItemByIdSelLog-->
+  <insert id="insertItemByIdSelLog" parameterType="com.gz.medicine.gzyun.health.request.HealthOrderMakeUpdateRequest">
+  	insert  into OrderLog (orderid,OPERATIONACCOUNT,OPERATIONCONTENT ) values(#{orderid,jdbcType=VARCHAR},#{accname,jdbcType=VARCHAR},#{opencontent,jdbcType=VARCHAR})
+  </insert>
+  <select id="queryOrderLogByOrderId" parameterType="java.lang.String" resultMap="BaseResultMap">
+   select * from (select * from OrderLog where orderid=#{0}  order by operatingtime desc ) where rownum &lt;2
+
+
+  </select>
+
+  <select id="queryUsrById" parameterType="java.lang.String" resultMap="ResultMap">
+    select * from usr where guid=#{0}
+  </select>
+
+
+</mapper>

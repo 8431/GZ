@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gz.medicine.gzyun.heaman.mapper.HmEcgabnoMapper" >
+  <resultMap id="BaseResultMap" type="com.gz.medicine.gzyun.heaman.bean.HmEcgabno" >
+    <id column="GUID" property="guid" jdbcType="CHAR" />
+    <result column="CRTDAT" property="crtdat" jdbcType="TIMESTAMP" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+    <result column="VALUE" property="value" jdbcType="CHAR" />
+    <result column="USRGUID" property="usrguid" jdbcType="CHAR" />
+    <result column="FLG" property="flg" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    GUID, CRTDAT, TYPE, VALUE, USRGUID, FLG
+  </sql>
+  
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from GZJK_ECGABNO
+    where GUID = #{guid,jdbcType=CHAR}
+  </select>
+  
+  
+  <select id="selectCountByUsrguid" parameterType="com.gz.medicine.gzyun.heaman.bean.HmEcgabno" resultType="java.lang.Integer">
+
+	<![CDATA[
+	
+	select count(*) from GZJK_ECGABNO g where g.CRTDAT > sysdate-1/1440 and g.USRGUID=#{usrguid,jdbcType=CHAR} and g."TYPE"='3' and g.FLG='0'
+	
+	]]>
+  
+  </select>
+  
+   <select id="selectCountByUsrguidAre" parameterType="com.gz.medicine.gzyun.heaman.bean.HmEcgabno" resultType="java.lang.Integer">
+
+	<![CDATA[
+	
+	select count(*) from GZJK_ECGABNO g where g.CRTDAT > sysdate-1/1440 and g.USRGUID=#{usrguid,jdbcType=CHAR} and g."TYPE"='3' and g.FLG='0' and g."VALUE"='0'
+	
+	]]>
+  
+  </select>
+  
+  
+   <select id="selectCountByUsrguidAva" parameterType="com.gz.medicine.gzyun.heaman.bean.HmEcgabno" resultType="java.lang.Integer">
+
+	<![CDATA[
+	
+	select count(*) from GZJK_ECGABNO g where g.CRTDAT > sysdate-1/1440 and g.USRGUID=#{usrguid,jdbcType=CHAR} and g."TYPE"='3' and g.FLG='0' and g."VALUE"='1'
+	
+	]]>
+  
+  </select>
+  
+  <select id="selectCountByUsrguidLia" parameterType="com.gz.medicine.gzyun.heaman.bean.HmEcgabno" resultType="java.lang.Integer">
+
+	<![CDATA[
+	
+	select count(*) from GZJK_ECGABNO g where g.CRTDAT > sysdate-1/1440 and g.USRGUID=#{usrguid,jdbcType=CHAR} and g."TYPE"='3' and g.FLG='0' and g."VALUE"='2'
+	
+	]]>
+  
+  </select>
+  
+  <select id="selectNavByUsrguid" parameterType="com.gz.medicine.gzyun.heaman.bean.HmEcgabno" resultType="java.lang.Integer">
+      select nvl(ceil((sysdate-max(CRTDAT)) * 24 * 60 ),'10') from gzjk_ECGabno where 
+      
+      <if test="usrguid!=null">
+         USRGUID=#{usrguid,jdbcType=VARCHAR} and 
+      </if>
+      
+      flg=1
+  </select>
+  
+  
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from GZJK_ECGABNO
+    where GUID = #{guid,jdbcType=CHAR}
+  </delete>
+  
+  
+  <insert id="insert" parameterType="com.gz.medicine.gzyun.heaman.bean.HmEcgabno" >
+    insert into GZJK_ECGABNO (GUID, CRTDAT, TYPE, 
+      VALUE, USRGUID, FLG)
+    values (#{guid,jdbcType=CHAR}, #{crtdat,jdbcType=TIMESTAMP}, #{type,jdbcType=VARCHAR}, 
+      #{value,jdbcType=CHAR}, #{usrguid,jdbcType=CHAR}, #{flg,jdbcType=CHAR})
+  </insert>
+  
+  
+  <insert id="insertSelective" parameterType="com.gz.medicine.gzyun.heaman.bean.HmEcgabno" >
+    insert into GZJK_ECGABNO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        GUID,
+      </if>
+      <if test="crtdat != null" >
+        CRTDAT,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="value != null" >
+        VALUE,
+      </if>
+      <if test="usrguid != null" >
+        USRGUID,
+      </if>
+      <if test="flg != null" >
+        FLG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        #{guid,jdbcType=CHAR},
+      </if>
+      <if test="crtdat != null" >
+        #{crtdat,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null" >
+        #{value,jdbcType=CHAR},
+      </if>
+      <if test="usrguid != null" >
+        #{usrguid,jdbcType=CHAR},
+      </if>
+      <if test="flg != null" >
+        #{flg,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.gz.medicine.gzyun.heaman.bean.HmEcgabno" >
+    update GZJK_ECGABNO
+    <set >
+      <if test="crtdat != null" >
+        CRTDAT = #{crtdat,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null" >
+        VALUE = #{value,jdbcType=CHAR},
+      </if>
+      <if test="usrguid != null" >
+        USRGUID = #{usrguid,jdbcType=CHAR},
+      </if>
+      <if test="flg != null" >
+        FLG = #{flg,jdbcType=CHAR},
+      </if>
+    </set>
+    where GUID = #{guid,jdbcType=CHAR}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.gz.medicine.gzyun.heaman.bean.HmEcgabno" >
+    update GZJK_ECGABNO
+    set CRTDAT = #{crtdat,jdbcType=TIMESTAMP},
+      TYPE = #{type,jdbcType=VARCHAR},
+      VALUE = #{value,jdbcType=CHAR},
+      USRGUID = #{usrguid,jdbcType=CHAR},
+      FLG = #{flg,jdbcType=CHAR}
+    where GUID = #{guid,jdbcType=CHAR}
+  </update>
+</mapper>
